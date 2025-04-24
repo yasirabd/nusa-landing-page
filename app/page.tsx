@@ -5,9 +5,9 @@ import {
   BookOpen,
   Instagram,
   Laptop,
-  ChurchIcon as Mosque,
+  Book,
   Phone,
-  Users,
+  BicepsFlexed,
   Youtube,
   Rocket,
   Briefcase,
@@ -78,19 +78,19 @@ export default function Home() {
                   <p className="mt-1 text-lg font-medium text-[#134146]">Jenjang Pendidikan SMA/SMK</p>
                 </div>
                 <div className="inline-block rounded-lg bg-[#B6CB6C]/20 px-3 py-1 text-sm font-medium text-[#134146]">
-                  Kuota Tersisa 10 Santri
+                  Kuota Tersisa 10 Santri Ikhwan!
                 </div>
                 <div className="flex flex-col gap-2 sm:flex-row">
-                  <Link href="https://wa.me/6281234567890" target="_blank" rel="noopener noreferrer">
+                  <Link href="https://wa.me/62812392706707" target="_blank" rel="noopener noreferrer">
                     <Button
                       className="w-full bg-white text-[#2C8970] hover:bg-[#2C8970]/10 sm:w-auto"
                       variant="outline"
                     >
                       <Phone className="mr-2 h-4 w-4" />
-                      Konsultasi Dulu
+                      Konsultasi WhatsApp
                     </Button>
                   </Link>
-                  <Link href="#daftar">
+                  <Link href="https://s.id/GabungNurusSunnah">
                     <Button className="w-full bg-[#2C8970] text-white hover:bg-[#2C8970]/90 sm:w-auto">
                       Daftar Sekarang
                     </Button>
@@ -100,11 +100,11 @@ export default function Home() {
               <div className="flex items-center justify-center">
                 <div className="overflow-hidden rounded-lg">
                   <Image
-                    src="/placeholder.svg?height=400&width=600"
+                    src="/placeholder-nusa.svg?height=300&width=500"
                     alt="NUSA Boarding School"
-                    width={600}
-                    height={400}
-                    className="aspect-[4/3] h-auto w-full object-cover"
+                    width={500}
+                    height={300}
+                    className="h-auto w-full object-cover"
                   />
                 </div>
               </div>
@@ -118,8 +118,7 @@ export default function Home() {
             <div className="mx-auto max-w-3xl text-center">
               <h2 className="text-3xl font-bold tracking-tighter text-[#134146] sm:text-4xl">Kenapa Memilih NUSA?</h2>
               <p className="mt-4 text-[#134146]/80">
-                Kami menawarkan pendidikan berkualitas dengan pendekatan holistik untuk membentuk generasi Muslim yang
-                unggul
+                Kami menawarkan pendidikan berkualitas dengan pembelaran berbasis project
               </p>
             </div>
             <div className="mt-12 grid gap-8 md:grid-cols-2">
@@ -144,7 +143,7 @@ export default function Home() {
                       </svg>
                     </div>
                     <span className="text-[#134146]">
-                      Sekolah unggul berbasis IT dan Qur'ani pertama yang bernuansa alam
+                      Sekolah unggul berbasis IT dan Qur'ani satu-satunya di Semarang
                     </span>
                   </li>
                   <li className="flex items-start">
@@ -164,7 +163,7 @@ export default function Home() {
                       </svg>
                     </div>
                     <span className="text-[#134146]">
-                      Kurikulum IT terupdate di Indonesia serta membentuk karakter para santri menjadi Insan Profesional
+                      Program pembelajaran intensif dengan pendekatan bootcamp yang fokus pada praktik dan portfolio
                     </span>
                   </li>
                   <li className="flex items-start">
@@ -184,7 +183,7 @@ export default function Home() {
                       </svg>
                     </div>
                     <span className="text-[#134146]">
-                      Tenaga Pengajar Profesional: S2 UI CCIE, Alumni STDI Imam Syafii Jember, Florida USA, dll
+                      Tenaga pengajar profesional: praktisi industri, lulusan kampus diniyyah ternama
                     </span>
                   </li>
                   <li className="flex items-start">
@@ -231,7 +230,7 @@ export default function Home() {
                       </svg>
                     </div>
                     <span className="text-[#134146]">
-                      Program yang bisa mengasah skill leadership dan kemandirian santri
+                      Program yang bisa mengasah skill leadership dan kemandirian menjadi Muslim Tangguh
                     </span>
                   </li>
                   <li className="flex items-start">
@@ -250,7 +249,7 @@ export default function Home() {
                         <polyline points="20 6 9 17 4 12"></polyline>
                       </svg>
                     </div>
-                    <span className="text-[#134146]">Sekolah full praktek agar siap terjun di lapangan</span>
+                    <span className="text-[#134146]">Sekolah full praktik siap langsung kerja</span>
                   </li>
                   <li className="flex items-start">
                     <div className="mr-3 mt-1 flex h-6 w-6 items-center justify-center rounded-full bg-[#2C8970]/10 text-[#2C8970]">
@@ -269,7 +268,7 @@ export default function Home() {
                       </svg>
                     </div>
                     <span className="text-[#134146]">
-                      Ekstrakurikuler beragam dan Membentuk karakter santri menjadi insan profesional
+                      Kegiatan siswa beragam untuk membentuk mental tangguh
                     </span>
                   </li>
                   <li className="flex items-start">
@@ -289,7 +288,7 @@ export default function Home() {
                       </svg>
                     </div>
                     <span className="text-[#134146]">
-                      Santri berkesempatan menghasilkan income signifikan sejak masih di bangku sekolah
+                      Santri berpeluang mampu memiliki pendapatan setelah 100 hari belajar
                     </span>
                   </li>
                 </ul>
@@ -340,12 +339,6 @@ export default function Home() {
                     Pembelajaran selanjutnya dilakukan sambil mengerjakan project nyata dan magang di perusahaan partner
                   </p>
                 </div>
-              </div>
-
-              <div className="mt-10 text-center">
-                <Link href="#daftar">
-                  <Button className="bg-white text-[#2C8970] hover:bg-white/90">Daftar Program 100 Hari</Button>
-                </Link>
               </div>
             </div>
           </div>
@@ -556,9 +549,9 @@ export default function Home() {
                           <GraduationCapIcon className="h-6 w-6 text-[#2C8970] ml-2" />
                         </div>
                         <h3 className="text-xl font-bold text-[#2C8970] mb-2">
-                          Tahap Belajar dan Fokus Berkarya (~2 Tahun)
+                          Tahap Belajar dan Berkarya (2 Tahun)
                         </h3>
-                        <p className="text-[#134146]/80">Belajar sesuai dengan fokus bidang yang dipilih</p>
+                        <p className="text-[#134146]/80">Belajar dan berkarya sesuai dengan fokus bidang yang dipilih</p>
                       </div>
                     </div>
 
@@ -584,8 +577,7 @@ export default function Home() {
                         </div>
                         <h3 className="text-xl font-bold text-[#2C8970] mb-2">Tahap Magang Kerja (1 Tahun)</h3>
                         <p className="text-[#134146]/80">
-                          Pengalaman kerja nyata di perusahaan partner untuk mempersiapkan santri terjun ke dunia
-                          profesional
+                          Pengalaman kerja nyata di perusahaan
                         </p>
                       </div>
                     </div>
@@ -594,13 +586,6 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="mt-12 text-center">
-              <Link href="#daftar">
-                <Button className="bg-[#2C8970] text-white hover:bg-[#2C8970]/90">
-                  Daftar Jurusan Programmer & Designer
-                </Button>
-              </Link>
-            </div>
           </div>
         </section>
 
@@ -610,7 +595,7 @@ export default function Home() {
             <div className="mx-auto max-w-3xl text-center">
               <h2 className="text-3xl font-bold tracking-tighter text-[#134146] sm:text-4xl">Kurikulum NUSA</h2>
               <p className="mt-4 text-[#134146]/80">
-                Terdapat 4 Pilar Utama yang membentuk pendidikan holistik di NUSA Boarding School
+                Terdapat 4 Pilar Utama di NUSA Boarding School
               </p>
             </div>
             <div className="mt-12 grid gap-8 md:grid-cols-2">
@@ -665,7 +650,7 @@ export default function Home() {
               {/* Pilar 3: Pendidikan Agama */}
               <div className="rounded-lg border border-[#2C8970]/20 bg-white p-6 shadow-sm">
                 <div className="mb-4 rounded-full bg-[#2C8970]/10 p-3 text-[#2C8970] inline-flex">
-                  <Mosque className="h-8 w-8" />
+                  <Book className="h-8 w-8" />
                 </div>
                 <h3 className="mb-3 text-xl font-bold text-[#134146]">Pendidikan Agama</h3>
                 <ul className="space-y-2 text-[#134146]/80">
@@ -675,7 +660,7 @@ export default function Home() {
                   </li>
                   <li className="flex items-start">
                     <span className="mr-2 mt-1 text-[#B6CB6C]">•</span>
-                    <span>Tauhid dan adab</span>
+                    <span>Aqidah, adab, sirah</span>
                   </li>
                   <li className="flex items-start">
                     <span className="mr-2 mt-1 text-[#B6CB6C]">•</span>
@@ -691,7 +676,7 @@ export default function Home() {
               {/* Pilar 4: Muslim Tangguh */}
               <div className="rounded-lg border border-[#2C8970]/20 bg-white p-6 shadow-sm">
                 <div className="mb-4 rounded-full bg-[#2C8970]/10 p-3 text-[#2C8970] inline-flex">
-                  <Users className="h-8 w-8" />
+                  <BicepsFlexed className="h-8 w-8" />
                 </div>
                 <h3 className="mb-3 text-xl font-bold text-[#134146]">Muslim Tangguh</h3>
                 <ul className="space-y-2 text-[#134146]/80">
@@ -721,7 +706,7 @@ export default function Home() {
                   </li>
                   <li className="flex items-start">
                     <span className="mr-2 mt-1 text-[#B6CB6C]">•</span>
-                    <span>Bersih Bareng Nusa (Keliling Masjid Bersih Pekanan)</span>
+                    <span>Bersih Bareng NUSA (Keliling Masjid Bersih Pekanan)</span>
                   </li>
                   <li className="flex items-start">
                     <span className="mr-2 mt-1 text-[#B6CB6C]">•</span>
@@ -731,12 +716,16 @@ export default function Home() {
                     <span className="mr-2 mt-1 text-[#B6CB6C]">•</span>
                     <span>Jago jualan digital</span>
                   </li>
+                  <li className="flex items-start">
+                    <span className="mr-2 mt-1 text-[#B6CB6C]">•</span>
+                    <span>NUSA Mengajar</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="mr-2 mt-1 text-[#B6CB6C]">•</span>
+                    <span>dan banyak kegiatan lainnya...</span>
+                  </li>
                 </ul>
               </div>
-            </div>
-            <div className="mt-8 text-center">
-              <p className="text-[#134146]/80">Dan banyak kegiatan lainnya</p>
-              <p className="mt-2 font-medium text-[#2C8970]">NUSA mengajar: mahir mengajar</p>
             </div>
           </div>
         </section>
@@ -748,37 +737,17 @@ export default function Home() {
               <h2 className="text-3xl font-bold tracking-tighter text-[#134146] sm:text-4xl">Tim Pengajar NUSA</h2>
               <p className="mt-4 text-[#134146]/80">Tenaga pengajar profesional dan berpengalaman di bidangnya</p>
             </div>
-            <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-2">
               {[
                 {
-                  name: "Ustadz Ahmad Fauzi, M.Pd.I",
-                  role: "Kepala Pondok & Pengajar Tahfidz",
-                  image: "/placeholder.svg?height=300&width=300",
+                  name: "Yasir Abdur Rohman, S.Kom",
+                  role: "Kepala Sekolah",
+                  image: "/profile-yasir.png?height=300&width=300",
                 },
                 {
-                  name: "Ustadzah Nur Hidayah, M.Pd",
-                  role: "Koordinator Akademik",
-                  image: "/placeholder.svg?height=300&width=300",
-                },
-                {
-                  name: "Ustadz Rizal Mahmudi, S.Kom",
-                  role: "Pengajar Teknologi & Pemrograman",
-                  image: "/placeholder.svg?height=300&width=300",
-                },
-                {
-                  name: "Ustadz Hasan Basri, Lc",
-                  role: "Pengajar Bahasa Arab & Fiqih",
-                  image: "/placeholder.svg?height=300&width=300",
-                },
-                {
-                  name: "Ustadzah Fatimah, M.Si",
-                  role: "Pengajar Sains & Matematika",
-                  image: "/placeholder.svg?height=300&width=300",
-                },
-                {
-                  name: "Ustadz Irfan Hakim, S.Des",
-                  role: "Pengajar Desain & UI/UX",
-                  image: "/placeholder.svg?height=300&width=300",
+                  name: "Ariaseta Setia Alam",
+                  role: "CEO KodingWorks & CTO Pesan.io",
+                  image: "/profile-ariaseta.jpg?height=300&width=300",
                 },
               ].map((teacher, index) => (
                 <div key={index} className="flex flex-col items-center rounded-lg bg-white p-6 text-center shadow-sm">
@@ -804,24 +773,23 @@ export default function Home() {
           <div className="container px-4 md:px-6">
             <div className="mx-auto max-w-3xl text-center">
               <h2 className="text-3xl font-bold tracking-tighter text-[#134146] sm:text-4xl">Galeri Kegiatan</h2>
-              <p className="mt-4 text-[#134146]/80">Momen-momen berharga dalam kegiatan santri NUSA</p>
             </div>
             <div className="mt-12 grid gap-4 sm:grid-cols-2 md:grid-cols-4">
               {[
-                { name: "IT/Coding Class", image: "/placeholder.svg?height=300&width=400&text=IT/Coding Class" },
-                { name: "Ramadan Bootcamp", image: "/placeholder.svg?height=300&width=400&text=Ramadan Bootcamp" },
-                { name: "IT Camp", image: "/placeholder.svg?height=300&width=400&text=IT Camp" },
-                { name: "Outbond", image: "/placeholder.svg?height=300&width=400&text=Outbond" },
+                { name: "IT/Coding Class", image: "/coding-class.png?height=300&width=400&text=IT/Coding Class" },
+                { name: "Ramadan Bootcamp", image: "/ramadan-bootcamp.png?height=300&width=400&text=Ramadan Bootcamp" },
+                { name: "IT Camp", image: "/it-camp.png?height=300&width=400&text=IT Camp" },
+                { name: "Outbond", image: "/outbond.png?height=300&width=400&text=Outbond" },
                 {
                   name: "Berani Jualan di CFD",
-                  image: "/placeholder.svg?height=300&width=400&text=Berani Jualan di CFD",
+                  image: "/berani-jualan.png?height=300&width=400&text=Berani Jualan di CFD",
                 },
                 {
                   name: "Buat Website dengan AI",
-                  image: "/placeholder.svg?height=300&width=400&text=Buat Website dengan AI",
+                  image: "/website-ai.png?height=300&width=400&text=Buat Website dengan AI",
                 },
-                { name: "NUSA Mengajar", image: "/placeholder.svg?height=300&width=400&text=NUSA Mengajar" },
-                { name: "Tech Talk", image: "/placeholder.svg?height=300&width=400&text=Tech Talk" },
+                { name: "NUSA Mengajar", image: "/nusa-mengajar.png?height=300&width=400&text=NUSA Mengajar" },
+                { name: "Tech Talk", image: "/tech-talk.png?height=300&width=400&text=Tech Talk" },
               ].map((item, index) => (
                 <div key={index} className="overflow-hidden rounded-lg">
                   <div className="relative">
@@ -830,7 +798,7 @@ export default function Home() {
                       alt={item.name}
                       width={400}
                       height={300}
-                      className="h-full w-full object-cover transition-transform duration-300 hover:scale-105"
+                      className="transition-transform duration-300 hover:scale-105"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end">
                       <p className="text-white font-medium p-3">{item.name}</p>
@@ -852,32 +820,32 @@ export default function Home() {
             <div className="mt-12 grid gap-6 sm:grid-cols-2">
               {[
                 {
-                  name: "Ahmad Rasyid",
-                  role: "Santri Angkatan 2023",
+                  name: "Dr. Ir. Edy Susilo, MT",
+                  role: "Ketua Yayasan Islam Nurus Sunnah",
                   quote:
-                    "Belajar di NUSA membuka wawasan saya tentang teknologi tanpa meninggalkan nilai-nilai agama. Saya bisa menghafal Al-Qur'an sekaligus belajar coding.",
-                  image: "/placeholder.svg?height=100&width=100",
+                    "NUSA membekali anak-anak untuk punya lifeskill dalam bidang IT dan memiliki karakter yang baik.",
+                  image: "/user.png?height=100&width=100",
                 },
                 {
-                  name: "Hj. Siti Aminah",
-                  role: "Orang Tua Santri",
+                  name: "Dr.Eng. Adi Wibowo, S.Si., M.Kom",
+                  role: "Wali Murid SD Islam Nurus Sunnah",
                   quote:
-                    "Anak saya mengalami perubahan positif setelah belajar di NUSA. Tidak hanya ilmu agama yang meningkat, tapi juga memiliki keterampilan teknologi yang bermanfaat.",
-                  image: "/placeholder.svg?height=100&width=100",
+                    "Keren banget! NUSA tidak hanya fokus ke ilmu agama dan akhlak mulia sesuai tuntunan Ahlus Sunnah wal Jama’ah, tetapi juga menyiapkan generasi Qur’ani yang menguasai teknologi. Semoga makin sukses dan terus istiqamah!",
+                  image: "/user.png?height=100&width=100",
                 },
                 {
-                  name: "Fadhil Ramadhan",
-                  role: "Alumni NUSA 2022",
+                  name: "Izzul Fairuz Mahendra",
+                  role: "Santri NUSA Boarding School 2025",
                   quote:
-                    "Berkat ilmu yang saya dapatkan di NUSA, saya bisa langsung bekerja sebagai web developer setelah lulus. Alhamdulillah, pendidikan di sini sangat relevan dengan kebutuhan industri.",
-                  image: "/placeholder.svg?height=100&width=100",
+                    "Satu-satunya sekolah IT yang ada di Semarang.",
+                  image: "/user.png?height=100&width=100",
                 },
                 {
-                  name: "Dr. Hasan Mahmud",
-                  role: "Praktisi Pendidikan",
+                  name: "M. Fahri",
+                  role: "Santri NUSA Boarding School 2025",
                   quote:
-                    "NUSA Boarding School menerapkan konsep pendidikan yang sangat visioner, memadukan nilai-nilai Islam dengan keterampilan teknologi yang dibutuhkan di era digital.",
-                  image: "/placeholder.svg?height=100&width=100",
+                    "NUSA mengajarkan bisnis hingga dapat uang menggunakan teknologi terbaru.",
+                  image: "/user.png?height=100&width=100",
                 },
               ].map((testimonial, index) => (
                 <div key={index} className="rounded-lg bg-white p-6 shadow-sm">
@@ -924,8 +892,8 @@ export default function Home() {
               {/* Uang Masuk */}
               <div className="rounded-lg border-2 border-[#2C8970] bg-white p-6 text-center shadow-sm">
                 <h3 className="mb-2 text-xl font-bold text-[#134146]">Uang Masuk</h3>
-                <p className="mb-2 text-2xl font-bold text-[#2C8970]">Rp 20.000.000</p>
-                <p className="mb-4 text-sm text-[#2C8970]">Bisa dicicil hingga lulus</p>
+                <p className="mb-2 text-2xl font-bold text-[#2C8970]">20jt</p>
+                <p className="mb-4 text-sm text-[#2C8970] inline-block bg-[#B6CB6C]/20">Bisa diangsur hingga lulus</p>
                 <div className="text-left">
                   <p className="font-medium text-[#134146] mb-2">Sudah Termasuk:</p>
                   <ul className="space-y-1 text-[#134146]/80">
@@ -968,7 +936,7 @@ export default function Home() {
               {/* Uang Bulanan */}
               <div className="rounded-lg border-2 border-[#B6CB6C] bg-white p-6 text-center shadow-sm">
                 <h3 className="mb-2 text-xl font-bold text-[#134146]">Uang Bulanan</h3>
-                <p className="mb-4 text-2xl font-bold text-[#2C8970]">Rp 2.000.000</p>
+                <p className="mb-4 text-2xl font-bold text-[#2C8970]">2jt</p>
                 <div className="text-left">
                   <p className="font-medium text-[#134146] mb-2">Sudah Termasuk:</p>
                   <ul className="space-y-1 text-[#134146]/80">
@@ -996,7 +964,7 @@ export default function Home() {
               {/* Uang Semester */}
               <div className="rounded-lg border-2 border-[#B6CB6C] bg-white p-6 text-center shadow-sm">
                 <h3 className="mb-2 text-xl font-bold text-[#134146]">Uang Semester</h3>
-                <p className="mb-4 text-2xl font-bold text-[#2C8970]">Rp 1.000.000</p>
+                <p className="mb-4 text-2xl font-bold text-[#2C8970]">1jt</p>
                 <div className="text-left">
                   <p className="font-medium text-[#134146] mb-2">Sudah Termasuk:</p>
                   <ul className="space-y-1 text-[#134146]/80">
@@ -1020,7 +988,7 @@ export default function Home() {
 
             <div className="mt-8 text-center text-sm text-[#134146]/70">
               <p>* Tersedia program beasiswa untuk santri berprestasi dan kurang mampu</p>
-              <p>* Pembayaran dapat diangsur sesuai kebijakan pondok</p>
+              <p>* Pembayaran dapat diangsur sesuai kebijakan sekolah</p>
             </div>
           </div>
         </section>
@@ -1036,7 +1004,7 @@ export default function Home() {
                   </h2>
                 </div>
                 <div className="flex justify-center md:justify-end">
-                  <Link href="#daftar">
+                  <Link href="https://s.id/GabungNurusSunnah" target="_blank" rel="noopener noreferrer">
                     <Button size="lg" className="bg-[#2C8970] text-white hover:bg-[#2C8970]/90 text-lg px-8 py-6">
                       Daftar Sekarang Juga
                     </Button>
@@ -1054,7 +1022,7 @@ export default function Home() {
               <div className="text-xl font-bold">
                 NUSA <span className="text-[#B6CB6C]">Boarding School</span>
               </div>
-              <p className="mt-4 text-white/70">Membentuk generasi Muslim yang unggul dalam ilmu agama dan teknologi</p>
+              <p className="mt-4 text-white/70">Membentuk generasi Muslim yang tangguh dan jago IT</p>
               <div className="mt-6 flex space-x-4">
                 <Link
                   href="https://instagram.com/nusaboardingschool"
@@ -1086,38 +1054,11 @@ export default function Home() {
               </address>
             </div>
             <div>
-              <h3 className="mb-4 text-lg font-bold">Navigasi Cepat</h3>
-              <ul className="space-y-2 text-white/70">
-                <li>
-                  <Link href="#" className="hover:text-[#B6CB6C]">
-                    Beranda
-                  </Link>
-                </li>
-                <li>
-                  <Link href="#" className="hover:text-[#B6CB6C]">
-                    Tentang Kami
-                  </Link>
-                </li>
-                <li>
-                  <Link href="#" className="hover:text-[#B6CB6C]">
-                    Program
-                  </Link>
-                </li>
-                <li>
-                  <Link href="#" className="hover:text-[#B6CB6C]">
-                    Pendaftaran
-                  </Link>
-                </li>
-                <li>
-                  <Link href="#" className="hover:text-[#B6CB6C]">
-                    Kontak
-                  </Link>
-                </li>
-              </ul>
+              
             </div>
           </div>
           <div className="mt-12 border-t border-white/10 pt-6 text-center text-sm text-white/60">
-            <p>&copy; {new Date().getFullYear()} NUSA Boarding School Semarang. Hak Cipta Dilindungi.</p>
+            <p>&copy; {new Date().getFullYear()} NUSA Boarding School</p>
           </div>
         </div>
       </footer>
