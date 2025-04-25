@@ -871,32 +871,30 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Fee Information */}
-        <section className="py-12 md:py-16 lg:py-20">
+       {/* Fee Information */}
+        <section className="py-12 md:py-16 lg:py-20 bg-[#2C8970] text-white">
           <div className="container px-4 md:px-6">
             <div className="mx-auto max-w-3xl text-center">
-              <h2 className="text-3xl font-bold tracking-tighter text-[#134146] sm:text-4xl">Informasi Biaya</h2>
-              <p className="mt-4 text-[#134146]/80">Investasi pendidikan untuk masa depan yang lebih baik</p>
+              <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl">Informasi Biaya</h2>
             </div>
 
             {/* Uang Pendaftaran - Small Row */}
             <div className="mt-8 mx-auto max-w-md">
-              <div className="rounded-lg border-2 border-[#B6CB6C] bg-white p-4 text-center shadow-sm">
-                <h3 className="mb-2 text-lg font-bold text-[#134146]">Uang Pendaftaran</h3>
-                <p className="text-xl font-bold text-[#2C8970]">Rp 275.000</p>
+              <div className="text-center">
+                <p className="text-xl font-bold text-white">Pendaftaran: 275ribu</p>
               </div>
             </div>
 
             {/* Main Fee Information - 3 Columns */}
             <div className="mt-6 grid gap-6 sm:grid-cols-3">
               {/* Uang Masuk */}
-              <div className="rounded-lg border-2 border-[#2C8970] bg-white p-6 text-center shadow-sm">
-                <h3 className="mb-2 text-xl font-bold text-[#134146]">Uang Masuk</h3>
-                <p className="mb-2 text-2xl font-bold text-[#2C8970]">20jt</p>
-                <p className="mb-4 text-sm text-[#2C8970] inline-block bg-[#B6CB6C]/20">Bisa diangsur hingga lulus</p>
+              <div className="rounded-lg border-2 border-white/30 bg-white/10 p-6 text-center backdrop-blur-sm">
+                <h3 className="mb-2 text-xl font-bold">Uang Masuk</h3>
+                <p className="mb-2 text-2xl font-bold text-white">20jt</p>
+                <p className="mb-4 inline-block rounded-md bg-[#B6CB6C] px-3 py-1 text-sm font-medium text-[#134146]">Bisa dicicil hingga lulus</p>
                 <div className="text-left">
-                  <p className="font-medium text-[#134146] mb-2">Sudah Termasuk:</p>
-                  <ul className="space-y-1 text-[#134146]/80">
+                  <p className="font-medium mb-2">Sudah Termasuk:</p>
+                  <ul className="space-y-1 text-white/80">
                     <li className="flex items-start">
                       <span className="mr-2 text-[#B6CB6C]">•</span>
                       <span>Biaya Masuk</span>
@@ -934,12 +932,12 @@ export default function Home() {
               </div>
 
               {/* Uang Bulanan */}
-              <div className="rounded-lg border-2 border-[#B6CB6C] bg-white p-6 text-center shadow-sm">
-                <h3 className="mb-2 text-xl font-bold text-[#134146]">Uang Bulanan</h3>
-                <p className="mb-4 text-2xl font-bold text-[#2C8970]">2jt</p>
+              <div className="rounded-lg border-2 border-white/30 bg-white/10 p-6 text-center backdrop-blur-sm">
+                <h3 className="mb-2 text-xl font-bold">Uang Bulanan</h3>
+                <p className="mb-4 text-2xl font-bold text-white">2jt</p>
                 <div className="text-left">
-                  <p className="font-medium text-[#134146] mb-2">Sudah Termasuk:</p>
-                  <ul className="space-y-1 text-[#134146]/80">
+                  <p className="font-medium mb-2">Sudah Termasuk:</p>
+                  <ul className="space-y-1 text-white/80">
                     <li className="flex items-start">
                       <span className="mr-2 text-[#B6CB6C]">•</span>
                       <span>Makan 3x sehari</span>
@@ -957,17 +955,17 @@ export default function Home() {
                       <span>Ujian sekolah/semester</span>
                     </li>
                   </ul>
-                  <p className="mt-2 text-xs text-[#134146]/70">*Dibayar paling lambat tanggal 10 setiap bulan</p>
+                  <p className="mt-2 text-xs text-white/70">*Dibayar paling lambat tanggal 10 setiap bulan</p>
                 </div>
               </div>
 
               {/* Uang Semester */}
-              <div className="rounded-lg border-2 border-[#B6CB6C] bg-white p-6 text-center shadow-sm">
-                <h3 className="mb-2 text-xl font-bold text-[#134146]">Uang Semester</h3>
-                <p className="mb-4 text-2xl font-bold text-[#2C8970]">1jt</p>
+              <div className="rounded-lg border-2 border-white/30 bg-white/10 p-6 text-center backdrop-blur-sm">
+                <h3 className="mb-2 text-xl font-bold">Uang Semester</h3>
+                <p className="mb-4 text-2xl font-bold text-white">1jt</p>
                 <div className="text-left">
-                  <p className="font-medium text-[#134146] mb-2">Sudah Termasuk:</p>
-                  <ul className="space-y-1 text-[#134146]/80">
+                  <p className="font-medium mb-2">Sudah Termasuk:</p>
+                  <ul className="space-y-1 text-white/80">
                     <li className="flex items-start">
                       <span className="mr-2 text-[#B6CB6C]">•</span>
                       <span>Program Muslim Tangguh</span>
@@ -981,14 +979,43 @@ export default function Home() {
                       <span>Program entrepreneur</span>
                     </li>
                   </ul>
-                  <p className="mt-2 text-xs text-[#134146]/70">*Dibayar paling lambat tiap awal semester</p>
+                  <p className="mt-2 text-xs text-white/70">*Dibayar paling lambat tiap awal semester</p>
                 </div>
               </div>
             </div>
 
-            <div className="mt-8 text-center text-sm text-[#134146]/70">
+            <div className="mt-8 text-center text-sm text-white/70">
               <p>* Tersedia program beasiswa untuk santri berprestasi dan kurang mampu</p>
-              <p>* Pembayaran dapat diangsur sesuai kebijakan sekolah</p>
+              <p>* Pembayaran dapat diangsur sesuai kebijakan pondok</p>
+            </div>
+          </div>
+        </section>
+
+        {/* Partner Section */}
+        <section className="py-12 md:py-16 bg-white">
+          <div className="container px-4 md:px-6">
+            <div className="mx-auto max-w-3xl text-center mb-10">
+              <h2 className="text-3xl font-bold tracking-tighter text-[#134146] sm:text-4xl">Partner Kami</h2>
+              <p className="mt-4 text-[#134146]/80">Bekerja sama beberapa perusahaan di industri teknologi</p>
+            </div>
+
+            <div className="flex flex-wrap justify-center items-center gap-8 md:gap-16">
+              {[
+                { name: "KodingWorks", logo: "/KodingWorks.png?height=80&width=180&text=KodingWorks" },
+                { name: "Pesanio", logo: "/Pesanio.png?height=80&width=180&text=Pesanio" },
+                { name: "Programmer Kecil", logo: "/ProgrammerKecil.png?height=80&width=180&text=Programmer Kecil" },
+                { name: "Sanditheta", logo: "/Sanditheta.png?height=80&width=180&text=Sanditheta" },
+              ].map((partner) => (
+                <div key={partner.name} className="flex items-center justify-center">
+                  <Image
+                    src={partner.logo || "/placeholder.svg"}
+                    alt={`${partner.name} Logo`}
+                    width={180}
+                    height={80}
+                    className="h-16 w-auto object-contain hover:grayscale-0 transition-all duration-300"
+                  />
+                </div>
+              ))}
             </div>
           </div>
         </section>
