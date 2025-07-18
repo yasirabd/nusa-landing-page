@@ -81,7 +81,7 @@ export default function Home() {
                   Kuota Tersisa 10 Santri Ikhwan!
                 </div>
                 <div className="flex flex-col gap-2 sm:flex-row">
-                  <Link href="https://wa.me/62812392706707" target="_blank" rel="noopener noreferrer">
+                  <Link href="https://wa.me/6281392706707" target="_blank" rel="noopener noreferrer">
                     <Button
                       className="w-full bg-white text-[#2C8970] hover:bg-[#2C8970]/10 sm:w-auto"
                       variant="outline"
