@@ -4,7 +4,7 @@ const partners = [
   { name: "KodingWorks", logo: "/images/partner-kodingworks.png?height=80&width=180&text=KodingWorks"},
   { name: "Pesanio", logo: "/images/partner-pesanio.png?height=80&width=180&text=Pesanio"},
   { name: "Programmer Kecil", logo: "/images/partner-programmerkecil.png?height=80&width=180&text=Programmer Kecil"},
-  { name: "Sumopod", logo: "/images/partner-sumopod.png?height=80&width=180&text=Sumopod"},
+  { name: "Sumopod", logo: "/images/partner-sumopod.png?height=80&width=180&text=SumoPod"},
   { name: "Sanditheta", logo: "/images/partner-sanditheta.png?height=80&width=180&text=Sanditheta"},
 ]
 
