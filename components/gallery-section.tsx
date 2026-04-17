@@ -1,5 +1,3 @@
-import Image from "next/image"
-
 const galleryItems = [
   {
     name: "MPLS",
@@ -63,39 +61,60 @@ const galleryItems = [
   },
 ]
 
+const COLORS = {
+  primary: "#2C8970",
+  secondary: "#42CDBA",
+  darkBase: "#134146",
+  accent: "#F3B233",
+  white: "#F7F7F2",
+  surface: "#F0FAF7",
+}
+
 export function GallerySection() {
   return (
-    <section className="py-12 md:py-16 lg:py-20" style={{ backgroundColor: "#F7FCF9" }}>
-      <div className="container px-4 md:px-6 max-w-7xl mx-auto">
-        <div className="mx-auto max-w-4xl text-center">
-          <h2 className="text-3xl font-bold tracking-tighter text-[#134146] sm:text-4xl">Galeri Kegiatan</h2>
-          <p className="mt-4 text-[#134146]/80">Momen-momen berharga kegiatan NUSA Boarding School</p>
+    <section className="py-24 md:py-32 lg:py-40" style={{ backgroundColor: COLORS.surface }}>
+      {/* Container back to max-w-7xl for panoramic 2-columns */}
+      <div className="container px-4 md:px-8 max-w-7xl mx-auto">
+        <div className="mx-auto max-w-4xl text-center mb-16 md:mb-24">
+          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight mb-6" style={{ color: COLORS.darkBase }}>
+            Galeri Kegiatan
+          </h2>
+          <p className="text-base sm:text-lg font-medium leading-relaxed max-w-2xl mx-auto opacity-80" style={{ color: COLORS.darkBase }}>
+            Momen-momen berharga kegiatan <span className="font-righteous font-normal tracking-wide">NUSA</span> Boarding School
+          </p>
         </div>
-       <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-6 max-w-6xl mx-auto">
+        
+        {/* Restored to massive 2-Col Gallery Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-10 mx-auto">
           {galleryItems.map((item, idx) => (
             <div
               key={idx}
-              className="relative overflow-hidden rounded-xl shadow-sm bg-white"
+              className="group relative overflow-hidden rounded-3xl bg-black border drop-shadow-sm hover:shadow-xl transition-all duration-500 border-transparent hover:border-[#42CDBA]/50 ring-offset-0 hover:ring-2 hover:ring-[#42CDBA]/30"
               aria-label={item.name}
             >
-              {/* image container */}
-              <div className="relative overflow-hidden group">
-                <img src={item.image} alt={item.name} className="w-full h-full aspect-[16/9] object-cover" />
+              {/* Image Container 16:9 */}
+              <div className="relative overflow-hidden w-full h-full aspect-video">
+                <img 
+                  src={item.image} 
+                  alt={item.name} 
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  loading="lazy"
+                />
 
+                {/* Dark Base Teal Glass Overlay */}
                 <div
-                  className="absolute inset-0 flex items-end justify-center p-6 transition-opacity duration-300 opacity-80"
+                  className="absolute inset-0 flex flex-col justify-end p-6 md:p-8"
                   style={{
-                    background:
-                      "linear-gradient(to top, rgba(227,178,81,0.95), rgba(227,178,81,0.55) 35%, rgba(0,0,0,0) 70%)",
+                    background: "linear-gradient(to top, rgba(19,65,70,0.95), rgba(19,65,70,0.6) 40%, rgba(0,0,0,0) 80%)",
                   }}
                 >
-                  <div className="w-full text-center transition-all duration-300 transform group-hover:-translate-y-2">
-                    <h3 className="text-white text-lg md:text-xl font-semibold drop-shadow-sm">
+                  <div className="w-full transition-transform duration-500 transform lg:translate-y-5 lg:group-hover:translate-y-0 text-left">
+                    <h3 className="text-white text-lg md:text-xl font-semibold drop-shadow-sm mb-2">
                       {item.name}
                     </h3>
 
-                    {/* Deskripsi: hidden dulu, muncul dengan slide-up saat hover */}
-                    <p className="mt-2 text-lg text-white/90 max-w-md mx-auto opacity-0 max-h-0 overflow-hidden transition-all duration-300 group-hover:opacity-100 group-hover:max-h-40 group-hover:translate-y-0">
+                    {/* Deskripsi Statis di Mobile, Ninja/Fade-up turunkan teks ke text-sm/base agar tak nutupin foto */}
+                    <p className="text-sm md:text-base font-medium text-white/90 leading-relaxed block lg:opacity-0 lg:group-hover:opacity-100 transition-opacity duration-500">
                       {item.description}
                     </p>
                   </div>

@@ -30,30 +30,47 @@ const testimonials = [
   },
 ]
 
+const COLORS = {
+  primary: "#2C8970",
+  secondary: "#42CDBA",
+  darkBase: "#134146",
+  accent: "#F3B233",
+  white: "#F7F7F2",
+  surface: "#F0FAF7",
+  neonCyan: "#8EF3E7",
+}
+
 const TestimonialCard = ({ testimonial }) => (
-  <div className="bg-white rounded-2xl p-6 shadow-md h-full flex flex-col min-w-0">
+  <div className="group bg-white/95 backdrop-blur-md rounded-3xl p-8 md:p-10 flex flex-col min-w-0 h-full transition-all duration-500 ease-out border border-white/40 shadow-sm hover:-translate-y-2 hover:border-[#42CDBA]/40 hover:ring-4 hover:ring-[#42CDBA]/10 hover:shadow-[0_20px_50px_-12px_rgba(66,205,186,0.4)] relative overflow-hidden">
+    
+    {/* Micro Tech-Node Decoration at Top Right */}
+    <div className="absolute top-0 right-0 w-16 h-16 pointer-events-none overflow-hidden rounded-tr-3xl">
+      <div className="absolute top-[-2px] right-[-2px] w-8 h-8 border-t-2 border-r-2 border-[#42CDBA] opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-tr-3xl"></div>
+    </div>
+
     {/* Stars */}
-    <div className="flex gap-1 mb-4">
+    <div className="flex gap-1 mb-6 mt-1">
       {[...Array(5)].map((_, i) => (
-        <span key={i} className="text-2xl" style={{color: '#E3B251'}}>★</span>
+        <span key={i} className="text-xl md:text-2xl" style={{color: COLORS.accent}}>★</span>
       ))}
     </div>
 
-    {/* Quote */}
-    <p className="text-sm leading-relaxed flex-grow mb-6" style={{color: '#134146'}}>
+    {/* Quote Lebih Kalem & Proporsional */}
+    <p className="text-sm md:text-base font-normal italic leading-relaxed flex-grow mb-8 opacity-90" style={{color: COLORS.darkBase}}>
       "{testimonial.quote}"
     </p>
 
-    {/* Author */}
-    <div className="flex items-center gap-3 pt-4 border-t flex-shrink-0" style={{borderColor: '#B6CB6C'}}>
-      <div className="w-12 h-12 rounded-full flex items-center justify-center text-white font-bold text-lg flex-shrink-0" style={{backgroundColor: '#E3B251'}}>
+    {/* Author (Border Opacity 12%) */}
+    <div className="flex items-center gap-4 pt-6 mt-auto border-t flex-shrink-0 relative" style={{borderColor: 'rgba(19, 65, 70, 0.12)'}}>
+      <div className="w-10 h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center text-white font-bold text-base flex-shrink-0 shadow-sm relative z-10" style={{backgroundColor: COLORS.accent}}>
         {testimonial.name.charAt(0)}
       </div>
-      <div className="min-w-0 flex-1">
-        <h3 className="font-bold text-sm truncate" style={{color: '#134146'}}>
+      <div className="min-w-0 flex-1 z-10">
+        <h3 className="font-bold text-sm md:text-base truncate" style={{color: COLORS.darkBase}}>
           {testimonial.name}
         </h3>
-        <p className="text-xs truncate" style={{color: '#2C8970'}}>
+        {/* Role Opacity 70% */}
+        <p className="text-xs md:text-sm font-medium truncate" style={{color: 'rgba(19, 65, 70, 0.70)'}}>
           {testimonial.role}
         </p>
       </div>
@@ -166,71 +183,89 @@ export function TestimonialsSection() {
   const dotsCount = Math.max(1, testimonials.length - perPage + 1)
 
   return (
-    <section className="py-16 md:py-24 px-4 md:px-8" style={{backgroundColor: '#2C8970'}}>
-      <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-12">
-          <h2 className="text-4xl md:text-5xl font-bold" style={{color: '#FFFFFF'}}>Testimoni</h2>
+    <section className="relative py-24 md:py-32 lg:py-40 overflow-hidden" style={{backgroundColor: COLORS.primary}}>
+      {/* Background Digital Cyber Grid (Kotak-Kotak Seragam dengan Section Lainnya) */}
+      <div className="absolute inset-0 pointer-events-none" style={{
+        backgroundImage: `linear-gradient(to right, ${COLORS.neonCyan}1A 1px, transparent 1px), linear-gradient(to bottom, ${COLORS.neonCyan}1A 1px, transparent 1px)`,
+        backgroundSize: '4rem 4rem'
+      }}></div>
+
+      {/* Radial Glow Center Background to soften inner grid area */}
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_0%,#2C8970_100%)] pointer-events-none"></div>
+
+      <div className="container relative z-10 px-4 md:px-8 max-w-6xl mx-auto">
+        <div className="mx-auto max-w-4xl text-center mb-6 md:mb-8">
+          <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight mb-4" style={{color: COLORS.white}}>
+            Testimoni
+          </h2>
+          {/* Subtitle dilebarkan ke max-w-3xl agar satu kalimat panjang memanjang utuh tidak terpelanting di tengah-tengah kalimat */}
+          <p className="text-base sm:text-lg font-medium leading-relaxed max-w-3xl mx-auto opacity-90" style={{ color: COLORS.white }}>
+            Apa kata mereka yang telah membersamai perjalanan <span className="font-righteous font-normal tracking-wide">NUSA</span> Boarding School?
+          </p>
         </div>
 
         <div className="relative" ref={containerRef}>
-          {/* Slider Container */}
-          <div className="flex items-center gap-4">
+          
+          {/* Testimonials Grid (Full Width, Free from Squeeze!) 
+              - Removed overflow-hidden to fix clipping on translate-y
+              - Added pt-8 pb-16 to give massive breathing room for shadow and bounce 
+          */}
+          <div className="pt-6 pb-14 px-2 -mx-2">
+            <div
+              className={`grid gap-6 md:gap-8 ${
+                perPage === 1 ? 'grid-cols-1' : perPage === 2 ? 'grid-cols-2' : 'grid-cols-3'
+              }`}
+            >
+              {getVisibleTestimonials().map((testimonial, idx) => (
+                <TestimonialCard key={idx + currentIndex} testimonial={testimonial} />
+              ))}
+            </div>
+          </div>
+
+          {/* Unified Carousel Controls System (Apple-like bottom navigation) */}
+          <div className="flex items-center justify-center gap-6 mt-4">
+            
             {/* Left Arrow */}
             <button
               onClick={prev}
               disabled={!canGoPrev}
-              className={`flex-shrink-0 rounded-full p-3 md:p-3.5 transition-all focus:outline-none ${
-                canGoPrev ? 'hover:opacity-80' : 'cursor-not-allowed opacity-50'
+              className={`flex-shrink-0 rounded-full p-3 transition-all focus:outline-none ${
+                canGoPrev ? 'hover:scale-110 hover:shadow-lg' : 'cursor-not-allowed opacity-40'
               }`}
-              style={{backgroundColor: '#B6CB6C'}}
+              style={{backgroundColor: COLORS.secondary}}
               aria-label="Previous testimonials"
             >
-              <ChevronLeft className="w-5 h-5" style={{color: '#134146'}} />
+              <ChevronLeft className="w-5 h-5 md:w-6 md:h-6" style={{color: COLORS.darkBase}} />
             </button>
 
-            {/* Testimonials Grid */}
-            <div className="flex-1 overflow-hidden">
-              {/* grid adjusts columns responsively with Tailwind classes,
-                  but we render only the slice (getVisibleTestimonials()) so it won't overflow */}
-              <div
-                className={`grid gap-4 ${
-                  perPage === 1 ? 'grid-cols-1' : perPage === 2 ? 'grid-cols-2' : 'grid-cols-3'
-                }`}
-              >
-                {getVisibleTestimonials().map((testimonial, idx) => (
-                  <TestimonialCard key={idx + currentIndex} testimonial={testimonial} />
-                ))}
-              </div>
+            {/* Pagination Dots */}
+            <div className="flex justify-center gap-3">
+              {Array.from({ length: dotsCount }).map((_, index) => (
+                <button
+                   key={index}
+                   onClick={() => setCurrentIndex(index)}
+                   className={`rounded-full transition-all duration-300 ${
+                     index === currentIndex ? 'w-8 h-2.5' : 'w-2.5 h-2.5 opacity-40 hover:opacity-100'
+                   }`}
+                   style={{backgroundColor: COLORS.white}}
+                   aria-label={`Go to testimonial group ${index + 1}`}
+                />
+              ))}
             </div>
 
             {/* Right Arrow */}
             <button
               onClick={next}
               disabled={!canGoNext}
-              className={`flex-shrink-0 rounded-full p-3 md:p-3.5 transition-all focus:outline-none ${
-                canGoNext ? 'hover:opacity-80' : 'cursor-not-allowed opacity-50'
+              className={`flex-shrink-0 rounded-full p-3 transition-all focus:outline-none ${
+                canGoNext ? 'hover:scale-110 hover:shadow-lg' : 'cursor-not-allowed opacity-40'
               }`}
-              style={{backgroundColor: '#B6CB6C'}}
+              style={{backgroundColor: COLORS.secondary}}
               aria-label="Next testimonials"
             >
-              <ChevronRight className="w-5 h-5" style={{color: '#134146'}} />
+              <ChevronRight className="w-5 h-5 md:w-6 md:h-6" style={{color: COLORS.darkBase}} />
             </button>
-          </div>
 
-          {/* Small Dots Pagination */}
-          <div className="flex justify-center gap-2 mt-8">
-            {Array.from({ length: dotsCount }).map((_, index) => (
-              <button
-                key={index}
-                onClick={() => setCurrentIndex(index)}
-                className={`rounded-full transition-all ${
-                  index === currentIndex
-                    ? 'bg-white w-3 h-3'
-                    : 'bg-white/50 w-2 h-2 hover:bg-white/75'
-                }`}
-                aria-label={`Go to testimonial group ${index + 1}`}
-              />
-            ))}
           </div>
         </div>
       </div>

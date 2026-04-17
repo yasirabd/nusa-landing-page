@@ -6,14 +6,14 @@ export function RegistrationSection() {
     <section
       id="daftar"
       className="py-12 md:py-16 lg:py-20"
-      style={{ backgroundColor: "#F7FCF9" }}
+      style={{ backgroundColor: "#F0FAF7" }}
     >
       <div className="container px-4 md:px-6 max-w-7xl mx-auto">
         <div
-          className="mx-auto max-w-4xl rounded-xl p-8 shadow-md"
-          style={{ backgroundColor: "#FFFFFF", border: "1px solid #B6CB6C33" }}
+          className="mx-auto max-w-4xl rounded-3xl p-8 md:p-12 shadow-[0_20px_40px_rgba(44,137,112,0.1)] transition-all duration-300 hover:shadow-[0_20px_50px_rgba(44,137,112,0.15)] relative overflow-hidden"
+          style={{ backgroundColor: "#FFFFFF", border: "1.5px solid rgba(66, 205, 186, 0.30)" }}
         >
-          <div className="grid md:grid-cols-2 gap-8 items-center">
+          <div className="grid md:grid-cols-2 gap-8 items-center relative z-10">
 
             <div>
               <h2
@@ -24,38 +24,40 @@ export function RegistrationSection() {
                 <br />
                 <span
                   className="font-romulo-italic tracking-wide"
-                  style={{ color: "#e3b251" }}
+                  style={{ color: "#F3B233" }}
                 >
                   Muslim Tangguh Jago IT
                 </span>
               </h2>
             </div>
 
-           <div className="flex justify-center">
-  <Link
-    href="https://forms.gle/92AqMyaUs81tyhLRA"
-    target="_blank"
-    rel="noopener noreferrer"
-    className="inline-block"
-  >
-    <Button
-      size="lg"
-      className="
-        text-lg font-semibold
-        px-9 py-7 rounded-full
-        transition-all duration-300
-        hover:scale-[1.04]
-        shadow-[0_6px_16px_rgba(44,137,112,0.35)]
-        hover:shadow-[0_10px_24px_rgba(227,178,81,0.45)]
-        bg-[#2C8970] hover:bg-[#e3b251]
-        text-white hover:text-[#134146]
-      "
-    >
-      Daftar Sekarang →
-    </Button>
-  </Link>
-</div>
-
+           <div className="flex justify-center w-full">
+            <Link
+              href="https://forms.gle/92AqMyaUs81tyhLRA"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block w-full sm:w-auto group"
+            >
+              <Button
+                size="lg"
+                className="
+                  w-full sm:w-auto
+                  text-lg font-bold
+                  px-10 py-7 md:py-8 rounded-full
+                  transition-all duration-300
+                  hover:-translate-y-1 hover:scale-[1.03]
+                  shadow-[0_8px_20px_rgba(44,137,112,0.30)]
+                  hover:shadow-[0_15px_30px_rgba(243,178,51,0.40)]
+                  bg-[#2C8970] hover:bg-[#F3B233]
+                  text-white hover:text-[#134146]
+                  flex items-center justify-center gap-2
+                "
+              >
+                <span>Daftar Sekarang</span>
+                <span className="transition-transform duration-300 group-hover:translate-x-1.5 font-normal text-xl leading-none mt-0.5">→</span>
+              </Button>
+            </Link>
+          </div>
 
           </div>
         </div>

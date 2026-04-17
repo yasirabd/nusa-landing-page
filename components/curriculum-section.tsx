@@ -1,4 +1,13 @@
-import { de } from "date-fns/locale"
+import { CheckCircle2, MoveRight } from "lucide-react"
+
+const COLORS = {
+  primary: "#2C8970",
+  secondary: "#42CDBA",
+  darkBase: "#134146",
+  accent: "#F3B233",
+  white: "#F7F7F2",
+  surface: "#F0FAF7",
+}
 
 const curriculumPillars = [
   {
@@ -64,52 +73,81 @@ const curriculumPillars = [
 
 export function CurriculumSection() {
   return (
-    <section className="py-16 bg-white">
-      <div className="container mx-auto px-4 max-w-7xl">
-        <div className="mx-auto max-w-4xl text-center mb-4">
-          <h2 className="text-4xl font-bold text-gray-900" style={{ color: "#2C8970" }}>Kurikulum</h2>
-          <p className="mt-4 text-gray-600 text-lg">
-            4 Pilar yang membentuk "Muslim Tangguh Jago IT" di NUSA Boarding School
+    <section className="py-24 md:py-32 lg:py-40" style={{ backgroundColor: COLORS.surface }}>
+      <div className="container relative z-10 px-4 md:px-8 max-w-6xl mx-auto">
+        
+        {/* Monumental Header (Penyelarasan Momentum Rushd) */}
+        <div className="mx-auto max-w-5xl text-center mb-16 md:mb-20">
+          <h2 className="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight leading-[1.15]" style={{ color: COLORS.darkBase }}>
+            Kurikulum
+          </h2>
+          
+          <p className="mt-6 md:mt-8 text-base sm:text-lg md:text-xl font-medium leading-relaxed max-w-3xl mx-auto opacity-80" style={{ color: COLORS.darkBase }}>
+            4 Pilar yang membentuk{" "}
+            <span className="font-romulo-italic font-normal tracking-wide whitespace-nowrap" style={{ color: COLORS.accent }}>"Muslim Tangguh, Jago IT"</span>
+            {" "}di NUSA Boarding School.
           </p>
         </div>
-        <div className="grid gap-8 md:grid-cols-2 max-w-5xl mx-auto">
+
+        {/* Bento-style Cards Grid */}
+        <div className="grid gap-8 md:gap-10 lg:gap-12 md:grid-cols-2 max-w-5xl mx-auto">
           {curriculumPillars.map((pillar, idx) => {
             return (
-              <div key={idx} className="rounded-2xl overflow-hidden" style={{ backgroundColor: "rgba(182, 203, 108, 0.15)" }}>
-                {/* Image Container with padding */}
-                <div className="p-5">
-                  <div className="bg-gray-300 rounded-2xl overflow-hidden mx-auto">
-                    <img 
-                      src={pillar.image} 
-                      alt={pillar.title}
-                      className="w-full h-full object-cover"
-                      sizes="calc(calc(min(100vw - 40px, 1280px) * 0.47) - 64px)"
-                    />
-                  </div>
-                </div>
+              <div 
+                key={idx} 
+                className="group relative rounded-3xl bg-white shadow-sm hover:-translate-y-2 hover:shadow-[0_20px_40px_rgba(0,0,0,0.08)] transition-all duration-300 border border-transparent hover:border-[#42CDBA]/30 flex flex-col" 
+              >
+                {/* Glow Backdrop */}
+                <div className="absolute -inset-0.5 bg-gradient-to-b from-[#8EF3E7]/20 to-transparent rounded-3xl blur opacity-0 group-hover:opacity-100 transition duration-500 pointer-events-none"></div>
                 
-                {/* Content Container */}
-                <div className="px-6 pb-6">
-                  <p className="font-semibold text-sm mb-2" style={{ color: "#2C8970" }}>{pillar.subtitle}</p>
-                  <h3 className="text-2xl font-bold mb-4" style={{ color: "#134146" }}>{pillar.title}</h3>
-                  <p className="text-gray-700 text-primary mb-4">
-                    {pillar.description}
-                  </p>
-                  <ul className="space-y-2 mb-2 text-gray-700 text-primary">
-                    {pillar.items.map((item, itemIdx) => (
-                      <li key={itemIdx} className="flex items-start gap-2">
-                        <span className="text-green-500 mt-0.5">✔</span>
-                        <span>{item}</span>
-                      </li>
-                    ))}
-                  </ul>
-                  {pillar.title === "Kurikulum IT" && (
-                    <button
-                      className="text-white font-semibold px-6 py-2 rounded-full mt-4 transition-colors bg-[#2C8970] hover:bg-[#e3b251]"
-                    >
-                      Lihat Karya →
-                    </button>
-                  )}
+                <div className="relative flex-1 flex flex-col">
+                  {/* Image Container with padding (Framed Brochure Style) */}
+                  <div className="p-5">
+                    <div className="rounded-2xl overflow-hidden mx-auto shadow-inner aspect-[4/3] relative group-hover:shadow-[inset_0_2px_15px_rgba(0,0,0,0.1)] transition-all duration-500 bg-gray-100">
+                      <img 
+                        src={pillar.image} 
+                        alt={pillar.title}
+                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                        sizes="(max-width: 768px) 100vw, 50vw"
+                      />
+                    </div>
+                  </div>
+                  
+                  {/* Content Container */}
+                  <div className="px-8 pb-8 md:px-10 md:pb-10 flex-1 flex flex-col">
+                    <p className="font-bold text-sm tracking-wider uppercase mb-2" style={{ color: COLORS.primary }}>
+                      {pillar.subtitle}
+                    </p>
+                    
+                    <h3 className="text-2xl md:text-3xl font-extrabold tracking-tight mb-4" style={{ color: COLORS.darkBase }}>
+                      {pillar.title}
+                    </h3>
+                    
+                    <p className="text-base md:text-lg font-medium leading-relaxed opacity-80 mb-6" style={{ color: COLORS.darkBase }}>
+                      {pillar.description}
+                    </p>
+                    
+                    <ul className="space-y-4 mb-2 flex-1 mt-2">
+                      {pillar.items.map((item, itemIdx) => (
+                        <li key={itemIdx} className="flex items-start group/item">
+                          <div className="mr-4 mt-0.5 md:mt-1 flex h-6 w-6 shrink-0 items-center justify-center rounded-full transition-transform duration-300 group-hover/item:scale-110" style={{ backgroundColor: `${COLORS.secondary}25` }}>
+                            <CheckCircle2 size={16} strokeWidth={2.5} style={{ color: COLORS.primary }} />
+                          </div>
+                          <span className="text-base font-medium leading-relaxed opacity-80" style={{ color: COLORS.darkBase }}>{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+
+                    {/* CTA Button Conditional */}
+                    {pillar.title === "Kurikulum IT" && (
+                      <div className="mt-8 pt-8 md:mt-10 md:pt-10 border-t border-gray-100">
+                        <button className="group/btn inline-flex items-center gap-2 rounded-full px-6 py-2.5 text-base font-semibold text-white shadow-sm transition-all duration-300 hover:scale-105 bg-[#2C8970] hover:bg-[#F3B233]">
+                          Lihat Karya
+                          <MoveRight className="h-4 w-4 transition-transform duration-300 group-hover/btn:translate-x-1" />
+                        </button>
+                      </div>
+                    )}
+                  </div>
                 </div>
               </div>
             )

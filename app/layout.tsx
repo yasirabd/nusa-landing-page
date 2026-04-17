@@ -26,7 +26,7 @@ const righteous = Righteous({
 export const metadata = {
   title: "NUSA Boarding School",
   description:
-    "Pendaftaran santri baru NUSA Boarding School Semarang tahun pelajaran 2025-2026. Kurikulum terintegrasi antara pendidikan agama dan teknologi.",
+    "Pendaftaran santri baru NUSA Boarding School Semarang tahun pelajaran 2026-2027. Kurikulum terintegrasi antara pendidikan agama dan teknologi.",
     generator: 'v0.app'
 }
 

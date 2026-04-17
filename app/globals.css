@@ -13,17 +13,17 @@
   --popover: 0 0% 100%;
   --popover-foreground: 222.2 84% 4.9%;
 
-  --primary: 100 36% 25%;
-  --primary-foreground: 210 40% 98%;
+  --primary: 164 51% 35%; /* #2C8970 */
+  --primary-foreground: 0 0% 100%;
 
-  --secondary: rgb(44, 137, 112);
-  --secondary-foreground: 222.2 47.4% 11.2%;
+  --secondary: 172 55% 53%; /* #42CDBA */
+  --secondary-foreground: 186 57% 17%; /* #134146 */
 
-  --muted: 210 40% 96.1%;
-  --muted-foreground: 215.4 16.3% 46.9%;
+  --muted: 162 48% 96%; /* #F0FAF7 */
+  --muted-foreground: 186 57% 17%; /* #134146 */
 
-  --accent: rgb(19, 65, 70);
-  --accent-foreground: 222.2 47.4% 11.2%;
+  --accent: 40 89% 58%; /* #F3B233 */
+  --accent-foreground: 186 57% 17%; /* #134146 */
 
   --destructive: 0 84.2% 60.2%;
   --destructive-foreground: 210 40% 98%;
@@ -58,17 +58,17 @@
   --popover: 222.2 84% 4.9%;
   --popover-foreground: 210 40% 98%;
 
-  --primary: 100 36% 25%;
-  --primary-foreground: 222.2 47.4% 11.2%;
+  --primary: 164 51% 45%; /* slightly lighter for dark mode */
+  --primary-foreground: 0 0% 100%;
 
-  --secondary: 4 86% 69%;
-  --secondary-foreground: 210 40% 98%;
+  --secondary: 172 55% 53%;
+  --secondary-foreground: 186 57% 17%;
 
-  --muted: 217.2 32.6% 17.5%;
-  --muted-foreground: 215 20.2% 65.1%;
+  --muted: 186 57% 20%; /* Dark Base tinted */
+  --muted-foreground: 162 48% 80%;
 
-  --accent: 174 44% 56%;
-  --accent-foreground: 222.2 47.4% 11.2%;
+  --accent: 40 89% 58%;
+  --accent-foreground: 186 57% 17%;
 
   --destructive: 0 62.8% 30.6%;
   --destructive-foreground: 210 40% 98%;

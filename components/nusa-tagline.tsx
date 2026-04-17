@@ -1,17 +1,31 @@
+const COLORS = {
+  darkBase: "#134146",
+  accent: "#F3B233",
+}
+
 export function NUSATaglineSection() {
   return (
-    <section className="relative overflow-hidden py-24 md:py-32 lg:py-40">
-      <div className="container relative z-10 px-4 md:px-6 max-w-5xl mx-auto">
-        <div className="text-center space-y-6">
-          {/* Complete Poem */}
-          <div className="space-y-3 font-sans">
-            <p className="text-3xl sm:text-3xl md:text-4xl lg:text-5xl font-bold leading-tight tracking-tighter" style={{color: '#134146'}}>
-              Rise as a <span className="font-romulo-italic tracking-wide" style={{ color: '#e3b251' }}>Muslim Tangguh, Jago IT</span>.
-            </p>
-            <p className="text-3xl sm:text-3xl md:text-4xl lg:text-5xl font-bold leading-tight font-sans" style={{color: '#134146'}}>
-              Lead with faith, knowledge, and courage.
-            </p>
-          </div>
+    <section className="py-24 md:py-32 lg:py-48 bg-white">
+      <div className="container px-4 md:px-8 max-w-5xl mx-auto">
+        <div className="text-center flex flex-col items-center justify-center space-y-8 sm:space-y-10 md:space-y-12">
+
+          {/* Statement Pertama: Bold & Gigantic */}
+          <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-[72px] font-extrabold leading-[1.15] tracking-tight" style={{color: COLORS.darkBase}}>
+            Rise as a <br className="hidden sm:block" />
+            <span className="font-romulo-italic font-normal tracking-wide" style={{ color: COLORS.accent }}>
+              <span className="whitespace-nowrap">Muslim Tangguh,</span>{' '}
+              <span className="whitespace-nowrap">Jago IT.</span>
+            </span>
+          </h2>
+
+          {/* Pemisah Elegan ala Kutipan Minimalis */}
+          <div className="w-12 sm:w-16 h-1 sm:h-1.5 rounded-full opacity-80" style={{ backgroundColor: COLORS.accent }} />
+
+          {/* Statement Kedua: Secondary Motto (Bukan Paragraf Artikel) */}
+          <h3 className="text-xl sm:text-2xl md:text-3xl lg:text-[34px] font-medium leading-relaxed tracking-tight opacity-75 mx-auto max-w-4xl" style={{color: COLORS.darkBase}}>
+            Lead with faith, knowledge, and courage.
+          </h3>
+          
         </div>
       </div>
     </section>

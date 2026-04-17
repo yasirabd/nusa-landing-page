@@ -3,10 +3,21 @@
 import { useState } from 'react'
 import { Check } from 'lucide-react'
 
+const COLORS = {
+  primary: "#2C8970",
+  secondary: "#42CDBA",
+  darkBase: "#134146",
+  accent: "#F3B233",
+  white: "#F7F7F2",
+  surface: "#F0FAF7",
+}
+
 const feeDetails = [
   {
     category: "BIAYA MASUK",
-    amount: "20jt",
+    amount: "12 Jt",
+    originalAmount: "20 Jt",
+    promoBadge: "DISKON 8 JUTA (10 Pendaftar Pertama)",
     period: "sekali bayar",
     highlight: "Bisa dicicil hingga lulus",
     details: [
@@ -22,7 +33,7 @@ const feeDetails = [
   },
   {
     category: "UANG BULANAN",
-    amount: "2jt",
+    amount: "2 Jt",
     period: "per bulan",
     details: [
       "Makan 3x Sehari",
@@ -34,129 +45,166 @@ const feeDetails = [
   },
   {
     category: "UANG SEMESTER",
-    amount: "1.25jt",
+    amount: "1.25 Jt",
     period: "per semester",
     details: [
       "Program Muslim Tangguh",
       "Program Entrepreneur",
       "Program Ekskul & Kegiatan Santri",
-      "Dibayarkan Saat Naik Kelas pada Tahun ke-2 dan ke-3",
+      "Dibayarkan saat Tahun ke-1 Semester 2, Tahun ke-2, dan Tahun ke-3",
     ],
-    note: "Dibayar tiap 1 Juli Setiap Tahun"
+    note: "Dibayarkan tiap awal semester"
   }
 ]
 
 export function FeeInfoSection() {
   return (
-    <section className="py-20 px-4" style={{ backgroundColor: "#FFFFFF" }}>
-      <div className="max-w-7xl mx-auto">
+    <section className="py-24 md:py-32 lg:py-40 px-4" style={{ backgroundColor: COLORS.surface }}>
+      <div className="max-w-6xl mx-auto">
 
         {/* Header */}
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold" style={{ color: "#134146" }}>
+        <div className="text-center mb-10 md:mb-16">
+          <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight mb-4" style={{ color: COLORS.darkBase }}>
             Informasi Biaya
           </h2>
+          <p className="text-base sm:text-lg font-medium leading-relaxed max-w-2xl mx-auto opacity-80" style={{ color: COLORS.darkBase }}>
+            Investasi terbaik untuk membesarkan generasi masa depan yang gemilang berbasis keimanan dan kepakaran teknologi.
+          </p>
         </div>
-        {/* Card Uang Pendaftaran (Premium Highlight) */}
-        <div className="max-w-sm mx-auto mb-14">
+
+        {/* Premium Horizontal Banner: Uang Pendaftaran */}
+        <div className="mb-8 md:mb-10">
           <div
-            className="relative rounded-2xl p-8 text-center shadow-lg transition-transform duration-300 hover:-translate-y-1"
+            className="relative rounded-3xl p-6 md:p-8 flex flex-col md:flex-row items-center justify-between shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
             style={{
-              background: "linear-gradient(135deg, #FFFFFF 0%, #FFF9ED 100%)",
-              border: "1.5px solid rgba(227, 178, 81, 0.45)",
+              background: "linear-gradient(135deg, rgba(255,255,255,1) 0%, rgba(243,178,51,0.08) 100%)",
+              border: "1.5px solid rgba(243, 178, 51, 0.3)",
             }}
           >
-            {/* Ribbon / Badge */}
-            <div
-              className="absolute -top-3 left-1/2 -translate-x-1/2 px-4 py-1 text-xs font-semibold rounded-full"
-              style={{ backgroundColor: "#E3B251", color: "#fff" }}
-            >
-              BIAYA PENDAFTARAN
+            <div className="flex flex-col text-center md:text-left mb-4 md:mb-0">
+              <span 
+                className="inline-block px-4 py-1.5 text-xs font-bold rounded-full mb-3 self-center md:self-start shadow-sm"
+                style={{ backgroundColor: COLORS.accent, color: "#fff" }}
+              >
+                BIAYA PENDAFTARAN
+              </span>
+              <p className="text-sm md:text-base font-semibold" style={{ color: COLORS.darkBase }}>
+                Nominal Administrasi
+              </p>
+              <p className="text-xs md:text-sm mt-1 opacity-70" style={{ color: COLORS.darkBase }}>
+                Dibayarkan secara penuh saat calon santri melengkapi berkas pendaftaran.
+              </p>
             </div>
-
-            <p
-              className="text-4xl font-bold mt-2"
-              style={{ color: "#2C8970" }}
-            >
-              Rp 275.000
-            </p>
-
-            <p
-              className="text-xs mt-4"
-              style={{ color: "#134146" }}
-            >
-              Dibayar saat calon santri mendaftar
-            </p>
+            <div className="text-center md:text-right flex-shrink-0">
+              <p className="text-4xl md:text-5xl font-extrabold" style={{ color: COLORS.primary }}>
+                Rp 275.000
+              </p>
+            </div>
           </div>
         </div>
 
-        {/* Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+        {/* 3 Bento Pricing Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 mb-12 md:mb-16">
           {feeDetails.map((fee, idx) => (
             <div
               key={idx}
-              className="rounded-2xl p-8 shadow-md hover:shadow-xl transition-all duration-300 border border-[#B6CB6C]/40 bg-white"
+              className="group relative flex flex-col rounded-3xl p-8 bg-white border shadow-sm hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 overflow-hidden"
+              style={{ borderColor: "rgba(66, 205, 186, 0.40)" }}
             >
+              {/* Special Glow Behind Price for Promo */}
+              {fee.originalAmount && (
+                <div className="absolute top-12 right-0 w-32 h-32 bg-[#F3B233] opacity-5 rounded-full blur-3xl pointer-events-none"></div>
+              )}
 
-              {/* Category */}
-              <div className="mb-6 text-center py-2 rounded-lg font-semibold"
-                style={{ backgroundColor: "#2C8970", color: "white" }}>
-                {fee.category}
+              {/* Category Badge */}
+              <div className="mb-6 text-center">
+                <span className="inline-block py-1.5 px-6 rounded-full font-bold text-sm tracking-wide shadow-sm"
+                  style={{ backgroundColor: COLORS.primary, color: "white" }}>
+                  {fee.category}
+                </span>
               </div>
 
-              {/* Price */}
-              <div className="text-center mb-6">
-                <p className="text-5xl font-bold" style={{ color: "#2C8970" }}>{fee.amount}</p>
-                <p className="mt-1 text-sm font-medium" style={{ color: "#134146" }}>{fee.period}</p>
+              {/* Price Block */}
+              <div className="text-center mb-8 relative">
+                
+                {/* FOMO Ribbon / Strikethrough Box */}
+                {fee.originalAmount && fee.promoBadge && (
+                  <div className="flex flex-col items-center justify-center mb-1">
+                    <span className="inline-block whitespace-nowrap px-3 py-1.5 mb-3 text-[11px] lg:text-xs font-bold rounded-full animate-pulse shadow-sm"
+                      style={{ backgroundColor: 'rgba(243,178,51,0.15)', color: '#D97706', border: '1px solid rgba(243,178,51,0.3)' }}
+                    >
+                      🔥 {fee.promoBadge}
+                    </span>
+                    <div className="flex items-center justify-center gap-2 mb-1">
+                      <span className="text-red-500/80 line-through text-2xl md:text-3xl font-black tracking-tight">
+                        {fee.originalAmount}
+                      </span>
+                    </div>
+                  </div>
+                )}
+
+                <p className="text-5xl md:text-6xl font-extrabold tracking-tight transition-all duration-300 drop-shadow-[0_2px_4px_rgba(66,205,186,0.15)]" style={{ color: COLORS.primary }}>
+                  {fee.amount}
+                </p>
+                <p className="mt-3 text-sm font-bold opacity-70 tracking-wide uppercase" style={{ color: COLORS.darkBase }}>
+                  {fee.period}
+                </p>
               </div>
 
-              {/* Highlight */}
+              {/* Highlight Box */}
               {fee.highlight && (
-                <div className="rounded-lg px-4 py-3 mb-6" style={{ backgroundColor: "#FFF5DA" }}>
-                  <p className="text-sm font-medium text-center" style={{ color: "#E3B251" }}>
+                <div className="rounded-2xl px-4 py-3 mb-8 shadow-sm" style={{ backgroundColor: "rgba(243,178,51,0.10)" }}>
+                  <p className="text-sm font-semibold text-center" style={{ color: "#D97706" }}>
                     {fee.highlight}
                   </p>
                 </div>
               )}
 
-              {/* List */}
-              <p className="text-sm font-semibold mb-3" style={{ color: "#134146" }}>Termasuk:</p>
-              <ul className="space-y-2">
-                {fee.details.map((item, i) => (
-                  <li key={i} className="flex items-start gap-2 text-sm" style={{ color: "#134146" }}>
-                    <Check className="w-4 h-4 mt-1" style={{ color: "#B6CB6C" }} />
-                    {item}
-                  </li>
-                ))}
-              </ul>
+              {/* Base List Box (Fills remaining height so notes align bottom) */}
+              <div className="flex-grow flex flex-col">
+                <p className="text-sm font-bold mb-4" style={{ color: COLORS.darkBase }}>Rincian Termasuk:</p>
+                <ul className="space-y-3 mb-8">
+                  {fee.details.map((item, i) => (
+                    <li key={i} className="flex items-start gap-3 text-sm font-medium opacity-90 leading-relaxed" style={{ color: COLORS.darkBase }}>
+                      <Check className="w-5 h-5 mt-[1px] flex-shrink-0 drop-shadow-sm" style={{ color: COLORS.secondary }} />
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
 
-              {/* Note */}
-              {fee.note && (
-                <p className="text-xs mt-6 pt-4 border-t" style={{ color: "#2C8970", borderColor: "#E5E5E5" }}>
-                  {fee.note}
-                </p>
-              )}
+                {/* Footer Note */}
+                <div className="mt-auto pt-5 border-t" style={{ borderColor: 'rgba(19, 65, 70, 0.12)' }}>
+                  {fee.note && (
+                    <p className="text-xs font-semibold leading-relaxed" style={{ color: 'rgba(19, 65, 70, 0.70)' }}>
+                      * {fee.note}
+                    </p>
+                  )}
+                </div>
+              </div>
             </div>
           ))}
         </div>
 
-        {/* Info Box */}
-        <div className="max-w-xl">
-          <p className="text-base font-semibold mb-3 text-[#134146]">Informasi Penting:</p>
-
-          <div className="space-y-2">
+        {/* Centralized "Informasi Penting" Ribbon */}
+        <div className="max-w-4xl mx-auto rounded-3xl p-6 md:p-8 shadow-sm flex flex-col md:flex-row items-center gap-6 md:gap-10 border" style={{ backgroundColor: 'white', borderColor: 'rgba(19, 65, 70, 0.08)' }}>
+          <div className="flex-shrink-0 text-center md:text-left">
+            <p className="text-lg font-bold" style={{ color: COLORS.darkBase }}>Informasi<br className="hidden md:block" />Penting</p>
+          </div>
+          <div className="w-full h-px md:w-px md:h-12 bg-gray-200"></div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-y-3 gap-x-6 w-full">
             {[
               "Program beasiswa untuk santri berprestasi & kurang mampu",
-              "Pembayaran dapat diangsur sesuai kebijakan pondok",
-              "Konsultasi gratis dengan tim administrasi"
+              "Pembayaran dapat diangsur sesuai kebijakan",
+              "Konsultasi khusus gratis dengan tim administrasi / CS"
             ].map((info, i) => (
-              <div key={i} className="flex items-start gap-2">
-                <Check className="w-4 h-4 mt-[2px] flex-shrink-0 text-[#B6CB6C]" />
-                <p className="text-sm text-[#134146] leading-snug">{info}</p>
+              <div key={i} className="flex items-start gap-3">
+                <Check className="w-4 h-4 mt-0.5 flex-shrink-0" style={{ color: COLORS.secondary }} />
+                <p className="text-sm font-medium opacity-90 leading-snug" style={{ color: COLORS.darkBase }}>{info}</p>
               </div>
             ))}
           </div>
         </div>
+
       </div>
     </section>
   )

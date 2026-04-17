@@ -12,7 +12,7 @@ export function Header() {
           </div>
         </Link>
         <div className="hidden md:block">
-          <div className="text-[rgba(19,65,70,1)] text-sm fo  nt-semibold">#Muslim Tangguh Jago IT </div>
+          <div className="text-[rgba(19,65,70,1)] text-sm font-semibold">#Muslim Tangguh Jago IT</div>
         </div>
         <div className="md:hidden">
           <Button variant="ghost" size="icon" className="text-primary">

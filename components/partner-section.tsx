@@ -1,33 +1,56 @@
 import Image from "next/image"
 
+const COLORS = {
+  primary: "#2C8970",
+  secondary: "#42CDBA",
+  darkBase: "#134146",
+  accent: "#F3B233",
+  white: "#F7F7F2",
+  surface: "#F0FAF7",
+}
+
 const partners = [
-  { name: "KodingWorks", logo: "/images/partner-kodingworks.png?height=80&width=180&text=KodingWorks"},
-  { name: "Pesanio", logo: "/images/partner-pesanio.png?height=80&width=180&text=Pesanio"},
-  { name: "Programmer Kecil", logo: "/images/partner-programmerkecil.png?height=80&width=180&text=Programmer Kecil"},
-  { name: "SumoPod", logo: "/images/partner-sumopod.png?height=80&width=180&text=SumoPod"},
-  { name: "Sanditheta", logo: "/images/partner-sanditheta.png?height=80&width=180&text=Sanditheta"},
+  { name: "KodingWorks", logo: "/images/partner-kodingworks.png?height=80&width=180&text=KodingWorks" },
+  { name: "Pesanio", logo: "/images/partner-pesanio.png?height=80&width=180&text=Pesanio" },
+  { name: "Programmer Kecil", logo: "/images/partner-programmerkecil.png?height=80&width=180&text=Programmer Kecil" },
+  { name: "SumoPod", logo: "/images/partner-sumopod.png?height=80&width=180&text=SumoPod" },
+  { name: "Sanditheta", logo: "/images/partner-sanditheta.png?height=80&width=180&text=Sanditheta" },
 ]
 
 export function PartnerSection() {
   return (
-    <section className="py-12 md:py-16 bg-white">
-      <div className="container px-4 md:px-6 max-w-7xl mx-auto">
-        <div className="mx-auto max-w-3xl text-center mb-10">
-          <h2 className="text-3xl font-bold tracking-tighter text-slate-800 sm:text-4xl">Partner Kami</h2>
+    <section className="relative py-24 md:py-32 px-4" style={{ backgroundColor: COLORS.white }}>
+      {/* Background Tech Mesh Tipis Penambah Nuansa Hover */}
+      <div 
+        className="absolute inset-0 pointer-events-none opacity-[0.03]" 
+        style={{ backgroundImage: `radial-gradient(${COLORS.primary} 1px, transparent 1px)`, backgroundSize: '32px 32px' }}
+      ></div>
+
+      <div className="container relative z-10 max-w-6xl mx-auto">
+        <div className="mx-auto max-w-3xl text-center mb-8 md:mb-12">
+          <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight mb-3" style={{ color: COLORS.darkBase }}>
+            Partner Industri & Teknologi
+          </h2>
+          <p className="max-w-2xl mx-auto text-balance text-base sm:text-lg font-medium opacity-80 leading-relaxed" style={{ color: COLORS.darkBase }}>
+            Berjejaring dengan praktisi industri dan ekosistem startup untuk pertukaran wawasan teknologi terkini.
+          </p>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-5 items-center gap-8 md:gap-12">
-          {partners.map((partner) => (
-            <div key={partner.name} className="flex items-center justify-center">
-              <Image
-                src={partner.logo || "/placeholder.svg"}
-                alt={`${partner.name} Logo`}
-                width={180}
-                height={80}
-                className="h-14 w-auto object-contain opacity-80 hover:opacity-100 transition-all duration-300"
-              />
-            </div>
-          ))}
+        {/* Glass Tech Dock Kapsul Penampung Susunan Logo Partner */}
+        <div className="mx-auto w-full max-w-5xl rounded-[2rem] md:rounded-[3rem] p-8 md:p-10 lg:p-12 bg-white/80 backdrop-blur-xl border border-gray-100 shadow-[0_8px_30px_rgba(66,205,186,0.1)] hover:shadow-[0_15px_40px_rgba(66,205,186,0.15)] transition-shadow duration-500">
+          <div className="grid grid-cols-2 md:grid-cols-5 items-center justify-items-center gap-8 md:gap-10">
+            {partners.map((partner) => (
+              <div key={partner.name} className="flex items-center justify-center w-full">
+                <Image
+                  src={partner.logo || "/placeholder.svg"}
+                  alt={`${partner.name} Logo`}
+                  width={180}
+                  height={80}
+                  className="h-10 md:h-12 w-auto object-contain filter grayscale opacity-50 hover:grayscale-0 hover:opacity-100 hover:scale-105 transition-all duration-500 cursor-pointer"
+                />
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </section>
