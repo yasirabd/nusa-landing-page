@@ -33,9 +33,7 @@ export function RegistrationSection() {
 
            <div className="flex justify-center w-full">
             <Link
-              href="https://forms.gle/92AqMyaUs81tyhLRA"
-              target="_blank"
-              rel="noopener noreferrer"
+              href="/daftar"
               className="inline-block w-full sm:w-auto group"
             >
               <Button

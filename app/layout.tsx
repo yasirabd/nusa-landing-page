@@ -37,7 +37,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="id" suppressHydrationWarning>
-      <body className={`${inter.variable} font-sans ${_v0_fontVariables} ${righteous.variable}`}>
+      <body className={`${inter.variable} font-sans ${_v0_fontVariables} ${righteous.variable}`} suppressHydrationWarning>
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
           {children}
         </ThemeProvider>
