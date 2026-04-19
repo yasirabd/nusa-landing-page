@@ -15,6 +15,17 @@ import {
   ChevronDown,
   Code2,
   Palette,
+  User,
+  Phone,
+  MapPin,
+  Calendar,
+  School,
+  GraduationCap,
+  Building2,
+  Globe,
+  HelpCircle,
+  Send,
+  CreditCard,
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
@@ -24,11 +35,23 @@ import { Button } from "@/components/ui/button"
 const MAX_FILE_SIZE = 10 * 1024 * 1024 // 10 MB
 
 const schema = z.object({
-  nama: z.string().min(3, "Nama lengkap minimal 3 karakter"),
-  noWhatsapp: z
-    .string()
-    .regex(/^62\d{8,13}$/, "Format nomor: 62xxxxxxxxxxx (diawali 62)"),
+  // A. Personal Information
+  namaLengkap: z.string().min(3, "Nama lengkap minimal 3 karakter"),
+  nomorWhatsapp: z.string().regex(/^62\d{8,13}$/, "Format: 628xxxxxxxxx (diawali 62)"),
+  tempatLahir: z.string().min(2, "Tempat lahir wajib diisi"),
+  tanggalLahir: z.string().min(1, "Tanggal lahir wajib diisi"),
+  asalKota: z.string().min(2, "Asal kota wajib diisi"),
+  alamatLengkap: z.string().min(10, "Alamat lengkap minimal 10 karakter"),
+
+  // B. School Information
+  sekolahAsal: z.string().min(3, "Nama sekolah minimal 3 karakter"),
+  lokasiSekolah: z.string().min(2, "Lokasi sekolah wajib diisi"),
+
+  // C. Tambahan Informasi
+  sumberInformasi: z.string().min(1, "Pilih sumber informasi"),
   pilihanProgram: z.string().min(1, "Pilih program terlebih dahulu"),
+
+  // D. Pembayaran
   buktTransfer: z
     .any()
     .refine((f) => f instanceof File, "Bukti transfer wajib diupload")
@@ -108,13 +131,12 @@ function ProgramSelector({
             key={opt.value}
             type="button"
             onClick={() => onChange(opt.value)}
-            className={`relative flex flex-col items-start gap-2 rounded-2xl p-4 text-left transition-all duration-300 hover:-translate-y-1 ${
-              selected
-                ? "border-2 border-[#8EF3E7] bg-[#2C8970]/10 shadow-[0_0_15px_rgba(142,243,231,0.4)]"
-                : hasError
+            className={`relative flex flex-col items-start gap-2 rounded-2xl p-4 text-left transition-all duration-300 hover:-translate-y-1 ${selected
+              ? "border-2 border-[#8EF3E7] bg-[#2C8970]/10 shadow-[0_0_15px_rgba(142,243,231,0.4)]"
+              : hasError
                 ? "border-2 border-[#DC2626] bg-[#F7F7F2] shadow-sm"
                 : "border-2 border-[#134146]/10 bg-[#F7F7F2] shadow-[0_2px_8px_rgba(19,65,70,0.05)] hover:border-[#2C8970]/50 hover:shadow-[0_12px_24px_rgba(44,137,112,0.15)] hover:bg-[#F0FAF7]"
-            }`}
+              }`}
           >
             {/* Selected dot */}
             {selected && (
@@ -165,24 +187,32 @@ function TextInput({
   type = "text",
   placeholder,
   hasError,
+  icon: Icon,
   ...rest
-}: React.InputHTMLAttributes<HTMLInputElement> & { hasError?: boolean }) {
+}: React.InputHTMLAttributes<HTMLInputElement> & { hasError?: boolean; icon?: React.ElementType }) {
   return (
-    <input
-      id={id}
-      type={type}
-      placeholder={placeholder}
-      className="w-full rounded-xl px-4 py-3 text-sm outline-none transition-all duration-200 placeholder:font-normal font-work-sans"
-      style={{
-        fontWeight: 500,
-        backgroundColor: "#F0FAF7",
-        border: hasError
-          ? "1.5px solid #DC2626"
-          : "1.5px solid rgba(19, 65, 70, 0.12)",
-        color: "#134146",
-      }}
-      {...rest}
-    />
+    <div className="relative w-full">
+      {Icon && (
+        <div className="absolute left-4 top-0 bottom-0 flex items-center pointer-events-none" style={{ color: "rgba(19, 65, 70, 0.4)" }}>
+          <Icon size={18} />
+        </div>
+      )}
+      <input
+        id={id}
+        type={type}
+        placeholder={placeholder}
+        className={`w-full rounded-xl py-3 text-sm outline-none transition-all duration-200 placeholder:font-normal font-work-sans ${Icon ? "pl-11 pr-4" : "px-4"}`}
+        style={{
+          fontWeight: 500,
+          backgroundColor: "#F0FAF7",
+          border: hasError
+            ? "1.5px solid #DC2626"
+            : "1.5px solid rgba(19, 65, 70, 0.12)",
+          color: "#134146",
+        }}
+        {...rest}
+      />
+    </div>
   )
 }
 
@@ -241,8 +271,15 @@ export function RegistrationFormPage() {
   } = useForm<FormValues>({
     resolver: zodResolver(schema),
     defaultValues: {
-      nama: "",
-      noWhatsapp: "",
+      namaLengkap: "",
+      nomorWhatsapp: "62",
+      tempatLahir: "",
+      tanggalLahir: "",
+      asalKota: "",
+      alamatLengkap: "",
+      sekolahAsal: "",
+      lokasiSekolah: "",
+      sumberInformasi: "",
       pilihanProgram: "",
       pernyataan: undefined,
     },
@@ -271,8 +308,15 @@ export function RegistrationFormPage() {
     const { error: insertError } = await supabase
       .from("registrations")
       .insert({
-        nama: data.nama,
-        no_whatsapp: data.noWhatsapp,
+        nama_lengkap: data.namaLengkap,
+        nomor_whatsapp: data.nomorWhatsapp,
+        tempat_lahir: data.tempatLahir,
+        tanggal_lahir: data.tanggalLahir,
+        asal_kota: data.asalKota,
+        alamat_lengkap: data.alamatLengkap,
+        sekolah_asal: data.sekolahAsal,
+        lokasi_sekolah: data.lokasiSekolah,
+        sumber_informasi: data.sumberInformasi,
         pilihan_program: data.pilihanProgram,
         bukti_transfer_url: filePath,
         pernyataan_setuju: true,
@@ -330,7 +374,7 @@ export function RegistrationFormPage() {
             backgroundSize: "40px 40px",
           }}
         />
-        
+
         <div
           className="max-w-sm w-full rounded-3xl p-10 text-center"
           style={{
@@ -340,7 +384,7 @@ export function RegistrationFormPage() {
           }}
         >
           <div
-            className="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-full"
+            className="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-full shadow-[0_0_30px_rgba(44,137,112,0.2)]"
             style={{ backgroundColor: "rgba(44,137,112,0.1)" }}
           >
             <CheckCircle2 size={38} style={{ color: "#2C8970" }} />
@@ -352,32 +396,14 @@ export function RegistrationFormPage() {
             Pendaftaran Berhasil!
           </h2>
           <p className="text-sm mb-1" style={{ color: "rgba(19,65,70,0.65)" }}>
-            Data kamu sudah kami terima dengan sukses.
+            Data pendaftaran beserta bukti transfer Infaq Anda telah berhasil kami terima.
           </p>
           <p className="text-sm mb-7" style={{ color: "rgba(19,65,70,0.65)" }}>
-            Admin NUSA akan segera menghubungi kamu melalui WhatsApp untuk konfirmasi pendaftaran.
+            Admin NUSA saat ini sedang memverifikasi data Anda. Kami akan segera menghubungi Anda melalui WhatsApp untuk langkah selanjutnya.
           </p>
-          <div
-            className="rounded-xl p-4 mb-7 text-left"
-            style={{
-              backgroundColor: "rgba(243,178,51,0.1)",
-              border: "1.5px solid rgba(243,178,51,0.3)",
-              borderLeft: "3px solid #F3B233",
-            }}
-          >
-            <p className="text-xs font-bold mb-1" style={{ color: "rgba(19,65,70,0.7)" }}>
-              Infaq Pendaftaran
-            </p>
-            <p className="text-sm font-semibold" style={{ color: "#134146" }}>
-              Rp 275.000 → BSI 5579994446
-            </p>
-            <p className="text-xs mt-0.5" style={{ color: "rgba(19,65,70,0.7)" }}>
-              a.n. Sekolah Nurus Sunnah
-            </p>
-          </div>
           <Link href="/">
             <Button
-              className="w-full rounded-full py-5 font-bold text-sm transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_8px_24px_rgba(44,137,112,0.3)]"
+              className="w-full rounded-full py-5 font-semibold text-sm transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_8px_24px_rgba(44,137,112,0.3)] font-work-sans"
               style={{ backgroundColor: "#2C8970", color: "#F7F7F2" }}
             >
               Kembali ke Beranda
@@ -480,254 +506,451 @@ export function RegistrationFormPage() {
         {/* ── FORM ── */}
         <form onSubmit={handleSubmit(onSubmit)} noValidate className="space-y-0">
 
-          {/* Field 1 — Nama */}
-          <FormCard>
-            <FieldLabel htmlFor="nama" hint="Tuliskan nama lengkap sesuai akta / ijazah">
-              Nama Calon Peserta Didik <span style={{ color: "#DC2626" }}>*</span>
-            </FieldLabel>
-            <TextInput
-              id="nama"
-              type="text"
-              placeholder="Nama lengkap"
-              hasError={!!errors.nama}
-              {...register("nama")}
-            />
-            <FieldError message={errors.nama?.message} />
-          </FormCard>
-
-          {/* Field 2 — Nomor WhatsApp */}
-          <FormCard>
-            <FieldLabel htmlFor="noWhatsapp" hint="Diawali kode negara 62, contoh: 6281392706707">
-              Nomor WhatsApp <span style={{ color: "#DC2626" }}>*</span>
-            </FieldLabel>
-            <TextInput
-              id="noWhatsapp"
-              type="tel"
-              placeholder="62xxxxxxxxxxx"
-              hasError={!!errors.noWhatsapp}
-              {...register("noWhatsapp")}
-            />
-            <FieldError message={errors.noWhatsapp?.message} />
-          </FormCard>
-
-          {/* Field 3 — Pilihan Program (card selector) */}
-          <FormCard>
-            <FieldLabel hint="Pilih jalur studi yang ingin kamu tekuni">
-              Pilihan Program <span style={{ color: "#DC2626" }}>*</span>
-            </FieldLabel>
-            <Controller
-              name="pilihanProgram"
-              control={control}
-              render={({ field }) => (
-                <ProgramSelector
-                  value={field.value}
-                  onChange={field.onChange}
-                  hasError={!!errors.pilihanProgram}
-                />
-              )}
-            />
-            <FieldError message={errors.pilihanProgram?.message} />
-          </FormCard>
-
-          {/* Info Box — Pembayaran */}
-          <div
-            className="rounded-2xl p-5 mb-4"
-            style={{
-              backgroundColor: "rgba(243,178,51,0.1)",
-              border: "1.5px solid rgba(243,178,51,0.25)",
-              borderLeft: "3px solid #F3B233",
-            }}
-          >
-            <p
-              className="font-bold text-sm mb-3 font-work-sans"
-              style={{ color: "#134146" }}
-            >
-              Panduan Pembayaran Infaq Pendaftaran
-            </p>
-            <p className="text-xs mb-1" style={{ color: "rgba(19,65,70,0.7)" }}>
-              Nominal infaq pendaftaran yang harus dibayarkan
-            </p>
-            <p
-              className="text-2xl font-bold mb-4 font-work-sans"
-              style={{ color: "#134146" }}
-            >
-              Rp 275.000
-            </p>
-            <div
-              className="rounded-xl p-3 mb-4"
-              style={{ backgroundColor: "rgba(243,178,51,0.15)" }}
-            >
-              <p className="text-xs font-semibold mb-0.5" style={{ color: "rgba(19,65,70,0.7)" }}>
-                Transfer ke:
-              </p>
-              <p className="text-sm font-bold" style={{ color: "#134146" }}>
-                Bank Syariah Indonesia
-              </p>
-              <p className="text-lg font-bold tracking-widest mt-0.5" style={{ color: "#134146" }}>
-                5579994446
-              </p>
-              <p className="text-xs mt-0.5" style={{ color: "rgba(19,65,70,0.7)" }}>
-                a.n. Sekolah Nurus Sunnah · Kode Bank: 451
-              </p>
+          {/* ── SEKSI A: Informasi Pribadi ── */}
+          <div className="mb-8">
+            <div className="flex items-center gap-3 mb-6 pb-3 border-b-[1.5px]" style={{ borderColor: "rgba(19, 65, 70, 0.08)" }}>
+              <div className="flex items-center justify-center w-8 h-8 rounded-full shadow-sm" style={{ backgroundColor: "#2C8970", color: "#F7F7F2" }}>
+                <span className="font-bold text-sm font-work-sans">A</span>
+              </div>
+              <h3 className="text-lg font-bold font-work-sans" style={{ color: "#134146" }}>Informasi Pribadi</h3>
             </div>
-            <p className="text-xs" style={{ color: "rgba(19,65,70,0.7)" }}>
-              Setelah transfer, lampirkan <strong>Bukti Transfer</strong> pada field di bawah ini.
-            </p>
+
+            {/* Nama Lengkap */}
+            <FormCard>
+              <FieldLabel htmlFor="namaLengkap" hint="Tuliskan nama lengkap sesuai akta / ijazah">
+                Nama Lengkap <span style={{ color: "#DC2626" }}>*</span>
+              </FieldLabel>
+              <TextInput
+                id="namaLengkap"
+                type="text"
+                icon={User}
+                placeholder="Contoh: Muhammad Abdullah"
+                hasError={!!errors.namaLengkap}
+                {...register("namaLengkap")}
+              />
+              <FieldError message={errors.namaLengkap?.message} />
+            </FormCard>
+
+            {/* Nomor WhatsApp */}
+            <FormCard>
+              <FieldLabel htmlFor="nomorWhatsapp" hint="Pastikan nomor aktif dan terhubung WhatsApp">
+                Nomor WhatsApp <span style={{ color: "#DC2626" }}>*</span>
+              </FieldLabel>
+              <div className="relative w-full">
+                {/* Smartphone icon only */}
+                <div
+                  className="absolute left-4 top-0 bottom-0 flex items-center pointer-events-none"
+                  style={{ color: "rgba(19, 65, 70, 0.45)" }}
+                >
+                  <Phone size={18} />
+                </div>
+                <input
+                  id="nomorWhatsapp"
+                  type="tel"
+                  placeholder="628xxxxxxxxxx"
+                  className={`w-full rounded-xl py-3 pl-11 pr-4 text-sm outline-none transition-all duration-300 placeholder:font-normal font-work-sans font-medium text-[#134146] bg-[#F0FAF7] hover:bg-white focus:bg-white focus:ring-4 focus:ring-[#8EF3E7]/30 border-[1.5px] ${
+                    errors.nomorWhatsapp ? "border-[#DC2626]" : "border-[#134146]/12 focus:border-[#42CDBA]"
+                  }`}
+                  defaultValue="62"
+                  {...register("nomorWhatsapp", {
+                    onChange: (e) => {
+                      let val = e.target.value.replace(/\D/g, "");
+                      if (val.startsWith("62")) {
+                        e.target.value = val;
+                      } else if (val.startsWith("0")) {
+                        e.target.value = "62" + val.substring(1);
+                      } else if (val) {
+                        e.target.value = "62" + val;
+                      } else {
+                        e.target.value = "62";
+                      }
+                    }
+                  })}
+                />
+              </div>
+              <FieldError message={errors.nomorWhatsapp?.message} />
+            </FormCard>
+
+
+
+            {/* Tempat & Tanggal Lahir */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-0 md:gap-4">
+              <FormCard className="mb-4 md:mb-0">
+                <FieldLabel htmlFor="tempatLahir">
+                  Tempat Lahir <span style={{ color: "#DC2626" }}>*</span>
+                </FieldLabel>
+                <TextInput
+                  id="tempatLahir"
+                  type="text"
+                  icon={MapPin}
+                  placeholder="Contoh: Jakarta"
+                  hasError={!!errors.tempatLahir}
+                  {...register("tempatLahir")}
+                />
+                <FieldError message={errors.tempatLahir?.message} />
+              </FormCard>
+
+              <FormCard>
+                <FieldLabel htmlFor="tanggalLahir">
+                  Tanggal Lahir <span style={{ color: "#DC2626" }}>*</span>
+                </FieldLabel>
+                <TextInput
+                  id="tanggalLahir"
+                  type="date"
+                  icon={Calendar}
+                  hasError={!!errors.tanggalLahir}
+                  {...register("tanggalLahir")}
+                />
+                <FieldError message={errors.tanggalLahir?.message} />
+              </FormCard>
+            </div>
+
+            {/* Asal Kota */}
+            <FormCard>
+              <FieldLabel htmlFor="asalKota">
+                Asal Kota / Kabupaten <span style={{ color: "#DC2626" }}>*</span>
+              </FieldLabel>
+              <TextInput
+                id="asalKota"
+                type="text"
+                icon={Building2}
+                placeholder="Contoh: Kota Bandung"
+                hasError={!!errors.asalKota}
+                {...register("asalKota")}
+              />
+              <FieldError message={errors.asalKota?.message} />
+            </FormCard>
+
+            {/* Alamat Lengkap */}
+            <FormCard>
+              <FieldLabel htmlFor="alamatLengkap" hint="Tuliskan alamat domisili saat ini dengan lengkap">
+                Alamat Lengkap <span style={{ color: "#DC2626" }}>*</span>
+              </FieldLabel>
+              <div className="relative w-full">
+                <div className="absolute left-4 top-3.5 pointer-events-none" style={{ color: "rgba(19, 65, 70, 0.4)" }}>
+                  <MapPin size={18} />
+                </div>
+                <textarea
+                  id="alamatLengkap"
+                  rows={3}
+                  placeholder="Nama jalan, RT/RW, kelurahan, kecamatan..."
+                  className={`w-full rounded-xl pl-11 pr-4 py-3 text-sm outline-none transition-all duration-300 placeholder:font-normal font-work-sans font-medium text-[#134146] bg-[#F0FAF7] hover:bg-white focus:bg-white focus:ring-4 focus:ring-[#8EF3E7]/30 border-[1.5px] resize-none ${
+                    errors.alamatLengkap ? "border-[#DC2626]" : "border-[#134146]/12 focus:border-[#42CDBA]"
+                  }`}
+                  {...register("alamatLengkap")}
+                />
+              </div>
+              <FieldError message={errors.alamatLengkap?.message} />
+            </FormCard>
           </div>
 
-          {/* Field 4 — Upload Bukti Transfer */}
-          <FormCard>
-            <FieldLabel hint="Upload 1 file (foto/PDF). Maks 10 MB.">
-              Upload Bukti Transfer Infaq <span style={{ color: "#DC2626" }}>*</span>
-            </FieldLabel>
+          {/* ── SEKSI B: Informasi Sekolah ── */}
+          <div className="mb-8">
+            <div className="flex items-center gap-3 mb-6 pb-3 border-b-[1.5px]" style={{ borderColor: "rgba(19, 65, 70, 0.08)" }}>
+              <div className="flex items-center justify-center w-8 h-8 rounded-full shadow-sm" style={{ backgroundColor: "#2C8970", color: "#F7F7F2" }}>
+                <span className="font-bold text-sm font-work-sans">B</span>
+              </div>
+              <h3 className="text-lg font-bold font-work-sans" style={{ color: "#134146" }}>Informasi Sekolah</h3>
+            </div>
 
-            {!fileName ? (
-              <button
-                type="button"
-                onClick={() => fileInputRef.current?.click()}
-                className="group flex w-full flex-col items-center justify-center gap-2 rounded-2xl py-8 transition-all duration-200 hover:bg-opacity-80 active:scale-[0.99]"
-                style={{
-                  border: errors.buktTransfer
-                    ? "2px dashed #DC2626"
-                    : "2px dashed rgba(44,137,112,0.3)",
-                  backgroundColor: "rgba(44,137,112,0.03)",
-                }}
-              >
-                <span
-                  className="flex h-10 w-10 items-center justify-center rounded-full transition-colors duration-200 group-hover:bg-opacity-90"
-                  style={{ backgroundColor: "rgba(44,137,112,0.1)" }}
-                >
-                  <Upload size={18} style={{ color: "#2C8970" }} />
-                </span>
-                <span>
-                  <p className="text-sm font-semibold" style={{ color: "#2C8970" }}>
-                    Klik untuk upload
-                  </p>
-                  <p className="text-xs mt-0.5" style={{ color: "rgba(19,65,70,0.45)" }}>
-                    PNG, JPG, atau PDF · Maks 10 MB
-                  </p>
-                </span>
-              </button>
-            ) : (
-              <div
-                className="flex items-center justify-between rounded-xl px-4 py-3"
-                style={{
-                  backgroundColor: "rgba(44,137,112,0.06)",
-                  border: "1.5px solid rgba(44,137,112,0.25)",
-                }}
-              >
-                <div className="flex items-center gap-3 min-w-0">
-                  {filePreview ? (
-                    // eslint-disable-next-line @next/next/no-img-element
-                    <img
-                      src={filePreview}
-                      alt="preview"
-                      className="h-12 w-12 rounded-xl object-cover shrink-0"
-                    />
-                  ) : (
-                    <div
-                      className="flex h-12 w-12 items-center justify-center rounded-xl shrink-0"
-                      style={{ backgroundColor: "rgba(44,137,112,0.12)" }}
-                    >
-                      <Upload size={18} style={{ color: "#2C8970" }} />
-                    </div>
-                  )}
-                  <div className="min-w-0">
-                    <p
-                      className="text-sm font-semibold truncate"
-                      style={{ color: "#134146" }}
-                    >
-                      {fileName}
-                    </p>
-                    <p className="text-xs" style={{ color: "rgba(19,65,70,0.5)" }}>
-                      File terpilih
-                    </p>
-                  </div>
+            <FormCard>
+              <FieldLabel htmlFor="sekolahAsal" hint="Nama SMP/MTs asal">
+                Sekolah Asal <span style={{ color: "#DC2626" }}>*</span>
+              </FieldLabel>
+              <TextInput
+                id="sekolahAsal"
+                type="text"
+                icon={School}
+                placeholder="Contoh: SMPN 1 Jakarta"
+                hasError={!!errors.sekolahAsal}
+                {...register("sekolahAsal")}
+              />
+              <FieldError message={errors.sekolahAsal?.message} />
+            </FormCard>
+
+            <FormCard>
+              <FieldLabel htmlFor="lokasiSekolah" hint="Kota/Kabupaten dan Provinsi letak sekolah">
+                Lokasi Sekolah <span style={{ color: "#DC2626" }}>*</span>
+              </FieldLabel>
+              <TextInput
+                id="lokasiSekolah"
+                type="text"
+                icon={MapPin}
+                placeholder="Contoh: Jakarta Selatan, DKI Jakarta"
+                hasError={!!errors.lokasiSekolah}
+                {...register("lokasiSekolah")}
+              />
+              <FieldError message={errors.lokasiSekolah?.message} />
+            </FormCard>
+          </div>
+
+          {/* ── SEKSI C: Tambahan Informasi ── */}
+          <div className="mb-8">
+            <div className="flex items-center gap-3 mb-6 pb-3 border-b-[1.5px]" style={{ borderColor: "rgba(19, 65, 70, 0.08)" }}>
+              <div className="flex items-center justify-center w-8 h-8 rounded-full shadow-sm" style={{ backgroundColor: "#2C8970", color: "#F7F7F2" }}>
+                <span className="font-bold text-sm font-work-sans">C</span>
+              </div>
+              <h3 className="text-lg font-bold font-work-sans" style={{ color: "#134146" }}>Tambahan Informasi</h3>
+            </div>
+
+            <FormCard>
+              <FieldLabel htmlFor="sumberInformasi">
+                Darimana kamu tahu tentang NUSA? <span style={{ color: "#DC2626" }}>*</span>
+              </FieldLabel>
+              <div className="relative">
+                <div className="absolute left-4 top-0 bottom-0 flex items-center pointer-events-none" style={{ color: "rgba(19, 65, 70, 0.4)" }}>
+                  <HelpCircle size={18} />
                 </div>
+                <select
+                  id="sumberInformasi"
+                  className={`w-full rounded-xl pl-11 pr-10 py-3 text-sm outline-none transition-all duration-300 appearance-none font-work-sans font-medium text-[#134146] bg-[#F0FAF7] hover:bg-white focus:bg-white focus:ring-4 focus:ring-[#8EF3E7]/30 border-[1.5px] ${
+                    errors.sumberInformasi ? "border-[#DC2626]" : "border-[#134146]/12 focus:border-[#42CDBA]"
+                  }`}
+                  {...register("sumberInformasi")}
+                >
+                  <option value="" disabled>Pilih salah satu...</option>
+                  <option value="Sosial Media">Sosial Media</option>
+                  <option value="Iklan Digital">Iklan Digital (FB/IG, dll)</option>
+                  <option value="Iklan Offline">Iklan Offline (Brosur, Spanduk)</option>
+                  <option value="Acara Sekolah">Acara Sekolah</option>
+                  <option value="Rekomendasi Orangtua/Saudara">Rekomendasi dari Orangtua / Saudara</option>
+                  <option value="Rekomendasi Guru/Sekolah">Rekomendasi dari Guru / Sekolah</option>
+                  <option value="Teman/Komunitas">Teman / Komunitas</option>
+                  <option value="Berita/Media">Berita / Artikel / Media Online</option>
+                  <option value="Lainnya">Lainnya</option>
+                  <option value="Tidak Ada">Tidak Ada</option>
+                </select>
+                <div className="absolute inset-y-0 right-0 flex items-center px-4 pointer-events-none" style={{ color: "#134146" }}>
+                  <ChevronDown size={16} />
+                </div>
+              </div>
+              <FieldError message={errors.sumberInformasi?.message} />
+            </FormCard>
+
+            {/* Pilihan Program (card selector) */}
+            <FormCard>
+              <FieldLabel hint="Pilih jalur studi yang ingin kamu tekuni">
+                Pilihan Program <span style={{ color: "#DC2626" }}>*</span>
+              </FieldLabel>
+              <Controller
+                name="pilihanProgram"
+                control={control}
+                render={({ field }) => (
+                  <ProgramSelector
+                    value={field.value}
+                    onChange={field.onChange}
+                    hasError={!!errors.pilihanProgram}
+                  />
+                )}
+              />
+              <FieldError message={errors.pilihanProgram?.message} />
+            </FormCard>
+          </div>
+
+          {/* ── SEKSI D: Pembayaran Pendaftaran ── */}
+          <div className="mb-2">
+            <div className="flex items-center gap-3 mb-6 pb-3 border-b-[1.5px]" style={{ borderColor: "rgba(19, 65, 70, 0.08)" }}>
+              <div className="flex items-center justify-center w-8 h-8 rounded-full shadow-sm" style={{ backgroundColor: "#2C8970", color: "#F7F7F2" }}>
+                <span className="font-bold text-sm font-work-sans">D</span>
+              </div>
+              <h3 className="text-lg font-bold font-work-sans" style={{ color: "#134146" }}>Pembayaran Pendaftaran</h3>
+            </div>
+
+            {/* Info Box — Pembayaran */}
+            <div
+              className="rounded-2xl p-5 mb-4"
+              style={{
+                backgroundColor: "rgba(243,178,51,0.1)",
+                border: "1.5px solid rgba(243,178,51,0.25)",
+                borderLeft: "3px solid #F3B233",
+              }}
+            >
+              <p
+                className="font-bold text-sm mb-3 font-work-sans"
+                style={{ color: "#134146" }}
+              >
+                Panduan Pembayaran Infaq Pendaftaran
+              </p>
+              <p className="text-xs mb-1" style={{ color: "rgba(19,65,70,0.7)" }}>
+                Nominal infaq pendaftaran yang harus dibayarkan
+              </p>
+              <p
+                className="text-2xl font-bold mb-4 font-work-sans"
+                style={{ color: "#134146" }}
+              >
+                Rp 275.000
+              </p>
+              <div
+                className="rounded-xl p-3 mb-4"
+                style={{ backgroundColor: "rgba(243,178,51,0.15)" }}
+              >
+                <p className="text-xs font-semibold mb-0.5" style={{ color: "rgba(19,65,70,0.7)" }}>
+                  Transfer ke:
+                </p>
+                <p className="text-sm font-bold" style={{ color: "#134146" }}>
+                  Bank Syariah Indonesia
+                </p>
+                <p className="text-lg font-bold tracking-widest mt-0.5" style={{ color: "#134146" }}>
+                  5579994446
+                </p>
+                <p className="text-xs mt-0.5" style={{ color: "rgba(19,65,70,0.7)" }}>
+                  a.n. Sekolah Nurus Sunnah · Kode Bank: 451
+                </p>
+              </div>
+              <p className="text-xs" style={{ color: "rgba(19,65,70,0.7)" }}>
+                Setelah transfer, lampirkan <strong>Bukti Transfer</strong> pada field di bawah ini.
+              </p>
+            </div>
+
+            {/* Field 4 — Upload Bukti Transfer */}
+            <FormCard>
+              <FieldLabel hint="Upload 1 file (foto/PDF). Maks 10 MB.">
+                Upload Bukti Transfer Infaq <span style={{ color: "#DC2626" }}>*</span>
+              </FieldLabel>
+
+              {!fileName ? (
                 <button
                   type="button"
-                  onClick={removeFile}
-                  className="ml-3 shrink-0 flex h-8 w-8 items-center justify-center rounded-full transition-all duration-200 hover:bg-red-50"
-                  aria-label="Hapus file"
-                  style={{ color: "#64748B" }}
+                  onClick={() => fileInputRef.current?.click()}
+                  className={`group flex w-full flex-col items-center justify-center gap-2 rounded-2xl py-8 transition-all duration-300 hover:bg-[#8EF3E7]/10 hover:border-[#42CDBA] hover:shadow-[0_0_20px_rgba(142,243,231,0.2)] active:scale-[0.99] border-2 border-dashed ${
+                    errors.buktTransfer ? "border-[#DC2626] bg-[#DC2626]/5" : "border-[#2C8970]/30 bg-[#2C8970]/5"
+                  }`}
                 >
-                  <X size={15} />
+                  <span
+                    className="flex h-10 w-10 items-center justify-center rounded-full transition-colors duration-300 group-hover:bg-[#42CDBA]/20 bg-[#2C8970]/10"
+                  >
+                    <Upload size={18} className="text-[#2C8970] transition-colors duration-300 group-hover:text-[#1F6F68]" />
+                  </span>
+                  <span>
+                    <p className="text-sm font-semibold text-[#2C8970] transition-colors duration-300 group-hover:text-[#1F6F68]">
+                      Klik untuk upload
+                    </p>
+                    <p className="text-xs mt-0.5 text-[#134146]/45">
+                      PNG, JPG, atau PDF · Maks 10 MB
+                    </p>
+                  </span>
                 </button>
-              </div>
-            )}
-
-            <input
-              ref={fileInputRef}
-              type="file"
-              accept="image/*,.pdf"
-              className="hidden"
-              onChange={handleFileChange}
-            />
-            <FieldError message={errors.buktTransfer?.message as string | undefined} />
-          </FormCard>
-
-          {/* Field 5 — Pernyataan */}
-          <FormCard>
-            <p
-              className="text-sm font-semibold mb-4 font-work-sans"
-              style={{ color: "#134146" }}
-            >
-              Pernyataan <span style={{ color: "#DC2626" }}>*</span>
-            </p>
-            <Controller
-              name="pernyataan"
-              control={control}
-              render={({ field }) => (
-                <label className="flex items-start gap-3 cursor-pointer group">
-                  <div className="relative mt-0.5 shrink-0">
-                    <input
-                      type="checkbox"
-                      checked={!!field.value}
-                      onChange={(e) =>
-                        field.onChange(e.target.checked ? true : undefined)
-                      }
-                      className="sr-only"
-                      id="pernyataan"
-                    />
-                    <div
-                      className="h-5 w-5 rounded-md flex items-center justify-center transition-all duration-200"
-                      style={{
-                        border: errors.pernyataan
-                          ? "2px solid #DC2626"
-                          : field.value
-                          ? "2px solid #2C8970"
-                          : "2px solid rgba(19,65,70,0.25)",
-                        backgroundColor: field.value ? "#2C8970" : "transparent",
-                      }}
-                    >
-                      {field.value && (
-                        <svg viewBox="0 0 12 10" fill="none" className="h-3 w-3">
-                          <path
-                            d="M1 5l3.5 3.5L11 1"
-                            stroke="white"
-                            strokeWidth="2"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                          />
-                        </svg>
-                      )}
+              ) : (
+                <div
+                  className="flex items-center justify-between rounded-xl px-4 py-3"
+                  style={{
+                    backgroundColor: "rgba(44,137,112,0.06)",
+                    border: "1.5px solid rgba(44,137,112,0.25)",
+                  }}
+                >
+                  <div className="flex items-center gap-3 min-w-0">
+                    {filePreview ? (
+                      // eslint-disable-next-line @next/next/no-img-element
+                      <img
+                        src={filePreview}
+                        alt="preview"
+                        className="h-12 w-12 rounded-xl object-cover shrink-0"
+                      />
+                    ) : (
+                      <div
+                        className="flex h-12 w-12 items-center justify-center rounded-xl shrink-0"
+                        style={{ backgroundColor: "rgba(44,137,112,0.12)" }}
+                      >
+                        <Upload size={18} style={{ color: "#2C8970" }} />
+                      </div>
+                    )}
+                    <div className="min-w-0">
+                      <p
+                        className="text-sm font-semibold truncate"
+                        style={{ color: "#134146" }}
+                      >
+                        {fileName}
+                      </p>
+                      <p className="text-xs" style={{ color: "rgba(19,65,70,0.5)" }}>
+                        File terpilih
+                      </p>
                     </div>
                   </div>
-                  <span
-                    className="text-sm leading-relaxed select-none"
-                    style={{ color: "#134146" }}
+                  <button
+                    type="button"
+                    onClick={removeFile}
+                    className="ml-3 shrink-0 flex h-8 w-8 items-center justify-center rounded-full transition-all duration-200 hover:bg-red-50"
+                    aria-label="Hapus file"
+                    style={{ color: "#64748B" }}
                   >
-                    Saya setuju dengan pernyataan bahwa{" "}
-                    <span className="font-semibold" style={{ color: "#DC2626" }}>
-                      &apos;Uang Yang Sudah Ditransfer Tidak Dapat Dikembalikan Dengan
-                      Alasan Dan Kondisi Apapun&apos;
-                    </span>
-                  </span>
-                </label>
+                    <X size={15} />
+                  </button>
+                </div>
               )}
-            />
-            <FieldError message={errors.pernyataan?.message} />
-          </FormCard>
+
+              <input
+                ref={fileInputRef}
+                type="file"
+                accept="image/*,.pdf"
+                className="hidden"
+                onChange={handleFileChange}
+              />
+              <FieldError message={errors.buktTransfer?.message as string | undefined} />
+            </FormCard>
+
+            {/* Field 5 — Pernyataan */}
+            <FormCard>
+              <p
+                className="text-sm font-semibold mb-4 font-work-sans"
+                style={{ color: "#134146" }}
+              >
+                Pernyataan <span style={{ color: "#DC2626" }}>*</span>
+              </p>
+              <Controller
+                name="pernyataan"
+                control={control}
+                render={({ field }) => (
+                  <label className="flex items-start gap-3 cursor-pointer group">
+                    <div className="relative mt-0.5 shrink-0">
+                      <input
+                        type="checkbox"
+                        checked={!!field.value}
+                        onChange={(e) =>
+                          field.onChange(e.target.checked ? true : undefined)
+                        }
+                        className="sr-only"
+                        id="pernyataan"
+                      />
+                      <div
+                        className="h-5 w-5 rounded-md flex items-center justify-center transition-all duration-200"
+                        style={{
+                          border: errors.pernyataan
+                            ? "2px solid #DC2626"
+                            : field.value
+                              ? "2px solid #2C8970"
+                              : "2px solid rgba(19,65,70,0.25)",
+                          backgroundColor: field.value ? "#2C8970" : "transparent",
+                        }}
+                      >
+                        {field.value && (
+                          <svg viewBox="0 0 12 10" fill="none" className="h-3 w-3">
+                            <path
+                              d="M1 5l3.5 3.5L11 1"
+                              stroke="white"
+                              strokeWidth="2"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                            />
+                          </svg>
+                        )}
+                      </div>
+                    </div>
+                    <span
+                      className="text-sm leading-relaxed select-none"
+                      style={{ color: "#134146" }}
+                    >
+                      Saya setuju dengan pernyataan bahwa{" "}
+                      <span className="font-semibold" style={{ color: "#DC2626" }}>
+                        &apos;Uang Yang Sudah Ditransfer Tidak Dapat Dikembalikan Dengan
+                        Alasan Dan Kondisi Apapun&apos;
+                      </span>
+                    </span>
+                  </label>
+                )}
+              />
+              <FieldError message={errors.pernyataan?.message} />
+            </FormCard>
+          </div>
 
           {/* ── Submit Error ── */}
           {submitError && (
@@ -745,44 +968,25 @@ export function RegistrationFormPage() {
           )}
 
           {/* ── Action Buttons ── */}
-          <div className="flex items-center justify-between pt-3">
-            <div className="flex items-center gap-3">
-              <Link href="/">
-                <Button
-                  type="button"
-                  variant="outline"
-                  className="rounded-full px-5 font-semibold text-sm transition-all duration-200 hover:opacity-70 font-work-sans"
-                  style={{
-                    borderColor: "rgba(19,65,70,0.12)",
-                    color: "#134146",
-                    backgroundColor: "transparent",
-                  }}
-                >
-                  Back
-                </Button>
-              </Link>
-
-              <Button
-                type="submit"
-                disabled={isSubmitting}
-                className="rounded-full px-8 py-5 font-semibold text-sm transition-all duration-300 hover:-translate-y-0.5 hover:scale-[1.02] shadow-[0_6px_20px_rgba(243,178,51,0.3)] hover:shadow-[0_10px_28px_rgba(243,178,51,0.45)] disabled:opacity-60 disabled:cursor-not-allowed font-work-sans"
-                style={{
-                  backgroundColor: "#F3B233",
-                  color: "#134146",
-                }}
-              >
-                {isSubmitting ? "Mengirim..." : "Submit"}
-              </Button>
-            </div>
-
+          <div className="flex flex-col-reverse sm:flex-row items-center gap-4 pt-6 mt-8 border-t-[1.5px]" style={{ borderColor: "rgba(19, 65, 70, 0.08)" }}>
             <button
               type="button"
               onClick={handleClear}
-              className="text-xs font-semibold transition-opacity hover:opacity-50 font-work-sans"
-              style={{ color: "rgba(19,65,70,0.4)" }}
+              className="w-full sm:w-auto px-6 py-4 rounded-xl text-sm font-semibold transition-colors duration-200 hover:bg-black/5 font-work-sans"
+              style={{ color: "rgba(19,65,70,0.6)" }}
             >
-              Clear form
+              Reset Form
             </button>
+
+            <Button
+              type="submit"
+              disabled={isSubmitting}
+              className="w-full sm:flex-1 rounded-2xl py-7 font-bold text-base transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_15px_30px_rgba(44,137,112,0.3)] disabled:opacity-70 disabled:cursor-not-allowed font-work-sans flex items-center justify-center gap-2 group shadow-[0_8px_20px_rgba(44,137,112,0.2)]"
+              style={{ backgroundColor: "#2C8970", color: "#F7F7F2" }}
+            >
+              {isSubmitting ? "Memproses..." : "Daftar Sekarang"}
+              <Send size={18} className="transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
+            </Button>
           </div>
         </form>
 
