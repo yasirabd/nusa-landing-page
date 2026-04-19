@@ -130,7 +130,7 @@ export function HeroSection() {
               </Link>
 
               {/* Secondary (Outline) Button */}
-              <Link href="https://forms.gle/92AqMyaUs81tyhLRA" className="inline-block" target="_blank" rel="noopener noreferrer">
+              <Link href="/daftar" className="inline-block">
                 <button
                   className="
                     flex items-center gap-2

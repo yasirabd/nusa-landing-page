@@ -199,9 +199,7 @@ export function ProgramSection() {
 
         <div className="mt-16 md:mt-24 pt-10 border-t border-[#42CDBA]/20 mx-auto max-w-4xl text-center">
           <Link
-            href="https://forms.gle/92AqMyaUs81tyhLRA"
-            target="_blank"
-            rel="noopener noreferrer"
+            href="/daftar"
             className="inline-block"
           >
             <div className="group/btn inline-flex items-center gap-2 rounded-full px-8 py-3.5 sm:py-4 sm:px-10 text-base sm:text-lg font-bold shadow-lg shadow-primary/20 transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-accent/20 bg-[#2C8970] text-white hover:bg-[#F3B233] hover:text-[#134146]">

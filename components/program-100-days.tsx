@@ -91,9 +91,7 @@ export function Program100Days() {
             {/* CTA Button */}
             <div className="text-center mt-12 md:mt-16 pt-12 md:pt-16 border-t border-white/10">
               <Link
-                href="https://forms.gle/92AqMyaUs81tyhLRA"
-                target="_blank"
-                rel="noopener noreferrer"
+                href="/daftar"
                 className="inline-block"
               >
                 <div 
