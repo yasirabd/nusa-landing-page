@@ -475,7 +475,7 @@ export function RegistrationFormPage() {
           </p>
 
           <a
-            href="https://wa.me/6281139270707"
+            href="https://wa.me/6281392706707"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 mt-4 rounded-full px-4 py-1.5 text-xs font-semibold transition-all duration-200 hover:opacity-80 font-work-sans"
@@ -548,9 +548,8 @@ export function RegistrationFormPage() {
                   id="nomorWhatsapp"
                   type="tel"
                   placeholder="628xxxxxxxxxx"
-                  className={`w-full rounded-xl py-3 pl-11 pr-4 text-sm outline-none transition-all duration-300 placeholder:font-normal font-work-sans font-medium text-[#134146] bg-[#F0FAF7] hover:bg-white focus:bg-white focus:ring-4 focus:ring-[#8EF3E7]/30 border-[1.5px] ${
-                    errors.nomorWhatsapp ? "border-[#DC2626]" : "border-[#134146]/12 focus:border-[#42CDBA]"
-                  }`}
+                  className={`w-full rounded-xl py-3 pl-11 pr-4 text-sm outline-none transition-all duration-300 placeholder:font-normal font-work-sans font-medium text-[#134146] bg-[#F0FAF7] hover:bg-white focus:bg-white focus:ring-4 focus:ring-[#8EF3E7]/30 border-[1.5px] ${errors.nomorWhatsapp ? "border-[#DC2626]" : "border-[#134146]/12 focus:border-[#42CDBA]"
+                    }`}
                   defaultValue="62"
                   {...register("nomorWhatsapp", {
                     onChange: (e) => {
@@ -634,9 +633,8 @@ export function RegistrationFormPage() {
                   id="alamatLengkap"
                   rows={3}
                   placeholder="Nama jalan, RT/RW, kelurahan, kecamatan..."
-                  className={`w-full rounded-xl pl-11 pr-4 py-3 text-sm outline-none transition-all duration-300 placeholder:font-normal font-work-sans font-medium text-[#134146] bg-[#F0FAF7] hover:bg-white focus:bg-white focus:ring-4 focus:ring-[#8EF3E7]/30 border-[1.5px] resize-none ${
-                    errors.alamatLengkap ? "border-[#DC2626]" : "border-[#134146]/12 focus:border-[#42CDBA]"
-                  }`}
+                  className={`w-full rounded-xl pl-11 pr-4 py-3 text-sm outline-none transition-all duration-300 placeholder:font-normal font-work-sans font-medium text-[#134146] bg-[#F0FAF7] hover:bg-white focus:bg-white focus:ring-4 focus:ring-[#8EF3E7]/30 border-[1.5px] resize-none ${errors.alamatLengkap ? "border-[#DC2626]" : "border-[#134146]/12 focus:border-[#42CDBA]"
+                    }`}
                   {...register("alamatLengkap")}
                 />
               </div>
@@ -703,9 +701,8 @@ export function RegistrationFormPage() {
                 </div>
                 <select
                   id="sumberInformasi"
-                  className={`w-full rounded-xl pl-11 pr-10 py-3 text-sm outline-none transition-all duration-300 appearance-none font-work-sans font-medium text-[#134146] bg-[#F0FAF7] hover:bg-white focus:bg-white focus:ring-4 focus:ring-[#8EF3E7]/30 border-[1.5px] ${
-                    errors.sumberInformasi ? "border-[#DC2626]" : "border-[#134146]/12 focus:border-[#42CDBA]"
-                  }`}
+                  className={`w-full rounded-xl pl-11 pr-10 py-3 text-sm outline-none transition-all duration-300 appearance-none font-work-sans font-medium text-[#134146] bg-[#F0FAF7] hover:bg-white focus:bg-white focus:ring-4 focus:ring-[#8EF3E7]/30 border-[1.5px] ${errors.sumberInformasi ? "border-[#DC2626]" : "border-[#134146]/12 focus:border-[#42CDBA]"
+                    }`}
                   {...register("sumberInformasi")}
                 >
                   <option value="" disabled>Pilih salah satu...</option>
@@ -812,9 +809,8 @@ export function RegistrationFormPage() {
                 <button
                   type="button"
                   onClick={() => fileInputRef.current?.click()}
-                  className={`group flex w-full flex-col items-center justify-center gap-2 rounded-2xl py-8 transition-all duration-300 hover:bg-[#8EF3E7]/10 hover:border-[#42CDBA] hover:shadow-[0_0_20px_rgba(142,243,231,0.2)] active:scale-[0.99] border-2 border-dashed ${
-                    errors.buktTransfer ? "border-[#DC2626] bg-[#DC2626]/5" : "border-[#2C8970]/30 bg-[#2C8970]/5"
-                  }`}
+                  className={`group flex w-full flex-col items-center justify-center gap-2 rounded-2xl py-8 transition-all duration-300 hover:bg-[#8EF3E7]/10 hover:border-[#42CDBA] hover:shadow-[0_0_20px_rgba(142,243,231,0.2)] active:scale-[0.99] border-2 border-dashed ${errors.buktTransfer ? "border-[#DC2626] bg-[#DC2626]/5" : "border-[#2C8970]/30 bg-[#2C8970]/5"
+                    }`}
                 >
                   <span
                     className="flex h-10 w-10 items-center justify-center rounded-full transition-colors duration-300 group-hover:bg-[#42CDBA]/20 bg-[#2C8970]/10"
