@@ -2,6 +2,7 @@
 
 import { useState, useRef } from "react"
 import Link from "next/link"
+import { createClient } from "@/utils/supabase/client"
 import { useForm, Controller } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { z } from "zod"
@@ -75,9 +76,9 @@ function FormCard({ children, className }: { children: React.ReactNode; classNam
     <div
       className={`rounded-2xl p-6 mb-4 ${className ?? ""}`}
       style={{
-        backgroundColor: "#FFFFFF",
+        backgroundColor: "#F7F7F2",
         border: "1.5px solid rgba(19, 65, 70, 0.12)",
-        boxShadow: "0 2px 8px rgba(19,65,70,0.04)",
+        boxShadow: "0 2px 8px rgba(19,65,70,0.05)",
       }}
     >
       {children}
@@ -109,10 +110,10 @@ function ProgramSelector({
             onClick={() => onChange(opt.value)}
             className={`relative flex flex-col items-start gap-2 rounded-2xl p-4 text-left transition-all duration-300 hover:-translate-y-1 ${
               selected
-                ? "border-2 border-[#2C8970] bg-[#2C8970]/10 shadow-[0_8px_20px_rgba(44,137,112,0.25)]"
+                ? "border-2 border-[#8EF3E7] bg-[#2C8970]/10 shadow-[0_0_15px_rgba(142,243,231,0.4)]"
                 : hasError
-                ? "border-2 border-[#DC2626] bg-[#F8FFFE] shadow-sm"
-                : "border-2 border-[#134146]/10 bg-[#F8FFFE] shadow-[0_2px_8px_rgba(19,65,70,0.04)] hover:border-[#2C8970]/50 hover:shadow-[0_12px_24px_rgba(44,137,112,0.15)] hover:bg-[#F0FAF7]"
+                ? "border-2 border-[#DC2626] bg-[#F7F7F2] shadow-sm"
+                : "border-2 border-[#134146]/10 bg-[#F7F7F2] shadow-[0_2px_8px_rgba(19,65,70,0.05)] hover:border-[#2C8970]/50 hover:shadow-[0_12px_24px_rgba(44,137,112,0.15)] hover:bg-[#F0FAF7]"
             }`}
           >
             {/* Selected dot */}
@@ -137,7 +138,7 @@ function ProgramSelector({
             </span>
             <span>
               <p
-                className="font-bold text-sm"
+                className="font-semibold text-sm font-work-sans"
                 style={{ color: selected ? "#2C8970" : "#134146" }}
               >
                 {opt.label}
@@ -171,14 +172,13 @@ function TextInput({
       id={id}
       type={type}
       placeholder={placeholder}
-      className="w-full rounded-xl px-4 py-3 text-sm outline-none transition-all duration-200 placeholder:font-normal"
+      className="w-full rounded-xl px-4 py-3 text-sm outline-none transition-all duration-200 placeholder:font-normal font-work-sans"
       style={{
-        fontFamily: "var(--v0-font-work-sans), sans-serif",
         fontWeight: 500,
-        backgroundColor: "#F8FFFE",
+        backgroundColor: "#F0FAF7",
         border: hasError
           ? "1.5px solid #DC2626"
-          : "1.5px solid rgba(19, 65, 70, 0.15)",
+          : "1.5px solid rgba(19, 65, 70, 0.12)",
         color: "#134146",
       }}
       {...rest}
@@ -202,9 +202,8 @@ function FieldLabel({
     <div className="mb-3">
       <label
         htmlFor={htmlFor}
-        className="block text-sm font-bold mb-0.5"
+        className="block text-sm font-semibold mb-0.5 font-work-sans"
         style={{
-          fontFamily: "var(--v0-font-work-sans), sans-serif",
           color: "#134146",
         }}
       >
@@ -227,6 +226,7 @@ function FieldLabel({
 // ---------------------------------------------------------------------------
 export function RegistrationFormPage() {
   const [submitted, setSubmitted] = useState(false)
+  const [submitError, setSubmitError] = useState<string | null>(null)
   const [filePreview, setFilePreview] = useState<string | null>(null)
   const [fileName, setFileName] = useState<string | null>(null)
   const fileInputRef = useRef<HTMLInputElement>(null)
@@ -248,18 +248,42 @@ export function RegistrationFormPage() {
     },
   })
 
-  // ── Submit → WhatsApp ──
+  // ── Submit → Supabase ──
   const onSubmit = async (data: FormValues) => {
-    const programLabel =
-      PROGRAM_OPTIONS.find((o) => o.value === data.pilihanProgram)?.label ?? data.pilihanProgram
-    const msg = encodeURIComponent(
-      `*PENDAFTARAN NUSA Boarding School 2026/2027*\n\n` +
-        `Nama: ${data.nama}\n` +
-        `No. WhatsApp: ${data.noWhatsapp}\n` +
-        `Program: ${programLabel}\n\n` +
-        `_Bukti transfer infaq Rp 275.000 akan dilampirkan._`
-    )
-    window.open(`https://wa.me/6281139270707?text=${msg}`, "_blank")
+    setSubmitError(null)
+    const supabase = createClient()
+
+    // 1. Upload bukti transfer ke storage bucket
+    const file = data.buktTransfer as File
+    const fileExt = file.name.split(".").pop()
+    const filePath = `${Date.now()}-${Math.random().toString(36).slice(2)}.${fileExt}`
+
+    const { error: uploadError } = await supabase.storage
+      .from("payment_receipts")
+      .upload(filePath, file, { upsert: false })
+
+    if (uploadError) {
+      setSubmitError("Gagal mengupload bukti transfer. Silakan coba lagi.")
+      return
+    }
+
+    // 2. Simpan data pendaftaran ke tabel registrations
+    const { error: insertError } = await supabase
+      .from("registrations")
+      .insert({
+        nama: data.nama,
+        no_whatsapp: data.noWhatsapp,
+        pilihan_program: data.pilihanProgram,
+        bukti_transfer_url: filePath,
+        pernyataan_setuju: true,
+        status: "pending",
+      })
+
+    if (insertError) {
+      setSubmitError("Gagal menyimpan data pendaftaran. Silakan coba lagi.")
+      return
+    }
+
     setSubmitted(true)
   }
 
@@ -302,7 +326,7 @@ export function RegistrationFormPage() {
         <div
           className="absolute inset-0 opacity-[0.03] pointer-events-none"
           style={{
-            backgroundImage: `linear-gradient(#2C8970 1px, transparent 1px), linear-gradient(90deg, #2C8970 1px, transparent 1px)`,
+            backgroundImage: `linear-gradient(rgba(142,243,231,0.2) 1px, transparent 1px), linear-gradient(90deg, rgba(142,243,231,0.2) 1px, transparent 1px)`,
             backgroundSize: "40px 40px",
           }}
         />
@@ -310,7 +334,7 @@ export function RegistrationFormPage() {
         <div
           className="max-w-sm w-full rounded-3xl p-10 text-center"
           style={{
-            backgroundColor: "#FFFFFF",
+            backgroundColor: "#F7F7F2",
             border: "1.5px solid rgba(19,65,70,0.12)",
             boxShadow: "0 8px 40px rgba(44,137,112,0.12)",
           }}
@@ -322,16 +346,16 @@ export function RegistrationFormPage() {
             <CheckCircle2 size={38} style={{ color: "#2C8970" }} />
           </div>
           <h2
-            className="text-2xl font-bold mb-2"
-            style={{ fontFamily: "var(--v0-font-work-sans)", color: "#134146" }}
+            className="text-2xl font-bold mb-2 font-work-sans"
+            style={{ color: "#134146" }}
           >
-            Pendaftaran Terkirim!
+            Pendaftaran Berhasil!
           </h2>
           <p className="text-sm mb-1" style={{ color: "rgba(19,65,70,0.65)" }}>
-            Data kamu sudah kami terima.
+            Data kamu sudah kami terima dengan sukses.
           </p>
           <p className="text-sm mb-7" style={{ color: "rgba(19,65,70,0.65)" }}>
-            Silakan kirimkan bukti transfer melalui WhatsApp yang sudah terbuka.
+            Admin NUSA akan segera menghubungi kamu melalui WhatsApp untuk konfirmasi pendaftaran.
           </p>
           <div
             className="rounded-xl p-4 mb-7 text-left"
@@ -371,7 +395,7 @@ export function RegistrationFormPage() {
       <div
         className="absolute inset-0 opacity-[0.03] pointer-events-none"
         style={{
-          backgroundImage: `linear-gradient(#2C8970 1px, transparent 1px), linear-gradient(90deg, #2C8970 1px, transparent 1px)`,
+          backgroundImage: `linear-gradient(rgba(142,243,231,0.2) 1px, transparent 1px), linear-gradient(90deg, rgba(142,243,231,0.2) 1px, transparent 1px)`,
           backgroundSize: "40px 40px",
         }}
       />
@@ -387,16 +411,16 @@ export function RegistrationFormPage() {
         <div className="container max-w-2xl mx-auto px-4 h-14 flex items-center gap-3">
           <Link
             href="/"
-            className="flex items-center gap-1.5 text-sm font-semibold transition-opacity hover:opacity-60"
-            style={{ color: "#2C8970", fontFamily: "var(--v0-font-work-sans)" }}
+            className="flex items-center gap-1.5 text-sm font-semibold transition-opacity hover:opacity-60 font-work-sans"
+            style={{ color: "#2C8970" }}
           >
             <ArrowLeft size={15} />
             Kembali
           </Link>
           <span style={{ color: "rgba(19,65,70,0.2)" }}>|</span>
           <span
-            className="text-sm font-semibold"
-            style={{ color: "#134146", fontFamily: "var(--v0-font-work-sans)" }}
+            className="text-sm font-semibold font-work-sans"
+            style={{ color: "#134146" }}
           >
             Form Pendaftaran
           </span>
@@ -413,9 +437,8 @@ export function RegistrationFormPage() {
             style={{ backgroundColor: "#F3B233" }}
           />
           <h1
-            className="text-3xl font-bold tracking-tight leading-tight mb-2"
+            className="text-3xl font-bold tracking-tight leading-tight mb-2 font-work-sans"
             style={{
-              fontFamily: "var(--v0-font-work-sans), sans-serif",
               color: "#134146",
             }}
           >
@@ -429,12 +452,11 @@ export function RegistrationFormPage() {
             href="https://wa.me/6281139270707"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 mt-4 rounded-full px-4 py-1.5 text-xs font-semibold transition-all duration-200 hover:opacity-80"
+            className="inline-flex items-center gap-2 mt-4 rounded-full px-4 py-1.5 text-xs font-semibold transition-all duration-200 hover:opacity-80 font-work-sans"
             style={{
-              backgroundColor: "rgba(19,65,70,0.06)",
+              backgroundColor: "rgba(19,65,70,0.05)",
               color: "#134146",
-              border: "1px solid rgba(19,65,70,0.15)",
-              fontFamily: "var(--v0-font-work-sans)",
+              border: "1px solid rgba(19,65,70,0.12)",
             }}
           >
             <div
@@ -517,8 +539,8 @@ export function RegistrationFormPage() {
             }}
           >
             <p
-              className="font-bold text-sm mb-3"
-              style={{ color: "#134146", fontFamily: "var(--v0-font-work-sans)" }}
+              className="font-bold text-sm mb-3 font-work-sans"
+              style={{ color: "#134146" }}
             >
               Panduan Pembayaran Infaq Pendaftaran
             </p>
@@ -526,8 +548,8 @@ export function RegistrationFormPage() {
               Nominal infaq pendaftaran yang harus dibayarkan
             </p>
             <p
-              className="text-2xl font-bold mb-4"
-              style={{ color: "#134146", fontFamily: "var(--v0-font-work-sans)" }}
+              className="text-2xl font-bold mb-4 font-work-sans"
+              style={{ color: "#134146" }}
             >
               Rp 275.000
             </p>
@@ -647,8 +669,8 @@ export function RegistrationFormPage() {
           {/* Field 5 — Pernyataan */}
           <FormCard>
             <p
-              className="text-sm font-bold mb-4"
-              style={{ color: "#134146", fontFamily: "var(--v0-font-work-sans)" }}
+              className="text-sm font-semibold mb-4 font-work-sans"
+              style={{ color: "#134146" }}
             >
               Pernyataan <span style={{ color: "#DC2626" }}>*</span>
             </p>
@@ -707,6 +729,21 @@ export function RegistrationFormPage() {
             <FieldError message={errors.pernyataan?.message} />
           </FormCard>
 
+          {/* ── Submit Error ── */}
+          {submitError && (
+            <div
+              className="rounded-xl px-4 py-3 mb-2 flex items-center gap-2 text-sm"
+              style={{
+                backgroundColor: "rgba(220,38,38,0.07)",
+                border: "1.5px solid rgba(220,38,38,0.25)",
+                color: "#DC2626",
+              }}
+            >
+              <AlertCircle size={15} className="shrink-0" />
+              {submitError}
+            </div>
+          )}
+
           {/* ── Action Buttons ── */}
           <div className="flex items-center justify-between pt-3">
             <div className="flex items-center gap-3">
@@ -714,12 +751,11 @@ export function RegistrationFormPage() {
                 <Button
                   type="button"
                   variant="outline"
-                  className="rounded-full px-5 font-semibold text-sm transition-all duration-200 hover:opacity-70"
+                  className="rounded-full px-5 font-semibold text-sm transition-all duration-200 hover:opacity-70 font-work-sans"
                   style={{
-                    borderColor: "rgba(19,65,70,0.2)",
+                    borderColor: "rgba(19,65,70,0.12)",
                     color: "#134146",
                     backgroundColor: "transparent",
-                    fontFamily: "var(--v0-font-work-sans)",
                   }}
                 >
                   Back
@@ -729,11 +765,10 @@ export function RegistrationFormPage() {
               <Button
                 type="submit"
                 disabled={isSubmitting}
-                className="rounded-full px-8 py-5 font-bold text-sm transition-all duration-300 hover:-translate-y-0.5 hover:scale-[1.02] shadow-[0_6px_20px_rgba(243,178,51,0.3)] hover:shadow-[0_10px_28px_rgba(243,178,51,0.45)] disabled:opacity-60 disabled:cursor-not-allowed"
+                className="rounded-full px-8 py-5 font-semibold text-sm transition-all duration-300 hover:-translate-y-0.5 hover:scale-[1.02] shadow-[0_6px_20px_rgba(243,178,51,0.3)] hover:shadow-[0_10px_28px_rgba(243,178,51,0.45)] disabled:opacity-60 disabled:cursor-not-allowed font-work-sans"
                 style={{
                   backgroundColor: "#F3B233",
                   color: "#134146",
-                  fontFamily: "var(--v0-font-work-sans)",
                 }}
               >
                 {isSubmitting ? "Mengirim..." : "Submit"}
@@ -743,8 +778,8 @@ export function RegistrationFormPage() {
             <button
               type="button"
               onClick={handleClear}
-              className="text-xs font-semibold transition-opacity hover:opacity-50"
-              style={{ color: "rgba(19,65,70,0.45)", fontFamily: "var(--v0-font-work-sans)" }}
+              className="text-xs font-semibold transition-opacity hover:opacity-50 font-work-sans"
+              style={{ color: "rgba(19,65,70,0.4)" }}
             >
               Clear form
             </button>
