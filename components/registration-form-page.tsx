@@ -304,6 +304,9 @@ export function RegistrationFormPage() {
       return
     }
 
+    // Generate 6-char random alphanumeric string for kode_tes
+    const kodeTes = Math.random().toString(36).substring(2, 8).toUpperCase()
+
     // 2. Simpan data pendaftaran ke tabel registrations
     const { error: insertError } = await supabase
       .from("registrations")
@@ -321,6 +324,7 @@ export function RegistrationFormPage() {
         bukti_transfer_url: filePath,
         pernyataan_setuju: true,
         status: "pending",
+        kode_tes: kodeTes,
       })
 
     if (insertError) {

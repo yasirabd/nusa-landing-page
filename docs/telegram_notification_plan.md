@@ -48,7 +48,6 @@ sequenceDiagram
 
 Buat file ini di project dengan isi berikut:
 
-```typescript
 import "jsr:@supabase/functions-js/edge-runtime.d.ts";
 
 const TELEGRAM_BOT_TOKEN = Deno.env.get("TELEGRAM_BOT_TOKEN")!;
@@ -77,19 +76,26 @@ Deno.serve(async (req: Request) => {
     minute: "2-digit",
   });
 
+  const esc = (s: unknown): string => String(s ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  const statusDisplay = row.status === "pending" ? "menunggu dihubungi admin" : esc(row.status);
+  const linkTes = row.kode_tes 
+    ? `https://nusabs.sch.id/test?ref=${row.kode_tes}` 
+    : `https://nusabs.sch.id/test?ref=${row.id}`;
+
   const message = [
-    `🎉 *Pendaftar Baru NUSA\\!*`,
+    `<b>🎉 Pendaftar Baru NUSA Boarding School 2026/2027!</b>`,
     ``,
-    `👤 *Nama:* ${row.nama_lengkap}`,
-    `📱 *WhatsApp:* +${row.nomor_whatsapp}`,
-    `📅 *Tgl Lahir:* ${row.tanggal_lahir} \\(${row.tempat_lahir}\\)`,
-    `🏠 *Kota:* ${row.asal_kota}`,
-    `📍 *Alamat:* ${row.alamat_lengkap}`,
-    `🏫 *Sekolah:* ${row.sekolah_asal} — ${row.lokasi_sekolah}`,
-    `🎓 *Program:* ${programLabel}`,
-    `📢 *Sumber Info:* ${row.sumber_informasi}`,
-    `📝 *Status:* ${row.status}`,
-    `🕐 *Waktu Daftar:* ${waktu} WIB`,
+    `<b>👤 Nama:</b> ${esc(row.nama_lengkap)}`,
+    `<b>📱 WhatsApp:</b> <a href="https://wa.me/${esc(row.nomor_whatsapp)}">+${esc(row.nomor_whatsapp)}</a>`,
+    `<b>📅 Tgl Lahir:</b> ${esc(row.tempat_lahir)}, ${esc(row.tanggal_lahir)}`,
+    `<b>🏠 Kota:</b> ${esc(row.asal_kota)}`,
+    `<b>📍 Alamat:</b> ${esc(row.alamat_lengkap)}`,
+    `<b>🏫 Sekolah:</b> ${esc(row.sekolah_asal)} — ${esc(row.lokasi_sekolah)}`,
+    `<b>🎓 Program:</b> ${programLabel}`,
+    `<b>📢 Sumber Info:</b> ${esc(row.sumber_informasi)}`,
+    `<b>📝 Status:</b> ${statusDisplay}`,
+    `<b>🔗 Link Tes:</b> ${linkTes}`,
+    `<b>🕐 Waktu Daftar:</b> ${waktu} WIB`,
   ].join("\n");
 
   const telegramRes = await fetch(
@@ -100,7 +106,8 @@ Deno.serve(async (req: Request) => {
       body: JSON.stringify({
         chat_id: TELEGRAM_CHAT_ID,
         text: message,
-        parse_mode: "MarkdownV2",
+        parse_mode: "HTML",
+        disable_web_page_preview: true
       }),
     }
   );

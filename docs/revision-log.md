@@ -70,3 +70,10 @@
   - **Format Pesan Notifikasi**: Pesan yang diterima Admin berisi: Nama Lengkap, Nomor WhatsApp, Tempat & Tanggal Lahir, Kota, Alamat, Sekolah Asal, Pilihan Program (Programmer / Designer), Sumber Informasi, Status, dan Waktu Daftar (WIB).
   - **Verifikasi**: Test end-to-end via cURL menghasilkan HTTP 200 OK dan pesan Telegram berhasil diterima di grup Admin. Edge Function logs di Supabase Dashboard mengonfirmasi eksekusi berhasil dalam ~2 detik.
   - **Dokumentasi**: Rencana implementasi tersimpan di `docs/telegram_notification_plan.md`.
+
+## 2026-04-29
+- **Implementasi Halaman Tes Kecenderungan Programmer vs Designer (`/test`)**:
+  - **Pembuatan Komponen**: Membangun `TestProgrammerDesigner` di `components/test-programmer-designer.tsx` yang mencakup form input nilai tes dari *brght.org*, *cantunsee.space*, dan *color.method.ac*.
+  - **Logika Penilaian**: Menerapkan formula normalisasi skor dan kalkulasi deviasi (`delta`) sesuai dengan yang didefinisikan pada dokumen MVP `docs/test-programmer-designer-plan.md` untuk menghasilkan 5 klasifikasi kecenderungan (Strong Programmer, Programmer, Balance, Designer, Strong Designer).
+  - **Desain UI/UX**: Menggunakan desain gaya *Tech Academy* dengan elemen *Glassmorphism*, variasi warna resmi (Primary `#2C8970`, Secondary `#42CDBA`, Accent `#F3B233`, Surface `#F0FAF7`, dan Dark Base `#134146`), serta menggunakan ikon dari `lucide-react` untuk memperkaya antarmuka pengguna.
+  - **Routing**: Mengintegrasikan komponen ke dalam route *Next.js* baru pada `app/test/page.tsx` lengkap dengan Header utama NUSA Boarding School.
