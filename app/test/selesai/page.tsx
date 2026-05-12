@@ -1,4 +1,4 @@
-import { validateTestAccess } from '@/utils/test-validation'
+﻿import { validateTestAccess } from '@/utils/test-validation'
 import { Header } from '@/components/header'
 import { redirect } from 'next/navigation'
 import { SelesaiButton } from '@/components/test/selesai-button'
@@ -23,7 +23,7 @@ export default async function SelesaiPage({
     redirect(`/test?ref=${params?.ref}`)
   }
 
-  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || ''
+  
 
   return (
     <div className="min-h-screen flex flex-col font-sans bg-[#F0FAF7] relative">
@@ -77,7 +77,7 @@ export default async function SelesaiPage({
               </span>
             </p>
             
-            <SelesaiButton kodeTes={registration.kode_tes} supabaseUrl={supabaseUrl} />
+            <SelesaiButton kodeTes={registration.kode_tes} />
           </div>
         </div>
       </main>
@@ -90,3 +90,4 @@ export default async function SelesaiPage({
     </div>
   )
 }
+

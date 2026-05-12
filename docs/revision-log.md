@@ -1,5 +1,22 @@
 # Revision Log
 
+## 2026-05-11
+- **Implementasi Admin Dashboard MVP** sesuai `docs/admin-dashboard-plan.md`:
+  - Menambahkan route `/login` khusus admin dengan UI yang mengikuti palet dan tipografi di `docs/style.md`, plus metadata `robots` `noindex, nofollow`.
+  - Menambahkan server action login/logout admin berbasis Supabase Auth (`app/login/actions.ts`) dengan validasi server-side terhadap role `profiles.role` (`admin` / `super_admin`) serta fallback whitelist `ADMIN_EMAILS`.
+  - Menambahkan utilitas admin baru (`utils/admin.ts`) untuk session lookup, validasi identitas admin, dan guard terproteksi `requireAdminUser()`.
+  - Menambahkan route `/admin` terproteksi untuk monitoring calon santri, berisi summary cards, search, filter status tes, filter rentang tanggal, sorting, pagination, dan tabel data operasional.
+  - Menambahkan aksi operasional admin pada dashboard untuk update `status` dan `catatan_admin` langsung dari tabel pendaftar.
+  - Menambahkan export CSV melalui route `app/admin/export/route.ts`.
+  - Menambahkan pencatatan audit untuk login sukses, logout, export CSV, dan update status/catatan ke tabel `admin_audit_logs`.
+  - Menambahkan `middleware.ts` serta helper `utils/supabase/middleware.ts` untuk refresh session dan memblokir akses `/admin` tanpa session.
+  - Menambahkan `app/robots.ts` untuk `Disallow: /login` dan `Disallow: /admin`.
+  - Menambahkan empty state dan error state ramah-admin pada `/admin` agar mismatch konfigurasi Supabase / RLS tidak gagal diam-diam.
+- **Catatan implementasi penting**:
+  - Schema yang terdeteksi pada project `nusa-registration` sudah memiliki `profiles`, `registrations`, `student_tests`, dan `admin_audit_logs`, sehingga implementasi app difokuskan pada reuse tabel existing.
+  - Dashboard memakai `nama_lengkap`, `nomor_whatsapp`, status pendaftaran, dan progres tes sebagai field utama karena schema reachable tidak menyediakan relasi email pendaftar di `registrations`.
+  - Ditemukan mismatch antara ref Supabase pada `.env.local` (`hvdztetsmjxosxcyswuw`) dan project management yang bisa diaudit (`pccxuptxegrgdiiwghwl` / `nusa-registration`), sehingga halaman admin kini menampilkan pesan diagnosis konfigurasi jika query gagal.
+
 ## 2026-04-15
 - Membuat folder dokumentasi khusus untuk fitur promo banner hero.
 - Mengganti nama file plan menjadi `hero-promo-banner-plan.md` agar lebih representatif.

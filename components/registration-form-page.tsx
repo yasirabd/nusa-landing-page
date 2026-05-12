@@ -297,10 +297,14 @@ export function RegistrationFormPage() {
 
     const { error: uploadError } = await supabase.storage
       .from("payment_receipts")
-      .upload(filePath, file, { upsert: false })
+      .upload(filePath, file, {
+        contentType: file.type,
+        upsert: false
+      })
 
     if (uploadError) {
-      setSubmitError("Gagal mengupload bukti transfer. Silakan coba lagi.")
+      console.error('Upload error:', uploadError)
+      setSubmitError(`Gagal mengupload bukti transfer: ${uploadError.message}. Silakan coba lagi.`)
       return
     }
 
@@ -323,12 +327,13 @@ export function RegistrationFormPage() {
         pilihan_program: data.pilihanProgram,
         bukti_transfer_url: filePath,
         pernyataan_setuju: true,
-        status: "pending",
+        status: "mendaftar",
         kode_tes: kodeTes,
       })
 
     if (insertError) {
-      setSubmitError("Gagal menyimpan data pendaftaran. Silakan coba lagi.")
+      console.error('Insert error:', insertError)
+      setSubmitError(`Gagal menyimpan data pendaftaran: ${insertError.message}. Silakan coba lagi.`)
       return
     }
 

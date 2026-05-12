@@ -1,10 +1,9 @@
-"use client"
+﻿"use client"
 
 import { useState } from "react"
-import { useRouter } from "next/navigation"
 import { CheckCircle2, Loader2, ArrowRight } from "lucide-react"
 
-export function SelesaiButton({ kodeTes, supabaseUrl }: { kodeTes: string, supabaseUrl: string }) {
+export function SelesaiButton({ kodeTes }: { kodeTes: string }) {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSuccess, setIsSuccess] = useState(false)
   const [errorMsg, setErrorMsg] = useState("")
@@ -14,7 +13,7 @@ export function SelesaiButton({ kodeTes, supabaseUrl }: { kodeTes: string, supab
     setErrorMsg("")
 
     try {
-      const response = await fetch(`${supabaseUrl}/functions/v1/complete-test`, {
+      const response = await fetch("/api/complete-test", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
