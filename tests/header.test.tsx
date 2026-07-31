@@ -1,4 +1,5 @@
 import { fireEvent, render, screen } from "@testing-library/react"
+import { renderToStaticMarkup } from "react-dom/server"
 import { beforeEach, describe, expect, it, vi } from "vitest"
 import { Header } from "@/components/header"
 
@@ -43,8 +44,28 @@ describe("Header", () => {
     expect(
       screen.getByRole("heading", { name: "Navigasi utama" }),
     ).toBeInTheDocument()
+    expect(screen.getByRole("button", { name: "Close" })).toHaveClass("size-11")
     expect(consoleError).not.toHaveBeenCalled()
     consoleError.mockRestore()
+  })
+
+  it("closes the mobile sheet after selecting a destination", () => {
+    render(<Header />)
+
+    fireEvent.click(screen.getByRole("button", { name: "Buka menu navigasi" }))
+    const dialog = screen.getByRole("dialog")
+    fireEvent.click(dialog.querySelector('a[href="#program"]') as HTMLAnchorElement)
+
+    expect(screen.queryByRole("dialog")).not.toBeInTheDocument()
+  })
+
+  it("renders a no-JavaScript mobile navigation fallback", () => {
+    const markup = renderToStaticMarkup(<Header />)
+
+    expect(markup).toContain("<noscript")
+    expect(markup).toContain("Navigasi tanpa JavaScript")
+    expect(markup).toContain('href="#program"')
+    expect(markup).toContain('href="#faq"')
   })
 
   it("links secondary pages back to homepage sections", () => {

@@ -24,7 +24,7 @@ export function FAQSection() {
           <h2 className="mt-3 max-w-md text-3xl font-semibold leading-tight tracking-tight text-[#134146] sm:text-4xl">
             Pertanyaan yang sering diajukan
           </h2>
-          <p className="mt-5 max-w-md text-base leading-7 text-[#134146]/70">
+          <p className="mt-5 max-w-md text-base leading-7 text-[#134146]/75">
             Jawaban singkat untuk membantu orang tua memahami program, biaya,
             dan proses pendaftaran sebelum berkonsultasi dengan admin.
           </p>

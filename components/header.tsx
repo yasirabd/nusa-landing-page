@@ -21,8 +21,13 @@ import {
 
 export function Header() {
   const pathname = usePathname()
+  const [hydrated, setHydrated] = useState(false)
   const [open, setOpen] = useState(false)
   const [activeSection, setActiveSection] = useState<PublicSectionId | null>(null)
+
+  useEffect(() => {
+    setHydrated(true)
+  }, [])
 
   useEffect(() => {
     if (pathname !== "/") {
@@ -92,60 +97,91 @@ export function Header() {
 
         <Link
           href="/daftar"
-          className="ml-auto hidden min-h-11 items-center justify-center rounded-full bg-[#F3B233] px-5 text-sm font-semibold text-[#134146] shadow-sm transition-[background-color,box-shadow,transform] duration-150 hover:bg-[#F6BE4D] hover:shadow-md active:scale-[0.97] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2C8970] focus-visible:ring-offset-2 lg:inline-flex"
+          className="ml-2 hidden min-h-11 items-center justify-center rounded-full bg-[#F3B233] px-5 text-sm font-semibold text-[#134146] shadow-sm transition-[background-color,box-shadow,transform] duration-150 hover:bg-[#F6BE4D] hover:shadow-md active:scale-[0.97] motion-reduce:transition-none motion-reduce:active:scale-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2C8970] focus-visible:ring-offset-2 lg:inline-flex"
         >
           Daftar Sekarang
         </Link>
 
-        <Sheet open={open} onOpenChange={setOpen}>
-          <SheetTrigger asChild>
-            <button
-              type="button"
-              aria-label="Buka menu navigasi"
-              className="ml-auto inline-flex size-11 items-center justify-center rounded-full border border-[#134146]/10 bg-white/70 text-[#134146] transition-[background-color,border-color,transform] duration-150 hover:border-[#2C8970]/30 hover:bg-white active:scale-[0.97] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2C8970] focus-visible:ring-offset-2 lg:hidden"
-            >
-              <Menu className="size-5" aria-hidden="true" />
-            </button>
-          </SheetTrigger>
+        {hydrated ? (
+          <Sheet open={open} onOpenChange={setOpen}>
+            <SheetTrigger asChild>
+              <button
+                type="button"
+                aria-label="Buka menu navigasi"
+                className="ml-auto inline-flex size-11 items-center justify-center rounded-full border border-[#134146]/10 bg-white/70 text-[#134146] transition-[background-color,border-color,transform] duration-150 hover:border-[#2C8970]/30 hover:bg-white active:scale-[0.97] motion-reduce:transition-none motion-reduce:active:scale-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2C8970] focus-visible:ring-offset-2 lg:hidden"
+              >
+                <Menu className="size-5" aria-hidden="true" />
+              </button>
+            </SheetTrigger>
 
-          <SheetContent className="w-[min(88vw,24rem)] border-l border-[#134146]/10 bg-[#F7F7F2] p-0 text-[#134146] data-[state=closed]:duration-200 data-[state=open]:duration-[250ms]">
-            <SheetHeader className="border-b border-[#134146]/10 px-6 py-6 text-left">
-              <SheetTitle className="text-xl font-semibold text-[#134146]">
-                Navigasi utama
-              </SheetTitle>
-              <SheetDescription className="text-sm leading-6 text-[#134146]/70">
-                Temukan program, kehidupan santri, biaya, dan informasi pendaftaran NUSA.
-              </SheetDescription>
-            </SheetHeader>
+            <SheetContent className="w-[min(88vw,24rem)] border-l border-[#134146]/10 bg-[#F7F7F2] p-0 text-[#134146] data-[state=closed]:duration-200 data-[state=open]:duration-[250ms]">
+              <SheetHeader className="border-b border-[#134146]/10 px-6 py-6 text-left">
+                <SheetTitle className="text-xl font-semibold text-[#134146]">
+                  Navigasi utama
+                </SheetTitle>
+                <SheetDescription className="text-sm leading-6 text-[#134146]/75">
+                  Temukan program, kehidupan santri, biaya, dan informasi pendaftaran NUSA.
+                </SheetDescription>
+              </SheetHeader>
 
-            <nav
-              aria-label="Navigasi utama mobile"
-              className="flex flex-col px-3 py-4"
-            >
-              {PUBLIC_NAV_ITEMS.map(({ label, sectionId }) => (
-                <SheetClose asChild key={sectionId}>
+              <nav
+                aria-label="Navigasi utama mobile"
+                className="flex flex-col px-3 py-4"
+              >
+                {PUBLIC_NAV_ITEMS.map(({ label, sectionId }) => (
+                  <SheetClose asChild key={sectionId}>
+                    <Link
+                      href={getPublicNavigationHref(pathname, sectionId)}
+                      className="flex min-h-12 items-center rounded-xl px-3 text-base font-medium text-[#134146]/80 transition-colors duration-150 hover:bg-[#2C8970]/[0.08] hover:text-[#134146] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2C8970]"
+                    >
+                      {label}
+                    </Link>
+                  </SheetClose>
+                ))}
+              </nav>
+
+              <div className="mt-auto border-t border-[#134146]/10 p-6">
+                <SheetClose asChild>
                   <Link
-                    href={getPublicNavigationHref(pathname, sectionId)}
-                    className="flex min-h-12 items-center rounded-xl px-3 text-base font-medium text-[#134146]/80 transition-colors duration-150 hover:bg-[#2C8970]/[0.08] hover:text-[#134146] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2C8970]"
+                    href="/daftar"
+                    className="flex min-h-12 w-full items-center justify-center rounded-full bg-[#F3B233] px-5 font-semibold text-[#134146] transition-[background-color,transform] duration-150 hover:bg-[#F6BE4D] active:scale-[0.97] motion-reduce:transition-none motion-reduce:active:scale-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2C8970] focus-visible:ring-offset-2"
                   >
-                    {label}
+                    Daftar Sekarang
                   </Link>
                 </SheetClose>
-              ))}
-            </nav>
+              </div>
+            </SheetContent>
+          </Sheet>
+        ) : null}
 
-            <div className="mt-auto border-t border-[#134146]/10 p-6">
-              <SheetClose asChild>
-                <Link
-                  href="/daftar"
-                  className="flex min-h-12 w-full items-center justify-center rounded-full bg-[#F3B233] px-5 font-semibold text-[#134146] transition-[background-color,transform] duration-150 hover:bg-[#F6BE4D] active:scale-[0.97] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2C8970] focus-visible:ring-offset-2"
+        <noscript className="ml-auto lg:hidden">
+          <details className="relative">
+            <summary className="flex size-11 cursor-pointer list-none items-center justify-center rounded-full border border-[#134146]/10 bg-white/70 text-[#134146] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2C8970] focus-visible:ring-offset-2">
+              <Menu className="size-5" aria-hidden="true" />
+              <span className="sr-only">Navigasi tanpa JavaScript</span>
+            </summary>
+            <nav
+              aria-label="Navigasi tanpa JavaScript"
+              className="absolute top-12 right-0 z-50 w-72 rounded-2xl border border-[#134146]/10 bg-[#F7F7F2] p-3 shadow-xl"
+            >
+              {PUBLIC_NAV_ITEMS.map(({ label, sectionId }) => (
+                <a
+                  key={sectionId}
+                  href={getPublicNavigationHref(pathname, sectionId)}
+                  className="flex min-h-11 items-center rounded-xl px-3 text-sm font-medium text-[#134146]"
                 >
-                  Daftar Sekarang
-                </Link>
-              </SheetClose>
-            </div>
-          </SheetContent>
-        </Sheet>
+                  {label}
+                </a>
+              ))}
+              <a
+                href="/daftar"
+                className="mt-2 flex min-h-12 items-center justify-center rounded-full bg-[#F3B233] px-4 font-semibold text-[#134146]"
+              >
+                Daftar Sekarang
+              </a>
+            </nav>
+          </details>
+        </noscript>
       </div>
     </header>
   )

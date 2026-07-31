@@ -12,6 +12,9 @@ describe("FAQSection", () => {
         name: "Pertanyaan yang sering diajukan",
       }),
     ).toBeInTheDocument()
+    expect(
+      screen.getByText(/Jawaban singkat untuk membantu orang tua/),
+    ).toHaveClass("text-[#134146]/75")
     expect(screen.getAllByRole("button")).toHaveLength(6)
   })
 })
