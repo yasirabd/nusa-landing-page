@@ -8,8 +8,8 @@ describe("hero hierarchy", () => {
     render(<HeroSection />)
 
     expect(screen.getByText("SPMB 2027/2028 Sudah Dibuka")).toBeVisible()
-    expect(screen.getByText("Potongan Rp10 juta untuk 10 pendaftar pertama")).toBeVisible()
-    expect(screen.getByText("Boarding School Islami Tingkat SMA di Kota Semarang")).toBeVisible()
+    expect(screen.getByText("Potongan SPI Rp10 juta untuk 10 pendaftar pertama")).toBeVisible()
+    expect(screen.getByText("Boarding School Islami di Kota Semarang")).toBeVisible()
     expect(
       screen.getByRole("heading", { level: 1, name: "Menjadi Muslim Tangguh, Jago IT" }),
     ).toBeVisible()
@@ -20,9 +20,9 @@ describe("hero hierarchy", () => {
     ).toBeVisible()
 
     for (const fact of [
-      "Pendidikan Kesetaraan SMA",
+      "Kesetaraan SMA",
       "Programmer & Designer",
-      "Boarding School di Kota Semarang",
+      "Kota Semarang",
     ]) {
       expect(screen.getByText(fact)).toBeVisible()
     }
@@ -35,7 +35,7 @@ describe("hero hierarchy", () => {
 
     const orderedElements = [
       screen.getByText("SPMB 2027/2028 Sudah Dibuka"),
-      screen.getByText("Boarding School Islami Tingkat SMA di Kota Semarang"),
+      screen.getByText("Boarding School Islami di Kota Semarang"),
       screen.getByRole("heading", { level: 1 }),
       screen.getByText(/Santri menempuh pendidikan kesetaraan SMA/),
       screen.getByRole("link", { name: "Daftar SPMB 2027/2028" }),

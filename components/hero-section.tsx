@@ -3,9 +3,9 @@ import Link from "next/link"
 import { ArrowRight, CheckCircle2 } from "lucide-react"
 
 const HERO_FACTS = [
-  "Pendidikan Kesetaraan SMA",
+  "Kesetaraan SMA",
   "Programmer & Designer",
-  "Boarding School di Kota Semarang",
+  "Kota Semarang",
 ] as const
 
 export function HeroSection() {
@@ -32,11 +32,11 @@ export function HeroSection() {
             <span aria-hidden="true" className="hidden text-white/35 sm:inline">
               •
             </span>
-            <span className="text-white/85">Potongan Rp10 juta untuk 10 pendaftar pertama</span>
+            <span className="text-white/85">Potongan SPI Rp10 juta untuk 10 pendaftar pertama</span>
           </div>
 
           <p className="mb-4 text-sm font-semibold uppercase tracking-[0.16em] text-[#8EF3E7] sm:text-base">
-            Boarding School Islami Tingkat SMA di Kota Semarang
+            Boarding School Islami di Kota Semarang
           </p>
 
           <h1 className="max-w-[13ch] text-4xl font-extrabold leading-[1.06] tracking-[-0.035em] text-white sm:text-5xl lg:text-6xl">
