@@ -183,9 +183,9 @@ export function HeroSection() {
             </Link>
           </div>
 
-          <ul className="mt-8 grid gap-3 border-t border-white/15 pt-6 text-sm font-medium text-white/75 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-3">
+          <ul className="mt-8 grid gap-3 border-t border-white/15 pt-6 text-sm font-medium text-white/90 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-[repeat(3,max-content)] xl:justify-between">
             {HERO_FACTS.map((fact) => (
-              <li key={fact} className="flex items-start gap-2.5">
+              <li key={fact} className="flex items-center gap-2.5">
                 <CheckCircle2 aria-hidden="true" className="mt-0.5 size-4 shrink-0 text-[#8EF3E7]" />
                 <span>{fact}</span>
               </li>
@@ -519,3 +519,70 @@ git commit -m "copy: clarify hero enrollment offer"
 ```
 
 Report the final promotion, eyebrow, and compact trust facts. Do not start another audit feature.
+
+### Task 5: Balance wide-desktop trust-fact spacing
+
+**Files:**
+- Modify: `tests/hero-hierarchy.test.tsx`
+- Modify: `components/hero-section.tsx`
+
+- [ ] **Step 1: Write the failing layout regression test**
+
+In the approved-content test, retain the trust list reference and assert content-sized wide-desktop columns with evenly distributed free space:
+
+```tsx
+const trustList = screen.getByRole("list")
+expect(trustList).toHaveClass(
+  "xl:grid-cols-[repeat(3,max-content)]",
+  "xl:justify-between",
+)
+
+for (const item of within(trustList).getAllByRole("listitem")) {
+  expect(item).toHaveClass("items-center")
+}
+```
+
+- [ ] **Step 2: Run the focused test and verify RED**
+
+Run:
+
+```powershell
+npx vitest run tests/hero-hierarchy.test.tsx --maxWorkers=1 --reporter=verbose
+```
+
+Expected: FAIL because the trust row still uses three equal-width columns and top-aligned items.
+
+- [ ] **Step 3: Implement the minimal responsive layout change**
+
+In `components/hero-section.tsx`, update only the trust list and item classes:
+
+```tsx
+<ul className="mt-8 grid gap-3 border-t border-white/15 pt-6 text-sm font-medium text-white/90 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-[repeat(3,max-content)] xl:justify-between">
+  {HERO_FACTS.map((fact) => (
+    <li key={fact} className="flex items-center gap-2.5">
+```
+
+Keep the narrower responsive columns, compact copy, contrast, and the existing prohibition on `whitespace-nowrap`.
+
+- [ ] **Step 4: Verify focused and full suites**
+
+Run:
+
+```powershell
+npx vitest run tests/hero-hierarchy.test.tsx tests/hero-image.test.tsx --maxWorkers=1 --reporter=verbose
+npx vitest run --maxWorkers=1 --reporter=verbose
+npx tsc --noEmit
+npm run build
+git diff --check
+```
+
+Expected: focused and full tests pass; TypeScript reports only known baseline errors outside hero scope; production build succeeds; no whitespace errors occur.
+
+- [ ] **Step 5: Commit and stop for text-only review**
+
+```powershell
+git add components/hero-section.tsx tests/hero-hierarchy.test.tsx
+git commit -m "style: balance hero trust facts"
+```
+
+Report the responsive spacing behavior and stop before the next audit feature.

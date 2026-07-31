@@ -39,6 +39,8 @@ Content order is:
 
 The headline wraps naturally at 320 pixels and does not use `whitespace-nowrap`. Body copy remains constrained to a readable line length. The hero should feel confident and editorial rather than like a collection of independent promotional widgets.
 
+Trust facts remain stacked or use two columns at narrower widths. At the wide-desktop breakpoint, their columns follow the natural content width and distribute the remaining horizontal space evenly. Icons and single-line labels align vertically at their center; the layout does not use `whitespace-nowrap`.
+
 ## Simplification
 
 Remove the current countdown, full-width promo banner, separate quota badge, floating `IT Expert` badge, floating `100% Praktik` badge, decorative pulse, and long hover transformations. The promotion remains visible as one compact static label near the top of the copy column.
