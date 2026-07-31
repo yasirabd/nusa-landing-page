@@ -27,12 +27,14 @@ export function HeroSection() {
 
       <div className="relative mx-auto grid max-w-7xl items-center gap-12 px-4 md:px-6 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16">
         <div className="max-w-2xl">
-          <div className="mb-7 inline-flex flex-wrap items-center gap-x-2 gap-y-1 rounded-full border border-[#F3B233]/35 bg-[#F3B233]/10 px-4 py-2 text-sm leading-snug">
-            <span className="font-semibold text-[#F3B233]">SPMB 2027/2028 Sudah Dibuka</span>
-            <span aria-hidden="true" className="hidden text-white/35 sm:inline">
-              •
-            </span>
-            <span className="text-white/85">Potongan SPI Rp10 juta untuk 10 pendaftar pertama</span>
+          <div className="mb-7">
+            <p className="inline-flex rounded-full border border-[#F3B233]/35 bg-[#F3B233]/10 px-4 py-2 text-sm font-semibold leading-snug text-[#F3B233]">
+              SPMB 2027/2028 Sudah Dibuka
+            </p>
+            <p className="mt-2 text-sm font-medium leading-6 text-white/85">
+              Potongan SPI <span className="font-semibold text-[#F3B233]">Rp10 juta</span> untuk 10
+              pendaftar pertama
+            </p>
           </div>
 
           <p className="mb-4 text-sm font-semibold uppercase tracking-[0.16em] text-[#8EF3E7] sm:text-base">

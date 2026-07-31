@@ -8,7 +8,9 @@ describe("hero hierarchy", () => {
     render(<HeroSection />)
 
     expect(screen.getByText("SPMB 2027/2028 Sudah Dibuka")).toBeVisible()
-    expect(screen.getByText("Potongan SPI Rp10 juta untuk 10 pendaftar pertama")).toBeVisible()
+    expect(screen.getByText("Rp10 juta").closest("p")).toHaveTextContent(
+      "Potongan SPI Rp10 juta untuk 10 pendaftar pertama",
+    )
     expect(screen.getByText("Boarding School Islami di Kota Semarang")).toBeVisible()
     expect(
       screen.getByRole("heading", { level: 1, name: "Menjadi Muslim Tangguh, Jago IT" }),
@@ -59,6 +61,31 @@ describe("hero hierarchy", () => {
           Node.DOCUMENT_POSITION_FOLLOWING,
       ).toBeTruthy()
     }
+  })
+
+  it("keeps the enrollment capsule compact and separates the offer detail", () => {
+    render(<HeroSection />)
+
+    const status = screen.getByText("SPMB 2027/2028 Sudah Dibuka")
+    const offer = screen.getByText(
+      (_, element) =>
+        element?.tagName === "P" &&
+        element.textContent === "Potongan SPI Rp10 juta untuk 10 pendaftar pertama",
+    )
+
+    expect(status).toHaveClass("rounded-full")
+    expect(status.parentElement).toBe(offer.parentElement)
+    expect(status).not.toContainElement(offer)
+    expect(within(offer).getByText("Rp10 juta")).toHaveClass(
+      "font-semibold",
+      "text-[#F3B233]",
+    )
+
+    const source = readFileSync("components/hero-section.tsx", "utf8")
+    expect(source).not.toContain("flex-wrap")
+    expect(source).not.toContain(
+      'aria-hidden="true" className="hidden text-white/35 sm:inline"',
+    )
   })
 
   it("uses semantic links for registration and WhatsApp without nested buttons", () => {
