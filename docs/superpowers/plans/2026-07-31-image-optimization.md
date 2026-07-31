@@ -4,7 +4,7 @@
 
 **Goal:** Serve optimized WebP derivatives for the landing-page hero and all 12 gallery images while preserving the source files and current editorial composition.
 
-**Architecture:** A reproducible PowerShell script generates bounded WebP derivatives with FFmpeg. A focused gallery metadata module records optimized paths and intrinsic dimensions, while `GallerySection` and `HeroSection` use Next.js `Image` with explicit responsive sizing. Vitest enforces asset existence, file-size budgets, rendering metadata, and motion constraints.
+**Architecture:** A reproducible PowerShell script generates large and 640-pixel WebP derivatives with FFmpeg. It verifies source hashes and validates temporary outputs before atomically replacing committed assets. A focused gallery metadata module records optimized paths and intrinsic dimensions, while `GallerySection` and `HeroSection` combine native responsive `picture` sources with Next.js `Image` fallbacks. Vitest enforces asset existence, binary dimensions, file-size budgets, rendering metadata, and motion constraints.
 
 **Tech Stack:** Next.js 16, React 18, TypeScript, Next.js `Image`, Tailwind CSS 4, Vitest, Testing Library, PowerShell, FFmpeg/libwebp.
 
@@ -21,6 +21,8 @@
 - Create `tests/gallery-images.test.tsx`: verifies gallery metadata, Next.js image rendering, responsive sizing, captions, and source-level motion constraints.
 - Create `tests/hero-image.test.tsx`: verifies optimized hero delivery and priority-loading intent.
 - Generate `public/images/nusa-hero-image.webp` and `public/images/gallery-*.webp`: optimized visitor-facing assets.
+- Generate `public/images/nusa-hero-image-640.webp` and `public/images/gallery-*-640.webp`: mobile delivery variants.
+- Create `scripts/landing-image-source-hashes.json`: records the approved source-image SHA-256 values.
 
 ### Task 1: Generate and budget optimized image assets
 
@@ -677,3 +679,23 @@ If visual inspection is available locally, check representative landscape, portr
 - [ ] **Step 7: Stop for user review**
 
 Do not begin the hero hierarchy rewrite. Report fresh test/build evidence and the exact image-performance improvements for the user to review.
+
+### Task 5: Harden static responsive delivery after code review
+
+**Files:**
+- Create: `scripts/landing-image-source-hashes.json`
+- Modify: `scripts/generate-landing-images.ps1`
+- Modify: `components/gallery-section.tsx`
+- Modify: `components/hero-section.tsx`
+- Modify: `tests/landing-image-assets.test.ts`
+- Modify: `tests/gallery-images.test.tsx`
+- Modify: `tests/hero-image.test.tsx`
+- Generate: `public/images/nusa-hero-image-640.webp`
+- Generate: `public/images/gallery-*-640.webp`
+
+- [x] Add failing tests for native responsive source sets, mobile assets, binary dimensions, source hashes, and temporary-file generation.
+- [x] Verify the new tests fail because the hardening behavior is absent.
+- [x] Generate validated 640-pixel variants while preserving large fallbacks.
+- [x] Wrap gallery and hero images in `picture` elements with explicit WebP `srcset` and `sizes` values.
+- [x] Replace hero priority preloading with `fetchPriority="high"` so source selection remains authoritative.
+- [x] Verify the focused image test suite passes.

@@ -7,6 +7,8 @@ export interface GalleryItem {
   image: string
   width: number
   height: number
+  mobileWidth: number
+  mobileHeight: number
   objectPosition?: string
 }
 
@@ -17,6 +19,8 @@ export const GALLERY_ITEMS: readonly GalleryItem[] = [
     image: "/images/gallery-1-mpls.webp",
     width: 1280,
     height: 720,
+    mobileWidth: 640,
+    mobileHeight: 360,
   },
   {
     name: "Bersukaria: City Tour Mataram",
@@ -24,6 +28,8 @@ export const GALLERY_ITEMS: readonly GalleryItem[] = [
     image: "/images/gallery-2-bersukaria-mataram.webp",
     width: 1280,
     height: 960,
+    mobileWidth: 640,
+    mobileHeight: 480,
   },
   {
     name: "IT Camp",
@@ -31,6 +37,8 @@ export const GALLERY_ITEMS: readonly GalleryItem[] = [
     image: "/images/gallery-3-itcamp.webp",
     width: 1280,
     height: 720,
+    mobileWidth: 640,
+    mobileHeight: 360,
   },
   {
     name: "IT Camp: Outbond",
@@ -38,6 +46,8 @@ export const GALLERY_ITEMS: readonly GalleryItem[] = [
     image: "/images/gallery-4-itcamp.webp",
     width: 1280,
     height: 720,
+    mobileWidth: 640,
+    mobileHeight: 360,
   },
   {
     name: "NUSA Mengajar",
@@ -45,6 +55,8 @@ export const GALLERY_ITEMS: readonly GalleryItem[] = [
     image: "/images/gallery-5-nusa-mengajar.webp",
     width: 1280,
     height: 720,
+    mobileWidth: 640,
+    mobileHeight: 360,
   },
   {
     name: "Bersukaria: City Tour Legend Culinary (English)",
@@ -52,6 +64,8 @@ export const GALLERY_ITEMS: readonly GalleryItem[] = [
     image: "/images/gallery-6-bersukaria-jajan.webp",
     width: 1280,
     height: 720,
+    mobileWidth: 640,
+    mobileHeight: 360,
   },
   {
     name: "Google I/O Extended Semarang",
@@ -59,6 +73,8 @@ export const GALLERY_ITEMS: readonly GalleryItem[] = [
     image: "/images/gallery-7-googleio.webp",
     width: 1280,
     height: 848,
+    mobileWidth: 640,
+    mobileHeight: 424,
   },
   {
     name: "Talking to Stranger",
@@ -66,6 +82,8 @@ export const GALLERY_ITEMS: readonly GalleryItem[] = [
     image: "/images/gallery-8-talk-with-stranger.webp",
     width: 1280,
     height: 960,
+    mobileWidth: 640,
+    mobileHeight: 480,
   },
   {
     name: "Takziah Tetangga",
@@ -73,6 +91,8 @@ export const GALLERY_ITEMS: readonly GalleryItem[] = [
     image: "/images/gallery-9-takziyah.webp",
     width: 1280,
     height: 720,
+    mobileWidth: 640,
+    mobileHeight: 360,
   },
   {
     name: "Jualan di Market Day",
@@ -80,6 +100,8 @@ export const GALLERY_ITEMS: readonly GalleryItem[] = [
     image: "/images/gallery-10-jualan.webp",
     width: 1280,
     height: 960,
+    mobileWidth: 640,
+    mobileHeight: 480,
   },
   {
     name: "Jualan di Car Free Day",
@@ -87,6 +109,8 @@ export const GALLERY_ITEMS: readonly GalleryItem[] = [
     image: "/images/gallery-11-jualan-cfd.webp",
     width: 960,
     height: 1280,
+    mobileWidth: 480,
+    mobileHeight: 640,
   },
   {
     name: "Leadership Camp",
@@ -94,5 +118,7 @@ export const GALLERY_ITEMS: readonly GalleryItem[] = [
     image: "/images/gallery-12-camp.webp",
     width: 1280,
     height: 960,
+    mobileWidth: 640,
+    mobileHeight: 480,
   },
 ]

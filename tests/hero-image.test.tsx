@@ -17,13 +17,25 @@ describe("optimized hero image", () => {
     expect(getImageSourcePath(image)).toBe("/images/nusa-hero-image.webp")
     expect(image).toHaveAttribute("width", "1200")
     expect(image).toHaveAttribute("height", "794")
+    expect(image).toHaveAttribute("loading", "eager")
     expect(image).toHaveAttribute("sizes", "(max-width: 1023px) calc(100vw - 2rem), 50vw")
   })
 
   it("keeps priority loading intent for the LCP image", () => {
     const source = readFileSync("components/hero-section.tsx", "utf8")
 
-    expect(source).toContain("priority")
+    expect(source).toContain('fetchPriority="high"')
     expect(source).not.toContain('src="/images/nusa-hero-image.png"')
+  })
+
+  it("provides a responsive source set without runtime optimization", () => {
+    const { container } = render(<HeroSection />)
+    const source = container.querySelector("picture source[type='image/webp']")
+
+    expect(source).toHaveAttribute(
+      "srcset",
+      "/images/nusa-hero-image-640.webp 640w, /images/nusa-hero-image.webp 1200w",
+    )
+    expect(source).toHaveAttribute("sizes", "(max-width: 1023px) calc(100vw - 2rem), 50vw")
   })
 })

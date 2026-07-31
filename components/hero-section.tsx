@@ -164,19 +164,27 @@ export function HeroSection() {
               <div className="relative overflow-hidden rounded-xl border border-white/20 shadow-[0_0_20px_rgba(44,137,112,0.6)]">
                 {/* Soft inner overlay for blended depth */}
                 <div className="absolute inset-0 bg-gradient-to-t from-[#134146]/40 via-transparent to-transparent z-10 pointer-events-none mix-blend-multiply" />
-                <Image
-                  src="/images/nusa-hero-image.webp"
-                  alt="Santri NUSA Boarding School"
-                  width={1200}
-                  height={794}
-                  className="
-                    h-auto w-full object-cover 
-                    transition-transform duration-700 
-                    group-hover:scale-[1.05]
-                  "
-                  priority
-                  sizes="(max-width: 1023px) calc(100vw - 2rem), 50vw"
-                />
+                <picture>
+                  <source
+                    type="image/webp"
+                    srcSet="/images/nusa-hero-image-640.webp 640w, /images/nusa-hero-image.webp 1200w"
+                    sizes="(max-width: 1023px) calc(100vw - 2rem), 50vw"
+                  />
+                  <Image
+                    src="/images/nusa-hero-image.webp"
+                    alt="Santri NUSA Boarding School"
+                    width={1200}
+                    height={794}
+                    className="
+                      h-auto w-full object-cover
+                      transition-transform duration-700
+                      group-hover:scale-[1.05]
+                    "
+                    fetchPriority="high"
+                    loading="eager"
+                    sizes="(max-width: 1023px) calc(100vw - 2rem), 50vw"
+                  />
+                </picture>
               </div>
             </div>
 

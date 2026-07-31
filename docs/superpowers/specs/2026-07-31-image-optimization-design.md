@@ -1,7 +1,7 @@
 # Landing Image Optimization Design
 
-**Date:** 31 July 2026  
-**Source:** `docs/2026-07-30-ui-ux-audit.md`  
+**Date:** 31 July 2026
+**Source:** `docs/2026-07-30-ui-ux-audit.md`
 **Scope:** Second incremental audit feature only: visitor-facing hero and gallery image delivery.
 
 ## Goal
@@ -16,7 +16,7 @@ The feature does not shorten the gallery, add a lightbox, create a separate gall
 
 ## Asset Strategy
 
-- Generate one visitor-facing WebP derivative for the hero and each gallery image.
+- Generate a 640-pixel mobile WebP and a larger visitor-facing WebP for the hero and each gallery image.
 - Resize gallery derivatives to a maximum width of 1280 pixels and the hero derivative to 1200 pixels, preserving aspect ratio and reasonable high-density display headroom.
 - Use a quality setting that keeps faces, text, and activity details clear while meeting the file-size budget.
 - Keep every delivered gallery image below 500 KB and target 150-350 KB per image.
@@ -25,6 +25,8 @@ The feature does not shorten the gallery, add a lightbox, create a separate gall
 - Preserve the original source files unchanged so future editorial crops can be regenerated without quality loss.
 
 Generated files use explicit `.webp` names beside the original assets. The implementation records their intrinsic dimensions rather than relying on layout-time discovery.
+
+The conversion script verifies the committed SHA-256 hash of every source before encoding. It generates all assets to temporary files, confirms libwebp output, dimensions, and file-size budgets with FFprobe, and only then replaces the committed derivatives. This prevents a failed or partial run from corrupting the delivery set.
 
 ## Component Architecture
 
@@ -39,7 +41,9 @@ Each gallery card uses:
 - lazy loading through the default Next.js behavior;
 - `object-cover` with per-photo crop positioning only where the subject would otherwise be obscured.
 
-`components/hero-section.tsx` points its existing priority-loaded `Image` to the optimized hero derivative. It retains explicit dimensions, meaningful alt text, and uses `sizes="(max-width: 1023px) calc(100vw - 2rem), 50vw"` for the one-column mobile and two-column desktop layout.
+Because deployment keeps Next.js runtime image optimization disabled, each Next.js `Image` fallback is wrapped in a native `picture` element. Its WebP `source` exposes the mobile and large derivatives through `srcset` with descriptors matching their actual encoded widths, while the existing `sizes` rule lets the browser select the appropriate transfer size.
+
+`components/hero-section.tsx` points its existing LCP image to the optimized hero derivative. It retains explicit dimensions, meaningful alt text, and uses `sizes="(max-width: 1023px) calc(100vw - 2rem), 50vw"` for the one-column mobile and two-column desktop layout. The image uses `fetchPriority="high"` and `loading="eager"` instead of Next.js priority preloading so the browser can select the correct `picture` source without first preloading the large fallback.
 
 The project keeps `images.unoptimized: true` in `next.config.mjs`. Pre-generated derivatives provide predictable bandwidth improvements without depending on a runtime image optimizer that may not exist in the deployment environment.
 
@@ -76,6 +80,9 @@ Automated tests verify:
 - no optimized file exceeds 500 KB;
 - the combined gallery derivative size is below 3 MB;
 - the source files remain present and unchanged by the conversion workflow.
+- binary WebP dimensions match committed component metadata;
+- mobile and large derivatives are exposed through native responsive source sets;
+- generation validates temporary outputs before replacing committed assets.
 
 Manual review checks image clarity, crop quality, caption readability, mobile layout, desktop hover behavior, reduced motion, and absence of layout shift.
 
@@ -85,6 +92,7 @@ Manual review checks image clarity, crop quality, caption readability, mobile la
 - No delivered hero or gallery asset exceeds 500 KB.
 - The combined gallery derivative set is below 3 MB.
 - Gallery rendering uses `next/image` with accurate dimensions and responsive sizing.
+- Mobile browsers can select 640-pixel derivatives without a runtime image optimizer.
 - Original source photography remains available and is not referenced by the landing page.
 - The public composition and captions remain intact.
 - The full automated suite and production build pass.

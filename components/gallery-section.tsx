@@ -38,15 +38,22 @@ export function GallerySection() {
               aria-label={item.name}
             >
               <div className="relative aspect-video w-full overflow-hidden">
-                <Image
-                  src={item.image}
-                  alt={item.name}
-                  width={item.width}
-                  height={item.height}
-                  sizes={GALLERY_IMAGE_SIZES}
-                  className="gallery-image h-full w-full object-cover transition-transform duration-[180ms]"
-                  style={{ objectPosition: item.objectPosition }}
-                />
+                <picture>
+                  <source
+                    type="image/webp"
+                    srcSet={`${item.image.replace(".webp", "-640.webp")} ${item.mobileWidth}w, ${item.image} ${item.width}w`}
+                    sizes={GALLERY_IMAGE_SIZES}
+                  />
+                  <Image
+                    src={item.image}
+                    alt={item.name}
+                    width={item.width}
+                    height={item.height}
+                    sizes={GALLERY_IMAGE_SIZES}
+                    className="gallery-image h-full w-full object-cover transition-transform duration-[180ms]"
+                    style={{ objectPosition: item.objectPosition }}
+                  />
+                </picture>
 
                 <div className="absolute inset-0 flex flex-col justify-end bg-[linear-gradient(to_top,rgba(19,65,70,0.95),rgba(19,65,70,0.6)_40%,rgba(0,0,0,0)_80%)] p-6 text-left md:p-8">
                   <div className="w-full">

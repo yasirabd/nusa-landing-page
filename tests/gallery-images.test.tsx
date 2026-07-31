@@ -4,67 +4,89 @@ import { describe, expect, it } from "vitest"
 import { GallerySection } from "@/components/gallery-section"
 
 const galleryItems = [
-  { name: "MPLS", image: "/images/gallery-1-mpls.webp", width: 1280, height: 720 },
+  {
+    name: "MPLS",
+    image: "/images/gallery-1-mpls.webp",
+    width: 1280,
+    height: 720,
+    mobileWidth: 640,
+  },
   {
     name: "Bersukaria: City Tour Mataram",
     image: "/images/gallery-2-bersukaria-mataram.webp",
     width: 1280,
     height: 960,
+    mobileWidth: 640,
   },
-  { name: "IT Camp", image: "/images/gallery-3-itcamp.webp", width: 1280, height: 720 },
+  {
+    name: "IT Camp",
+    image: "/images/gallery-3-itcamp.webp",
+    width: 1280,
+    height: 720,
+    mobileWidth: 640,
+  },
   {
     name: "IT Camp: Outbond",
     image: "/images/gallery-4-itcamp.webp",
     width: 1280,
     height: 720,
+    mobileWidth: 640,
   },
   {
     name: "NUSA Mengajar",
     image: "/images/gallery-5-nusa-mengajar.webp",
     width: 1280,
     height: 720,
+    mobileWidth: 640,
   },
   {
     name: "Bersukaria: City Tour Legend Culinary (English)",
     image: "/images/gallery-6-bersukaria-jajan.webp",
     width: 1280,
     height: 720,
+    mobileWidth: 640,
   },
   {
     name: "Google I/O Extended Semarang",
     image: "/images/gallery-7-googleio.webp",
     width: 1280,
     height: 848,
+    mobileWidth: 640,
   },
   {
     name: "Talking to Stranger",
     image: "/images/gallery-8-talk-with-stranger.webp",
     width: 1280,
     height: 960,
+    mobileWidth: 640,
   },
   {
     name: "Takziah Tetangga",
     image: "/images/gallery-9-takziyah.webp",
     width: 1280,
     height: 720,
+    mobileWidth: 640,
   },
   {
     name: "Jualan di Market Day",
     image: "/images/gallery-10-jualan.webp",
     width: 1280,
     height: 960,
+    mobileWidth: 640,
   },
   {
     name: "Jualan di Car Free Day",
     image: "/images/gallery-11-jualan-cfd.webp",
     width: 960,
     height: 1280,
+    mobileWidth: 480,
   },
   {
     name: "Leadership Camp",
     image: "/images/gallery-12-camp.webp",
     width: 1280,
     height: 960,
+    mobileWidth: 640,
   },
 ] as const
 
@@ -89,6 +111,22 @@ describe("optimized gallery rendering", () => {
       expect(image).toHaveAttribute("width", String(item.width))
       expect(image).toHaveAttribute("height", String(item.height))
       expect(image).toHaveAttribute("sizes", gallerySizes)
+    }
+  })
+
+  it("provides a real responsive WebP source set without the Next image optimizer", () => {
+    const { container } = render(<GallerySection />)
+    const sources = container.querySelectorAll("picture source[type='image/webp']")
+
+    expect(sources).toHaveLength(12)
+
+    for (const item of galleryItems) {
+      const source = container.querySelector(`article[aria-label="${item.name}"] source`)
+      expect(source).toHaveAttribute(
+        "srcset",
+        `${item.image.replace(".webp", "-640.webp")} ${item.mobileWidth}w, ${item.image} ${item.width}w`,
+      )
+      expect(source).toHaveAttribute("sizes", gallerySizes)
     }
   })
 
