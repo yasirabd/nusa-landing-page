@@ -26,6 +26,30 @@ describe("hero hierarchy", () => {
     ]) {
       expect(screen.getByText(fact)).toBeVisible()
     }
+
+    expect(screen.getByRole("list")).toHaveClass("text-white/90")
+  })
+
+  it("keeps the complete decision message and CTAs before the hero image", () => {
+    render(<HeroSection />)
+
+    const orderedElements = [
+      screen.getByText("SPMB 2027/2028 Sudah Dibuka"),
+      screen.getByText("Boarding School Islami Tingkat SMA di Kota Semarang"),
+      screen.getByRole("heading", { level: 1 }),
+      screen.getByText(/Santri menempuh pendidikan kesetaraan SMA/),
+      screen.getByRole("link", { name: "Daftar SPMB 2027/2028" }),
+      screen.getByRole("link", { name: "Konsultasi via WhatsApp" }),
+      screen.getByRole("list"),
+      screen.getByRole("img", { name: "Santri NUSA Boarding School" }),
+    ]
+
+    for (let index = 0; index < orderedElements.length - 1; index += 1) {
+      expect(
+        orderedElements[index].compareDocumentPosition(orderedElements[index + 1]) &
+          Node.DOCUMENT_POSITION_FOLLOWING,
+      ).toBeTruthy()
+    }
   })
 
   it("uses semantic links for registration and WhatsApp without nested buttons", () => {
@@ -33,12 +57,14 @@ describe("hero hierarchy", () => {
 
     const registration = screen.getByRole("link", { name: "Daftar SPMB 2027/2028" })
     expect(registration).toHaveAttribute("href", "/daftar")
+    expect(registration).toHaveClass("min-h-12", "focus-visible:ring-2")
     expect(within(registration).queryByRole("button")).not.toBeInTheDocument()
 
     const consultation = screen.getByRole("link", { name: "Konsultasi via WhatsApp" })
     expect(consultation).toHaveAttribute("href", "https://wa.me/6281392706707")
     expect(consultation).toHaveAttribute("target", "_blank")
     expect(consultation).toHaveAttribute("rel", "noopener noreferrer")
+    expect(consultation).toHaveClass("min-h-12", "focus-visible:ring-2")
     expect(within(consultation).queryByRole("button")).not.toBeInTheDocument()
   })
 
@@ -70,10 +96,22 @@ describe("hero hierarchy", () => {
 
     expect(globalStyles).toContain(".hero-action")
     expect(globalStyles).toContain("transition: background-color 150ms")
-    expect(globalStyles).toContain("@media (hover: hover) and (pointer: fine)")
     expect(globalStyles).toContain("transform: scale(0.97)")
-    expect(globalStyles).toContain("@media (prefers-reduced-motion: reduce)")
-    expect(globalStyles).toContain(".hero-action:active")
-    expect(globalStyles).toContain("transform: none")
+
+    const finePointerStart = globalStyles.lastIndexOf(
+      "@media (hover: hover) and (pointer: fine)",
+    )
+    const reducedMotionStart = globalStyles.lastIndexOf(
+      "@media (prefers-reduced-motion: reduce)",
+    )
+    const finePointerStyles = globalStyles.slice(finePointerStart, reducedMotionStart)
+    const reducedMotionStyles = globalStyles.slice(reducedMotionStart)
+
+    expect(finePointerStart).toBeGreaterThan(-1)
+    expect(finePointerStyles).toContain(".hero-action-primary:hover")
+    expect(finePointerStyles).toContain(".hero-action-secondary:hover")
+    expect(reducedMotionStart).toBeGreaterThan(finePointerStart)
+    expect(reducedMotionStyles).toContain(".hero-action:active")
+    expect(reducedMotionStyles).toContain("transform: none")
   })
 })

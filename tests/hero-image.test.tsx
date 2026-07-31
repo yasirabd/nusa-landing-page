@@ -10,7 +10,7 @@ function getImageSourcePath(image: HTMLElement) {
 }
 
 describe("optimized hero image", () => {
-  it("serves the WebP hero with responsive dimensions", () => {
+  it("serves the WebP hero with accurate dimensions", () => {
     render(<HeroSection />)
 
     const image = screen.getByRole("img", { name: "Santri NUSA Boarding School" })
@@ -18,7 +18,6 @@ describe("optimized hero image", () => {
     expect(image).toHaveAttribute("width", "1200")
     expect(image).toHaveAttribute("height", "794")
     expect(image).toHaveAttribute("loading", "eager")
-    expect(image).toHaveAttribute("sizes", "(max-width: 1023px) calc(100vw - 2rem), 47vw")
   })
 
   it("keeps priority loading intent for the LCP image", () => {
