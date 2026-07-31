@@ -198,3 +198,16 @@
     transition-duration: 1ms !important;
   }
 }
+
+@media (hover: hover) and (pointer: fine) {
+  .gallery-card:hover .gallery-image {
+    transform: scale(1.025);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gallery-image {
+    transition: none;
+    transform: none !important;
+  }
+}
