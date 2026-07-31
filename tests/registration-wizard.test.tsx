@@ -1,5 +1,6 @@
 import { afterEach, beforeAll, beforeEach, describe, expect, it, vi } from "vitest"
 import { fireEvent, render, screen, waitFor, within } from "@testing-library/react"
+import { readFileSync } from "node:fs"
 import { RegistrationFormPage } from "@/components/registration-form-page"
 import { REGISTRATION_DRAFT_KEY } from "@/components/registration/registration-schema"
 
@@ -105,6 +106,14 @@ async function submitCompletedWizard() {
 }
 
 describe("registration wizard", () => {
+  it("shows the current SPMB 2027/2028 intake", () => {
+    render(<RegistrationFormPage />)
+
+    expect(
+      screen.getByText(/NUSA Boarding School.*SPMB 2027\/2028/),
+    ).toBeVisible()
+  })
+
   it("shows exactly three steps and starts on Data Calon Santri", () => {
     render(<RegistrationFormPage />)
 
@@ -180,6 +189,39 @@ describe("registration wizard", () => {
     expect(await screen.findByText("Langkah 2 dari 3")).toBeVisible()
     expect(screen.getByLabelText(/Sekolah Asal/)).toHaveValue("SMPN 1 Semarang")
     expect(screen.getByRole("status")).toHaveTextContent("Draft pendaftaran dipulihkan")
+  })
+
+  it("reminds restored applicants to select the receipt again", async () => {
+    localStorage.setItem(
+      REGISTRATION_DRAFT_KEY,
+      JSON.stringify({
+        version: 1,
+        step: 2,
+        values: {
+          namaLengkap: "Muhammad Abdullah",
+          nomorWhatsapp: "6281234567890",
+          tempatLahir: "Semarang",
+          tanggalLahir: "2010-01-15",
+          asalKota: "Kota Semarang",
+          alamatLengkap: "Jalan Pemuda nomor 10, Kota Semarang",
+          sekolahAsal: "SMPN 1 Semarang",
+          lokasiSekolah: "Kota Semarang, Jawa Tengah",
+          sumberInformasi: "Sosial Media",
+          pilihanProgram: "programmer",
+        },
+      }),
+    )
+    render(<RegistrationFormPage />)
+
+    fireEvent.click(
+      await screen.findByRole("button", {
+        name: "Lanjutkan ke Pembayaran dan Konfirmasi",
+      }),
+    )
+
+    expect(
+      await screen.findByText(/pilih kembali bukti transfer/i),
+    ).toBeVisible()
   })
 
   it("persists ordinary field values without receipt or consent", async () => {
@@ -298,5 +340,27 @@ describe("registration wizard", () => {
     expect(
       screen.getByRole("heading", { level: 2, name: "Pembayaran dan Konfirmasi" }),
     ).toBeVisible()
+  })
+
+  it("defines restrained responsive interaction styles", () => {
+    const css = readFileSync("app/globals.css", "utf8")
+    const pageSource = readFileSync("components/registration-form-page.tsx", "utf8")
+
+    expect(css).toContain(".registration-action")
+    expect(css).toContain("transition: background-color 150ms")
+    expect(css).toContain("transform: scale(0.97)")
+    expect(css).toContain("@media (hover: hover) and (pointer: fine)")
+    expect(css).toContain("@media (prefers-reduced-motion: reduce)")
+    expect(css).not.toMatch(/\.registration-action\s*\{[^}]*transition:\s*all/)
+    expect(pageSource).toContain("registration-actions")
+    expect(css).toContain("env(safe-area-inset-bottom)")
+    expect(pageSource).not.toContain("transition-all")
+  })
+
+  it("uses SPMB 2027/2028 in registration metadata", () => {
+    const metadataSource = readFileSync("app/daftar/page.tsx", "utf8")
+
+    expect(metadataSource).toContain("SPMB 2027/2028")
+    expect(metadataSource).not.toContain("2026-2027")
   })
 })

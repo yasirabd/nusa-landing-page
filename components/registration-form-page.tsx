@@ -245,7 +245,7 @@ export function RegistrationFormPage() {
   }
 
   return (
-    <div className="relative overflow-hidden bg-[#F0FAF7]">
+    <div className="relative bg-[#F0FAF7]">
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-0 opacity-[0.035]"
@@ -270,7 +270,7 @@ export function RegistrationFormPage() {
             Form Pendaftaran
           </h1>
           <p className="mt-2 text-sm text-[#134146]/65">
-            NUSA Boarding School · Tahun Pelajaran 2026/2027
+            NUSA Boarding School · SPMB 2027/2028
           </p>
           <a
             href="https://wa.me/6281392706707"
@@ -290,7 +290,9 @@ export function RegistrationFormPage() {
               role="status"
               className="mb-5 rounded-xl border border-[#2C8970]/20 bg-[#2C8970]/8 px-4 py-3 text-sm text-[#134146]"
             >
-              Draft pendaftaran dipulihkan. Silakan lanjutkan dari data terakhir.
+              {step === 3
+                ? "Draft pendaftaran dipulihkan. Demi keamanan, pilih kembali bukti transfer sebelum mengirim pendaftaran."
+                : "Draft pendaftaran dipulihkan. Silakan lanjutkan dari data terakhir."}
             </p>
           ) : null}
 
@@ -323,13 +325,15 @@ export function RegistrationFormPage() {
                 </div>
               ) : null}
 
-              <div className="mt-7 flex flex-col-reverse gap-3 border-t border-[#134146]/10 pt-5 sm:flex-row sm:items-center">
+              <div
+                className="registration-actions sticky bottom-0 z-20 -mx-4 mt-7 flex flex-col-reverse gap-3 border-t border-[#134146]/10 bg-[#F0FAF7]/95 px-4 pt-4 backdrop-blur-sm sm:static sm:mx-0 sm:flex-row sm:items-center sm:bg-transparent sm:px-0 sm:pt-5 sm:backdrop-blur-none"
+              >
                 {step === 1 ? (
                   <AlertDialog>
                     <AlertDialogTrigger asChild>
                       <button
                         type="button"
-                        className="min-h-11 rounded-xl px-5 text-sm font-semibold text-[#134146]/60 focus-visible:ring-2 focus-visible:ring-[#F3B233]"
+                        className="registration-action min-h-11 rounded-xl px-5 text-sm font-semibold text-[#134146]/60 focus-visible:ring-2 focus-visible:ring-[#F3B233]"
                       >
                         Reset Form
                       </button>
@@ -363,7 +367,7 @@ export function RegistrationFormPage() {
                         ? "Kembali ke Data Calon Santri"
                         : "Kembali ke Sekolah dan Program"
                     }
-                    className="min-h-12 rounded-xl border border-[#134146]/15 bg-[#F7F7F2] px-5 text-sm font-semibold text-[#134146] focus-visible:ring-2 focus-visible:ring-[#F3B233] disabled:opacity-50"
+                    className="registration-action registration-action-secondary min-h-12 rounded-xl border border-[#134146]/15 bg-[#F7F7F2] px-5 text-sm font-semibold text-[#134146] focus-visible:ring-2 focus-visible:ring-[#F3B233] disabled:opacity-50"
                   >
                     Kembali
                   </button>
@@ -378,7 +382,7 @@ export function RegistrationFormPage() {
                         ? "Lanjutkan ke Sekolah dan Program"
                         : "Lanjutkan ke Pembayaran dan Konfirmasi"
                     }
-                    className="min-h-12 flex-1 rounded-xl bg-[#2C8970] text-base font-bold text-white"
+                    className="registration-action registration-action-primary min-h-12 flex-1 rounded-xl bg-[#2C8970] text-base font-bold text-white"
                   >
                     Lanjutkan
                   </Button>
@@ -387,7 +391,7 @@ export function RegistrationFormPage() {
                     type="submit"
                     disabled={isSubmitting}
                     aria-live="polite"
-                    className="min-h-12 flex-1 rounded-xl bg-[#2C8970] text-base font-bold text-white"
+                    className="registration-action registration-action-primary min-h-12 flex-1 rounded-xl bg-[#2C8970] text-base font-bold text-white"
                   >
                     {isSubmitting ? "Mengirim..." : "Kirim Pendaftaran"}
                     <Send aria-hidden="true" className="size-[18px]" />

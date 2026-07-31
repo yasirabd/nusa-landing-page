@@ -371,7 +371,7 @@ export function PaymentConfirmationStep({
                   type="button"
                   onClick={() => onEdit(1)}
                   disabled={isSubmitting}
-                  className="min-h-11 rounded-lg px-2 text-xs font-bold text-[#2C8970] outline-none focus-visible:ring-2 focus-visible:ring-[#F3B233] disabled:opacity-50"
+                  className="registration-action min-h-11 rounded-lg px-2 text-xs font-bold text-[#2C8970] outline-none focus-visible:ring-2 focus-visible:ring-[#F3B233] disabled:opacity-50"
                 >
                   Ubah Data Calon Santri
                 </button>
@@ -401,7 +401,7 @@ export function PaymentConfirmationStep({
                   type="button"
                   onClick={() => onEdit(2)}
                   disabled={isSubmitting}
-                  className="min-h-11 rounded-lg px-2 text-xs font-bold text-[#2C8970] outline-none focus-visible:ring-2 focus-visible:ring-[#F3B233] disabled:opacity-50"
+                  className="registration-action min-h-11 rounded-lg px-2 text-xs font-bold text-[#2C8970] outline-none focus-visible:ring-2 focus-visible:ring-[#F3B233] disabled:opacity-50"
                 >
                   Ubah Sekolah dan Program
                 </button>

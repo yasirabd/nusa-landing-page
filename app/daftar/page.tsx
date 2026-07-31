@@ -2,9 +2,9 @@ import { RegistrationFormPage } from "@/components/registration-form-page"
 import { Header } from "@/components/header"
 
 export const metadata = {
-  title: "Form Pendaftaran | NUSA Boarding School",
+  title: "SPMB 2027/2028 | NUSA Boarding School",
   description:
-    "Daftarkan diri kamu sebagai calon santri NUSA Boarding School tahun pelajaran 2026-2027. Isi form pendaftaran dan selesaikan proses infaq pendaftaran.",
+    "SPMB NUSA Boarding School 2027/2028 sudah dibuka. Isi form pendaftaran calon santri dan selesaikan proses infaq pendaftaran.",
 }
 
 export default function DaftarPage() {
