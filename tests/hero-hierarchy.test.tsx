@@ -56,4 +56,24 @@ describe("hero hierarchy", () => {
     expect(source).not.toContain("animate-pulse")
     expect(existsSync("components/promo-banner.tsx")).toBe(false)
   })
+
+  it("uses restrained pointer-aware motion with a reduced-motion fallback", () => {
+    const heroSource = readFileSync("components/hero-section.tsx", "utf8")
+    const globalStyles = readFileSync("app/globals.css", "utf8")
+
+    expect(heroSource).toContain("hero-action")
+    expect(heroSource).not.toContain("transition-all")
+    expect(heroSource).not.toContain("duration-300")
+    expect(heroSource).not.toContain("duration-500")
+    expect(heroSource).not.toContain("duration-700")
+    expect(heroSource).not.toContain("group-hover:scale")
+
+    expect(globalStyles).toContain(".hero-action")
+    expect(globalStyles).toContain("transition: background-color 150ms")
+    expect(globalStyles).toContain("@media (hover: hover) and (pointer: fine)")
+    expect(globalStyles).toContain("transform: scale(0.97)")
+    expect(globalStyles).toContain("@media (prefers-reduced-motion: reduce)")
+    expect(globalStyles).toContain(".hero-action:active")
+    expect(globalStyles).toContain("transform: none")
+  })
 })
