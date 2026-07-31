@@ -41,8 +41,8 @@ describe("hero hierarchy", () => {
     render(<HeroSection />)
 
     expect(screen.getByText("SPMB 2027/2028 Sudah Dibuka")).toBeVisible()
-    expect(screen.getByText("Potongan Rp10 juta untuk 10 pendaftar pertama")).toBeVisible()
-    expect(screen.getByText("Boarding School Islami Tingkat SMA di Kota Semarang")).toBeVisible()
+    expect(screen.getByText("Potongan SPI Rp10 juta untuk 10 pendaftar pertama")).toBeVisible()
+    expect(screen.getByText("Boarding School Islami di Kota Semarang")).toBeVisible()
     expect(
       screen.getByRole("heading", { level: 1, name: "Menjadi Muslim Tangguh, Jago IT" }),
     ).toBeVisible()
@@ -53,9 +53,9 @@ describe("hero hierarchy", () => {
     ).toBeVisible()
 
     for (const fact of [
-      "Pendidikan Kesetaraan SMA",
+      "Kesetaraan SMA",
       "Programmer & Designer",
-      "Boarding School di Kota Semarang",
+      "Kota Semarang",
     ]) {
       expect(screen.getByText(fact)).toBeVisible()
     }
@@ -112,9 +112,9 @@ import Link from "next/link"
 import { ArrowRight, CheckCircle2 } from "lucide-react"
 
 const HERO_FACTS = [
-  "Pendidikan Kesetaraan SMA",
+  "Kesetaraan SMA",
   "Programmer & Designer",
-  "Boarding School di Kota Semarang",
+  "Kota Semarang",
 ] as const
 
 export function HeroSection() {
@@ -139,11 +139,11 @@ export function HeroSection() {
           <div className="mb-7 inline-flex flex-wrap items-center gap-x-2 gap-y-1 rounded-full border border-[#F3B233]/35 bg-[#F3B233]/10 px-4 py-2 text-sm leading-snug">
             <span className="font-semibold text-[#F3B233]">SPMB 2027/2028 Sudah Dibuka</span>
             <span aria-hidden="true" className="hidden text-white/35 sm:inline">•</span>
-            <span className="text-white/85">Potongan Rp10 juta untuk 10 pendaftar pertama</span>
+            <span className="text-white/85">Potongan SPI Rp10 juta untuk 10 pendaftar pertama</span>
           </div>
 
           <p className="mb-4 text-sm font-semibold uppercase tracking-[0.16em] text-[#8EF3E7] sm:text-base">
-            Boarding School Islami Tingkat SMA di Kota Semarang
+            Boarding School Islami di Kota Semarang
           </p>
 
           <h1 className="max-w-[13ch] text-4xl font-extrabold leading-[1.06] tracking-[-0.035em] text-white sm:text-5xl lg:text-6xl">
@@ -435,3 +435,87 @@ If local visual inspection is available, inspect the hero at a narrow mobile wid
 - [ ] **Step 7: Stop for user review**
 
 Do not begin the registration wizard, landing-page restructuring, or another audit feature. Present the verified hero improvement for user review first.
+
+### Task 4: Apply the approved enrollment and trust-copy refinement
+
+**Files:**
+- Modify: `tests/hero-hierarchy.test.tsx`
+- Modify: `components/hero-section.tsx`
+
+- [ ] **Step 1: Update the hierarchy regression test first**
+
+In `tests/hero-hierarchy.test.tsx`, replace the previous promotion detail, eyebrow, and trust facts with these exact expectations:
+
+```tsx
+expect(screen.getByText("Potongan SPI Rp10 juta untuk 10 pendaftar pertama")).toBeVisible()
+expect(screen.getByText("Boarding School Islami di Kota Semarang")).toBeVisible()
+
+for (const fact of ["Kesetaraan SMA", "Programmer & Designer", "Kota Semarang"]) {
+  expect(screen.getByText(fact)).toBeVisible()
+}
+```
+
+Also update the DOM-order expectation to use `Boarding School Islami di Kota Semarang`.
+
+- [ ] **Step 2: Run the focused test and verify RED**
+
+Run:
+
+```powershell
+npx vitest run tests/hero-hierarchy.test.tsx --maxWorkers=1 --reporter=verbose
+```
+
+Expected: FAIL because `HeroSection` still renders the previous promotion detail, eyebrow, and trust facts.
+
+- [ ] **Step 3: Apply the minimal approved copy changes**
+
+In `components/hero-section.tsx`, use:
+
+```tsx
+const HERO_FACTS = ["Kesetaraan SMA", "Programmer & Designer", "Kota Semarang"] as const
+```
+
+Change the promotion detail and eyebrow to:
+
+```tsx
+<span className="text-white/85">Potongan SPI Rp10 juta untuk 10 pendaftar pertama</span>
+
+<p className="mb-4 text-sm font-semibold uppercase tracking-[0.16em] text-[#8EF3E7] sm:text-base">
+  Boarding School Islami di Kota Semarang
+</p>
+```
+
+Do not add `whitespace-nowrap`, reduce the trust-fact contrast, or change the established hero motion and responsive-image behavior.
+
+- [ ] **Step 4: Run focused tests and verify GREEN**
+
+Run:
+
+```powershell
+npx vitest run tests/hero-hierarchy.test.tsx tests/hero-image.test.tsx --maxWorkers=1 --reporter=verbose
+```
+
+Expected: both files PASS with the approved copy and existing image guarantees intact.
+
+- [ ] **Step 5: Run full verification**
+
+Run:
+
+```powershell
+npx vitest run --maxWorkers=1 --reporter=verbose
+npx tsc --noEmit
+npm run build
+git diff --check
+git status --short
+```
+
+Expected: all tests pass; TypeScript reports only the known baseline errors outside hero scope; the build writes a fresh `.next/BUILD_ID`; no whitespace errors occur; the user-owned audit document remains untracked.
+
+- [ ] **Step 6: Commit and stop for text-only review**
+
+```powershell
+git add components/hero-section.tsx tests/hero-hierarchy.test.tsx
+git commit -m "copy: clarify hero enrollment offer"
+```
+
+Report the final promotion, eyebrow, and compact trust facts. Do not start another audit feature.
