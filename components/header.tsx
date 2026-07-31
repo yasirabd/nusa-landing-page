@@ -1,40 +1,151 @@
+"use client"
+
+import { useEffect, useState } from "react"
 import Link from "next/link"
-import { Button } from "@/components/ui/button"
+import { usePathname } from "next/navigation"
+import { Menu } from "lucide-react"
+import {
+  PUBLIC_NAV_ITEMS,
+  getPublicNavigationHref,
+  type PublicSectionId,
+} from "@/components/public-navigation"
+import {
+  Sheet,
+  SheetClose,
+  SheetContent,
+  SheetDescription,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet"
 
 export function Header() {
+  const pathname = usePathname()
+  const [open, setOpen] = useState(false)
+  const [activeSection, setActiveSection] = useState<PublicSectionId | null>(null)
+
+  useEffect(() => {
+    if (pathname !== "/") {
+      setActiveSection(null)
+      return
+    }
+
+    const sections = PUBLIC_NAV_ITEMS.map(({ sectionId }) =>
+      document.getElementById(sectionId),
+    ).filter((section): section is HTMLElement => section !== null)
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0]
+
+        if (visible) {
+          setActiveSection(visible.target.id as PublicSectionId)
+        }
+      },
+      {
+        rootMargin: "-20% 0px -65% 0px",
+        threshold: [0, 0.25, 0.5],
+      },
+    )
+
+    sections.forEach((section) => observer.observe(section))
+    return () => observer.disconnect()
+  }, [pathname])
+
   return (
-    <header className="sticky top-0 z-50 border-b bg-white/80 backdrop-blur-md">
-      <link rel="icon" href="icons/logo.png" />
-      <div className="container flex h-16 items-center justify-between px-4 md:px-6 font-sans font-extrabold max-w-7xl mx-auto">
-        <Link href="/" className="flex items-center gap-2">
-          <div className="text-xl font-sans font-black text-[rgba(44,137,112,1)]">
-            <span className="font-righteous tracking-wider">NUSA </span><span className="text-slate-800 font-extrabold">Boarding School</span>
-          </div>
+    <header className="sticky top-0 z-50 border-b border-[#134146]/10 bg-[#F7F7F2]/90 font-sans text-[#134146] backdrop-blur-xl">
+      <div className="mx-auto flex h-16 max-w-7xl items-center gap-5 px-4 md:px-6">
+        <Link
+          href="/"
+          aria-label="NUSA Boarding School - Beranda"
+          className="shrink-0 rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2C8970] focus-visible:ring-offset-4"
+        >
+          <span className="text-lg font-semibold tracking-tight sm:text-xl">
+            <span className="font-righteous font-normal tracking-wider text-[#2C8970]">
+              NUSA
+            </span>{" "}
+            <span className="hidden sm:inline">Boarding School</span>
+          </span>
         </Link>
-        <div className="hidden md:block">
-          <div className="text-[rgba(19,65,70,1)] text-sm font-semibold">#Muslim Tangguh Jago IT</div>
-        </div>
-        <div className="md:hidden">
-          <Button variant="ghost" size="icon" className="text-primary">
-            <span className="sr-only">Menu</span>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              className="h-6 w-6"
+
+        <nav
+          aria-label="Navigasi utama"
+          className="ml-auto hidden items-center gap-1 lg:flex"
+        >
+          {PUBLIC_NAV_ITEMS.map(({ label, sectionId }) => {
+            const active = activeSection === sectionId
+
+            return (
+              <Link
+                key={sectionId}
+                href={getPublicNavigationHref(pathname, sectionId)}
+                aria-current={active ? "location" : undefined}
+                className="relative rounded-md px-2.5 py-2 text-sm font-medium text-[#134146]/75 transition-colors duration-150 hover:text-[#134146] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2C8970] focus-visible:ring-offset-2 after:absolute after:inset-x-2.5 after:bottom-0 after:h-0.5 after:origin-left after:scale-x-0 after:rounded-full after:bg-[#2C8970] after:transition-transform after:duration-150 aria-[current=location]:text-[#134146] aria-[current=location]:after:scale-x-100"
+              >
+                {label}
+              </Link>
+            )
+          })}
+        </nav>
+
+        <Link
+          href="/daftar"
+          className="ml-auto hidden min-h-11 items-center justify-center rounded-full bg-[#F3B233] px-5 text-sm font-semibold text-[#134146] shadow-sm transition-[background-color,box-shadow,transform] duration-150 hover:bg-[#F6BE4D] hover:shadow-md active:scale-[0.97] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2C8970] focus-visible:ring-offset-2 lg:inline-flex"
+        >
+          Daftar Sekarang
+        </Link>
+
+        <Sheet open={open} onOpenChange={setOpen}>
+          <SheetTrigger asChild>
+            <button
+              type="button"
+              aria-label="Buka menu navigasi"
+              className="ml-auto inline-flex size-11 items-center justify-center rounded-full border border-[#134146]/10 bg-white/70 text-[#134146] transition-[background-color,border-color,transform] duration-150 hover:border-[#2C8970]/30 hover:bg-white active:scale-[0.97] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2C8970] focus-visible:ring-offset-2 lg:hidden"
             >
-              <line x1="4" x2="20" y1="12" y2="12" />
-              <line x1="4" x2="20" y1="6" y2="6" />
-              <line x1="4" x2="20" y1="18" y2="18" />
-            </svg>
-          </Button>
-        </div>
+              <Menu className="size-5" aria-hidden="true" />
+            </button>
+          </SheetTrigger>
+
+          <SheetContent className="w-[min(88vw,24rem)] border-l border-[#134146]/10 bg-[#F7F7F2] p-0 text-[#134146] data-[state=closed]:duration-200 data-[state=open]:duration-[250ms]">
+            <SheetHeader className="border-b border-[#134146]/10 px-6 py-6 text-left">
+              <SheetTitle className="text-xl font-semibold text-[#134146]">
+                Navigasi utama
+              </SheetTitle>
+              <SheetDescription className="text-sm leading-6 text-[#134146]/70">
+                Temukan program, kehidupan santri, biaya, dan informasi pendaftaran NUSA.
+              </SheetDescription>
+            </SheetHeader>
+
+            <nav
+              aria-label="Navigasi utama mobile"
+              className="flex flex-col px-3 py-4"
+            >
+              {PUBLIC_NAV_ITEMS.map(({ label, sectionId }) => (
+                <SheetClose asChild key={sectionId}>
+                  <Link
+                    href={getPublicNavigationHref(pathname, sectionId)}
+                    className="flex min-h-12 items-center rounded-xl px-3 text-base font-medium text-[#134146]/80 transition-colors duration-150 hover:bg-[#2C8970]/[0.08] hover:text-[#134146] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2C8970]"
+                  >
+                    {label}
+                  </Link>
+                </SheetClose>
+              ))}
+            </nav>
+
+            <div className="mt-auto border-t border-[#134146]/10 p-6">
+              <SheetClose asChild>
+                <Link
+                  href="/daftar"
+                  className="flex min-h-12 w-full items-center justify-center rounded-full bg-[#F3B233] px-5 font-semibold text-[#134146] transition-[background-color,transform] duration-150 hover:bg-[#F6BE4D] active:scale-[0.97] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2C8970] focus-visible:ring-offset-2"
+                >
+                  Daftar Sekarang
+                </Link>
+              </SheetClose>
+            </div>
+          </SheetContent>
+        </Sheet>
       </div>
     </header>
   )

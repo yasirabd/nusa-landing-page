@@ -72,7 +72,7 @@ const COLORS = {
 
 export function GallerySection() {
   return (
-    <section className="py-24 md:py-32 lg:py-40" style={{ backgroundColor: COLORS.surface }}>
+    <section id="kehidupan-santri" className="scroll-mt-20 py-24 md:py-32 lg:py-40" style={{ backgroundColor: COLORS.surface }}>
       {/* Container back to max-w-7xl for panoramic 2-columns */}
       <div className="container px-4 md:px-8 max-w-7xl mx-auto">
         <div className="mx-auto max-w-4xl text-center mb-16 md:mb-24">

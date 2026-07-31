@@ -35,7 +35,7 @@ const COLORS = {
 
 export function TeachingTeamSection() {
   return (
-    <section className="relative py-24 md:py-32 lg:py-40 overflow-hidden" style={{ backgroundColor: COLORS.primary }}>
+    <section id="pengajar" className="relative scroll-mt-20 py-24 md:py-32 lg:py-40 overflow-hidden" style={{ backgroundColor: COLORS.primary }}>
       {/* Digital Space Grid & Glow */}
       <div className="absolute inset-0 z-0 pointer-events-none">
         <div

@@ -12,7 +12,7 @@ const COLORS = {
 
 export function ProgramSection() {
   return (
-    <section className="py-24 md:py-32 lg:py-40" style={{ backgroundColor: COLORS.surface }}>
+    <section id="program" className="scroll-mt-20 py-24 md:py-32 lg:py-40" style={{ backgroundColor: COLORS.surface }}>
       <div className="container px-4 md:px-8 max-w-7xl mx-auto">
         <div className="mx-auto max-w-4xl text-center">
           <h2 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight mb-6" style={{ color: COLORS.darkBase }}>

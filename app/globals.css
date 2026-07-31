@@ -147,6 +147,9 @@
   * {
     @apply border-border outline-ring/50;
   }
+  html {
+    scroll-behavior: smooth;
+  }
   body {
     @apply bg-background text-foreground;
   }
@@ -180,4 +183,18 @@
 
 .font-righteous {
   font-family: var(--font-righteous);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  [data-slot="sheet-content"],
+  [data-slot="sheet-overlay"],
+  [data-slot="accordion-content"],
+  [data-slot="accordion-trigger"] > svg {
+    animation-duration: 1ms !important;
+    transition-duration: 1ms !important;
+  }
 }

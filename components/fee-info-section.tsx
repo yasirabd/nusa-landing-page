@@ -59,7 +59,7 @@ const feeDetails = [
 
 export function FeeInfoSection() {
   return (
-    <section className="py-24 md:py-32 lg:py-40 px-4" style={{ backgroundColor: COLORS.surface }}>
+    <section id="biaya" className="scroll-mt-20 py-24 md:py-32 lg:py-40 px-4" style={{ backgroundColor: COLORS.surface }}>
       <div className="max-w-6xl mx-auto">
 
         {/* Header */}

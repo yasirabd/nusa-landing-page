@@ -73,7 +73,7 @@ const curriculumPillars = [
 
 export function CurriculumSection() {
   return (
-    <section className="py-24 md:py-32 lg:py-40" style={{ backgroundColor: COLORS.surface }}>
+    <section id="kurikulum" className="scroll-mt-20 py-24 md:py-32 lg:py-40" style={{ backgroundColor: COLORS.surface }}>
       <div className="container relative z-10 px-4 md:px-8 max-w-6xl mx-auto">
         
         {/* Monumental Header (Penyelarasan Momentum Rushd) */}
