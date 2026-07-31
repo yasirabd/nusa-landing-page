@@ -1,6 +1,7 @@
 import { afterEach, beforeAll, describe, expect, it, vi } from "vitest"
-import { fireEvent, render, screen, within } from "@testing-library/react"
+import { fireEvent, render, screen, waitFor, within } from "@testing-library/react"
 import { RegistrationFormPage } from "@/components/registration-form-page"
+import { REGISTRATION_DRAFT_KEY } from "@/components/registration/registration-schema"
 
 const supabaseMocks = vi.hoisted(() => ({
   upload: vi.fn(),
@@ -101,5 +102,82 @@ describe("registration wizard", () => {
     )
 
     expect(screen.getByLabelText(/Nama Lengkap/)).toHaveValue("Muhammad Abdullah")
+  })
+
+  it("restores a safe draft at no later than step two", async () => {
+    localStorage.setItem(
+      REGISTRATION_DRAFT_KEY,
+      JSON.stringify({
+        version: 1,
+        step: 2,
+        values: {
+          namaLengkap: "Muhammad Abdullah",
+          nomorWhatsapp: "6281234567890",
+          tempatLahir: "Semarang",
+          tanggalLahir: "2010-01-15",
+          asalKota: "Kota Semarang",
+          alamatLengkap: "Jalan Pemuda nomor 10, Kota Semarang",
+          sekolahAsal: "SMPN 1 Semarang",
+          lokasiSekolah: "Kota Semarang, Jawa Tengah",
+          sumberInformasi: "Sosial Media",
+          pilihanProgram: "programmer",
+        },
+      }),
+    )
+
+    render(<RegistrationFormPage />)
+
+    expect(await screen.findByText("Langkah 2 dari 3")).toBeVisible()
+    expect(screen.getByLabelText(/Sekolah Asal/)).toHaveValue("SMPN 1 Semarang")
+    expect(screen.getByRole("status")).toHaveTextContent("Draft pendaftaran dipulihkan")
+  })
+
+  it("persists ordinary field values without receipt or consent", async () => {
+    render(<RegistrationFormPage />)
+    fireEvent.change(screen.getByLabelText(/Nama Lengkap/), {
+      target: { value: "Muhammad Abdullah" },
+    })
+
+    await waitFor(() => {
+      const saved = JSON.parse(localStorage.getItem(REGISTRATION_DRAFT_KEY) ?? "null")
+      expect(saved.values.namaLengkap).toBe("Muhammad Abdullah")
+      expect(saved.values).not.toHaveProperty("buktTransfer")
+      expect(saved.values).not.toHaveProperty("pernyataan")
+    })
+  })
+
+  it("asks before deleting entered data", () => {
+    const consoleError = vi.spyOn(console, "error").mockImplementation(() => {})
+    render(<RegistrationFormPage />)
+
+    fireEvent.click(screen.getByRole("button", { name: "Reset Form" }))
+
+    expect(
+      screen.getByRole("alertdialog", { name: "Hapus data pendaftaran?" }),
+    ).toBeVisible()
+    expect(screen.getByRole("button", { name: "Batal" })).toBeVisible()
+    expect(screen.getByRole("button", { name: "Ya, hapus data" })).toBeVisible()
+    expect(consoleError.mock.calls.flat().join(" ")).not.toContain(
+      "Function components cannot be given refs",
+    )
+    consoleError.mockRestore()
+  })
+
+  it("clears the browser draft only after reset is confirmed", async () => {
+    render(<RegistrationFormPage />)
+    fireEvent.change(screen.getByLabelText(/Nama Lengkap/), {
+      target: { value: "Muhammad Abdullah" },
+    })
+    await waitFor(() =>
+      expect(localStorage.getItem(REGISTRATION_DRAFT_KEY)).not.toBeNull(),
+    )
+
+    fireEvent.click(screen.getByRole("button", { name: "Reset Form" }))
+    fireEvent.click(screen.getByRole("button", { name: "Ya, hapus data" }))
+
+    await waitFor(() => {
+      expect(localStorage.getItem(REGISTRATION_DRAFT_KEY)).toBeNull()
+      expect(screen.getByLabelText(/Nama Lengkap/)).toHaveValue("")
+    })
   })
 })

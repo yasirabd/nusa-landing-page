@@ -7,6 +7,17 @@ import { FormProvider, useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { createClient } from "@/utils/supabase/client"
 import { Button } from "@/components/ui/button"
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog"
 import { RegistrationProgress } from "@/components/registration/registration-fields"
 import {
   PaymentConfirmationStep,
@@ -15,7 +26,10 @@ import {
 } from "@/components/registration/registration-steps"
 import {
   DEFAULT_VALUES,
+  REGISTRATION_DRAFT_KEY,
   STEP_FIELDS,
+  createRegistrationDraft,
+  parseRegistrationDraft,
   registrationSchema,
   type RegistrationFormValues,
   type WizardStep,
@@ -27,6 +41,8 @@ export function RegistrationFormPage() {
   const [submitError, setSubmitError] = useState<string | null>(null)
   const [filePreview, setFilePreview] = useState<string | null>(null)
   const [fileName, setFileName] = useState<string | null>(null)
+  const [draftReady, setDraftReady] = useState(false)
+  const [draftRestored, setDraftRestored] = useState(false)
   const formTopRef = useRef<HTMLDivElement>(null)
   const stepHeadingRef = useRef<HTMLHeadingElement>(null)
   const hasChangedStep = useRef(false)
@@ -41,11 +57,41 @@ export function RegistrationFormPage() {
     handleSubmit,
     reset,
     getFieldState,
+    getValues,
     setValue,
     setFocus,
     trigger,
+    watch,
     formState: { isSubmitting },
   } = methods
+
+  useEffect(() => {
+    const draft = parseRegistrationDraft(localStorage.getItem(REGISTRATION_DRAFT_KEY))
+    if (draft) {
+      reset({ ...DEFAULT_VALUES, ...draft.values })
+      setStep(draft.step)
+      setDraftRestored(true)
+    }
+    setDraftReady(true)
+  }, [reset])
+
+  useEffect(() => {
+    if (!draftReady) return
+
+    const persistDraft = (values: RegistrationFormValues) => {
+      localStorage.setItem(
+        REGISTRATION_DRAFT_KEY,
+        JSON.stringify(createRegistrationDraft(values, step)),
+      )
+    }
+
+    persistDraft({ ...DEFAULT_VALUES, ...getValues() } as RegistrationFormValues)
+    const subscription = watch((values) => {
+      persistDraft({ ...DEFAULT_VALUES, ...values } as RegistrationFormValues)
+    })
+
+    return () => subscription.unsubscribe()
+  }, [draftReady, getValues, step, watch])
 
   useEffect(() => {
     if (!hasChangedStep.current) return
@@ -107,10 +153,12 @@ export function RegistrationFormPage() {
 
   const resetForm = () => {
     reset(DEFAULT_VALUES)
+    localStorage.removeItem(REGISTRATION_DRAFT_KEY)
     setStep(1)
     setFileName(null)
     setFilePreview(null)
     setSubmitError(null)
+    setDraftRestored(false)
   }
 
   const onSubmit = async (data: RegistrationFormValues) => {
@@ -231,6 +279,15 @@ export function RegistrationFormPage() {
         <div ref={formTopRef} className="scroll-mt-28">
           <RegistrationProgress step={step} />
 
+          {draftRestored ? (
+            <p
+              role="status"
+              className="mb-5 rounded-xl border border-[#2C8970]/20 bg-[#2C8970]/8 px-4 py-3 text-sm text-[#134146]"
+            >
+              Draft pendaftaran dipulihkan. Silakan lanjutkan dari data terakhir.
+            </p>
+          ) : null}
+
           <FormProvider {...methods}>
             <form
               onSubmit={handleSubmit(onSubmit)}
@@ -260,13 +317,34 @@ export function RegistrationFormPage() {
 
               <div className="mt-7 flex flex-col-reverse gap-3 border-t border-[#134146]/10 pt-5 sm:flex-row sm:items-center">
                 {step === 1 ? (
-                  <button
-                    type="button"
-                    onClick={resetForm}
-                    className="min-h-11 rounded-xl px-5 text-sm font-semibold text-[#134146]/60 focus-visible:ring-2 focus-visible:ring-[#F3B233]"
-                  >
-                    Reset Form
-                  </button>
+                  <AlertDialog>
+                    <AlertDialogTrigger asChild>
+                      <button
+                        type="button"
+                        className="min-h-11 rounded-xl px-5 text-sm font-semibold text-[#134146]/60 focus-visible:ring-2 focus-visible:ring-[#F3B233]"
+                      >
+                        Reset Form
+                      </button>
+                    </AlertDialogTrigger>
+                    <AlertDialogContent className="border-[#134146]/10 bg-[#F7F7F2] text-[#134146] motion-reduce:animate-none">
+                      <AlertDialogHeader>
+                        <AlertDialogTitle>Hapus data pendaftaran?</AlertDialogTitle>
+                        <AlertDialogDescription className="text-[#134146]/65">
+                          Semua data yang sudah diisi dan draft yang tersimpan di browser
+                          akan dihapus.
+                        </AlertDialogDescription>
+                      </AlertDialogHeader>
+                      <AlertDialogFooter>
+                        <AlertDialogCancel>Batal</AlertDialogCancel>
+                        <AlertDialogAction
+                          onClick={resetForm}
+                          className="bg-red-700 text-white hover:bg-red-800"
+                        >
+                          Ya, hapus data
+                        </AlertDialogAction>
+                      </AlertDialogFooter>
+                    </AlertDialogContent>
+                  </AlertDialog>
                 ) : (
                   <button
                     type="button"
