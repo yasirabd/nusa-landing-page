@@ -19,7 +19,7 @@ The hero uses this exact content hierarchy:
 - Supporting copy: `Santri menempuh pendidikan kesetaraan SMA sambil memperkuat agama, karakter, dan keterampilan teknologi melalui jalur Programmer atau Designer.`
 - Primary CTA: `Daftar SPMB 2027/2028`
 - Secondary CTA: `Konsultasi via WhatsApp`
-- Trust facts: `Pendidikan Kesetaraan SMA`, `Programmer & Designer`, and `Boarding School di Kota Semarang`
+- Trust facts: `Kesetaraan SMA`, `Programmer & Designer`, and `Kota Semarang`
 
 The implementation must not add accreditation, permit, diploma, partner, employment, salary, or outcome claims that are not already verified by the public site.
 
