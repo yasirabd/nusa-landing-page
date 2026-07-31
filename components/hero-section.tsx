@@ -76,9 +76,9 @@ export function HeroSection() {
             </Link>
           </div>
 
-          <ul className="mt-8 grid gap-3 border-t border-white/15 pt-6 text-sm font-medium text-white/90 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-3">
+          <ul className="mt-8 grid gap-3 border-t border-white/15 pt-6 text-sm font-medium text-white/90 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-[repeat(3,max-content)] xl:justify-between">
             {HERO_FACTS.map((fact) => (
-              <li key={fact} className="flex items-start gap-2.5">
+              <li key={fact} className="flex items-center gap-2.5">
                 <CheckCircle2
                   aria-hidden="true"
                   className="mt-0.5 size-4 shrink-0 text-[#8EF3E7]"

@@ -27,7 +27,16 @@ describe("hero hierarchy", () => {
       expect(screen.getByText(fact)).toBeVisible()
     }
 
-    expect(screen.getByRole("list")).toHaveClass("text-white/90")
+    const trustList = screen.getByRole("list")
+    expect(trustList).toHaveClass(
+      "text-white/90",
+      "xl:grid-cols-[repeat(3,max-content)]",
+      "xl:justify-between",
+    )
+
+    for (const item of within(trustList).getAllByRole("listitem")) {
+      expect(item).toHaveClass("items-center")
+    }
   })
 
   it("keeps the complete decision message and CTAs before the hero image", () => {
