@@ -1,4 +1,4 @@
-import { afterEach, beforeAll, describe, expect, it, vi } from "vitest"
+import { afterEach, beforeAll, beforeEach, describe, expect, it, vi } from "vitest"
 import { fireEvent, render, screen, waitFor, within } from "@testing-library/react"
 import { RegistrationFormPage } from "@/components/registration-form-page"
 import { REGISTRATION_DRAFT_KEY } from "@/components/registration/registration-schema"
@@ -28,6 +28,12 @@ beforeAll(() => {
   })
 })
 
+beforeEach(() => {
+  supabaseMocks.upload.mockResolvedValue({ error: null })
+  supabaseMocks.insert.mockResolvedValue({ error: null })
+  supabaseMocks.remove.mockResolvedValue({ error: null })
+})
+
 afterEach(() => {
   localStorage.clear()
   vi.clearAllMocks()
@@ -52,6 +58,50 @@ function fillPersonalStep() {
   fireEvent.change(screen.getByLabelText(/Alamat Lengkap/), {
     target: { value: "Jalan Pemuda nomor 10, Kota Semarang" },
   })
+}
+
+function fillSchoolStep() {
+  fireEvent.change(screen.getByLabelText(/Sekolah Asal/), {
+    target: { value: "SMPN 1 Semarang" },
+  })
+  fireEvent.change(screen.getByLabelText(/Lokasi Sekolah/), {
+    target: { value: "Kota Semarang, Jawa Tengah" },
+  })
+  fireEvent.change(screen.getByLabelText(/Dari mana kamu tahu tentang NUSA/), {
+    target: { value: "Sosial Media" },
+  })
+  fireEvent.click(screen.getByRole("radio", { name: /Programmer/ }))
+}
+
+async function reachPaymentStep() {
+  fillPersonalStep()
+  fireEvent.click(
+    screen.getByRole("button", { name: "Lanjutkan ke Sekolah dan Program" }),
+  )
+  await screen.findByRole("heading", { level: 2, name: "Sekolah dan Program" })
+  fillSchoolStep()
+  fireEvent.click(
+    screen.getByRole("button", {
+      name: "Lanjutkan ke Pembayaran dan Konfirmasi",
+    }),
+  )
+  await screen.findByRole("heading", {
+    level: 2,
+    name: "Pembayaran dan Konfirmasi",
+  })
+}
+
+async function submitCompletedWizard() {
+  await reachPaymentStep()
+  const receipt = new File(["receipt"], "receipt.pdf", {
+    type: "application/pdf",
+  })
+  fireEvent.change(
+    screen.getByLabelText(/Upload Bukti Transfer/, { selector: "input" }),
+    { target: { files: [receipt] } },
+  )
+  fireEvent.click(screen.getByLabelText(/uang yang sudah ditransfer/i))
+  fireEvent.click(screen.getByRole("button", { name: "Kirim Pendaftaran" }))
 }
 
 describe("registration wizard", () => {
@@ -179,5 +229,74 @@ describe("registration wizard", () => {
       expect(localStorage.getItem(REGISTRATION_DRAFT_KEY)).toBeNull()
       expect(screen.getByLabelText(/Nama Lengkap/)).toHaveValue("")
     })
+  })
+
+  it("shows a readable final summary with edit actions", async () => {
+    render(<RegistrationFormPage />)
+    await reachPaymentStep()
+
+    const summary = screen.getByRole("region", { name: "Ringkasan pendaftaran" })
+    expect(within(summary).getByText("Muhammad Abdullah")).toBeVisible()
+    expect(within(summary).getByText("SMPN 1 Semarang")).toBeVisible()
+    expect(within(summary).getByText("Programmer")).toBeVisible()
+
+    fireEvent.click(
+      within(summary).getByRole("button", { name: "Ubah Data Calon Santri" }),
+    )
+    expect(
+      await screen.findByRole("heading", { level: 2, name: "Data Calon Santri" }),
+    ).toBeVisible()
+  })
+
+  it("does not call Supabase before the final valid submission", async () => {
+    render(<RegistrationFormPage />)
+    await reachPaymentStep()
+
+    expect(supabaseMocks.upload).not.toHaveBeenCalled()
+    expect(supabaseMocks.insert).not.toHaveBeenCalled()
+
+    fireEvent.click(screen.getByRole("button", { name: "Kirim Pendaftaran" }))
+    expect(await screen.findByText("Bukti transfer wajib diupload")).toBeVisible()
+    expect(supabaseMocks.upload).not.toHaveBeenCalled()
+  })
+
+  it("uploads the receipt and inserts the registration after confirmation", async () => {
+    render(<RegistrationFormPage />)
+    await submitCompletedWizard()
+
+    await waitFor(() => expect(supabaseMocks.upload).toHaveBeenCalledTimes(1))
+    expect(supabaseMocks.upload).toHaveBeenCalledWith(
+      expect.stringMatching(/\.pdf$/),
+      expect.any(File),
+      { contentType: "application/pdf", upsert: false },
+    )
+    expect(supabaseMocks.insert).toHaveBeenCalledWith(
+      expect.objectContaining({
+        nama_lengkap: "Muhammad Abdullah",
+        sekolah_asal: "SMPN 1 Semarang",
+        pilihan_program: "programmer",
+        pernyataan_setuju: true,
+      }),
+    )
+    expect(await screen.findByText("Pendaftaran Berhasil!")).toBeVisible()
+    expect(localStorage.getItem(REGISTRATION_DRAFT_KEY)).toBeNull()
+  })
+
+  it("removes an uploaded receipt when database insertion fails", async () => {
+    supabaseMocks.insert.mockResolvedValueOnce({
+      error: { message: "insert failed" },
+    })
+    render(<RegistrationFormPage />)
+    await submitCompletedWizard()
+
+    await waitFor(() =>
+      expect(supabaseMocks.remove).toHaveBeenCalledWith([expect.stringMatching(/\.pdf$/)]),
+    )
+    expect(screen.getByRole("alert")).toHaveTextContent(
+      "Gagal menyimpan data pendaftaran: insert failed",
+    )
+    expect(
+      screen.getByRole("heading", { level: 2, name: "Pembayaran dan Konfirmasi" }),
+    ).toBeVisible()
   })
 })

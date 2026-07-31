@@ -203,12 +203,18 @@ export function RegistrationFormPage() {
     })
 
     if (insertError) {
+      try {
+        await supabase.storage.from("payment_receipts").remove([filePath])
+      } catch {
+        // Keep the database error as the actionable message for the applicant.
+      }
       setSubmitError(
         `Gagal menyimpan data pendaftaran: ${insertError.message}. Silakan coba lagi.`,
       )
       return
     }
 
+    localStorage.removeItem(REGISTRATION_DRAFT_KEY)
     setSubmitted(true)
   }
 
@@ -303,6 +309,8 @@ export function RegistrationFormPage() {
                   filePreview={filePreview}
                   onFileChange={handleFileChange}
                   onRemoveFile={removeFile}
+                  onEdit={goToStep}
+                  isSubmitting={isSubmitting}
                 />
               ) : null}
 
@@ -378,6 +386,7 @@ export function RegistrationFormPage() {
                   <Button
                     type="submit"
                     disabled={isSubmitting}
+                    aria-live="polite"
                     className="min-h-12 flex-1 rounded-xl bg-[#2C8970] text-base font-bold text-white"
                   >
                     {isSubmitting ? "Mengirim..." : "Kirim Pendaftaran"}

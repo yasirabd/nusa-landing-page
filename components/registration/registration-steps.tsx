@@ -315,17 +315,25 @@ export function PaymentConfirmationStep({
   filePreview,
   onFileChange,
   onRemoveFile,
+  onEdit,
+  isSubmitting,
 }: {
   headingRef: RefObject<HTMLHeadingElement>
   fileName: string | null
   filePreview: string | null
   onFileChange(event: ChangeEvent<HTMLInputElement>): void
   onRemoveFile(): void
+  onEdit(step: 1 | 2): void
+  isSubmitting: boolean
 }) {
   const {
     control,
+    getValues,
     formState: { errors },
   } = useFormContext<RegistrationFormValues>()
+  const values = getValues()
+  const programName =
+    values.pilihanProgram === "programmer" ? "Programmer" : "Designer"
 
   return (
     <section aria-labelledby="registration-step-heading">
@@ -335,6 +343,87 @@ export function PaymentConfirmationStep({
         description="Periksa petunjuk pembayaran, unggah bukti transfer, lalu kirim pendaftaran."
       />
       <div className="space-y-4">
+        <section
+          aria-labelledby="registration-summary-heading"
+          className="rounded-3xl border border-[#134146]/10 bg-[#F7F7F2] p-5 sm:p-7"
+        >
+          <div className="flex flex-wrap items-start justify-between gap-3">
+            <div>
+              <h3
+                id="registration-summary-heading"
+                className="font-bold text-[#134146]"
+              >
+                Ringkasan pendaftaran
+              </h3>
+              <p className="mt-1 text-xs leading-relaxed text-[#134146]/60">
+                Pastikan data calon santri dan pilihan program sudah benar.
+              </p>
+            </div>
+          </div>
+
+          <div className="mt-5 grid gap-4 sm:grid-cols-2">
+            <div className="rounded-2xl bg-[#2C8970]/5 p-4">
+              <div className="flex items-center justify-between gap-3">
+                <h4 className="text-sm font-bold text-[#134146]">
+                  Data Calon Santri
+                </h4>
+                <button
+                  type="button"
+                  onClick={() => onEdit(1)}
+                  disabled={isSubmitting}
+                  className="min-h-11 rounded-lg px-2 text-xs font-bold text-[#2C8970] outline-none focus-visible:ring-2 focus-visible:ring-[#F3B233] disabled:opacity-50"
+                >
+                  Ubah Data Calon Santri
+                </button>
+              </div>
+              <dl className="mt-3 space-y-3 text-sm">
+                <div>
+                  <dt className="text-xs text-[#134146]/55">Nama lengkap</dt>
+                  <dd className="mt-0.5 font-semibold text-[#134146]">
+                    {values.namaLengkap}
+                  </dd>
+                </div>
+                <div>
+                  <dt className="text-xs text-[#134146]/55">Nomor WhatsApp</dt>
+                  <dd className="mt-0.5 font-semibold text-[#134146]">
+                    {values.nomorWhatsapp}
+                  </dd>
+                </div>
+              </dl>
+            </div>
+
+            <div className="rounded-2xl bg-[#2C8970]/5 p-4">
+              <div className="flex items-center justify-between gap-3">
+                <h4 className="text-sm font-bold text-[#134146]">
+                  Sekolah dan Program
+                </h4>
+                <button
+                  type="button"
+                  onClick={() => onEdit(2)}
+                  disabled={isSubmitting}
+                  className="min-h-11 rounded-lg px-2 text-xs font-bold text-[#2C8970] outline-none focus-visible:ring-2 focus-visible:ring-[#F3B233] disabled:opacity-50"
+                >
+                  Ubah Sekolah dan Program
+                </button>
+              </div>
+              <dl className="mt-3 space-y-3 text-sm">
+                <div>
+                  <dt className="text-xs text-[#134146]/55">Sekolah asal</dt>
+                  <dd className="mt-0.5 font-semibold text-[#134146]">
+                    {values.sekolahAsal}
+                  </dd>
+                </div>
+                <div>
+                  <dt className="text-xs text-[#134146]/55">Program pilihan</dt>
+                  <dd className="mt-0.5 font-semibold text-[#134146]">
+                    {programName}
+                  </dd>
+                </div>
+              </dl>
+            </div>
+          </div>
+        </section>
+
         <div className="rounded-3xl border border-[#F3B233]/35 bg-[#F3B233]/15 p-5 text-[#134146] sm:p-7">
           <h3 className="font-bold">Panduan Pembayaran Infaq Pendaftaran</h3>
           <p className="mt-4 text-xs text-[#134146]/70">Nominal yang harus dibayarkan</p>
