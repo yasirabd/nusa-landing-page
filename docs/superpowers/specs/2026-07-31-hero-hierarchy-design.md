@@ -13,8 +13,8 @@ Make NUSA's positioning understandable within the first few seconds while keepin
 The hero uses this exact content hierarchy:
 
 - Promotion status: `SPMB 2027/2028 Sudah Dibuka`
-- Promotion detail: `Potongan Rp10 juta untuk 10 pendaftar pertama`
-- Eyebrow: `Boarding School Islami Tingkat SMA di Kota Semarang`
+- Promotion detail: `Potongan SPI Rp10 juta untuk 10 pendaftar pertama`
+- Eyebrow: `Boarding School Islami di Kota Semarang`
 - Headline: `Menjadi Muslim Tangguh, Jago IT`
 - Supporting copy: `Santri menempuh pendidikan kesetaraan SMA sambil memperkuat agama, karakter, dan keterampilan teknologi melalui jalur Programmer atau Designer.`
 - Primary CTA: `Daftar SPMB 2027/2028`
@@ -100,7 +100,7 @@ Manual text-only review reports the final hierarchy, removed elements, CTA desti
 ## Acceptance Criteria
 
 - A visitor can identify NUSA as an Islamic boarding school at SMA level in Kota Semarang and understand its technology focus from the first hero view.
-- The approved `SPMB 2027/2028` promotion and Rp10 million discount are visible without dominating the headline.
+- The approved `SPMB 2027/2028` promotion and Rp10 million SPI discount are visible without dominating the headline.
 - The headline wraps at 320 pixels without horizontal overflow.
 - Both CTAs are visible and semantically valid, with the registration CTA treated as primary.
 - The countdown, quota badge, floating badges, nested link-button markup, pulse, and long decorative hero motion are removed.
