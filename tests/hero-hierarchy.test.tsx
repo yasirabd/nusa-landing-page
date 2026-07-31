@@ -88,6 +88,21 @@ describe("hero hierarchy", () => {
     )
   })
 
+  it("keeps the hero compact without a fixed viewport height", () => {
+    render(<HeroSection />)
+
+    const section = screen.getByRole("heading", { level: 1 }).closest("section")
+    expect(section).toHaveClass("py-10", "md:py-12", "lg:py-14")
+    expect(section).not.toHaveClass("h-screen", "min-h-screen")
+
+    const source = readFileSync("components/hero-section.tsx", "utf8")
+    expect(source).toContain("items-center gap-10")
+    expect(source).toContain("lg:gap-12")
+    expect(source).not.toContain("lg:gap-16")
+    expect(source).not.toContain("100vh")
+    expect(source).not.toContain("100svh")
+  })
+
   it("uses semantic links for registration and WhatsApp without nested buttons", () => {
     render(<HeroSection />)
 

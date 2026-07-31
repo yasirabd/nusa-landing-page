@@ -10,7 +10,7 @@ const HERO_FACTS = [
 
 export function HeroSection() {
   return (
-    <section className="relative overflow-hidden bg-[linear-gradient(135deg,#134146_0%,#1F6F68_52%,#2C8970_100%)] py-12 text-[#F7F7F2] md:py-16 lg:py-20">
+    <section className="relative overflow-hidden bg-[linear-gradient(135deg,#134146_0%,#1F6F68_52%,#2C8970_100%)] py-10 text-[#F7F7F2] md:py-12 lg:py-14">
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-0 opacity-[0.055]"
@@ -25,7 +25,7 @@ export function HeroSection() {
         className="pointer-events-none absolute -right-32 top-10 size-80 rounded-full bg-[#42CDBA]/15 blur-3xl lg:size-[28rem]"
       />
 
-      <div className="relative mx-auto grid max-w-7xl items-center gap-12 px-4 md:px-6 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16">
+      <div className="relative mx-auto grid max-w-7xl items-center gap-10 px-4 md:px-6 lg:grid-cols-[1.05fr_0.95fr] lg:gap-12">
         <div className="max-w-2xl">
           <div className="mb-7">
             <p className="inline-flex rounded-full border border-[#F3B233]/35 bg-[#F3B233]/10 px-4 py-2 text-sm font-semibold leading-snug text-[#F3B233]">
