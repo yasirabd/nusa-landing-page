@@ -586,3 +586,88 @@ git commit -m "style: balance hero trust facts"
 ```
 
 Report the responsive spacing behavior and stop before the next audit feature.
+
+### Task 6: Separate the enrollment badge from its offer detail
+
+**Files:**
+- Modify: `tests/hero-hierarchy.test.tsx`
+- Modify: `components/hero-section.tsx`
+
+- [ ] **Step 1: Write the failing promotion-structure test**
+
+Add a test that verifies the short status owns the capsule while the offer is a separate sibling with an emphasized nominal:
+
+```tsx
+it("keeps the enrollment capsule compact and separates the offer detail", () => {
+  render(<HeroSection />)
+
+  const status = screen.getByText("SPMB 2027/2028 Sudah Dibuka")
+  const offer = screen.getByText((_, element) =>
+    element?.tagName === "P" &&
+    element.textContent === "Potongan SPI Rp10 juta untuk 10 pendaftar pertama",
+  )
+
+  expect(status).toHaveClass("rounded-full")
+  expect(status.parentElement).toBe(offer.parentElement)
+  expect(status).not.toContainElement(offer)
+  expect(within(offer).getByText("Rp10 juta")).toHaveClass(
+    "font-semibold",
+    "text-[#F3B233]",
+  )
+
+  const source = readFileSync("components/hero-section.tsx", "utf8")
+  expect(source).not.toContain("flex-wrap")
+  expect(source).not.toContain('aria-hidden="true" className="hidden text-white/35 sm:inline"')
+})
+```
+
+- [ ] **Step 2: Run the focused test and verify RED**
+
+Run:
+
+```powershell
+npx vitest run tests/hero-hierarchy.test.tsx --maxWorkers=1 --reporter=verbose
+```
+
+Expected: FAIL because the status and offer still share one wrapping capsule and the nominal is not separately emphasized.
+
+- [ ] **Step 3: Implement the approved two-level promotion hierarchy**
+
+Replace the current wrapping promotion capsule in `components/hero-section.tsx` with:
+
+```tsx
+<div className="mb-7">
+  <p className="inline-flex rounded-full border border-[#F3B233]/35 bg-[#F3B233]/10 px-4 py-2 text-sm font-semibold leading-snug text-[#F3B233]">
+    SPMB 2027/2028 Sudah Dibuka
+  </p>
+  <p className="mt-2 text-sm font-medium leading-6 text-white/85">
+    Potongan SPI <span className="font-semibold text-[#F3B233]">Rp10 juta</span> untuk 10
+    pendaftar pertama
+  </p>
+</div>
+```
+
+Do not add a bullet, wrapping capsule, new animation, or extra promotional widget.
+
+- [ ] **Step 4: Verify focused and full suites**
+
+Run:
+
+```powershell
+npx vitest run tests/hero-hierarchy.test.tsx tests/hero-image.test.tsx --maxWorkers=1 --reporter=verbose
+npx vitest run --maxWorkers=1 --reporter=verbose
+npx tsc --noEmit
+npm run build
+git diff --check
+```
+
+Expected: focused and full tests pass; TypeScript reports only known baseline errors outside hero scope; production build succeeds; no whitespace errors occur.
+
+- [ ] **Step 5: Commit and stop for text-only review**
+
+```powershell
+git add components/hero-section.tsx tests/hero-hierarchy.test.tsx
+git commit -m "style: refine hero enrollment notice"
+```
+
+Report the promotion hierarchy and stop before the next audit feature.

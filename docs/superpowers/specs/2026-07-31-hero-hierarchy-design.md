@@ -43,7 +43,7 @@ Trust facts remain stacked or use two columns at narrower widths. At the wide-de
 
 ## Simplification
 
-Remove the current countdown, full-width promo banner, separate quota badge, floating `IT Expert` badge, floating `100% Praktik` badge, decorative pulse, and long hover transformations. The promotion remains visible as one compact static label near the top of the copy column.
+Remove the current countdown, full-width promo banner, separate quota badge, floating `IT Expert` badge, floating `100% Praktik` badge, decorative pulse, and long hover transformations. The promotion remains visible near the top of the copy column. Only the short `SPMB 2027/2028 Sudah Dibuka` status uses a compact rounded badge; the SPI discount appears as left-aligned plain text directly below it, with `Rp10 juta` emphasized in yellow. The two lines do not share one wrapping capsule and do not use a bullet separator.
 
 The background may retain the established teal gradient and a restrained grid texture, but decorative glow shapes and ornaments must not compete with the headline. No new reveal, stagger, pulse, marquee, or continuously running animation is introduced.
 
