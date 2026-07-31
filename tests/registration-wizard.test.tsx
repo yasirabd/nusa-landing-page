@@ -106,6 +106,22 @@ async function submitCompletedWizard() {
 }
 
 describe("registration wizard", () => {
+  it("states male-student eligibility before form entry", () => {
+    render(<RegistrationFormPage />)
+
+    expect(
+      screen.getByText("Pendaftaran hanya untuk calon santri laki-laki."),
+    ).toBeVisible()
+    expect(
+      screen.getByText(
+        "Lengkapi data identitas calon santri. Estimasi waktu 2 menit.",
+      ),
+    ).toBeVisible()
+    expect(
+      screen.queryByText(/Bagian ini biasanya selesai dalam sekitar 2 menit/),
+    ).not.toBeInTheDocument()
+  })
+
   it("shows the current SPMB 2027/2028 intake", () => {
     render(<RegistrationFormPage />)
 

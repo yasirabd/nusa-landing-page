@@ -272,6 +272,9 @@ export function RegistrationFormPage() {
           <p className="mt-2 text-sm text-[#134146]/65">
             NUSA Boarding School · SPMB 2027/2028
           </p>
+          <p className="mt-3 w-fit rounded-xl border border-[#2C8970]/20 bg-[#2C8970]/8 px-3 py-2 text-sm font-semibold text-[#134146]">
+            Pendaftaran hanya untuk calon santri laki-laki.
+          </p>
           <a
             href="https://wa.me/6281392706707"
             target="_blank"

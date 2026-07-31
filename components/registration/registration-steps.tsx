@@ -72,7 +72,7 @@ export function PersonalDataStep({
       <StepHeader
         headingRef={headingRef}
         title="Data Calon Santri"
-        description="Siapkan data identitas calon santri. Bagian ini biasanya selesai dalam sekitar 2 menit."
+        description="Lengkapi data identitas calon santri. Estimasi waktu 2 menit."
       />
       <FieldGroup>
         <FormField>
