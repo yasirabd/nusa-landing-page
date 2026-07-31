@@ -18,7 +18,7 @@ describe("optimized hero image", () => {
     expect(image).toHaveAttribute("width", "1200")
     expect(image).toHaveAttribute("height", "794")
     expect(image).toHaveAttribute("loading", "eager")
-    expect(image).toHaveAttribute("sizes", "(max-width: 1023px) calc(100vw - 2rem), 50vw")
+    expect(image).toHaveAttribute("sizes", "(max-width: 1023px) calc(100vw - 2rem), 47vw")
   })
 
   it("keeps priority loading intent for the LCP image", () => {
@@ -36,6 +36,6 @@ describe("optimized hero image", () => {
       "srcset",
       "/images/nusa-hero-image-640.webp 640w, /images/nusa-hero-image.webp 1200w",
     )
-    expect(source).toHaveAttribute("sizes", "(max-width: 1023px) calc(100vw - 2rem), 50vw")
+    expect(source).toHaveAttribute("sizes", "(max-width: 1023px) calc(100vw - 2rem), 47vw")
   })
 })

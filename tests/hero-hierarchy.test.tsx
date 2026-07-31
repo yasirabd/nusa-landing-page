@@ -1,0 +1,59 @@
+import { existsSync, readFileSync } from "node:fs"
+import { render, screen, within } from "@testing-library/react"
+import { describe, expect, it } from "vitest"
+import { HeroSection } from "@/components/hero-section"
+
+describe("hero hierarchy", () => {
+  it("presents the approved positioning, promotion, and factual trust signals", () => {
+    render(<HeroSection />)
+
+    expect(screen.getByText("SPMB 2027/2028 Sudah Dibuka")).toBeVisible()
+    expect(screen.getByText("Potongan Rp10 juta untuk 10 pendaftar pertama")).toBeVisible()
+    expect(screen.getByText("Boarding School Islami Tingkat SMA di Kota Semarang")).toBeVisible()
+    expect(
+      screen.getByRole("heading", { level: 1, name: "Menjadi Muslim Tangguh, Jago IT" }),
+    ).toBeVisible()
+    expect(
+      screen.getByText(
+        "Santri menempuh pendidikan kesetaraan SMA sambil memperkuat agama, karakter, dan keterampilan teknologi melalui jalur Programmer atau Designer.",
+      ),
+    ).toBeVisible()
+
+    for (const fact of [
+      "Pendidikan Kesetaraan SMA",
+      "Programmer & Designer",
+      "Boarding School di Kota Semarang",
+    ]) {
+      expect(screen.getByText(fact)).toBeVisible()
+    }
+  })
+
+  it("uses semantic links for registration and WhatsApp without nested buttons", () => {
+    render(<HeroSection />)
+
+    const registration = screen.getByRole("link", { name: "Daftar SPMB 2027/2028" })
+    expect(registration).toHaveAttribute("href", "/daftar")
+    expect(within(registration).queryByRole("button")).not.toBeInTheDocument()
+
+    const consultation = screen.getByRole("link", { name: "Konsultasi via WhatsApp" })
+    expect(consultation).toHaveAttribute("href", "https://wa.me/6281392706707")
+    expect(consultation).toHaveAttribute("target", "_blank")
+    expect(consultation).toHaveAttribute("rel", "noopener noreferrer")
+    expect(within(consultation).queryByRole("button")).not.toBeInTheDocument()
+  })
+
+  it("removes the expired promotional widgets and obsolete component", () => {
+    render(<HeroSection />)
+
+    expect(screen.queryByText(/Kuota Terbatas/i)).not.toBeInTheDocument()
+    expect(screen.queryByText(/IT Expert/i)).not.toBeInTheDocument()
+    expect(screen.queryByText(/100% Praktik/i)).not.toBeInTheDocument()
+    expect(screen.queryByText(/Hari|Jam|Mnt|Dtk/)).not.toBeInTheDocument()
+
+    const source = readFileSync("components/hero-section.tsx", "utf8")
+    expect(source).not.toContain("PromoBanner")
+    expect(source).not.toContain("whitespace-nowrap")
+    expect(source).not.toContain("animate-pulse")
+    expect(existsSync("components/promo-banner.tsx")).toBe(false)
+  })
+})
