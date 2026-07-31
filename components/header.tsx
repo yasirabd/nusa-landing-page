@@ -108,7 +108,7 @@ export function Header() {
               <button
                 type="button"
                 aria-label="Buka menu navigasi"
-                className="ml-auto inline-flex size-11 items-center justify-center rounded-full border border-[#134146]/10 bg-white/70 text-[#134146] transition-[background-color,border-color,transform] duration-150 hover:border-[#2C8970]/30 hover:bg-white active:scale-[0.97] motion-reduce:transition-none motion-reduce:active:scale-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2C8970] focus-visible:ring-offset-2 lg:hidden"
+                className="ml-auto inline-flex size-11 items-center justify-center rounded-full border border-[#134146]/10 bg-white/70 text-[#134146] transition-[background-color,border-color] duration-150 hover:border-[#2C8970]/30 hover:bg-white active:border-[#2C8970]/40 active:bg-[#EAF5F1] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2C8970] focus-visible:ring-offset-2 lg:hidden"
               >
                 <Menu className="size-5" aria-hidden="true" />
               </button>
@@ -144,7 +144,7 @@ export function Header() {
                 <SheetClose asChild>
                   <Link
                     href="/daftar"
-                    className="flex min-h-12 w-full items-center justify-center rounded-full bg-[#F3B233] px-5 font-semibold text-[#134146] transition-[background-color,transform] duration-150 hover:bg-[#F6BE4D] active:scale-[0.97] motion-reduce:transition-none motion-reduce:active:scale-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2C8970] focus-visible:ring-offset-2"
+                    className="flex min-h-12 w-full items-center justify-center rounded-full bg-[#F3B233] px-5 font-semibold text-[#134146] transition-colors duration-150 hover:bg-[#F6BE4D] active:bg-[#E9A51F] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2C8970] focus-visible:ring-offset-2"
                   >
                     Daftar Sekarang
                   </Link>
