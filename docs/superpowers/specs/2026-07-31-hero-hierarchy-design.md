@@ -25,7 +25,7 @@ The implementation must not add accreditation, permit, diploma, partner, employm
 
 ## Layout and Hierarchy
 
-The hero retains a two-column desktop composition with copy on the left and the optimized student image on the right. Mobile uses one column with the complete decision-making message and both CTAs visible before the image.
+The hero retains a two-column desktop composition with copy on the left and the optimized student image on the right. Mobile uses one column with the complete decision-making message and both CTAs visible before the image. Its height remains content-driven rather than using `100vh`, `h-screen`, or `min-h-screen`. Compact outer padding uses 40 pixels on mobile, 48 pixels on tablet, and 56 pixels on desktop; the mobile text-to-image gap is 40 pixels and the desktop column gap is 48 pixels.
 
 Content order is:
 

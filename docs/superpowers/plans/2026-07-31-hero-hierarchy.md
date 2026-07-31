@@ -671,3 +671,77 @@ git commit -m "style: refine hero enrollment notice"
 ```
 
 Report the promotion hierarchy and stop before the next audit feature.
+
+### Task 7: Compact the hero outer height
+
+**Files:**
+- Modify: `tests/hero-hierarchy.test.tsx`
+- Modify: `components/hero-section.tsx`
+
+- [ ] **Step 1: Write the failing compact-height regression test**
+
+Add:
+
+```tsx
+it("keeps the hero compact without a fixed viewport height", () => {
+  render(<HeroSection />)
+
+  const section = screen.getByRole("heading", { level: 1 }).closest("section")
+  expect(section).toHaveClass("py-10", "md:py-12", "lg:py-14")
+  expect(section).not.toHaveClass("h-screen", "min-h-screen")
+
+  const source = readFileSync("components/hero-section.tsx", "utf8")
+  expect(source).toContain("items-center gap-10")
+  expect(source).toContain("lg:gap-12")
+  expect(source).not.toContain("lg:gap-16")
+  expect(source).not.toContain("100vh")
+  expect(source).not.toContain("100svh")
+})
+```
+
+- [ ] **Step 2: Run the focused test and verify RED**
+
+Run:
+
+```powershell
+npx vitest run tests/hero-hierarchy.test.tsx --maxWorkers=1 --reporter=verbose
+```
+
+Expected: FAIL because the section still uses `py-12 md:py-16 lg:py-20` and the grid still uses `gap-12 lg:gap-16`.
+
+- [ ] **Step 3: Apply the approved outer-spacing reduction**
+
+In `components/hero-section.tsx`, change only these classes:
+
+```tsx
+<section className="relative overflow-hidden bg-[linear-gradient(135deg,#134146_0%,#1F6F68_52%,#2C8970_100%)] py-10 text-[#F7F7F2] md:py-12 lg:py-14">
+```
+
+```tsx
+<div className="relative mx-auto grid max-w-7xl items-center gap-10 px-4 md:px-6 lg:grid-cols-[1.05fr_0.95fr] lg:gap-12">
+```
+
+Keep all internal content spacing, typography, CTA sizing, image dimensions, and content order unchanged.
+
+- [ ] **Step 4: Verify focused and full suites**
+
+Run:
+
+```powershell
+npx vitest run tests/hero-hierarchy.test.tsx tests/hero-image.test.tsx --maxWorkers=1 --reporter=verbose
+npx vitest run --maxWorkers=1 --reporter=verbose
+npx tsc --noEmit
+npm run build
+git diff --check
+```
+
+Expected: focused and full tests pass; TypeScript reports only known baseline errors outside hero scope; production build succeeds; no whitespace errors occur.
+
+- [ ] **Step 5: Commit and stop for text-only review**
+
+```powershell
+git add components/hero-section.tsx tests/hero-hierarchy.test.tsx
+git commit -m "style: compact hero spacing"
+```
+
+Report the responsive padding and gap changes, then stop before the next audit feature.
