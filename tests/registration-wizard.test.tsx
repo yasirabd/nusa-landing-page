@@ -352,7 +352,26 @@ describe("registration wizard", () => {
     expect(css).toContain("@media (hover: hover) and (pointer: fine)")
     expect(css).toContain("@media (prefers-reduced-motion: reduce)")
     expect(css).not.toMatch(/\.registration-action\s*\{[^}]*transition:\s*all/)
-    expect(pageSource).toContain("registration-actions")
+    const finePointerStart = css.lastIndexOf(
+      "@media (hover: hover) and (pointer: fine)",
+    )
+    const reducedMotionStart = css.lastIndexOf(
+      "@media (prefers-reduced-motion: reduce)",
+    )
+    const finePointerStyles = css.slice(finePointerStart, reducedMotionStart)
+    const reducedMotionStyles = css.slice(reducedMotionStart)
+
+    expect(finePointerStyles).toContain(
+      ".registration-action-primary:hover:not(:disabled)",
+    )
+    expect(finePointerStyles).toContain(
+      ".registration-action-secondary:hover:not(:disabled)",
+    )
+    expect(reducedMotionStyles).toContain(".registration-action:active:not(:disabled)")
+    expect(reducedMotionStyles).toContain("transform: none")
+    expect(css.indexOf(".registration-action {")).toBeLessThan(reducedMotionStart)
+    expect(pageSource).toContain("registration-actions sticky bottom-0")
+    expect(pageSource).toContain("sm:static")
     expect(css).toContain("env(safe-area-inset-bottom)")
     expect(pageSource).not.toContain("transition-all")
   })

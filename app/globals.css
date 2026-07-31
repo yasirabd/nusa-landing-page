@@ -221,6 +221,19 @@
   transform: scale(0.97);
 }
 
+.registration-action {
+  transition: background-color 150ms ease, border-color 150ms ease, box-shadow 150ms ease,
+    transform 150ms cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.registration-actions {
+  padding-bottom: calc(1rem + env(safe-area-inset-bottom));
+}
+
+.registration-action:active:not(:disabled) {
+  transform: scale(0.97);
+}
+
 @media (hover: hover) and (pointer: fine) {
   .hero-action-primary:hover {
     background-color: #f6be4d;
@@ -264,19 +277,6 @@
   .registration-action-secondary:hover:not(:disabled) {
     transform: none;
   }
-}
-
-.registration-action {
-  transition: background-color 150ms ease, border-color 150ms ease, box-shadow 150ms ease,
-    transform 150ms cubic-bezier(0.23, 1, 0.32, 1);
-}
-
-.registration-actions {
-  padding-bottom: calc(1rem + env(safe-area-inset-bottom));
-}
-
-.registration-action:active:not(:disabled) {
-  transform: scale(0.97);
 }
 
 @media (min-width: 640px) {
