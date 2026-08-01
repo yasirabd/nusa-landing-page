@@ -23,7 +23,7 @@ export function NUSATaglineSection() {
 
           {/* Statement Kedua: Secondary Motto (Bukan Paragraf Artikel) */}
           <h3 className="text-xl sm:text-2xl md:text-3xl lg:text-[34px] font-medium leading-relaxed tracking-tight opacity-75 mx-auto max-w-4xl" style={{color: COLORS.darkBase}}>
-            Lead with faith, knowledge, and courage.
+            Faith at Heart. Tech in Hand. Purpose in Action.
           </h3>
           
         </div>
