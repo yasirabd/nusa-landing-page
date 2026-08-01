@@ -200,12 +200,10 @@ export function ProgramSection() {
         <div className="mt-16 md:mt-24 pt-10 border-t border-[#42CDBA]/20 mx-auto max-w-4xl text-center">
           <Link
             href="/daftar"
-            className="inline-block"
+            className="group/btn inline-flex items-center gap-2 rounded-full bg-[#2C8970] px-8 py-3.5 text-base font-bold text-white shadow-lg shadow-primary/20 sm:px-10 sm:py-4 sm:text-lg"
           >
-            <div className="group/btn inline-flex items-center gap-2 rounded-full px-8 py-3.5 sm:py-4 sm:px-10 text-base sm:text-lg font-bold shadow-lg shadow-primary/20 transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-accent/20 bg-[#2C8970] text-white hover:bg-[#F3B233] hover:text-[#134146]">
-              Daftar Sekarang
-              <MoveRight className="h-5 w-5 transition-transform duration-300 group-hover/btn:translate-x-1.5" />
-            </div>
+            Daftar Sekarang
+            <MoveRight className="h-5 w-5" />
           </Link>
         </div>
       </div>

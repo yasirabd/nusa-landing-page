@@ -32,29 +32,16 @@ export function RegistrationSection() {
             </div>
 
            <div className="flex justify-center w-full">
-            <Link
-              href="/daftar"
-              className="inline-block w-full sm:w-auto group"
-            >
               <Button
+                asChild
                 size="lg"
-                className="
-                  w-full sm:w-auto
-                  text-lg font-semibold
-                  px-10 py-7 md:py-8 rounded-full
-                  transition-all duration-300
-                  hover:-translate-y-1 hover:scale-[1.03]
-                  shadow-[0_8px_20px_rgba(44,137,112,0.30)]
-                  hover:shadow-[0_15px_30px_rgba(243,178,51,0.40),0_0_20px_rgba(142,243,231,0.4)]
-                  bg-[#2C8970] hover:bg-[#F3B233]
-                  text-[#F7F7F2] hover:text-[#134146]
-                  flex items-center justify-center gap-2
-                "
+                className="h-auto w-full rounded-full bg-[#2C8970] px-10 py-7 text-lg font-semibold text-[#F7F7F2] shadow-[0_8px_20px_rgba(44,137,112,0.30)] sm:w-auto md:py-8"
               >
+                <Link href="/daftar" className="group">
                 <span>Daftar Sekarang</span>
-                <span className="transition-transform duration-300 group-hover:translate-x-1.5 font-normal text-xl leading-none mt-0.5">→</span>
+                  <span aria-hidden="true" className="text-xl font-normal leading-none">→</span>
+                </Link>
               </Button>
-            </Link>
           </div>
 
           </div>

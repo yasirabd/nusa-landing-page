@@ -9,7 +9,6 @@ const COLORS = {
   white: "#F7F7F2",
   surface: "#F0FAF7",
 }
-
 export function Program100Days() {
   return (
     <section className="py-16 md:py-20 lg:py-24 bg-white relative overflow-hidden">
@@ -92,15 +91,11 @@ export function Program100Days() {
             <div className="text-center mt-12 md:mt-16 pt-12 md:pt-16 border-t border-white/10">
               <Link
                 href="/daftar"
-                className="inline-block"
+                className="group/btn inline-flex items-center gap-2 rounded-full px-8 py-3 text-base font-bold shadow-2xl sm:px-10 sm:py-4 sm:text-lg"
+                style={{ backgroundColor: COLORS.accent, color: COLORS.darkBase }}
               >
-                <div 
-                  className="group/btn inline-flex items-center gap-2 rounded-full px-8 py-3 sm:py-4 sm:px-10 text-base sm:text-lg font-bold shadow-2xl transition-all duration-300 hover:scale-105 hover:shadow-[#F3B233]/40"
-                  style={{ backgroundColor: COLORS.accent, color: COLORS.darkBase }}
-                >
-                  Daftar Sekarang
-                  <MoveRight className="h-5 w-5 transition-transform duration-300 group-hover/btn:translate-x-1.5" />
-                </div>
+                Daftar Sekarang
+                <MoveRight className="h-5 w-5" />
               </Link>
             </div>
           </div>

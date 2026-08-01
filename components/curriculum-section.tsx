@@ -1,4 +1,4 @@
-import { CheckCircle2, MoveRight } from "lucide-react"
+import { CheckCircle2 } from "lucide-react"
 
 const COLORS = {
   primary: "#2C8970",
@@ -138,15 +138,6 @@ export function CurriculumSection() {
                       ))}
                     </ul>
 
-                    {/* CTA Button Conditional */}
-                    {pillar.title === "Kurikulum IT" && (
-                      <div className="mt-8 pt-8 md:mt-10 md:pt-10 border-t border-gray-100">
-                        <button className="group/btn inline-flex items-center gap-2 rounded-full px-6 py-2.5 text-base font-semibold text-white shadow-sm transition-all duration-300 hover:scale-105 bg-[#2C8970] hover:bg-[#F3B233]">
-                          Lihat Karya
-                          <MoveRight className="h-4 w-4 transition-transform duration-300 group-hover/btn:translate-x-1" />
-                        </button>
-                      </div>
-                    )}
                   </div>
                 </div>
               </div>
