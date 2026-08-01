@@ -1,5 +1,11 @@
-export const GALLERY_IMAGE_SIZES =
-  "(max-width: 767px) calc(100vw - 2rem), (max-width: 1279px) calc(50vw - 3rem), 584px"
+export const GALLERY_FEATURED_IMAGE_SIZES =
+  "(max-width: 767px) calc(100vw - 2rem), (max-width: 1023px) calc(100vw - 4rem), (max-width: 1279px) calc(50vw - 2.5rem), 584px"
+
+export const GALLERY_TILE_IMAGE_SIZES =
+  "(max-width: 767px) calc(100vw - 2rem), (max-width: 1023px) calc(50vw - 3rem), (max-width: 1279px) calc(25vw - 2rem), 284px"
+
+export const GALLERY_WIDE_TILE_IMAGE_SIZES =
+  "(max-width: 767px) calc(100vw - 2rem), (max-width: 1023px) calc(50vw - 3rem), (max-width: 1279px) calc(50vw - 2.5rem), 584px"
 
 export interface GalleryItem {
   name: string
@@ -122,3 +128,30 @@ export const GALLERY_ITEMS: readonly GalleryItem[] = [
     mobileHeight: 480,
   },
 ]
+
+const LANDING_GALLERY_ORDER = [
+  "NUSA Mengajar",
+  "IT Camp",
+  "Jualan di Car Free Day",
+  "MPLS",
+  "Talking to Stranger",
+  "Takziah Tetangga",
+  "Jualan di Market Day",
+  "Leadership Camp",
+  "Google I/O Extended Semarang",
+  "Bersukaria: City Tour Mataram",
+  "IT Camp: Outbond",
+  "Bersukaria: City Tour Legend Culinary (English)",
+] as const
+
+export const LANDING_GALLERY_ITEMS: readonly GalleryItem[] = LANDING_GALLERY_ORDER.map(
+  (name) => {
+    const item = GALLERY_ITEMS.find((galleryItem) => galleryItem.name === name)
+
+    if (!item) {
+      throw new Error(`Gallery item not found: ${name}`)
+    }
+
+    return item
+  },
+)
