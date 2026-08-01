@@ -4,6 +4,9 @@ export const GALLERY_FEATURED_IMAGE_SIZES =
 export const GALLERY_TILE_IMAGE_SIZES =
   "(max-width: 767px) calc(100vw - 2rem), (max-width: 1023px) calc(50vw - 3rem), (max-width: 1279px) calc(25vw - 2rem), 284px"
 
+export const GALLERY_WIDE_TILE_IMAGE_SIZES =
+  "(max-width: 767px) calc(100vw - 2rem), (max-width: 1023px) calc(50vw - 3rem), (max-width: 1279px) calc(50vw - 2.5rem), 584px"
+
 export interface GalleryItem {
   name: string
   description: string

@@ -23,6 +23,8 @@ const featuredSizes =
   "(max-width: 767px) calc(100vw - 2rem), (max-width: 1023px) calc(100vw - 4rem), (max-width: 1279px) calc(50vw - 2.5rem), 584px"
 const tileSizes =
   "(max-width: 767px) calc(100vw - 2rem), (max-width: 1023px) calc(50vw - 3rem), (max-width: 1279px) calc(25vw - 2rem), 284px"
+const wideTileSizes =
+  "(max-width: 767px) calc(100vw - 2rem), (max-width: 1023px) calc(50vw - 3rem), (max-width: 1279px) calc(50vw - 2.5rem), 584px"
 
 function getImageSourcePath(image: HTMLElement) {
   const source = new URL(image.getAttribute("src") ?? "", "http://localhost")
@@ -49,9 +51,17 @@ describe("editorial gallery rendering", () => {
 
     const featured = screen.getByRole("article", { name: "NUSA Mengajar" })
     expect(featured).toHaveClass(
+      "h-[240px]",
+      "md:h-[260px]",
       "md:col-span-2",
       "lg:col-span-2",
       "lg:row-span-2",
+    )
+
+    expect(screen.getByRole("article", { name: "IT Camp" })).toHaveClass(
+      "h-[240px]",
+      "md:h-[260px]",
+      "lg:col-span-2",
     )
 
     const grid = featured.parentElement as HTMLElement
@@ -136,7 +146,9 @@ describe("editorial gallery rendering", () => {
       expect(getImageSourcePath(image)).toBe(item?.image)
       expect(image).toHaveAttribute("width", String(item?.width))
       expect(image).toHaveAttribute("height", String(item?.height))
-      expect(image).toHaveAttribute("sizes", index === 0 ? featuredSizes : tileSizes)
+      const expectedSizes =
+        index === 0 ? featuredSizes : index === 1 ? wideTileSizes : tileSizes
+      expect(image).toHaveAttribute("sizes", expectedSizes)
       expect(source).toHaveAttribute(
         "srcset",
         `${item?.image.replace(".webp", "-640.webp")} ${item?.mobileWidth}w, ${item?.image} ${item?.width}w`,
@@ -145,6 +157,14 @@ describe("editorial gallery rendering", () => {
   })
 
   it("keeps captions visible and removes decorative gallery motion", () => {
+    render(<GallerySection />)
+
+    for (const name of approvedOrder.slice(0, 8)) {
+      const item = galleryContent.GALLERY_ITEMS.find((candidate) => candidate.name === name)
+      expect(screen.getByText(name)).toBeVisible()
+      expect(screen.getByText(item?.description ?? "")).toBeVisible()
+    }
+
     const source = readFileSync("components/gallery-section.tsx", "utf8")
     const globalStyles = readFileSync("app/globals.css", "utf8")
 

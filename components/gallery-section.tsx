@@ -6,6 +6,7 @@ import { useState } from "react"
 import {
   GALLERY_FEATURED_IMAGE_SIZES,
   GALLERY_TILE_IMAGE_SIZES,
+  GALLERY_WIDE_TILE_IMAGE_SIZES,
   LANDING_GALLERY_ITEMS,
 } from "@/components/gallery-content"
 
@@ -48,11 +49,16 @@ export function GallerySection() {
         >
           {visibleItems.map((item, index) => {
             const isFeatured = index === 0
+            const imageSizes = isFeatured
+              ? GALLERY_FEATURED_IMAGE_SIZES
+              : index === 1
+                ? GALLERY_WIDE_TILE_IMAGE_SIZES
+                : GALLERY_TILE_IMAGE_SIZES
 
             return (
               <article
                 key={item.image}
-                className={`relative min-h-[240px] overflow-hidden rounded-2xl bg-[#134146] md:min-h-[260px] lg:h-full lg:min-h-0 ${
+                className={`relative h-[240px] overflow-hidden rounded-2xl bg-[#134146] md:h-[260px] lg:h-full ${
                   isFeatured
                     ? "md:col-span-2 lg:col-span-2 lg:row-span-2"
                     : index === 1
@@ -66,22 +72,14 @@ export function GallerySection() {
                     <source
                       type="image/webp"
                       srcSet={`${item.image.replace(".webp", "-640.webp")} ${item.mobileWidth}w, ${item.image} ${item.width}w`}
-                      sizes={
-                        isFeatured
-                          ? GALLERY_FEATURED_IMAGE_SIZES
-                          : GALLERY_TILE_IMAGE_SIZES
-                      }
+                      sizes={imageSizes}
                     />
                     <Image
                       src={item.image}
                       alt={item.name}
                       width={item.width}
                       height={item.height}
-                      sizes={
-                        isFeatured
-                          ? GALLERY_FEATURED_IMAGE_SIZES
-                          : GALLERY_TILE_IMAGE_SIZES
-                      }
+                      sizes={imageSizes}
                       className="absolute inset-0 h-full w-full object-cover"
                       style={{ objectPosition: item.objectPosition }}
                     />
