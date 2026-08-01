@@ -91,11 +91,10 @@ export function Program100Days() {
             <div className="text-center mt-12 md:mt-16 pt-12 md:pt-16 border-t border-white/10">
               <Link
                 href="/daftar"
-                className="group/btn inline-flex items-center gap-2 rounded-full px-8 py-3 text-base font-bold shadow-2xl sm:px-10 sm:py-4 sm:text-lg"
-                style={{ backgroundColor: COLORS.accent, color: COLORS.darkBase }}
+                className="group/btn inline-flex items-center gap-2 rounded-full bg-[#F3B233] px-8 py-3 text-base font-bold text-[#134146] shadow-2xl transition-[background-color,box-shadow,transform] duration-150 hover:bg-[#F6BE4D] hover:shadow-[#F3B233]/40 active:scale-[0.97] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#134146] motion-reduce:transition-none motion-reduce:active:scale-100 sm:px-10 sm:py-4 sm:text-lg"
               >
                 Daftar Sekarang
-                <MoveRight className="h-5 w-5" />
+                <MoveRight className="h-5 w-5 transition-transform duration-150 group-hover/btn:translate-x-1 group-focus-visible/btn:translate-x-1 motion-reduce:transform-none motion-reduce:transition-none" />
               </Link>
             </div>
           </div>
@@ -104,4 +103,3 @@ export function Program100Days() {
     </section>
   )
 }
-  

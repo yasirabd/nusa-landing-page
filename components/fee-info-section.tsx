@@ -84,7 +84,7 @@ export function FeeInfoSection() {
             <div className="flex flex-col text-center md:text-left mb-4 md:mb-0">
               <span 
                 className="inline-block px-4 py-1.5 text-xs font-bold rounded-full mb-3 self-center md:self-start shadow-sm"
-                style={{ backgroundColor: COLORS.accent, color: "#fff" }}
+                style={{ backgroundColor: COLORS.accent, color: COLORS.darkBase }}
               >
                 BIAYA PENDAFTARAN
               </span>

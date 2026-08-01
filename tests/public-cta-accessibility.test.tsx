@@ -1,6 +1,7 @@
 import { render, screen } from "@testing-library/react"
 import { describe, expect, it } from "vitest"
 import { CurriculumSection } from "@/components/curriculum-section"
+import { FeeInfoSection } from "@/components/fee-info-section"
 import { Program100Days } from "@/components/program-100-days"
 import { ProgramSection } from "@/components/program-section"
 import { RegistrationSection } from "@/components/registration-section"
@@ -35,5 +36,31 @@ describe("public CTA accessibility", () => {
       screen.queryByRole("button", { name: "Lihat Karya" }),
     ).not.toBeInTheDocument()
     expect(screen.queryByText("Lihat Karya")).not.toBeInTheDocument()
+  })
+
+  it("uses dark teal text on the gold registration-fee badge", () => {
+    render(<FeeInfoSection />)
+
+    expect(screen.getByText("BIAYA PENDAFTARAN")).toHaveStyle({
+      backgroundColor: "#F3B233",
+      color: "#134146",
+    })
+  })
+
+  it.each([
+    ["100-day program", <Program100Days />],
+    ["program overview", <ProgramSection />],
+    ["final registration", <RegistrationSection />],
+  ])("gives the %s CTA visible focus and restrained motion", (_, component) => {
+    render(component)
+    const link = screen.getByRole("link", { name: "Daftar Sekarang" })
+
+    expect(link).toHaveClass(
+      "duration-150",
+      "focus-visible:ring-2",
+      "active:scale-[0.97]",
+      "motion-reduce:active:scale-100",
+    )
+    expect(link).not.toHaveClass("transition-all", "hover:scale-105")
   })
 })

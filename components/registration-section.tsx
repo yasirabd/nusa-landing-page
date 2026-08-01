@@ -35,14 +35,19 @@ export function RegistrationSection() {
               <Button
                 asChild
                 size="lg"
-                className="h-auto w-full rounded-full bg-[#2C8970] px-10 py-7 text-lg font-semibold text-[#F7F7F2] shadow-[0_8px_20px_rgba(44,137,112,0.30)] sm:w-auto md:py-8"
+                className="h-auto w-full rounded-full bg-[#2C8970] px-10 py-7 text-lg font-semibold text-[#F7F7F2] shadow-[0_8px_20px_rgba(44,137,112,0.30)] transition-[background-color,box-shadow,transform] duration-150 hover:bg-[#F3B233] hover:text-[#134146] hover:shadow-[0_12px_24px_rgba(243,178,51,0.28)] active:scale-[0.97] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2C8970] focus-visible:ring-offset-2 motion-reduce:transition-none motion-reduce:active:scale-100 sm:w-auto md:py-8"
               >
                 <Link href="/daftar" className="group">
-                <span>Daftar Sekarang</span>
-                  <span aria-hidden="true" className="text-xl font-normal leading-none">→</span>
+                  <span>Daftar Sekarang</span>
+                  <span
+                    aria-hidden="true"
+                    className="mt-0.5 text-xl font-normal leading-none transition-transform duration-150 group-hover:translate-x-1 group-focus-visible:translate-x-1 motion-reduce:transform-none motion-reduce:transition-none"
+                  >
+                    →
+                  </span>
                 </Link>
               </Button>
-          </div>
+            </div>
 
           </div>
         </div>
