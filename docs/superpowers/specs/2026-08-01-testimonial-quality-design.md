@@ -49,6 +49,8 @@ Use a restrained section width and spacing consistent with the recently polished
 
 The featured card should have more internal space and a larger quote treatment than the supporting cards. It must remain visually related to them through shared corner radius, border weight, avatar treatment, and attribution structure.
 
+Let every supporting card use its natural content height. The grid aligns cards to the start rather than stretching short testimonials to match the longest quote. Quote content must not use flex growth solely to push attribution to an artificial shared baseline. Keep the quote-to-attribution and inter-group spacing compact so short testimonials do not accumulate empty vertical space.
+
 All four testimonials must render on the initial page load. Do not hide content behind carousel controls or pagination.
 
 ## Card Presentation

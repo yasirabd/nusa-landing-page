@@ -49,7 +49,7 @@ function TestimonialCard({
   return (
     <article
       aria-label={testimonial.name}
-      className={`flex h-full flex-col rounded-3xl border border-[#134146]/10 bg-[#F7F7F2] p-6 sm:p-7 ${
+      className={`flex flex-col rounded-3xl border border-[#134146]/10 bg-[#F7F7F2] p-6 sm:p-7 ${
         featured ? "lg:p-10" : "lg:p-8"
       } ${className}`}
       data-featured={featured ? "true" : undefined}
@@ -63,7 +63,7 @@ function TestimonialCard({
         &ldquo;
       </span>
 
-      <blockquote className="mt-1 flex-1">
+      <blockquote className="mt-1">
         <p
           className={`font-medium text-[#134146] ${
             featured
@@ -75,7 +75,7 @@ function TestimonialCard({
         </p>
       </blockquote>
 
-      <footer className="mt-8 flex items-center gap-4 border-t border-[#134146]/12 pt-5">
+      <footer className="mt-6 flex items-center gap-4 border-t border-[#134146]/12 pt-5">
         <span
           aria-hidden="true"
           className="flex size-12 shrink-0 items-center justify-center rounded-full bg-[#F3B233] text-sm font-bold tracking-wide text-[#134146]"
@@ -111,11 +111,11 @@ export function TestimonialsSection() {
           </p>
         </div>
 
-        <div className="mt-10">
+        <div className="mt-8">
           <TestimonialCard featured testimonial={featured} />
         </div>
 
-        <div className="mt-6 grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-5 lg:grid-cols-3 lg:gap-6">
+        <div className="mt-5 grid grid-cols-1 items-start gap-4 md:grid-cols-2 md:gap-5 lg:grid-cols-3 lg:gap-6">
           {supporting.map((testimonial, index) => (
             <TestimonialCard
               className={
