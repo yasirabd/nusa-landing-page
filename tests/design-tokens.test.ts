@@ -46,10 +46,7 @@ describe("NUSA public design tokens", () => {
       /\.section-spacing-compact\s*\{[^}]*padding-block:\s*3rem/s,
     )
     expect(styles).toMatch(
-      /\.section-spacing-standard\s*\{[^}]*padding-block:\s*4rem/s,
-    )
-    expect(styles).toMatch(
-      /\.section-spacing-feature\s*\{[^}]*padding-block:\s*4rem/s,
+      /\.section-spacing-standard,\s*\.section-spacing-feature\s*\{[^}]*padding-block:\s*4rem/s,
     )
     expect(styles).toContain("@media (min-width: 48rem)")
     expect(styles).toContain("padding-block: 5rem;")

@@ -126,6 +126,14 @@
   --color-chart-4: var(--chart-4);
   --color-chart-5: var(--chart-5);
 
+  --color-brand: #2c8970;
+  --color-brand-dark: #134146;
+  --color-brand-depth: #1f6f68;
+  --color-brand-accent: #f3b233;
+  --color-brand-highlight: #42cdba;
+  --color-brand-surface: #f0faf7;
+  --color-brand-paper: #f7f7f2;
+
   --radius-sm: calc(var(--radius) - 4px);
   --radius-base: var(--radius);
   --radius-md: calc(var(--radius) - 2px);
@@ -143,6 +151,35 @@
   --font-serif: "Romulo", serif;
   --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
     "Liberation Mono", "Courier New", monospace;
+}
+
+.section-spacing-compact {
+  padding-block: 3rem;
+}
+
+.section-spacing-standard,
+.section-spacing-feature {
+  padding-block: 4rem;
+}
+
+@media (min-width: 48rem) {
+  .section-spacing-compact {
+    padding-block: 4rem;
+  }
+
+  .section-spacing-standard {
+    padding-block: 5rem;
+  }
+
+  .section-spacing-feature {
+    padding-block: 6rem;
+  }
+}
+
+@media (min-width: 64rem) {
+  .section-spacing-standard {
+    padding-block: 6rem;
+  }
 }
 
 @layer base {
