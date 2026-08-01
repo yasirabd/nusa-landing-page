@@ -84,7 +84,7 @@ export function CurriculumSection() {
           
           <p className="mt-6 md:mt-8 text-base sm:text-lg md:text-xl font-medium leading-relaxed max-w-3xl mx-auto opacity-80" style={{ color: COLORS.darkBase }}>
             4 Pilar yang membentuk{" "}
-            <span className="font-serif italic font-medium tracking-wide whitespace-nowrap" style={{ color: COLORS.accent }}>"Muslim Tangguh, Jago IT"</span>
+            <span className="font-serif italic font-normal tracking-wide whitespace-nowrap" style={{ color: COLORS.accent }}>"Muslim Tangguh, Jago IT"</span>
             {" "}di NUSA Boarding School.
           </p>
         </div>

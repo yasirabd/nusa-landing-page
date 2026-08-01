@@ -12,7 +12,7 @@ export function NUSATaglineSection() {
           {/* Statement Pertama: Bold & Gigantic */}
           <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-[72px] font-extrabold leading-[1.15] tracking-tight" style={{color: COLORS.darkBase}}>
             Rise as a <br className="hidden sm:block" />
-            <span className="font-serif italic font-medium tracking-wide" style={{ color: COLORS.accent }}>
+            <span className="font-serif italic font-normal tracking-wide" style={{ color: COLORS.accent }}>
               <span className="whitespace-nowrap">Muslim Tangguh,</span>{' '}
               <span className="whitespace-nowrap">Jago IT.</span>
             </span>

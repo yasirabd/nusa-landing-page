@@ -23,7 +23,7 @@ export function RegistrationSection() {
                 Jadilah bagian dari
                 <br />
                 <span
-                  className="font-serif italic font-medium tracking-wide"
+                  className="font-serif italic font-normal tracking-wide"
                   style={{ color: "#F3B233" }}
                 >
                   Muslim Tangguh Jago IT

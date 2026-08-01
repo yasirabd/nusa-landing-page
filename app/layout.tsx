@@ -3,14 +3,7 @@ import "@/app/globals.css"
 
 import { ThemeProvider } from "@/components/theme-provider"
 import { GeistSans } from "geist/font/sans"
-import { Noto_Serif, Righteous } from "next/font/google"
-
-const notoSerif = Noto_Serif({
-  subsets: ["latin"],
-  style: "italic",
-  weight: "500",
-  variable: "--font-noto-serif",
-})
+import { Righteous } from "next/font/google"
 
 const righteous = Righteous({
   subsets: ["latin"],
@@ -34,7 +27,7 @@ export default function RootLayout({
     <html lang="id" suppressHydrationWarning>
       <head />
       <body
-        className={`${GeistSans.variable} ${notoSerif.variable} ${righteous.variable} font-sans`}
+        className={`${GeistSans.variable} ${righteous.variable} font-sans`}
         suppressHydrationWarning
       >
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>

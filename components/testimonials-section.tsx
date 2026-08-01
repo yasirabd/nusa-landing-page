@@ -56,7 +56,7 @@ function TestimonialCard({
     >
       <span
         aria-hidden="true"
-        className={`font-serif leading-none text-[#F3B233] ${
+        className={`font-serif italic leading-none text-[#F3B233] ${
           featured ? "text-6xl md:text-7xl" : "text-5xl"
         }`}
       >
