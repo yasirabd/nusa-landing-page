@@ -2,7 +2,6 @@ import { Header } from "@/components/header"
 import { HeroSection } from "@/components/hero-section"
 import { NUSATaglineSection } from "@/components/nusa-tagline"
 import { WhyChooseSection } from "@/components/why-choose-section"
-import { Program100Days } from "@/components/program-100-days"
 import { ProgramSection } from "@/components/program-section"
 import { CurriculumSection } from "@/components/curriculum-section"
 import { TeachingTeamSection } from "@/components/teaching-team-section"
@@ -24,7 +23,6 @@ export default function Home() {
         <NUSATaglineSection />
         <WhyChooseSection />
         <CurriculumSection />
-        <Program100Days />
         <ProgramSection />
         <TeachingTeamSection />
         <GallerySection />
