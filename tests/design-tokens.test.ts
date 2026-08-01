@@ -43,10 +43,10 @@ describe("NUSA public design tokens", () => {
     const styles = readFileSync("app/globals.css", "utf8")
 
     expect(styles).toMatch(
-      /\.section-spacing-compact\s*\{[^}]*padding-block:\s*3rem/s,
+      /\.section-spacing-compact\s*\{[\s\S]*?padding-block:\s*3rem/,
     )
     expect(styles).toMatch(
-      /\.section-spacing-standard,\s*\.section-spacing-feature\s*\{[^}]*padding-block:\s*4rem/s,
+      /\.section-spacing-standard,\s*\.section-spacing-feature\s*\{[\s\S]*?padding-block:\s*4rem/,
     )
     expect(styles).toContain("@media (min-width: 48rem)")
     expect(styles).toContain("padding-block: 5rem;")
