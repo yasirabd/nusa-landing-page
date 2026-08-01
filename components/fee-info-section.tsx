@@ -64,7 +64,7 @@ export function FeeInfoSection() {
 
         {/* Header */}
         <div className="text-center mb-10 md:mb-16">
-          <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight mb-4" style={{ color: COLORS.darkBase }}>
+          <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-4" style={{ color: COLORS.darkBase }}>
             Informasi Biaya
           </h2>
           <p className="text-base sm:text-lg font-medium leading-relaxed max-w-2xl mx-auto opacity-80" style={{ color: COLORS.darkBase }}>
@@ -136,7 +136,7 @@ export function FeeInfoSection() {
                       🔥 {fee.promoBadge}
                     </span>
                     <div className="flex items-center justify-center gap-2 mb-1">
-                      <span className="text-red-500/80 line-through text-2xl md:text-3xl font-black tracking-tight">
+                      <span className="text-red-500/80 line-through text-2xl md:text-3xl font-bold tracking-tight">
                         {fee.originalAmount}
                       </span>
                     </div>

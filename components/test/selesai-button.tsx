@@ -40,7 +40,7 @@ export function SelesaiButton({ kodeTes }: { kodeTes: string }) {
         <div className="inline-flex bg-gradient-to-br from-[#2C8970] to-[#134146] rounded-full p-4 mb-5 shadow-[0_8px_20px_rgba(44,137,112,0.3)]">
           <CheckCircle2 className="w-10 h-10 text-white" />
         </div>
-        <h3 className="text-2xl font-black text-[#134146] mb-3 tracking-tight">Pendaftaran Terkirim!</h3>
+        <h3 className="text-2xl font-bold text-[#134146] mb-3 tracking-tight">Pendaftaran Terkirim!</h3>
         <p className="text-[#134146]/80 font-medium">
           Data tes Anda telah kami terima dengan baik. Tim Admin akan segera menghubungi Anda melalui WhatsApp untuk penjadwalan Wawancara.
         </p>

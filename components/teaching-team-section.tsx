@@ -56,7 +56,7 @@ export function TeachingTeamSection() {
         
         {/* Monumental Header */}
         <div className="mx-auto max-w-4xl text-center mb-16 md:mb-24">
-          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight mb-6" style={{ color: COLORS.white }}>
+          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight mb-6" style={{ color: COLORS.white }}>
             Tim Pengajar <span className="font-righteous font-normal tracking-wide">NUSA</span>
           </h2>
           <p className="text-base sm:text-lg font-medium leading-relaxed max-w-2xl mx-auto opacity-80" style={{ color: COLORS.white }}>

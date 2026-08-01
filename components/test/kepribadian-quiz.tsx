@@ -241,7 +241,7 @@ export function KepribadianQuiz({ registrationId, refParam }: { registrationId: 
               <div className="relative z-10 flex flex-col h-full">
                 <div className="flex items-center justify-between mb-4">
                   <div className={cn(
-                    "w-12 h-12 rounded-2xl flex items-center justify-center font-black text-xl transition-all duration-300",
+                    "w-12 h-12 rounded-2xl flex items-center justify-center font-bold text-xl transition-all duration-300",
                     answers[question.id] === 'A' 
                       ? cn("text-white shadow-lg", theme.color)
                       : cn("bg-white border-2 border-slate-200 text-slate-400 group-hover:text-white", theme.groupHoverBorder, theme.groupHoverBg)
@@ -284,7 +284,7 @@ export function KepribadianQuiz({ registrationId, refParam }: { registrationId: 
               <div className="relative z-10 flex flex-col h-full">
                 <div className="flex items-center justify-between mb-4">
                   <div className={cn(
-                    "w-12 h-12 rounded-2xl flex items-center justify-center font-black text-xl transition-all duration-300",
+                    "w-12 h-12 rounded-2xl flex items-center justify-center font-bold text-xl transition-all duration-300",
                     answers[question.id] === 'B' 
                       ? cn("text-white shadow-lg", theme.color)
                       : cn("bg-white border-2 border-slate-200 text-slate-400 group-hover:text-white", theme.groupHoverBorder, theme.groupHoverBg)

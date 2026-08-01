@@ -78,7 +78,7 @@ export function CurriculumSection() {
         
         {/* Monumental Header (Penyelarasan Momentum Rushd) */}
         <div className="mx-auto max-w-5xl text-center mb-16 md:mb-20">
-          <h2 className="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight leading-[1.15]" style={{ color: COLORS.darkBase }}>
+          <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight leading-[1.15]" style={{ color: COLORS.darkBase }}>
             Kurikulum
           </h2>
           
@@ -119,7 +119,7 @@ export function CurriculumSection() {
                       {pillar.subtitle}
                     </p>
                     
-                    <h3 className="text-2xl md:text-3xl font-extrabold tracking-tight mb-4" style={{ color: COLORS.darkBase }}>
+                    <h3 className="text-2xl md:text-3xl font-bold tracking-tight mb-4" style={{ color: COLORS.darkBase }}>
                       {pillar.title}
                     </h3>
                     

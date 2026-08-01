@@ -61,7 +61,7 @@ export function WhyChooseSection() {
             <p className="text-sm font-bold uppercase tracking-[0.18em] text-[#2C8970]">
               Keunggulan NUSA
             </p>
-            <h2 className="mt-4 text-3xl font-extrabold leading-tight tracking-tight text-[#134146] sm:text-4xl md:text-5xl">
+            <h2 className="mt-4 text-3xl font-bold leading-tight tracking-tight text-[#134146] sm:text-4xl md:text-5xl">
               Mengapa Memilih NUSA?
             </h2>
             <p className="mt-5 max-w-lg text-base leading-relaxed text-[#365F61] sm:text-lg">
@@ -107,7 +107,7 @@ export function WhyChooseSection() {
               <p className="text-sm font-bold uppercase tracking-[0.18em] text-[#8EF3E7]">
                 Dari Belajar Menjadi Karya
               </p>
-              <h3 className="mt-4 text-3xl font-extrabold leading-tight tracking-tight sm:text-4xl">
+              <h3 className="mt-4 text-3xl font-bold leading-tight tracking-tight sm:text-4xl">
                 100 Hari Belajar, Besoknya Gajian
               </h3>
               <p className="mt-5 text-sm leading-relaxed text-white/70 sm:text-base">

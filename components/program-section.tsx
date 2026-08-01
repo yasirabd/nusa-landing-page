@@ -15,7 +15,7 @@ export function ProgramSection() {
     <section id="program" className="scroll-mt-20 py-24 md:py-32 lg:py-40" style={{ backgroundColor: COLORS.surface }}>
       <div className="container px-4 md:px-8 max-w-7xl mx-auto">
         <div className="mx-auto max-w-4xl text-center">
-          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight mb-6" style={{ color: COLORS.darkBase }}>
+          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight mb-6" style={{ color: COLORS.darkBase }}>
             Jurusan Programmer & Designer
           </h2>
           <p className="text-base sm:text-lg font-medium leading-relaxed max-w-2xl mx-auto opacity-80" style={{ color: COLORS.darkBase }}>
@@ -26,7 +26,7 @@ export function ProgramSection() {
         {/* Metode Pembelajaran */}
         <div className="mt-16 md:mt-24 mx-auto max-w-5xl">
           <div className="bg-white rounded-3xl p-8 md:p-12 shadow-sm border border-transparent hover:border-[#42CDBA]/30 hover:shadow-xl transition-all duration-300">
-            <h3 className="text-2xl md:text-3xl font-extrabold mb-8 text-center" style={{ color: COLORS.primary }}>
+            <h3 className="text-2xl md:text-3xl font-bold mb-8 text-center" style={{ color: COLORS.primary }}>
               Metode Pembelajaran Mutakhir
             </h3>
             <div className="grid gap-6 md:gap-10 md:grid-cols-2">
@@ -63,7 +63,7 @@ export function ProgramSection() {
 
         {/* Tahapan Belajar */}
         <div className="mt-20 md:mt-32 max-w-5xl mx-auto">
-          <h3 className="text-2xl md:text-3xl font-extrabold mb-12 md:mb-20 text-center" style={{ color: COLORS.darkBase }}>
+          <h3 className="text-2xl md:text-3xl font-bold mb-12 md:mb-20 text-center" style={{ color: COLORS.darkBase }}>
             Peta Perjalanan (Roadmap) Jurusan
           </h3>
 
@@ -124,7 +124,7 @@ export function ProgramSection() {
                                 <Icon className="h-7 w-7" style={{ color: COLORS.primary }} />
                               </div>
                             </div>
-                            <h3 className="text-xl md:text-2xl font-extrabold mb-3 tracking-snug" style={{ color: COLORS.darkBase }}>{stage.title}</h3>
+                            <h3 className="text-xl md:text-2xl font-bold mb-3 tracking-snug" style={{ color: COLORS.darkBase }}>{stage.title}</h3>
                             <p className="text-base font-medium opacity-80 leading-relaxed max-w-sm md:ml-auto" style={{ color: COLORS.darkBase }}>{stage.desc}</p>
                           </div>
                         </div>
@@ -140,7 +140,7 @@ export function ProgramSection() {
                                 <Icon className="h-7 w-7" style={{ color: COLORS.primary }} />
                               </div>
                             </div>
-                            <h3 className="text-xl md:text-2xl font-extrabold mb-3 tracking-snug" style={{ color: COLORS.darkBase }}>{stage.title}</h3>
+                            <h3 className="text-xl md:text-2xl font-bold mb-3 tracking-snug" style={{ color: COLORS.darkBase }}>{stage.title}</h3>
                             <p className="text-base font-medium opacity-80 leading-relaxed" style={{ color: COLORS.darkBase }}>{stage.desc}</p>
 
                             {stage.extended && (
@@ -149,7 +149,7 @@ export function ProgramSection() {
                                 <div className="p-5 rounded-2xl transition-colors hover:bg-[#F0FAF7]" style={{ backgroundColor: "rgba(44,137,112,0.03)" }}>
                                   <div className="flex items-center gap-2 mb-4">
                                     <Code size={18} style={{ color: COLORS.primary }} className="shrink-0" />
-                                    <h4 className="font-extrabold" style={{ color: COLORS.darkBase }}>Programmer</h4>
+                                    <h4 className="font-bold" style={{ color: COLORS.darkBase }}>Programmer</h4>
                                   </div>
                                   <ul className="space-y-3">
                                     <li className="flex items-center gap-3">
@@ -167,7 +167,7 @@ export function ProgramSection() {
                                 <div className="p-5 rounded-2xl transition-colors hover:bg-yellow-50/50" style={{ backgroundColor: "rgba(243,178,51,0.05)" }}>
                                   <div className="flex items-center gap-2 mb-4">
                                     <Palette size={18} style={{ color: COLORS.accent }} className="shrink-0" />
-                                    <h4 className="font-extrabold" style={{ color: COLORS.darkBase }}>Designer</h4>
+                                    <h4 className="font-bold" style={{ color: COLORS.darkBase }}>Designer</h4>
                                   </div>
                                   <ul className="space-y-3">
                                     <li className="flex items-center gap-3">

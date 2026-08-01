@@ -38,8 +38,8 @@ export default async function SelesaiPage({
             <Trophy className="w-12 h-12 text-[#F3B233] drop-shadow-sm" />
           </div>
 
-          <h1 className="text-3xl md:text-5xl font-black mb-6 tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-[#134146] via-[#2C8970] to-[#42CDBA]">
-            Selamat, <br className="md:hidden" /><span className="font-extrabold text-[#F3B233] px-3 py-1 bg-[#F3B233]/10 border border-[#F3B233]/20 rounded-xl shadow-sm inline-block mt-2 md:mt-0">{registration.full_name}</span>!
+          <h1 className="text-3xl md:text-5xl font-extrabold mb-6 tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-[#134146] via-[#2C8970] to-[#42CDBA]">
+            Selamat, <br className="md:hidden" /><span className="font-bold text-[#F3B233] px-3 py-1 bg-[#F3B233]/10 border border-[#F3B233]/20 rounded-xl shadow-sm inline-block mt-2 md:mt-0">{registration.full_name}</span>!
           </h1>
           <p className="text-lg text-[#134146]/70 mb-10 max-w-xl mx-auto font-medium leading-relaxed">
             Kamu telah menyelesaikan seluruh rangkaian tes seleksi NUSA Boarding School dengan sangat baik. 

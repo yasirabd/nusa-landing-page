@@ -30,18 +30,18 @@ export default async function TestDashboardPage({
           <div className="inline-block px-3 py-1 mb-3 rounded-full bg-[#E6F8F5] border border-[#2C8970]/20 text-[#2C8970] text-xs font-bold tracking-widest uppercase">
             NUSA Boarding School
           </div>
-          <h1 className="text-3xl md:text-5xl font-black mb-4 text-transparent bg-clip-text bg-gradient-to-r from-[#134146] via-[#2C8970] to-[#42CDBA] tracking-tight">
+          <h1 className="text-3xl md:text-5xl font-extrabold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-[#134146] via-[#2C8970] to-[#42CDBA] tracking-tight">
             Portal Tes Calon Santri
           </h1>
           <p className="text-lg text-[#134146]/70 mb-8 font-medium">
-            Selamat datang, <span className="font-extrabold text-[#F3B233] px-2.5 py-1 bg-[#F3B233]/10 border border-[#F3B233]/20 rounded-md shadow-sm">{registration.full_name}</span>. Silakan selesaikan rangkaian tes di bawah ini secara berurutan.
+            Selamat datang, <span className="font-bold text-[#F3B233] px-2.5 py-1 bg-[#F3B233]/10 border border-[#F3B233]/20 rounded-md shadow-sm">{registration.full_name}</span>. Silakan selesaikan rangkaian tes di bawah ini secara berurutan.
           </p>
 
           {/* Overall Progress */}
           <div className="mb-10 bg-white p-5 rounded-2xl border border-[#134146]/5 shadow-[0_4px_20px_rgb(31,111,104,0.03)]">
             <div className="flex justify-between items-end mb-3">
               <span className="text-sm font-bold text-[#134146]/70 uppercase tracking-wider">Progress Rangkaian Tes</span>
-              <span className="text-xl font-black text-[#2C8970]">{progressPercent}%</span>
+              <span className="text-xl font-bold text-[#2C8970]">{progressPercent}%</span>
             </div>
             <div className="w-full h-3.5 bg-[#F0FAF7] rounded-full overflow-hidden border border-[#2C8970]/10">
               <div 

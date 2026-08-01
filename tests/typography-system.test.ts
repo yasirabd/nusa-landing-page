@@ -114,4 +114,26 @@ describe("NUSA typography system", () => {
       expect(match[1]).toContain("NUSA")
     }
   })
+
+  it("keeps restored Tailwind weights within the approved hierarchy", () => {
+    expect(applicationSource).not.toContain("font-black")
+
+    for (const path of applicationFiles) {
+      if (
+        path
+          .replaceAll("\\", "/")
+          .endsWith("components/nusa-tagline.tsx")
+      ) {
+        continue
+      }
+
+      const source = readFileSync(path, "utf8")
+      expect(source).not.toMatch(/<h[2-4][^>]*font-extrabold/)
+    }
+
+    for (const path of ["app/test/page.tsx", "app/test/selesai/page.tsx"]) {
+      const source = readFileSync(path, "utf8")
+      expect(source).not.toMatch(/<span[^>]*font-extrabold/)
+    }
+  })
 })

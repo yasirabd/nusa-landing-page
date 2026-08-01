@@ -28,7 +28,7 @@ export function PartnerSection() {
 
       <div className="container relative z-10 max-w-6xl mx-auto">
         <div className="mx-auto max-w-3xl text-center mb-8 md:mb-12">
-          <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight mb-3" style={{ color: COLORS.darkBase }}>
+          <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-3" style={{ color: COLORS.darkBase }}>
             Partner Industri & Teknologi
           </h2>
           <p className="max-w-2xl mx-auto text-balance text-base sm:text-lg font-medium opacity-80 leading-relaxed" style={{ color: COLORS.darkBase }}>
