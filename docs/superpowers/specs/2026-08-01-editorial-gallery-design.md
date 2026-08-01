@@ -36,7 +36,7 @@ The twelve activities appear immediately in this exact order:
 
 Reduce section spacing from the current monumental `py-24 md:py-32 lg:py-40` treatment to `py-16 md:py-20 lg:py-24`.
 
-Use a left-aligned section header. Keep the Instagram link in the bottom action area so mobile and desktop users encounter it after seeing the gallery content.
+Use a left-aligned section header. Keep the Instagram call to action in a contextual footer row so mobile and desktop users encounter it after seeing the complete gallery.
 
 Responsive grid:
 
@@ -60,14 +60,23 @@ The complete grid is present on initial render. Do not animate grid height or it
 
 ## Instagram Link
 
-Keep an external link with this content:
+Close the gallery with a contextual Instagram row rather than leaving a standalone button beneath the grid.
 
-- Label: `Lihat Update Terbaru di Instagram`
+Use this supporting content:
+
+- Heading: `Ikuti kegiatan terbaru NUSA`
+- Description: `Dokumentasi dan kabar kegiatan santri lainnya kami bagikan secara rutin di Instagram.`
+
+Use an external link with this content:
+
+- Label: `Ikuti NUSA di Instagram`
 - Destination: `https://instagram.com/nusaboardingschool`
 - Opens in a new tab.
 - Uses `target="_blank"` and `rel="noopener noreferrer"`.
 
-The link is the only action below the gallery. It has a minimum 48px touch target, visible focus treatment, explicit `150ms` transitions, press feedback, and a reduced-motion fallback. Instagram is presented as the source for newer updates, not as a requirement for seeing the twelve landing-page activities.
+Separate the footer row from the gallery with a restrained top border and spacing rather than a prominent card or decorative container. On desktop, place the supporting content on the left and the link on the right. On mobile, stack the content above a full-width link.
+
+The link uses a compact solid dark-teal treatment so its purpose is clear while remaining visually subordinate to the site's registration CTA. It has a minimum 48px touch target, visible focus treatment, explicit `150ms` color and transform transitions, press feedback, and a reduced-motion fallback. Instagram is presented as the source for newer updates, not as a requirement for seeing the twelve landing-page activities.
 
 ## Motion Principles
 
@@ -84,6 +93,7 @@ The link is the only action below the gallery. It has a minimum 48px touch targe
 - Each activity remains a semantic `article` with an accessible label.
 - Each image keeps a descriptive `alt` matching the activity name.
 - Names and descriptions remain visible without hover.
+- The Instagram supporting copy provides context before the external action.
 - Keyboard focus remains visible on the Instagram link.
 - Reduced-motion users receive no transform-based press feedback.
 
@@ -100,7 +110,9 @@ Add or update focused tests to verify:
 - All twelve images and captions render immediately in the approved order.
 - `NUSA Mengajar` receives the featured layout classes.
 - No gallery disclosure button, local expansion state, or hidden activity subset remains.
-- The Instagram link has the correct URL, external-link attributes, touch target, focus ring, explicit transitions, press feedback, and reduced-motion fallback.
+- The contextual footer renders its approved heading and description.
+- The Instagram link has the approved label, URL, external-link attributes, touch target, solid treatment, focus ring, explicit transitions, press feedback, and reduced-motion fallback.
+- The footer uses a desktop left-content/right-action layout and a stacked full-width mobile action.
 - All images keep responsive WebP source sets, Next Image rendering, descriptive alt text, and updated `sizes`.
 - Captions are statically present and source code contains no hover-only reveal, carousel, grid-height animation, long duration, card lift, glow, or image zoom.
 - The canonical dataset still contains all twelve unique records.
