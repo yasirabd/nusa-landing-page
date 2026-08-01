@@ -2,26 +2,21 @@ import type React from "react"
 import "@/app/globals.css"
 
 import { ThemeProvider } from "@/components/theme-provider"
-import { Inter, Work_Sans as V0_Font_Work_Sans, Inconsolata as V0_Font_Inconsolata, Noto_Serif as V0_Font_Noto_Serif, Righteous } from 'next/font/google'
+import { GeistSans } from "geist/font/sans"
+import { Noto_Serif, Righteous } from "next/font/google"
 
-// Initialize fonts
-const _workSans = V0_Font_Work_Sans({ subsets: ['latin'], weight: ["100","200","300","400","500","600","700","800","900"], variable: '--v0-font-work-sans' })
-const _inconsolata = V0_Font_Inconsolata({ subsets: ['latin'], weight: ["200","300","400","500","600","700","800","900"], variable: '--v0-font-inconsolata' })
-const _notoSerif = V0_Font_Noto_Serif({ subsets: ['latin'], weight: ["100","200","300","400","500","600","700","800","900"], variable: '--v0-font-noto-serif' })
-const _v0_fontVariables = `${_workSans.variable} ${_inconsolata.variable} ${_notoSerif.variable}`
-
-const inter = Inter({
+const notoSerif = Noto_Serif({
   subsets: ["latin"],
-  variable: "--font-inter",
-  weight: ["400", "500", "600", "700", "800", "900"],
+  style: "italic",
+  weight: "500",
+  variable: "--font-noto-serif",
 })
 
-// Load Righteous — no need for globals.css
 const righteous = Righteous({
   subsets: ["latin"],
   weight: "400",
   variable: "--font-righteous",
-});
+})
 
 export const metadata = {
   title: "NUSA Boarding School",
@@ -38,7 +33,10 @@ export default function RootLayout({
   return (
     <html lang="id" suppressHydrationWarning>
       <head />
-      <body className={`${inter.variable} font-sans ${_v0_fontVariables} ${righteous.variable}`} suppressHydrationWarning>
+      <body
+        className={`${GeistSans.variable} ${notoSerif.variable} ${righteous.variable} font-sans`}
+        suppressHydrationWarning
+      >
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
           {children}
         </ThemeProvider>

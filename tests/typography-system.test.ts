@@ -57,8 +57,8 @@ describe("NUSA typography system", () => {
     expect(styles).toContain("--font-sans: var(--font-geist-sans);")
     expect(styles).toContain("--font-serif: var(--font-noto-serif);")
     expect(styles).toContain("--font-mono: ui-monospace, SFMono-Regular")
-    expect(styles).toContain(
-      ".font-righteous {\n  font-family: var(--font-righteous);\n}",
+    expect(styles).toMatch(
+      /\.font-righteous\s*\{\s*font-family:\s*var\(--font-righteous\);\s*\}/,
     )
 
     for (const removedPattern of [
