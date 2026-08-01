@@ -17,13 +17,13 @@ export function RegistrationSection() {
 
             <div>
               <h2
-                className="text-3xl font-bold tracking-tighter sm:text-4xl leading-tight font-work-sans"
+                className="text-3xl font-bold tracking-tighter sm:text-4xl leading-tight"
                 style={{ color: "#2C8970" }}
               >
                 Jadilah bagian dari
                 <br />
                 <span
-                  className="font-romulo-italic tracking-wide"
+                  className="font-serif italic font-medium tracking-wide"
                   style={{ color: "#F3B233" }}
                 >
                   Muslim Tangguh Jago IT

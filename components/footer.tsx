@@ -42,7 +42,7 @@ export function Footer() {
               <span className="font-righteous tracking-wider drop-shadow-sm">NUSA</span> <span className="text-white">Boarding School</span>
             </div>
             <p className="text-md lg:text-lg mb-6 text-white/70 leading-relaxed font-medium">
-              Membentuk Generasi <span className="font-romulo-italic font-normal tracking-wide text-xl lg:text-2xl mt-1 block" style={{ color: COLORS.accent }}>Muslim Tangguh Jago IT</span>
+              Membentuk Generasi <span className="font-serif italic font-medium tracking-wide text-xl lg:text-2xl mt-1 block" style={{ color: COLORS.accent }}>Muslim Tangguh Jago IT</span>
             </p>
             <div className="flex gap-3">
               <SocialIcon href="https://instagram.com/nusaboardingschool" title="Instagram" src="/icons/instagram.svg" />

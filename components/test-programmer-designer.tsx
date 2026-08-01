@@ -159,7 +159,7 @@ export function TestProgrammerDesigner({ registrationId, refParam }: { registrat
   }
 
   return (
-    <section className="relative bg-[#F7F7F2] py-24 md:py-32 font-work-sans text-[#134146] min-h-screen overflow-hidden">
+    <section className="relative bg-[#F7F7F2] py-24 md:py-32 text-[#134146] min-h-screen overflow-hidden">
       {/* Cyber Mesh / Digital Grid Overlay */}
       <div className="absolute inset-0 z-0 pointer-events-none opacity-[0.03]" style={{ backgroundImage: 'linear-gradient(#134146 1px, transparent 1px), linear-gradient(90deg, #134146 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
       {/* Soft Radial Glows */}
@@ -173,7 +173,7 @@ export function TestProgrammerDesigner({ registrationId, refParam }: { registrat
             <CheckCircle2 className="w-4 h-4" />
             <span>Kenali Potensimu Sejak Dini</span>
           </div>
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-work-sans font-bold text-[#134146] tracking-tight">
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[#134146] tracking-tight">
             Kamu Tim <span className="text-[#2C8970] relative whitespace-nowrap">Programmer<svg className="absolute -bottom-2 left-0 w-full h-3 text-[#42CDBA]/30" viewBox="0 0 100 20" preserveAspectRatio="none"><path d="M0 10 Q50 20 100 10" fill="none" stroke="currentColor" strokeWidth="4" strokeLinecap="round"/></svg></span> atau <span className="text-[#F3B233]">Designer?</span>
           </h1>
           <p className="text-lg md:text-xl max-w-2xl mx-auto text-[#134146]/70 leading-relaxed">
@@ -391,7 +391,7 @@ export function TestProgrammerDesigner({ registrationId, refParam }: { registrat
             <div className="relative z-10">
               <div className="text-center mb-10">
                 <h2 className="text-[#42CDBA] font-bold tracking-widest uppercase mb-2 text-sm">Hasil Analisis Kecenderungan</h2>
-                <div className="text-5xl md:text-6xl font-work-sans font-bold text-[#F3B233] mb-6">
+                <div className="text-5xl md:text-6xl font-bold text-[#F3B233] mb-6">
                   {result.tendency}
                 </div>
                 <p className="text-xl max-w-2xl mx-auto opacity-90 leading-relaxed">
@@ -423,17 +423,17 @@ export function TestProgrammerDesigner({ registrationId, refParam }: { registrat
               <div className="flex flex-wrap justify-center gap-6 border-t border-white/20 pt-8 mt-8">
                 <div className="text-center px-6">
                   <div className="text-sm opacity-70 mb-1">Skor Programmer</div>
-                  <div className="text-3xl font-bold font-work-sans text-[#42CDBA]">{result.programmerScore}%</div>
+                  <div className="text-3xl font-bold text-[#42CDBA]">{result.programmerScore}%</div>
                 </div>
                 <div className="w-px bg-white/20"></div>
                 <div className="text-center px-6">
                   <div className="text-sm opacity-70 mb-1">Skor Designer</div>
-                  <div className="text-3xl font-bold font-work-sans text-[#42CDBA]">{result.designerScore}%</div>
+                  <div className="text-3xl font-bold text-[#42CDBA]">{result.designerScore}%</div>
                 </div>
                 <div className="w-px bg-white/20 hidden md:block"></div>
                 <div className="text-center px-6">
                   <div className="text-sm opacity-70 mb-1">IQ Result</div>
-                  <div className="text-3xl font-bold font-work-sans text-white">{formData.programmerIq}</div>
+                  <div className="text-3xl font-bold text-white">{formData.programmerIq}</div>
                 </div>
               </div>
               
