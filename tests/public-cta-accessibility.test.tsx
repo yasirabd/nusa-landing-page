@@ -2,9 +2,9 @@ import { render, screen } from "@testing-library/react"
 import { describe, expect, it } from "vitest"
 import { CurriculumSection } from "@/components/curriculum-section"
 import { FeeInfoSection } from "@/components/fee-info-section"
-import { Program100Days } from "@/components/program-100-days"
 import { ProgramSection } from "@/components/program-section"
 import { RegistrationSection } from "@/components/registration-section"
+import { WhyChooseSection } from "@/components/why-choose-section"
 
 describe("public CTA accessibility", () => {
   it("renders the final registration CTA as one link", () => {
@@ -19,7 +19,7 @@ describe("public CTA accessibility", () => {
   })
 
   it.each([
-    ["100-day program", <Program100Days />],
+    ["benefits section", <WhyChooseSection />],
     ["program overview", <ProgramSection />],
   ])("renders the %s CTA directly on the link", (_, component) => {
     render(component)
@@ -48,7 +48,7 @@ describe("public CTA accessibility", () => {
   })
 
   it.each([
-    ["100-day program", <Program100Days />],
+    ["benefits section", <WhyChooseSection />],
     ["program overview", <ProgramSection />],
     ["final registration", <RegistrationSection />],
   ])("gives the %s CTA visible focus and restrained motion", (_, component) => {
@@ -66,8 +66,8 @@ describe("public CTA accessibility", () => {
 
   it.each([
     [
-      "100-day program",
-      <Program100Days />,
+      "benefits section",
+      <WhyChooseSection />,
       [
         "bg-[#F3B233]",
         "text-[#134146]",
