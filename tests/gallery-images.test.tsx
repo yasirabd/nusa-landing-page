@@ -87,9 +87,19 @@ describe("editorial gallery rendering", () => {
   it("keeps Instagram optional and accessible", () => {
     render(<GallerySection />)
 
+    expect(
+      screen.getByRole("heading", { name: "Ikuti kegiatan terbaru NUSA" }),
+    ).toBeVisible()
+    expect(
+      screen.getByText(
+        "Dokumentasi dan kabar kegiatan santri lainnya kami bagikan secara rutin di Instagram.",
+      ),
+    ).toBeVisible()
+
     const instagram = screen.getByRole("link", {
-      name: "Lihat Update Terbaru di Instagram",
+      name: "Ikuti NUSA di Instagram",
     })
+    const footer = instagram.parentElement as HTMLElement
 
     expect(instagram).toHaveAttribute(
       "href",
@@ -97,9 +107,20 @@ describe("editorial gallery rendering", () => {
     )
     expect(instagram).toHaveAttribute("target", "_blank")
     expect(instagram).toHaveAttribute("rel", "noopener noreferrer")
+    expect(footer).toHaveClass(
+      "flex-col",
+      "border-t",
+      "md:flex-row",
+      "md:items-center",
+      "md:justify-between",
+    )
 
     expect(instagram).toHaveClass(
       "min-h-12",
+      "w-full",
+      "md:w-auto",
+      "bg-[#134146]",
+      "text-white",
       "duration-150",
       "active:scale-[0.97]",
       "focus-visible:ring-2",

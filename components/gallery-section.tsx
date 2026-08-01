@@ -97,15 +97,24 @@ export function GallerySection() {
           })}
         </div>
 
-        <div className="mt-8 flex">
+        <div className="mt-8 flex flex-col gap-5 border-t border-[#134146]/15 pt-6 md:mt-10 md:flex-row md:items-center md:justify-between md:gap-8 md:pt-8">
+          <div className="max-w-2xl">
+            <h3 className="text-lg font-bold text-[#134146]">
+              Ikuti kegiatan terbaru NUSA
+            </h3>
+            <p className="mt-1 text-sm font-medium leading-relaxed text-[#134146]/75 sm:text-base">
+              Dokumentasi dan kabar kegiatan santri lainnya kami bagikan secara rutin di Instagram.
+            </p>
+          </div>
+
           <a
             href="https://instagram.com/nusaboardingschool"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full border-2 border-[#134146]/20 px-6 py-2.5 text-sm font-bold text-[#134146] transition-[background-color,border-color,color,transform] duration-150 hover:border-[#134146]/35 hover:bg-white/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#42CDBA] focus-visible:ring-offset-2 active:scale-[0.97] motion-reduce:transition-none motion-reduce:active:scale-100"
+            className="inline-flex min-h-12 w-full shrink-0 items-center justify-center gap-2 rounded-full border-2 border-[#134146] bg-[#134146] px-6 py-2.5 text-sm font-bold text-white transition-[background-color,border-color,color,transform] duration-150 hover:border-[#0d3438] hover:bg-[#0d3438] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#42CDBA] focus-visible:ring-offset-2 active:scale-[0.97] motion-reduce:transition-none motion-reduce:active:scale-100 md:w-auto"
           >
             <Instagram aria-hidden="true" className="size-4" />
-            Lihat Update Terbaru di Instagram
+            Ikuti NUSA di Instagram
           </a>
         </div>
       </div>
