@@ -119,13 +119,13 @@ describe("editorial gallery rendering", () => {
       "min-h-12",
       "w-full",
       "md:w-auto",
-      "bg-[#134146]",
+      "bg-brand-dark",
       "text-white",
       "text-sm",
       "duration-150",
       "active:scale-[0.97]",
       "focus-visible:ring-2",
-      "focus-visible:ring-[#134146]",
+      "focus-visible:ring-brand-dark",
       "motion-reduce:active:scale-100",
     )
     expect(instagram).not.toHaveClass("transition-all")

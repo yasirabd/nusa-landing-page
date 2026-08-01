@@ -1,14 +1,5 @@
 import { CheckCircle2 } from "lucide-react"
 
-const COLORS = {
-  primary: "#2C8970",
-  secondary: "#42CDBA",
-  darkBase: "#134146",
-  accent: "#F3B233",
-  white: "#F7F7F2",
-  surface: "#F0FAF7",
-}
-
 const curriculumPillars = [
   {
     title: "Kurikulum IT",
@@ -73,18 +64,18 @@ const curriculumPillars = [
 
 export function CurriculumSection() {
   return (
-    <section id="kurikulum" className="scroll-mt-20 py-24 md:py-32 lg:py-40" style={{ backgroundColor: COLORS.surface }}>
+    <section id="kurikulum" className="section-spacing-feature scroll-mt-20 bg-brand-surface">
       <div className="container relative z-10 px-4 md:px-8 max-w-6xl mx-auto">
         
         {/* Monumental Header (Penyelarasan Momentum Rushd) */}
         <div className="mx-auto max-w-5xl text-center mb-16 md:mb-20">
-          <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight leading-[1.15]" style={{ color: COLORS.darkBase }}>
+          <h2 className="text-4xl font-bold leading-[1.15] tracking-tight text-brand-dark sm:text-5xl md:text-6xl">
             Kurikulum
           </h2>
           
-          <p className="mt-6 md:mt-8 text-base sm:text-lg md:text-xl font-medium leading-relaxed max-w-3xl mx-auto opacity-80" style={{ color: COLORS.darkBase }}>
+          <p className="mx-auto mt-6 max-w-3xl text-base font-medium leading-relaxed text-brand-dark opacity-80 sm:text-lg md:mt-8 md:text-xl">
             4 Pilar yang membentuk{" "}
-            <span className="font-serif italic font-normal tracking-wide whitespace-nowrap" style={{ color: COLORS.accent }}>"Muslim Tangguh, Jago IT"</span>
+            <span className="whitespace-nowrap font-serif font-normal italic tracking-wide text-brand-accent">"Muslim Tangguh, Jago IT"</span>
             {" "}di NUSA Boarding School.
           </p>
         </div>
@@ -95,7 +86,7 @@ export function CurriculumSection() {
             return (
               <div 
                 key={idx} 
-                className="group relative rounded-3xl bg-white shadow-sm hover:-translate-y-2 hover:shadow-[0_20px_40px_rgba(0,0,0,0.08)] transition-all duration-300 border border-transparent hover:border-[#42CDBA]/30 flex flex-col" 
+                className="group relative flex flex-col rounded-3xl border border-transparent bg-white shadow-sm transition-all duration-300 hover:-translate-y-2 hover:border-brand-highlight/30 hover:shadow-[0_20px_40px_rgba(0,0,0,0.08)]"
               >
                 {/* Glow Backdrop */}
                 <div className="absolute -inset-0.5 bg-gradient-to-b from-[#8EF3E7]/20 to-transparent rounded-3xl blur opacity-0 group-hover:opacity-100 transition duration-500 pointer-events-none"></div>
@@ -115,25 +106,25 @@ export function CurriculumSection() {
                   
                   {/* Content Container */}
                   <div className="px-8 pb-8 md:px-10 md:pb-10 flex-1 flex flex-col">
-                    <p className="font-bold text-sm tracking-wider uppercase mb-2" style={{ color: COLORS.primary }}>
+                    <p className="mb-2 text-sm font-bold uppercase tracking-wider text-brand">
                       {pillar.subtitle}
                     </p>
                     
-                    <h3 className="text-2xl md:text-3xl font-bold tracking-tight mb-4" style={{ color: COLORS.darkBase }}>
+                    <h3 className="mb-4 text-2xl font-bold tracking-tight text-brand-dark md:text-3xl">
                       {pillar.title}
                     </h3>
                     
-                    <p className="text-base md:text-lg font-medium leading-relaxed opacity-80 mb-6" style={{ color: COLORS.darkBase }}>
+                    <p className="mb-6 text-base font-medium leading-relaxed text-brand-dark opacity-80 md:text-lg">
                       {pillar.description}
                     </p>
                     
                     <ul className="space-y-4 mb-2 flex-1 mt-2">
                       {pillar.items.map((item, itemIdx) => (
                         <li key={itemIdx} className="flex items-start group/item">
-                          <div className="mr-4 mt-0.5 md:mt-1 flex h-6 w-6 shrink-0 items-center justify-center rounded-full transition-transform duration-300 group-hover/item:scale-110" style={{ backgroundColor: `${COLORS.secondary}25` }}>
-                            <CheckCircle2 size={16} strokeWidth={2.5} style={{ color: COLORS.primary }} />
+                          <div className="mr-4 mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-brand-highlight/15 transition-transform duration-300 group-hover/item:scale-110 md:mt-1">
+                            <CheckCircle2 size={16} strokeWidth={2.5} className="text-brand" />
                           </div>
-                          <span className="text-base font-medium leading-relaxed opacity-80" style={{ color: COLORS.darkBase }}>{item}</span>
+                          <span className="text-base font-medium leading-relaxed text-brand-dark opacity-80">{item}</span>
                         </li>
                       ))}
                     </ul>

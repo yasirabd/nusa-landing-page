@@ -10,7 +10,7 @@ const HERO_FACTS = [
 
 export function HeroSection() {
   return (
-    <section className="relative overflow-hidden bg-[linear-gradient(135deg,#134146_0%,#1F6F68_52%,#2C8970_100%)] py-10 text-[#F7F7F2] md:py-12 lg:py-14">
+    <section className="relative overflow-hidden bg-[linear-gradient(135deg,var(--color-brand-dark)_0%,var(--color-brand-depth)_52%,var(--color-brand)_100%)] py-10 text-brand-paper md:py-12 lg:py-14">
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-0 opacity-[0.055]"
@@ -22,17 +22,17 @@ export function HeroSection() {
       />
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute -right-32 top-10 size-80 rounded-full bg-[#42CDBA]/15 blur-3xl lg:size-[28rem]"
+        className="pointer-events-none absolute -right-32 top-10 size-80 rounded-full bg-brand-highlight/15 blur-3xl lg:size-[28rem]"
       />
 
       <div className="relative mx-auto grid max-w-7xl items-center gap-10 px-4 md:px-6 lg:grid-cols-[1.05fr_0.95fr] lg:gap-12">
         <div className="max-w-2xl">
           <div className="mb-7">
-            <p className="inline-flex rounded-full border border-[#F3B233]/35 bg-[#F3B233]/10 px-4 py-2 text-sm font-semibold leading-snug text-[#F3B233]">
+            <p className="inline-flex rounded-full border border-brand-accent/35 bg-brand-accent/10 px-4 py-2 text-sm font-semibold leading-snug text-brand-accent">
               SPMB 2027/2028 Sudah Dibuka
             </p>
             <p className="mt-2 text-sm font-medium leading-6 text-white/85">
-              Potongan SPI <span className="font-semibold text-[#F3B233]">Rp10 juta</span> untuk 10
+              Potongan SPI <span className="font-semibold text-brand-accent">Rp10 juta</span> untuk 10
               pendaftar pertama
             </p>
           </div>
@@ -42,7 +42,7 @@ export function HeroSection() {
           </p>
 
           <h1 className="max-w-[13ch] text-4xl font-extrabold leading-[1.06] tracking-[-0.035em] text-white sm:text-5xl lg:text-6xl">
-            Menjadi Muslim Tangguh, <span className="text-[#F3B233]">Jago IT</span>
+            Menjadi Muslim Tangguh, <span className="text-brand-accent">Jago IT</span>
           </h1>
 
           <p className="mt-6 max-w-[62ch] text-base font-medium leading-7 text-white/80 sm:text-lg sm:leading-8">
@@ -53,7 +53,7 @@ export function HeroSection() {
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
             <Link
               href="/daftar"
-              className="hero-action hero-action-primary inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-[#F3B233] px-6 text-sm font-semibold text-[#134146] shadow-[0_10px_28px_rgba(19,65,70,0.32)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#134146] sm:text-base"
+              className="hero-action hero-action-primary inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-brand-accent px-6 text-sm font-semibold text-brand-dark shadow-[0_10px_28px_rgba(19,65,70,0.32)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-brand-dark sm:text-base"
             >
               Daftar SPMB 2027/2028
               <ArrowRight aria-hidden="true" className="size-4" />
@@ -63,7 +63,7 @@ export function HeroSection() {
               href="https://wa.me/6281392706707"
               target="_blank"
               rel="noopener noreferrer"
-              className="hero-action hero-action-secondary inline-flex min-h-12 items-center justify-center gap-2 rounded-full border border-white/25 bg-white/10 px-6 text-sm font-semibold text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#134146] sm:text-base"
+              className="hero-action hero-action-secondary inline-flex min-h-12 items-center justify-center gap-2 rounded-full border border-white/25 bg-white/10 px-6 text-sm font-semibold text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-brand-dark sm:text-base"
             >
               <span
                 aria-hidden="true"

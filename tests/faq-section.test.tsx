@@ -14,7 +14,7 @@ describe("FAQSection", () => {
     ).toBeInTheDocument()
     expect(
       screen.getByText(/Jawaban singkat untuk membantu orang tua/),
-    ).toHaveClass("text-[#134146]/75")
+    ).toHaveClass("text-brand-dark/75")
     expect(screen.getAllByRole("button")).toHaveLength(6)
   })
 })

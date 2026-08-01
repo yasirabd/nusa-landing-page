@@ -1,14 +1,5 @@
 import Image from "next/image"
 
-const COLORS = {
-  primary: "#2C8970",
-  secondary: "#42CDBA",
-  darkBase: "#134146",
-  accent: "#F3B233",
-  white: "#F7F7F2",
-  surface: "#F0FAF7",
-}
-
 const partners = [
   { name: "KodingWorks", logo: "/images/partner-kodingworks.png?height=80&width=180&text=KodingWorks" },
   { name: "Pesanio", logo: "/images/partner-pesanio.png?height=80&width=180&text=Pesanio" },
@@ -19,19 +10,19 @@ const partners = [
 
 export function PartnerSection() {
   return (
-    <section className="relative py-24 md:py-32 px-4" style={{ backgroundColor: COLORS.white }}>
+    <section className="section-spacing-feature relative bg-brand-paper px-4">
       {/* Background Tech Mesh Tipis Penambah Nuansa Hover */}
       <div 
         className="absolute inset-0 pointer-events-none opacity-[0.03]" 
-        style={{ backgroundImage: `radial-gradient(${COLORS.primary} 1px, transparent 1px)`, backgroundSize: '32px 32px' }}
+        style={{ backgroundImage: "radial-gradient(var(--color-brand) 1px, transparent 1px)", backgroundSize: '32px 32px' }}
       ></div>
 
       <div className="container relative z-10 max-w-6xl mx-auto">
         <div className="mx-auto max-w-3xl text-center mb-8 md:mb-12">
-          <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-3" style={{ color: COLORS.darkBase }}>
+          <h2 className="mb-3 text-4xl font-bold tracking-tight text-brand-dark md:text-5xl">
             Partner Industri & Teknologi
           </h2>
-          <p className="max-w-2xl mx-auto text-balance text-base sm:text-lg font-medium opacity-80 leading-relaxed" style={{ color: COLORS.darkBase }}>
+          <p className="mx-auto max-w-2xl text-balance text-base font-medium leading-relaxed text-brand-dark opacity-80 sm:text-lg">
             Berjejaring dengan praktisi industri dan ekosistem startup untuk pertukaran wawasan teknologi terkini.
           </p>
         </div>

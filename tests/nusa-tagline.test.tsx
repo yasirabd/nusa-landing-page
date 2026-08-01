@@ -21,7 +21,7 @@ describe("NUSA tagline", () => {
     const { container } = render(<NUSATaglineSection />)
     const section = container.querySelector("section")
 
-    expect(section).toHaveClass("py-16", "md:py-20", "lg:py-24")
+    expect(section).toHaveClass("section-spacing-standard")
     expect(section).not.toHaveClass("lg:py-48")
     expect(
       screen.getByText("Faith at Heart. Tech in Hand. Purpose in Action."),

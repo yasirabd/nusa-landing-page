@@ -41,10 +41,10 @@ describe("public CTA accessibility", () => {
   it("uses dark teal text on the gold registration-fee badge", () => {
     render(<FeeInfoSection />)
 
-    expect(screen.getByText("BIAYA PENDAFTARAN")).toHaveStyle({
-      backgroundColor: "#F3B233",
-      color: "#134146",
-    })
+    expect(screen.getByText("BIAYA PENDAFTARAN")).toHaveClass(
+      "bg-brand-accent",
+      "text-brand-dark",
+    )
   })
 
   it.each([
@@ -69,8 +69,8 @@ describe("public CTA accessibility", () => {
       "benefits section",
       <WhyChooseSection />,
       [
-        "bg-[#F3B233]",
-        "text-[#134146]",
+        "bg-brand-accent",
+        "text-brand-dark",
         "transition-[background-color,box-shadow,transform]",
       ],
     ],
@@ -78,10 +78,10 @@ describe("public CTA accessibility", () => {
       "program overview",
       <ProgramSection />,
       [
-        "bg-[#1F6F68]",
+        "bg-brand-depth",
         "text-white",
-        "hover:bg-[#F3B233]",
-        "hover:text-[#134146]",
+        "hover:bg-brand-accent",
+        "hover:text-brand-dark",
         "transition-[background-color,color,box-shadow,transform]",
       ],
     ],
@@ -89,10 +89,10 @@ describe("public CTA accessibility", () => {
       "final registration",
       <RegistrationSection />,
       [
-        "bg-[#1F6F68]",
-        "text-[#F7F7F2]",
-        "hover:bg-[#F3B233]",
-        "hover:text-[#134146]",
+        "bg-brand-depth",
+        "text-brand-paper",
+        "hover:bg-brand-accent",
+        "hover:text-brand-dark",
         "transition-[background-color,color,box-shadow,transform]",
       ],
     ],

@@ -1,15 +1,6 @@
 import Link from "next/link"
 import { Mail, Phone, MapPin } from "lucide-react"
 
-const COLORS = {
-  primary: "#2C8970",
-  secondary: "#42CDBA",
-  darkBase: "#134146",
-  accent: "#F3B233",
-  white: "#F7F7F2",
-  surface: "#F0FAF7",
-}
-
 // Reusable component to wrap the social media icon link
 function SocialIcon({ href, title, src }) {
   return (
@@ -32,7 +23,7 @@ function SocialIcon({ href, title, src }) {
 
 export function Footer() {
   return (
-    <footer className="text-white" style={{ backgroundColor: COLORS.darkBase }}>
+    <footer className="bg-brand-dark text-white">
       <div className="container px-4 pt-16 pb-6 md:px-8 md:pt-24 md:pb-8 max-w-7xl mx-auto">
         <div className="grid gap-10 md:gap-8 lg:grid-cols-3">
           
@@ -42,7 +33,7 @@ export function Footer() {
               <span className="font-righteous tracking-wider drop-shadow-sm">NUSA</span> <span className="text-white">Boarding School</span>
             </div>
             <p className="text-md lg:text-lg mb-6 text-white/70 leading-relaxed font-medium">
-              Membentuk Generasi <span className="font-serif italic font-normal tracking-wide text-xl lg:text-2xl mt-1 block" style={{ color: COLORS.accent }}>Muslim Tangguh Jago IT</span>
+              Membentuk Generasi <span className="mt-1 block font-serif text-xl font-normal italic tracking-wide text-brand-accent lg:text-2xl">Muslim Tangguh Jago IT</span>
             </p>
             <div className="flex gap-3">
               <SocialIcon href="https://instagram.com/nusaboardingschool" title="Instagram" src="/icons/instagram.svg" />
@@ -54,7 +45,7 @@ export function Footer() {
 
           {/* Kolom 2: Kontak */}
           <div className="lg:pl-4">
-            <h3 className="mb-6 text-lg font-bold uppercase tracking-wider" style={{ color: COLORS.accent }}>
+            <h3 className="mb-6 text-lg font-bold uppercase tracking-wider text-brand-accent">
               Kontak
             </h3>
             <div className="space-y-6 text-white/80">
@@ -62,11 +53,11 @@ export function Footer() {
               {/* Email */}
               <div className="flex items-center gap-4 group">
                 <div className="w-10 h-10 flex flex-shrink-0 items-center justify-center rounded-full transition-all duration-300 bg-white/5 border border-white/10 group-hover:scale-110 group-hover:bg-white/10">
-                  <Mail className="w-5 h-5" style={{ color: COLORS.accent }} />
+                  <Mail className="h-5 w-5 text-brand-accent" />
                 </div>
                 <div className="leading-tight">
                   <p className="text-sm font-medium opacity-60 mb-1 text-white">Email us</p>
-                  <a href="mailto:info@nusabs.sch.id" className="text-base font-semibold hover:text-[#F3B233] transition-colors duration-200">
+                  <a href="mailto:info@nusabs.sch.id" className="text-base font-semibold transition-colors duration-200 hover:text-brand-accent">
                     info@nusabs.sch.id
                   </a>
                 </div>
@@ -75,11 +66,11 @@ export function Footer() {
               {/* WhatsApp */}
               <div className="flex items-center gap-4 group">
                 <div className="w-10 h-10 flex flex-shrink-0 items-center justify-center rounded-full transition-all duration-300 bg-white/5 border border-white/10 group-hover:scale-110 group-hover:bg-white/10">
-                  <Phone className="w-5 h-5" style={{ color: COLORS.accent }} />
+                  <Phone className="h-5 w-5 text-brand-accent" />
                 </div>
                 <div className="leading-tight">
                   <p className="text-sm font-medium opacity-60 mb-1 text-white">Telepon & WhatsApp</p>
-                  <a href="https://wa.me/6281392706707" target="_blank" rel="noopener noreferrer" className="text-base font-semibold hover:text-[#F3B233] transition-colors duration-200">
+                  <a href="https://wa.me/6281392706707" target="_blank" rel="noopener noreferrer" className="text-base font-semibold transition-colors duration-200 hover:text-brand-accent">
                     081392706707
                   </a>
                 </div>
@@ -88,11 +79,11 @@ export function Footer() {
               {/* Map Direction */}
               <div className="flex items-center gap-4 group">
                 <div className="w-10 h-10 flex flex-shrink-0 items-center justify-center rounded-full transition-all duration-300 bg-white/5 border border-white/10 group-hover:scale-110 group-hover:bg-white/10">
-                  <MapPin className="w-5 h-5" style={{ color: COLORS.accent }} />
+                  <MapPin className="h-5 w-5 text-brand-accent" />
                 </div>
                 <div className="leading-tight">
                   <p className="text-sm font-medium opacity-60 mb-1 text-white">Visit us</p>
-                  <a href="https://maps.app.goo.gl/pR3KqRYPf84yrZB36" target="_blank" rel="noopener noreferrer" className="text-base font-semibold hover:text-[#F3B233] transition-colors duration-200">
+                  <a href="https://maps.app.goo.gl/pR3KqRYPf84yrZB36" target="_blank" rel="noopener noreferrer" className="text-base font-semibold transition-colors duration-200 hover:text-brand-accent">
                     Get Direction
                   </a>
                 </div>
@@ -102,7 +93,7 @@ export function Footer() {
 
           {/* Kolom 3: Interactive Glass Map */}
           <div>
-            <h3 className="mb-6 text-lg font-bold uppercase tracking-wider" style={{ color: COLORS.accent }}>
+            <h3 className="mb-6 text-lg font-bold uppercase tracking-wider text-brand-accent">
               Lokasi
             </h3>
             <div className="p-2 bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl transition-all duration-300 hover:bg-white/10">

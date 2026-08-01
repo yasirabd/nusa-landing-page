@@ -75,7 +75,7 @@ describe("consolidated benefits section", () => {
     const benefitsList = section.querySelector("ul") as HTMLElement
     const cta = within(section).getByRole("link", { name: "Daftar Sekarang" })
 
-    expect(section).toHaveClass("bg-[#F7F7F2]")
+    expect(section).toHaveClass("bg-brand-paper", "section-spacing-standard")
     expect(source).toContain(
       "lg:grid-cols-[minmax(0,4fr)_minmax(0,8fr)]",
     )
@@ -110,7 +110,7 @@ describe("consolidated benefits section", () => {
 
     expect(items).toHaveLength(4)
     for (const item of items) {
-      expect(item).toHaveClass("border-[#134146]/15")
+      expect(item).toHaveClass("border-brand-dark/15")
     }
 
     expect(items[0]).toHaveClass("border-b", "md:border-r")

@@ -54,14 +54,14 @@ const stages = [
 
 export function WhyChooseSection() {
   return (
-    <section className="bg-[#F7F7F2] py-16 md:py-20 lg:py-24">
+    <section className="section-spacing-standard bg-brand-paper">
       <div className="container mx-auto max-w-6xl px-4 md:px-8">
         <div className="grid gap-10 lg:grid-cols-[minmax(0,4fr)_minmax(0,8fr)] lg:items-start lg:gap-16 xl:gap-20">
           <div className="max-w-xl lg:pt-2">
-            <p className="text-sm font-bold uppercase tracking-[0.18em] text-[#2C8970]">
+            <p className="text-sm font-bold uppercase tracking-[0.18em] text-brand">
               Keunggulan NUSA
             </p>
-            <h2 className="mt-4 text-3xl font-bold leading-tight tracking-tight text-[#134146] sm:text-4xl md:text-5xl">
+            <h2 className="mt-4 text-3xl font-bold leading-tight tracking-tight text-brand-dark sm:text-4xl md:text-5xl">
               Mengapa Memilih NUSA?
             </h2>
             <p className="mt-5 max-w-lg text-base leading-relaxed text-[#365F61] sm:text-lg">
@@ -70,7 +70,7 @@ export function WhyChooseSection() {
             </p>
           </div>
 
-          <ul className="grid border-y border-[#134146]/15 md:grid-cols-2 lg:mt-0">
+          <ul className="grid border-y border-brand-dark/15 md:grid-cols-2 lg:mt-0">
             {benefits.map(({ title, description, icon: Icon }, index) => {
               const itemBorders = [
                 "border-b md:border-r md:pr-8",
@@ -82,13 +82,13 @@ export function WhyChooseSection() {
               return (
                 <li
                   key={title}
-                  className={`flex gap-4 border-[#134146]/15 py-6 md:py-8 ${itemBorders}`}
+                  className={`flex gap-4 border-brand-dark/15 py-6 md:py-8 ${itemBorders}`}
                 >
-                  <span className="flex size-10 shrink-0 items-center justify-center rounded-full bg-[#E3F3EE] text-[#2C8970] ring-1 ring-[#134146]/10">
+                  <span className="flex size-10 shrink-0 items-center justify-center rounded-full bg-[#E3F3EE] text-brand ring-1 ring-brand-dark/10">
                     <Icon aria-hidden="true" className="size-5" />
                   </span>
                   <div>
-                    <h3 className="text-lg font-bold leading-snug text-[#134146]">
+                    <h3 className="text-lg font-bold leading-snug text-brand-dark">
                       {title}
                     </h3>
                     <p className="mt-2 text-sm leading-relaxed text-[#496E70] sm:text-base">
@@ -101,7 +101,7 @@ export function WhyChooseSection() {
           </ul>
         </div>
 
-        <div className="mt-12 overflow-hidden rounded-3xl border border-white/10 bg-[#134146] text-white shadow-[0_18px_50px_rgba(19,65,70,0.14)] md:mt-16">
+        <div className="mt-12 overflow-hidden rounded-3xl border border-white/10 bg-brand-dark text-white shadow-[0_18px_50px_rgba(19,65,70,0.14)] md:mt-16">
           <div className="grid gap-9 p-7 sm:p-9 md:p-11 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:gap-14 lg:p-12">
             <div className="max-w-xl lg:pt-2">
               <p className="text-sm font-bold uppercase tracking-[0.18em] text-[#8EF3E7]">
@@ -126,7 +126,7 @@ export function WhyChooseSection() {
                   >
                     <span
                       aria-hidden="true"
-                      className="mt-0.5 flex size-8 items-center justify-center rounded-full bg-[#F3B233]/10 text-xs font-bold tabular-nums text-[#F3B233] ring-1 ring-[#F3B233]/30"
+                      className="mt-0.5 flex size-8 items-center justify-center rounded-full bg-brand-accent/10 text-xs font-bold tabular-nums text-brand-accent ring-1 ring-brand-accent/30"
                     >
                       {String(index + 1).padStart(2, "0")}
                     </span>
@@ -142,7 +142,7 @@ export function WhyChooseSection() {
 
               <Link
                 href="/daftar"
-                className="group mt-8 inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-full bg-[#F3B233] px-6 text-sm font-semibold text-[#134146] shadow-sm transition-[background-color,box-shadow,transform] duration-150 hover:bg-[#F6BE4D] hover:shadow-md active:scale-[0.97] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#134146] motion-reduce:transition-none motion-reduce:active:scale-100 sm:w-fit sm:text-base"
+                className="group mt-8 inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-full bg-brand-accent px-6 text-sm font-semibold text-brand-dark shadow-sm transition-[background-color,box-shadow,transform] duration-150 hover:bg-[#F6BE4D] hover:shadow-md active:scale-[0.97] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-brand-dark motion-reduce:transition-none motion-reduce:active:scale-100 sm:w-fit sm:text-base"
               >
                 Daftar Sekarang
                 <MoveRight

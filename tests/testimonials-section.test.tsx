@@ -106,14 +106,14 @@ describe("testimonial quality section", () => {
     const { container } = render(<TestimonialsSection />)
     const section = container.querySelector("section") as HTMLElement
 
-    expect(section).toHaveClass("bg-[#134146]")
+    expect(section).toHaveClass("bg-brand-dark", "section-spacing-standard")
     expect(section.querySelectorAll("button")).toHaveLength(0)
     expect(section.querySelectorAll("[class*='truncate']")).toHaveLength(0)
 
     for (const initials of ["ES", "AW", "IF", "MF"]) {
       expect(screen.getByText(initials)).toHaveClass(
-        "bg-[#F3B233]",
-        "text-[#134146]",
+        "bg-brand-accent",
+        "text-brand-dark",
       )
     }
 

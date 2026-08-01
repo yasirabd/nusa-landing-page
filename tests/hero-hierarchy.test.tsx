@@ -78,7 +78,7 @@ describe("hero hierarchy", () => {
     expect(status).not.toContainElement(offer)
     expect(within(offer).getByText("Rp10 juta")).toHaveClass(
       "font-semibold",
-      "text-[#F3B233]",
+      "text-brand-accent",
     )
 
     const source = readFileSync("components/hero-section.tsx", "utf8")
