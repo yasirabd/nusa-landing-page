@@ -68,6 +68,34 @@ describe("consolidated benefits section", () => {
     )
   })
 
+  it("uses the approved editorial layout without changing its copy", () => {
+    const source = readFileSync("components/why-choose-section.tsx", "utf8")
+    const { container } = render(<WhyChooseSection />)
+    const section = container.querySelector("section") as HTMLElement
+    const benefitsList = section.querySelector("ul") as HTMLElement
+    const cta = within(section).getByRole("link", { name: "Daftar Sekarang" })
+
+    expect(section).toHaveClass("bg-[#F7F7F2]")
+    expect(source).toContain(
+      "lg:grid-cols-[minmax(0,4fr)_minmax(0,8fr)]",
+    )
+    expect(benefitsList).toHaveClass("md:grid-cols-2", "lg:mt-0")
+    expect(cta).toHaveClass("w-full", "sm:w-fit")
+    expect(source).not.toContain("rounded-[2rem]")
+    expect(source).not.toContain("shadow-[0_24px_70px")
+
+    for (const copy of [
+      "Pendidikan yang menyatukan pembentukan iman, keterampilan teknologi,",
+      "Adab, ibadah, disiplin, dan kemandirian dibentuk melalui pendampingan keseharian.",
+      "Belajar IT secara intensif dengan tools terkini, AI, dan project yang relevan dengan kebutuhan industri.",
+      "Melatih bahasa Inggris, leadership, public speaking, dan soft skills untuk berkomunikasi dengan percaya diri.",
+      "Membangun portofolio, mental berjualan, serta pengalaman freelance dan project berbayar.",
+      "Gajian berarti mulai mendapat peluang penghasilan dari karya,",
+    ]) {
+      expect(source).toContain(copy)
+    }
+  })
+
   it("keeps static benefits calm and the CTA accessible", () => {
     const source = readFileSync("components/why-choose-section.tsx", "utf8")
     const { container } = render(<WhyChooseSection />)

@@ -54,42 +54,56 @@ const stages = [
 
 export function WhyChooseSection() {
   return (
-    <section className="bg-[#F0FAF7] py-16 md:py-20 lg:py-24">
+    <section className="bg-[#F7F7F2] py-16 md:py-20 lg:py-24">
       <div className="container mx-auto max-w-6xl px-4 md:px-8">
-        <div className="max-w-3xl">
-          <p className="text-sm font-bold uppercase tracking-[0.18em] text-[#2C8970]">
-            Keunggulan NUSA
-          </p>
-          <h2 className="mt-4 text-3xl font-extrabold leading-tight tracking-tight text-[#134146] sm:text-4xl md:text-5xl">
-            Mengapa Memilih NUSA?
-          </h2>
-          <p className="mt-5 max-w-2xl text-base leading-relaxed text-[#365F61] sm:text-lg">
-            Pendidikan yang menyatukan pembentukan iman, keterampilan teknologi,
-            dan pengalaman berkarya dalam keseharian santri.
-          </p>
+        <div className="grid gap-10 lg:grid-cols-[minmax(0,4fr)_minmax(0,8fr)] lg:items-start lg:gap-16 xl:gap-20">
+          <div className="max-w-xl lg:pt-2">
+            <p className="text-sm font-bold uppercase tracking-[0.18em] text-[#2C8970]">
+              Keunggulan NUSA
+            </p>
+            <h2 className="mt-4 text-3xl font-extrabold leading-tight tracking-tight text-[#134146] sm:text-4xl md:text-5xl">
+              Mengapa Memilih NUSA?
+            </h2>
+            <p className="mt-5 max-w-lg text-base leading-relaxed text-[#365F61] sm:text-lg">
+              Pendidikan yang menyatukan pembentukan iman, keterampilan teknologi,
+              dan pengalaman berkarya dalam keseharian santri.
+            </p>
+          </div>
+
+          <ul className="grid border-y border-[#134146]/15 md:grid-cols-2 lg:mt-0">
+            {benefits.map(({ title, description, icon: Icon }, index) => {
+              const itemBorders = [
+                "border-b md:border-r md:pr-8",
+                "border-b md:pl-8",
+                "border-b md:border-b-0 md:border-r md:pr-8",
+                "md:pl-8",
+              ][index]
+
+              return (
+                <li
+                  key={title}
+                  className={`flex gap-4 py-6 md:py-8 ${itemBorders}`}
+                >
+                  <span className="flex size-10 shrink-0 items-center justify-center rounded-full bg-[#E3F3EE] text-[#2C8970] ring-1 ring-[#134146]/10">
+                    <Icon aria-hidden="true" className="size-5" />
+                  </span>
+                  <div>
+                    <h3 className="text-lg font-bold leading-snug text-[#134146]">
+                      {title}
+                    </h3>
+                    <p className="mt-2 text-sm leading-relaxed text-[#496E70] sm:text-base">
+                      {description}
+                    </p>
+                  </div>
+                </li>
+              )
+            })}
+          </ul>
         </div>
 
-        <ul className="mt-10 grid gap-x-10 gap-y-8 border-t border-[#134146]/15 pt-10 md:grid-cols-2 md:gap-y-10 lg:mt-12 lg:grid-cols-4 lg:gap-x-8">
-          {benefits.map(({ title, description, icon: Icon }) => (
-            <li key={title} className="flex gap-4 lg:block">
-              <span className="flex size-11 shrink-0 items-center justify-center rounded-2xl bg-white text-[#2C8970] shadow-sm ring-1 ring-[#134146]/10 lg:mb-5">
-                <Icon aria-hidden="true" className="size-5" />
-              </span>
-              <div>
-                <h3 className="text-lg font-bold leading-snug text-[#134146]">
-                  {title}
-                </h3>
-                <p className="mt-2 text-sm leading-relaxed text-[#496E70] sm:text-base">
-                  {description}
-                </p>
-              </div>
-            </li>
-          ))}
-        </ul>
-
-        <div className="mt-12 overflow-hidden rounded-[2rem] bg-[#134146] text-white shadow-[0_24px_70px_rgba(19,65,70,0.18)] md:mt-16">
-          <div className="grid gap-10 p-7 sm:p-9 md:p-12 lg:grid-cols-[0.85fr_1.15fr] lg:gap-14 lg:p-14">
-            <div>
+        <div className="mt-12 overflow-hidden rounded-3xl border border-white/10 bg-[#134146] text-white shadow-[0_18px_50px_rgba(19,65,70,0.14)] md:mt-16">
+          <div className="grid gap-9 p-7 sm:p-9 md:p-11 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:gap-14 lg:p-12">
+            <div className="max-w-xl lg:pt-2">
               <p className="text-sm font-bold uppercase tracking-[0.18em] text-[#8EF3E7]">
                 Dari Belajar Menjadi Karya
               </p>
@@ -106,10 +120,13 @@ export function WhyChooseSection() {
             <div>
               <ol className="divide-y divide-white/15 border-y border-white/15">
                 {stages.map(({ title, description }, index) => (
-                  <li key={title} className="grid gap-3 py-5 sm:grid-cols-[3rem_1fr]">
+                  <li
+                    key={title}
+                    className="grid grid-cols-[2.5rem_1fr] gap-3 py-5 sm:grid-cols-[3rem_1fr]"
+                  >
                     <span
                       aria-hidden="true"
-                      className="font-romulo-italic text-2xl text-[#F3B233]"
+                      className="mt-0.5 flex size-8 items-center justify-center rounded-full bg-[#F3B233]/10 text-xs font-bold tabular-nums text-[#F3B233] ring-1 ring-[#F3B233]/30"
                     >
                       {String(index + 1).padStart(2, "0")}
                     </span>
@@ -125,7 +142,7 @@ export function WhyChooseSection() {
 
               <Link
                 href="/daftar"
-                className="group mt-8 inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-[#F3B233] px-6 text-sm font-semibold text-[#134146] shadow-sm transition-[background-color,box-shadow,transform] duration-150 hover:bg-[#F6BE4D] hover:shadow-md active:scale-[0.97] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#134146] motion-reduce:transition-none motion-reduce:active:scale-100 sm:text-base"
+                className="group mt-8 inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-full bg-[#F3B233] px-6 text-sm font-semibold text-[#134146] shadow-sm transition-[background-color,box-shadow,transform] duration-150 hover:bg-[#F6BE4D] hover:shadow-md active:scale-[0.97] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#134146] motion-reduce:transition-none motion-reduce:active:scale-100 sm:w-fit sm:text-base"
               >
                 Daftar Sekarang
                 <MoveRight
