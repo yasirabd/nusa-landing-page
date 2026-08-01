@@ -199,19 +199,6 @@
   }
 }
 
-@media (hover: hover) and (pointer: fine) {
-  .gallery-card:hover .gallery-image {
-    transform: scale(1.025);
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .gallery-image {
-    transition: none;
-    transform: none !important;
-  }
-}
-
 .hero-action {
   transition: background-color 150ms ease, border-color 150ms ease, box-shadow 150ms ease,
     transform 150ms cubic-bezier(0.23, 1, 0.32, 1);

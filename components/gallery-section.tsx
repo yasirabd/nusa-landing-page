@@ -1,5 +1,13 @@
+"use client"
+
 import Image from "next/image"
-import { GALLERY_IMAGE_SIZES, GALLERY_ITEMS } from "@/components/gallery-content"
+import { ChevronDown, Instagram } from "lucide-react"
+import { useState } from "react"
+import {
+  GALLERY_FEATURED_IMAGE_SIZES,
+  GALLERY_TILE_IMAGE_SIZES,
+  LANDING_GALLERY_ITEMS,
+} from "@/components/gallery-content"
 
 const COLORS = {
   darkBase: "#134146",
@@ -7,67 +15,122 @@ const COLORS = {
 }
 
 export function GallerySection() {
+  const [isExpanded, setIsExpanded] = useState(false)
+  const visibleItems = isExpanded
+    ? LANDING_GALLERY_ITEMS
+    : LANDING_GALLERY_ITEMS.slice(0, 8)
+
   return (
     <section
       id="kehidupan-santri"
-      className="scroll-mt-20 py-24 md:py-32 lg:py-40"
+      className="scroll-mt-20 py-16 md:py-20 lg:py-24"
       style={{ backgroundColor: COLORS.surface }}
     >
       <div className="container mx-auto max-w-7xl px-4 md:px-8">
-        <div className="mx-auto mb-16 max-w-4xl text-center md:mb-24">
+        <div className="mb-10 max-w-2xl md:mb-12">
           <h2
-            className="mb-6 text-4xl font-extrabold tracking-tight sm:text-5xl lg:text-6xl"
+            className="mb-4 text-3xl font-extrabold tracking-tight sm:text-4xl lg:text-5xl"
             style={{ color: COLORS.darkBase }}
           >
-            Galeri Kegiatan
+            Kehidupan Santri di <span className="font-righteous font-normal">NUSA</span>
           </h2>
           <p
-            className="mx-auto max-w-2xl text-base font-medium leading-relaxed opacity-80 sm:text-lg"
+            className="text-base font-medium leading-relaxed opacity-80 sm:text-lg"
             style={{ color: COLORS.darkBase }}
           >
-            Momen-momen berharga kegiatan{" "}
-            <span className="font-righteous font-normal tracking-wide">NUSA</span> Boarding School
+            Beragam kegiatan yang membentuk skill, karakter, keberanian, dan kepedulian santri.
           </p>
         </div>
 
-        <div className="mx-auto grid grid-cols-1 gap-6 md:grid-cols-2 md:gap-10">
-          {GALLERY_ITEMS.map((item) => (
-            <article
-              key={item.image}
-              className="gallery-card group relative overflow-hidden rounded-3xl border border-transparent bg-black shadow-sm transition-[border-color,box-shadow] duration-[180ms] hover:border-[#42CDBA]/50 hover:shadow-xl"
-              aria-label={item.name}
-            >
-              <div className="relative aspect-video w-full overflow-hidden">
-                <picture>
-                  <source
-                    type="image/webp"
-                    srcSet={`${item.image.replace(".webp", "-640.webp")} ${item.mobileWidth}w, ${item.image} ${item.width}w`}
-                    sizes={GALLERY_IMAGE_SIZES}
-                  />
-                  <Image
-                    src={item.image}
-                    alt={item.name}
-                    width={item.width}
-                    height={item.height}
-                    sizes={GALLERY_IMAGE_SIZES}
-                    className="gallery-image h-full w-full object-cover transition-transform duration-[180ms]"
-                    style={{ objectPosition: item.objectPosition }}
-                  />
-                </picture>
+        <div
+          id="gallery-kegiatan-lengkap"
+          className="grid gap-4 md:grid-cols-2 lg:auto-rows-[220px] lg:grid-cols-4"
+        >
+          {visibleItems.map((item, index) => {
+            const isFeatured = index === 0
 
-                <div className="absolute inset-0 flex flex-col justify-end bg-[linear-gradient(to_top,rgba(19,65,70,0.95),rgba(19,65,70,0.6)_40%,rgba(0,0,0,0)_80%)] p-6 text-left md:p-8">
-                  <div className="w-full">
-                    <h3 className="mb-2 text-lg font-semibold text-white drop-shadow-sm md:text-xl">
-                      {item.name}
-                    </h3>
-                    <p className="text-sm font-medium leading-relaxed text-white/90 md:text-base">
-                      {item.description}
-                    </p>
+            return (
+              <article
+                key={item.image}
+                className={`relative min-h-[240px] overflow-hidden rounded-2xl bg-[#134146] md:min-h-[260px] lg:h-full lg:min-h-0 ${
+                  isFeatured
+                    ? "md:col-span-2 lg:col-span-2 lg:row-span-2"
+                    : index === 1
+                      ? "lg:col-span-2"
+                      : ""
+                }`}
+                aria-label={item.name}
+              >
+                <div className="relative h-full w-full overflow-hidden">
+                  <picture>
+                    <source
+                      type="image/webp"
+                      srcSet={`${item.image.replace(".webp", "-640.webp")} ${item.mobileWidth}w, ${item.image} ${item.width}w`}
+                      sizes={
+                        isFeatured
+                          ? GALLERY_FEATURED_IMAGE_SIZES
+                          : GALLERY_TILE_IMAGE_SIZES
+                      }
+                    />
+                    <Image
+                      src={item.image}
+                      alt={item.name}
+                      width={item.width}
+                      height={item.height}
+                      sizes={
+                        isFeatured
+                          ? GALLERY_FEATURED_IMAGE_SIZES
+                          : GALLERY_TILE_IMAGE_SIZES
+                      }
+                      className="absolute inset-0 h-full w-full object-cover"
+                      style={{ objectPosition: item.objectPosition }}
+                    />
+                  </picture>
+
+                  <div className="absolute inset-0 flex flex-col justify-end bg-[linear-gradient(to_top,rgba(8,35,39,0.94),rgba(19,65,70,0.52)_44%,transparent_78%)] p-5 text-left md:p-6">
+                    <div className="w-full">
+                      <h3
+                        className={`${isFeatured ? "text-xl md:text-2xl" : "text-lg"} mb-1.5 font-bold leading-tight text-white`}
+                      >
+                        {item.name}
+                      </h3>
+                      <p
+                        className={`${isFeatured ? "md:max-w-xl md:text-base" : "text-sm"} font-medium leading-relaxed text-white/85`}
+                      >
+                        {item.description}
+                      </p>
+                    </div>
                   </div>
                 </div>
-              </div>
-            </article>
-          ))}
+              </article>
+            )
+          })}
+        </div>
+
+        <div className="mt-8 flex flex-col items-stretch gap-3 sm:flex-row sm:items-center">
+          <button
+            type="button"
+            aria-expanded={isExpanded}
+            aria-controls="gallery-kegiatan-lengkap"
+            onClick={() => setIsExpanded((expanded) => !expanded)}
+            className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full border-2 border-[#134146] bg-[#134146] px-6 py-2.5 text-sm font-bold text-white transition-[background-color,border-color,color,transform] duration-150 hover:border-[#0d3438] hover:bg-[#0d3438] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#42CDBA] focus-visible:ring-offset-2 active:scale-[0.97] motion-reduce:transition-none motion-reduce:active:scale-100"
+          >
+            {isExpanded ? "Tampilkan Lebih Sedikit" : "Lihat Semua 12 Kegiatan"}
+            <ChevronDown
+              aria-hidden="true"
+              className={`size-4 transition-transform duration-150 motion-reduce:transition-none ${isExpanded ? "rotate-180" : ""}`}
+            />
+          </button>
+
+          <a
+            href="https://instagram.com/nusaboardingschool"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full border-2 border-[#134146]/20 px-6 py-2.5 text-sm font-bold text-[#134146] transition-[background-color,border-color,color,transform] duration-150 hover:border-[#134146]/35 hover:bg-white/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#42CDBA] focus-visible:ring-offset-2 active:scale-[0.97] motion-reduce:transition-none motion-reduce:active:scale-100"
+          >
+            <Instagram aria-hidden="true" className="size-4" />
+            Lihat Update Terbaru di Instagram
+          </a>
         </div>
       </div>
     </section>
