@@ -85,15 +85,42 @@ describe("consolidated benefits section", () => {
     expect(source).not.toContain("shadow-[0_24px_70px")
 
     for (const copy of [
+      "Keunggulan NUSA",
+      "Mengapa Memilih NUSA?",
       "Pendidikan yang menyatukan pembentukan iman, keterampilan teknologi,",
       "Adab, ibadah, disiplin, dan kemandirian dibentuk melalui pendampingan keseharian.",
       "Belajar IT secara intensif dengan tools terkini, AI, dan project yang relevan dengan kebutuhan industri.",
       "Melatih bahasa Inggris, leadership, public speaking, dan soft skills untuk berkomunikasi dengan percaya diri.",
       "Membangun portofolio, mental berjualan, serta pengalaman freelance dan project berbayar.",
+      "Dari Belajar Menjadi Karya",
+      "100 Hari Belajar, Besoknya Gajian",
       "Gajian berarti mulai mendapat peluang penghasilan dari karya,",
+      "Belajar intensif dengan fokus pada skill praktis yang dibutuhkan industri.",
+      "Mulai membangun portofolio melalui freelance atau project berbayar.",
+      "Memperdalam kemampuan dengan mengerjakan project nyata secara berkelanjutan.",
+      "Daftar Sekarang",
     ]) {
       expect(source).toContain(copy)
     }
+  })
+
+  it("uses explicit calm dividers across mobile and desktop layouts", () => {
+    const { container } = render(<WhyChooseSection />)
+    const items = Array.from(container.querySelectorAll("ul > li"))
+
+    expect(items).toHaveLength(4)
+    for (const item of items) {
+      expect(item).toHaveClass("border-[#134146]/15")
+    }
+
+    expect(items[0]).toHaveClass("border-b", "md:border-r")
+    expect(items[1]).toHaveClass("border-b", "md:pl-8")
+    expect(items[2]).toHaveClass(
+      "border-b",
+      "md:border-b-0",
+      "md:border-r",
+    )
+    expect(items[3]).toHaveClass("md:pl-8")
   })
 
   it("keeps static benefits calm and the CTA accessible", () => {

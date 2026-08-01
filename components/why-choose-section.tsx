@@ -82,7 +82,7 @@ export function WhyChooseSection() {
               return (
                 <li
                   key={title}
-                  className={`flex gap-4 py-6 md:py-8 ${itemBorders}`}
+                  className={`flex gap-4 border-[#134146]/15 py-6 md:py-8 ${itemBorders}`}
                 >
                   <span className="flex size-10 shrink-0 items-center justify-center rounded-full bg-[#E3F3EE] text-[#2C8970] ring-1 ring-[#134146]/10">
                     <Icon aria-hidden="true" className="size-5" />
