@@ -5,7 +5,7 @@ const COLORS = {
 
 export function NUSATaglineSection() {
   return (
-    <section className="py-24 md:py-32 lg:py-48 bg-white">
+    <section className="bg-white py-16 md:py-20 lg:py-24">
       <div className="container px-4 md:px-8 max-w-5xl mx-auto">
         <div className="text-center flex flex-col items-center justify-center space-y-8 sm:space-y-10 md:space-y-12">
 

@@ -16,4 +16,15 @@ describe("NUSA tagline", () => {
       screen.queryByText("Lead with faith, knowledge, and courage."),
     ).not.toBeInTheDocument()
   })
+
+  it("keeps the approved tagline in a compact standalone interlude", () => {
+    const { container } = render(<NUSATaglineSection />)
+    const section = container.querySelector("section")
+
+    expect(section).toHaveClass("py-16", "md:py-20", "lg:py-24")
+    expect(section).not.toHaveClass("lg:py-48")
+    expect(
+      screen.getByText("Faith at Heart. Tech in Hand. Purpose in Action."),
+    ).toBeVisible()
+  })
 })
