@@ -1,8 +1,5 @@
-"use client"
-
 import Image from "next/image"
-import { ChevronDown, Instagram } from "lucide-react"
-import { useState } from "react"
+import { Instagram } from "lucide-react"
 import {
   GALLERY_FEATURED_IMAGE_SIZES,
   GALLERY_TILE_IMAGE_SIZES,
@@ -16,11 +13,6 @@ const COLORS = {
 }
 
 export function GallerySection() {
-  const [isExpanded, setIsExpanded] = useState(false)
-  const visibleItems = isExpanded
-    ? LANDING_GALLERY_ITEMS
-    : LANDING_GALLERY_ITEMS.slice(0, 8)
-
   return (
     <section
       id="kehidupan-santri"
@@ -47,7 +39,7 @@ export function GallerySection() {
           id="gallery-kegiatan-lengkap"
           className="grid gap-4 md:grid-cols-2 lg:auto-rows-[220px] lg:grid-cols-4"
         >
-          {visibleItems.map((item, index) => {
+          {LANDING_GALLERY_ITEMS.map((item, index) => {
             const isFeatured = index === 0
             const imageSizes = isFeatured
               ? GALLERY_FEATURED_IMAGE_SIZES
@@ -105,21 +97,7 @@ export function GallerySection() {
           })}
         </div>
 
-        <div className="mt-8 flex flex-col items-stretch gap-3 sm:flex-row sm:items-center">
-          <button
-            type="button"
-            aria-expanded={isExpanded}
-            aria-controls="gallery-kegiatan-lengkap"
-            onClick={() => setIsExpanded((expanded) => !expanded)}
-            className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full border-2 border-[#134146] bg-[#134146] px-6 py-2.5 text-sm font-bold text-white transition-[background-color,border-color,color,transform] duration-150 hover:border-[#0d3438] hover:bg-[#0d3438] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#42CDBA] focus-visible:ring-offset-2 active:scale-[0.97] motion-reduce:transition-none motion-reduce:active:scale-100"
-          >
-            {isExpanded ? "Tampilkan Lebih Sedikit" : "Lihat Semua 12 Kegiatan"}
-            <ChevronDown
-              aria-hidden="true"
-              className={`size-4 transition-transform duration-150 motion-reduce:transition-none ${isExpanded ? "rotate-180" : ""}`}
-            />
-          </button>
-
+        <div className="mt-8 flex">
           <a
             href="https://instagram.com/nusaboardingschool"
             target="_blank"

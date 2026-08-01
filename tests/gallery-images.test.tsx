@@ -1,5 +1,5 @@
 import { readFileSync } from "node:fs"
-import { fireEvent, render, screen } from "@testing-library/react"
+import { render, screen } from "@testing-library/react"
 import { describe, expect, it } from "vitest"
 import * as galleryContent from "@/components/gallery-content"
 import { GallerySection } from "@/components/gallery-section"
@@ -33,7 +33,7 @@ function getImageSourcePath(image: HTMLElement) {
 }
 
 describe("editorial gallery rendering", () => {
-  it("shows eight curated activities initially in the approved order", () => {
+  it("shows all twelve curated activities immediately in the approved order", () => {
     render(<GallerySection />)
 
     expect(
@@ -46,7 +46,7 @@ describe("editorial gallery rendering", () => {
     ).toBeVisible()
 
     expect(screen.getAllByRole("img").map((image) => image.getAttribute("alt"))).toEqual(
-      approvedOrder.slice(0, 8),
+      approvedOrder,
     )
 
     const featured = screen.getByRole("article", { name: "NUSA Mengajar" })
@@ -72,31 +72,21 @@ describe("editorial gallery rendering", () => {
     )
   })
 
-  it("reveals all twelve activities inline and can collapse them again", () => {
+  it("shows every activity without a disclosure interaction", () => {
     render(<GallerySection />)
 
-    const expand = screen.getByRole("button", { name: "Lihat Semua 12 Kegiatan" })
-    expect(expand).toHaveAttribute("aria-expanded", "false")
-    expect(expand).toHaveAttribute("aria-controls", "gallery-kegiatan-lengkap")
-
-    fireEvent.click(expand)
-
-    expect(screen.getAllByRole("img").map((image) => image.getAttribute("alt"))).toEqual(
-      approvedOrder,
-    )
-    const collapse = screen.getByRole("button", { name: "Tampilkan Lebih Sedikit" })
-    expect(collapse).toHaveAttribute("aria-expanded", "true")
-
-    fireEvent.click(collapse)
-    expect(screen.getAllByRole("img")).toHaveLength(8)
+    expect(screen.getAllByRole("img")).toHaveLength(12)
+    expect(
+      screen.queryByRole("button", { name: "Lihat Semua 12 Kegiatan" }),
+    ).not.toBeInTheDocument()
+    expect(
+      screen.queryByRole("button", { name: "Tampilkan Lebih Sedikit" }),
+    ).not.toBeInTheDocument()
   })
 
-  it("keeps Instagram optional and both actions accessible", () => {
+  it("keeps Instagram optional and accessible", () => {
     render(<GallerySection />)
 
-    const disclosure = screen.getByRole("button", {
-      name: "Lihat Semua 12 Kegiatan",
-    })
     const instagram = screen.getByRole("link", {
       name: "Lihat Update Terbaru di Instagram",
     })
@@ -108,16 +98,14 @@ describe("editorial gallery rendering", () => {
     expect(instagram).toHaveAttribute("target", "_blank")
     expect(instagram).toHaveAttribute("rel", "noopener noreferrer")
 
-    for (const action of [disclosure, instagram]) {
-      expect(action).toHaveClass(
-        "min-h-12",
-        "duration-150",
-        "active:scale-[0.97]",
-        "focus-visible:ring-2",
-        "motion-reduce:active:scale-100",
-      )
-      expect(action).not.toHaveClass("transition-all")
-    }
+    expect(instagram).toHaveClass(
+      "min-h-12",
+      "duration-150",
+      "active:scale-[0.97]",
+      "focus-visible:ring-2",
+      "motion-reduce:active:scale-100",
+    )
+    expect(instagram).not.toHaveClass("transition-all")
   })
 
   it("preserves all canonical records and responsive WebP sources", () => {
@@ -133,7 +121,6 @@ describe("editorial gallery rendering", () => {
     expect(landing?.map(({ name }) => name)).toEqual(approvedOrder)
 
     render(<GallerySection />)
-    fireEvent.click(screen.getByRole("button", { name: "Lihat Semua 12 Kegiatan" }))
 
     const recordByName = new Map(canonical.map((item) => [item.name, item]))
     for (const [index, name] of approvedOrder.entries()) {
@@ -159,7 +146,7 @@ describe("editorial gallery rendering", () => {
   it("keeps captions visible and removes decorative gallery motion", () => {
     render(<GallerySection />)
 
-    for (const name of approvedOrder.slice(0, 8)) {
+    for (const name of approvedOrder) {
       const item = galleryContent.GALLERY_ITEMS.find((candidate) => candidate.name === name)
       expect(screen.getByText(name)).toBeVisible()
       expect(screen.getByText(item?.description ?? "")).toBeVisible()
@@ -178,6 +165,9 @@ describe("editorial gallery rendering", () => {
     expect(source).not.toContain("duration-300")
     expect(source).not.toContain("duration-500")
     expect(source).not.toContain("duration-700")
+    expect(source).not.toContain("useState")
+    expect(source).not.toContain("ChevronDown")
+    expect(source).not.toContain("aria-expanded")
     expect(globalStyles).not.toContain(".gallery-card:hover .gallery-image")
     expect(globalStyles).not.toContain(".gallery-image {")
   })
