@@ -200,7 +200,7 @@ export function ProgramSection() {
         <div className="mt-16 md:mt-24 pt-10 border-t border-[#42CDBA]/20 mx-auto max-w-4xl text-center">
           <Link
             href="/daftar"
-            className="group/btn inline-flex items-center gap-2 rounded-full bg-[#2C8970] px-8 py-3.5 text-base font-bold text-white shadow-lg shadow-primary/20 transition-[background-color,box-shadow,transform] duration-150 hover:bg-[#F3B233] hover:text-[#134146] hover:shadow-xl hover:shadow-accent/20 active:scale-[0.97] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2C8970] focus-visible:ring-offset-2 focus-visible:ring-offset-[#F0FAF7] motion-reduce:transition-none motion-reduce:active:scale-100 sm:px-10 sm:py-4 sm:text-lg"
+            className="group/btn inline-flex items-center gap-2 rounded-full bg-[#1F6F68] px-8 py-3.5 text-base font-bold text-white shadow-lg shadow-primary/20 transition-[background-color,color,box-shadow,transform] duration-150 hover:bg-[#F3B233] hover:text-[#134146] hover:shadow-xl hover:shadow-accent/20 active:scale-[0.97] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2C8970] focus-visible:ring-offset-2 focus-visible:ring-offset-[#F0FAF7] motion-reduce:transition-none motion-reduce:active:scale-100 sm:px-10 sm:py-4 sm:text-lg"
           >
             Daftar Sekarang
             <MoveRight className="h-5 w-5 transition-transform duration-150 group-hover/btn:translate-x-1 group-focus-visible/btn:translate-x-1 motion-reduce:transform-none motion-reduce:transition-none" />

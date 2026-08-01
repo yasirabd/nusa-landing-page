@@ -63,4 +63,43 @@ describe("public CTA accessibility", () => {
     )
     expect(link).not.toHaveClass("transition-all", "hover:scale-105")
   })
+
+  it.each([
+    [
+      "100-day program",
+      <Program100Days />,
+      [
+        "bg-[#F3B233]",
+        "text-[#134146]",
+        "transition-[background-color,box-shadow,transform]",
+      ],
+    ],
+    [
+      "program overview",
+      <ProgramSection />,
+      [
+        "bg-[#1F6F68]",
+        "text-white",
+        "hover:bg-[#F3B233]",
+        "hover:text-[#134146]",
+        "transition-[background-color,color,box-shadow,transform]",
+      ],
+    ],
+    [
+      "final registration",
+      <RegistrationSection />,
+      [
+        "bg-[#1F6F68]",
+        "text-[#F7F7F2]",
+        "hover:bg-[#F3B233]",
+        "hover:text-[#134146]",
+        "transition-[background-color,color,box-shadow,transform]",
+      ],
+    ],
+  ])("keeps the %s CTA contrast-safe through color changes", (_, component, classes) => {
+    render(component)
+    const link = screen.getByRole("link", { name: "Daftar Sekarang" })
+
+    expect(link).toHaveClass(...classes)
+  })
 })
