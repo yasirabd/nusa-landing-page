@@ -2,9 +2,9 @@
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
-**Goal:** Restore Romulo only for the two approved `Muslim Tangguh, Jago IT` display accents.
+**Goal:** Restore Romulo only for the three approved `Muslim Tangguh, Jago IT` display accents.
 
-**Architecture:** Define one isolated Romulo `@font-face` and utility in `app/globals.css`. Apply the utility only in the tagline and registration components while retaining the existing Geist, Righteous, and Noto Serif roles everywhere else.
+**Architecture:** Define one isolated Romulo `@font-face` and utility in `app/globals.css`. Apply the utility only in the tagline, registration, and footer components while retaining the existing Geist, Righteous, and Noto Serif roles everywhere else.
 
 **Tech Stack:** Next.js 16, React 18, TypeScript, Tailwind CSS 4, Vitest
 
@@ -20,11 +20,12 @@
 Rename the global-token test to `maps global font tokens without weight overrides`, remove Romulo and the Framer URL from its rejected patterns, and add:
 
 ```ts
-  it("limits Romulo to the two approved tagline accents", () => {
+  it("limits Romulo to the three approved tagline accents", () => {
     const styles = readFileSync("app/globals.css", "utf8")
     const approvedRomuloFiles = new Set([
       "components/nusa-tagline.tsx",
       "components/registration-section.tsx",
+      "components/footer.tsx",
     ])
 
     expect(styles).toContain('font-family: "Romulo";')
@@ -49,7 +50,7 @@ Rename the global-token test to `maps global font tokens without weight override
   })
 ```
 
-Remove the global assertion `expect(applicationSource).not.toContain("font-romulo-italic")`. Restrict the existing Noto Serif role loop to curriculum and footer because the tagline and registration components become Romulo exceptions.
+Remove the global assertion `expect(applicationSource).not.toContain("font-romulo-italic")`. Restrict the existing Noto Serif role assertion to the curriculum component because the tagline, registration, and footer components become Romulo exceptions. Keep the testimonial quotation glyph covered by its existing component test.
 
 - [ ] **Step 2: Verify RED**
 
@@ -67,6 +68,7 @@ Expected: FAIL because Romulo was removed during typography consolidation.
 - Modify: `app/globals.css`
 - Modify: `components/nusa-tagline.tsx`
 - Modify: `components/registration-section.tsx`
+- Modify: `components/footer.tsx`
 - Test: `tests/typography-system.test.ts`
 
 - [ ] **Step 1: Restore the font face and utility**
@@ -88,7 +90,7 @@ Add this after the base layer in `app/globals.css` without changing the global `
 }
 ```
 
-- [ ] **Step 2: Apply Romulo to the two approved accents**
+- [ ] **Step 2: Apply Romulo to the three approved accents**
 
 In `components/nusa-tagline.tsx`, use:
 
@@ -100,6 +102,12 @@ In `components/registration-section.tsx`, use:
 
 ```tsx
 className="font-romulo-italic font-normal tracking-wide"
+```
+
+In `components/footer.tsx`, use:
+
+```tsx
+<span className="font-romulo-italic font-normal tracking-wide text-xl lg:text-2xl mt-1 block" style={{ color: COLORS.accent }}>
 ```
 
 Preserve every other class and all copy.
@@ -130,7 +138,7 @@ Expected: tests and build pass; only the user-owned audit document remains untra
 - [ ] **Step 5: Commit**
 
 ```bash
-git add app/globals.css components/nusa-tagline.tsx components/registration-section.tsx tests/typography-system.test.ts
+git add app/globals.css components/nusa-tagline.tsx components/registration-section.tsx components/footer.tsx tests/typography-system.test.ts
 git commit -m "fix: restore Romulo tagline accents"
 ```
 
