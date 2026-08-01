@@ -76,7 +76,10 @@ function TestimonialCard({
       </blockquote>
 
       <footer className="mt-8 flex items-center gap-4 border-t border-[#134146]/12 pt-5">
-        <span className="flex size-12 shrink-0 items-center justify-center rounded-full bg-[#F3B233] text-sm font-bold tracking-wide text-[#134146]">
+        <span
+          aria-hidden="true"
+          className="flex size-12 shrink-0 items-center justify-center rounded-full bg-[#F3B233] text-sm font-bold tracking-wide text-[#134146]"
+        >
           {testimonial.initials}
         </span>
         <div className="min-w-0">

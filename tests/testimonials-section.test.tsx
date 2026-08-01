@@ -62,7 +62,12 @@ describe("testimonial quality section", () => {
       expect(within(article).getByText(testimonial.quote)).toBeVisible()
       expect(within(article).getByText(testimonial.name)).toBeVisible()
       expect(within(article).getByText(testimonial.role)).toBeVisible()
-      expect(within(article).getByText(testimonial.initials)).toBeVisible()
+      const avatar = within(article).getByText(testimonial.initials)
+      const quoteMark = article.querySelector(".font-serif")
+
+      expect(avatar).toBeVisible()
+      expect(avatar).toHaveAttribute("aria-hidden", "true")
+      expect(quoteMark).toHaveAttribute("aria-hidden", "true")
       expect(article.querySelector("blockquote")).not.toBeNull()
       expect(article.querySelector("footer")).not.toBeNull()
     }
@@ -123,7 +128,11 @@ describe("testimonial quality section", () => {
       "hover:-translate-y",
       "hover:scale",
       "hover:shadow",
+      "transition-all",
+      "duration-300",
       "duration-500",
+      "duration-700",
+      "duration-1000",
     ]) {
       expect(source).not.toContain(forbidden)
     }
