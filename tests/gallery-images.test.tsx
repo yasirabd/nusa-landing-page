@@ -121,12 +121,15 @@ describe("editorial gallery rendering", () => {
       "md:w-auto",
       "bg-[#134146]",
       "text-white",
+      "text-sm",
       "duration-150",
       "active:scale-[0.97]",
       "focus-visible:ring-2",
+      "focus-visible:ring-[#134146]",
       "motion-reduce:active:scale-100",
     )
     expect(instagram).not.toHaveClass("transition-all")
+    expect(instagram).not.toHaveClass("shadow-lg", "shadow-xl", "min-h-14")
   })
 
   it("preserves all canonical records and responsive WebP sources", () => {
