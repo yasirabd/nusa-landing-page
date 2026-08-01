@@ -56,7 +56,7 @@ const curriculumPillars = [
     image: "/images/kurikulum-tangguh.jpg",
     description: "Kurikulum untuk membentuk karakter tangguh, mandiri, dan berani.",
     items: [
-      "100 Hari Belajar, Besoknya Gajian: Punya penghasilan sendiri",
+      "100 Hari Belajar, Besoknya Gajian: Berpeluang memperoleh penghasilan dari karya atau project berbayar",
       "Potong Urat Malu: Berani jualan di CFD",
       "NUSA Mengajar: Mengajar IT di sekolah lain atau di masyarakat",
       "Weekly Cooking: Laki-laki Bisa Masak",

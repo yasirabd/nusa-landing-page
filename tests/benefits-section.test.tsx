@@ -25,6 +25,7 @@ describe("consolidated benefits section", () => {
         within(section).getByRole("heading", { level: 3, name: value }),
       ).toBeVisible()
     }
+    expect(section.querySelectorAll("ul > li")).toHaveLength(4)
 
     expect(
       within(section).getByRole("heading", {
@@ -39,6 +40,7 @@ describe("consolidated benefits section", () => {
     ]) {
       expect(within(section).getAllByText(stage)).toHaveLength(1)
     }
+    expect(section.querySelectorAll("ol > li")).toHaveLength(3)
 
     const registrationLink = within(section).getByRole("link", {
       name: "Daftar Sekarang",
@@ -52,6 +54,18 @@ describe("consolidated benefits section", () => {
 
     expect(pageSource).not.toContain("Program100Days")
     expect(existsSync("components/program-100-days.tsx")).toBe(false)
+  })
+
+  it("does not promise guaranteed income elsewhere on the landing page", () => {
+    const curriculumSource = readFileSync(
+      "components/curriculum-section.tsx",
+      "utf8",
+    )
+
+    expect(curriculumSource).not.toContain("Punya penghasilan sendiri")
+    expect(curriculumSource).toContain(
+      "Berpeluang memperoleh penghasilan dari karya atau project berbayar",
+    )
   })
 
   it("keeps static benefits calm and the CTA accessible", () => {
