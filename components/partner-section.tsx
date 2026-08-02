@@ -28,7 +28,7 @@ export function PartnerSection() {
         </div>
 
         {/* Glass Tech Dock Kapsul Penampung Susunan Logo Partner */}
-        <div className="mx-auto w-full max-w-5xl rounded-[2rem] md:rounded-[3rem] p-8 md:p-10 lg:p-12 bg-white/80 backdrop-blur-xl border border-gray-100 shadow-[0_8px_30px_rgba(66,205,186,0.1)] hover:shadow-[0_15px_40px_rgba(66,205,186,0.15)] transition-shadow duration-500">
+        <div className="mx-auto w-full max-w-5xl rounded-[2rem] md:rounded-[3rem] p-8 md:p-10 lg:p-12 bg-white/80 backdrop-blur-xl border border-gray-100 shadow-[0_8px_30px_rgba(66,205,186,0.1)] hover:shadow-[0_15px_40px_rgba(66,205,186,0.15)] transition-shadow duration-200">
           <div className="grid grid-cols-2 md:grid-cols-5 items-center justify-items-center gap-8 md:gap-10">
             {partners.map((partner) => (
               <div key={partner.name} className="flex items-center justify-center w-full">
@@ -37,7 +37,7 @@ export function PartnerSection() {
                   alt={`${partner.name} Logo`}
                   width={180}
                   height={80}
-                  className="h-10 md:h-12 w-auto object-contain filter grayscale opacity-50 hover:grayscale-0 hover:opacity-100 hover:scale-105 transition-all duration-500 cursor-pointer"
+                  className="h-10 w-auto object-contain grayscale opacity-50 transition-[filter,opacity] duration-200 hover:grayscale-0 hover:opacity-100 md:h-12"
                 />
               </div>
             ))}

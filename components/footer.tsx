@@ -8,13 +8,13 @@ function SocialIcon({ href, title, src }) {
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      className="group relative inline-flex items-center justify-center w-10 h-10 rounded-full transition-all duration-300 hover:-translate-y-1 bg-white/5 border border-white/10 hover:bg-white/15 hover:border-white/20"
+      className="group relative inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/5 transition-[background-color,border-color] duration-150 hover:border-white/20 hover:bg-white/15"
       title={title}
     >
       <img
         src={src}
         alt={title}
-        className="w-5 h-5 invert group-hover:brightness-110 transition-all duration-300"
+        className="h-5 w-5 invert transition-[filter] duration-150 group-hover:brightness-110"
       />
       <span className="sr-only">{title}</span>
     </Link>
@@ -52,7 +52,7 @@ export function Footer() {
               
               {/* Email */}
               <div className="flex items-center gap-4 group">
-                <div className="w-10 h-10 flex flex-shrink-0 items-center justify-center rounded-full transition-all duration-300 bg-white/5 border border-white/10 group-hover:scale-110 group-hover:bg-white/10">
+                <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full border border-white/10 bg-white/5 transition-[background-color] duration-150 group-hover:bg-white/10">
                   <Mail className="h-5 w-5 text-brand-accent" />
                 </div>
                 <div className="leading-tight">
@@ -65,7 +65,7 @@ export function Footer() {
 
               {/* WhatsApp */}
               <div className="flex items-center gap-4 group">
-                <div className="w-10 h-10 flex flex-shrink-0 items-center justify-center rounded-full transition-all duration-300 bg-white/5 border border-white/10 group-hover:scale-110 group-hover:bg-white/10">
+                <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full border border-white/10 bg-white/5 transition-[background-color] duration-150 group-hover:bg-white/10">
                   <Phone className="h-5 w-5 text-brand-accent" />
                 </div>
                 <div className="leading-tight">
@@ -78,7 +78,7 @@ export function Footer() {
 
               {/* Map Direction */}
               <div className="flex items-center gap-4 group">
-                <div className="w-10 h-10 flex flex-shrink-0 items-center justify-center rounded-full transition-all duration-300 bg-white/5 border border-white/10 group-hover:scale-110 group-hover:bg-white/10">
+                <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full border border-white/10 bg-white/5 transition-[background-color] duration-150 group-hover:bg-white/10">
                   <MapPin className="h-5 w-5 text-brand-accent" />
                 </div>
                 <div className="leading-tight">
@@ -96,7 +96,7 @@ export function Footer() {
             <h3 className="mb-6 text-lg font-bold uppercase tracking-wider text-brand-accent">
               Lokasi
             </h3>
-            <div className="p-2 bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl transition-all duration-300 hover:bg-white/10">
+            <div className="rounded-2xl border border-white/10 bg-white/5 p-2 backdrop-blur-md transition-colors duration-200 hover:bg-white/10">
               <a
                 href="https://maps.app.goo.gl/pR3KqRYPf84yrZB36"
                 target="_blank"
@@ -105,12 +105,12 @@ export function Footer() {
                 aria-label="Buka peta NUSA Boarding School di Google Maps"
               >
                 {/* Visual Glint on Map hover */}
-                <div className="absolute inset-0 bg-white/0 group-hover:bg-white/5 transition-colors duration-300 pointer-events-none z-10"></div>
+                <div className="pointer-events-none absolute inset-0 z-10 bg-white/0 transition-colors duration-200 group-hover:bg-white/5"></div>
                 <div className="w-full relative z-0 aspect-video" style={{ minHeight: 180 }}>
                   <iframe
                     title="Map NUSA Boarding School"
                     src="https://www.google.com/maps?q=Map+NUSA+Boarding+School&output=embed"
-                    className="w-full h-full border-0 grayscale-[50%] contrast-125 group-hover:grayscale-0 transition-all duration-500 block"
+                    className="block h-full w-full border-0 grayscale-[50%] contrast-125 transition-[filter] duration-200 group-hover:grayscale-0"
                     loading="lazy"
                     referrerPolicy="no-referrer-when-downgrade"
                   />

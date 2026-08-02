@@ -66,7 +66,7 @@ export function FeeInfoSection() {
         {/* Premium Horizontal Banner: Uang Pendaftaran */}
         <div className="mb-8 md:mb-10">
           <div
-            className="relative rounded-3xl p-6 md:p-8 flex flex-col md:flex-row items-center justify-between shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
+            className="relative flex flex-col items-center justify-between rounded-3xl p-6 shadow-sm transition-shadow duration-[180ms] hover:shadow-xl md:flex-row md:p-8"
             style={{
               background: "linear-gradient(135deg, rgba(255,255,255,1) 0%, rgba(243,178,51,0.08) 100%)",
               border: "1.5px solid rgba(243, 178, 51, 0.3)",
@@ -98,7 +98,7 @@ export function FeeInfoSection() {
           {feeDetails.map((fee, idx) => (
             <div
               key={idx}
-              className="group relative flex flex-col rounded-3xl p-8 bg-white border shadow-sm hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 overflow-hidden"
+              className="group relative flex flex-col overflow-hidden rounded-3xl border bg-white p-8 shadow-sm transition-[border-color,box-shadow] duration-[180ms] hover:shadow-2xl"
               style={{ borderColor: "rgba(66, 205, 186, 0.40)" }}
             >
               {/* Special Glow Behind Price for Promo */}
@@ -119,7 +119,7 @@ export function FeeInfoSection() {
                 {/* FOMO Ribbon / Strikethrough Box */}
                 {fee.originalAmount && fee.promoBadge && (
                   <div className="flex flex-col items-center justify-center mb-1">
-                    <span className="mb-3 inline-block whitespace-nowrap rounded-full border border-brand-accent/30 bg-brand-accent/15 px-3 py-1.5 text-[11px] font-bold text-brand-dark shadow-sm animate-pulse lg:text-xs">
+                    <span className="mb-3 inline-block whitespace-nowrap rounded-full border border-brand-accent/30 bg-brand-accent/15 px-3 py-1.5 text-[11px] font-bold text-brand-dark shadow-sm lg:text-xs">
                       🔥 {fee.promoBadge}
                     </span>
                     <div className="flex items-center justify-center gap-2 mb-1">
@@ -130,7 +130,7 @@ export function FeeInfoSection() {
                   </div>
                 )}
 
-                <p className="text-5xl font-extrabold tracking-tight text-brand drop-shadow-[0_2px_4px_rgba(66,205,186,0.15)] transition-all duration-300 md:text-6xl">
+                <p className="text-5xl font-extrabold tracking-tight text-brand drop-shadow-[0_2px_4px_rgba(66,205,186,0.15)] md:text-6xl">
                   {fee.amount}
                 </p>
                 <p className="mt-3 text-sm font-bold uppercase tracking-wide text-brand-dark opacity-70">
