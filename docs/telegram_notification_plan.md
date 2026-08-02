@@ -83,7 +83,7 @@ Deno.serve(async (req: Request) => {
     : `https://nusabs.sch.id/test?ref=${row.id}`;
 
   const message = [
-    `<b>🎉 Pendaftar Baru NUSA Boarding School 2026/2027!</b>`,
+    `<b>🎉 Pendaftar Baru NUSA Boarding School 2027/2028!</b>`,
     ``,
     `<b>👤 Nama:</b> ${esc(row.nama_lengkap)}`,
     `<b>📱 WhatsApp:</b> <a href="https://wa.me/${esc(row.nomor_whatsapp)}">+${esc(row.nomor_whatsapp)}</a>`,

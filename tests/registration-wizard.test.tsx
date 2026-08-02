@@ -399,6 +399,6 @@ describe("registration wizard", () => {
     expect(metadataSource).toContain("siteConfig.registration.title")
     expect(siteConfig.registration.title).toContain("2027/2028")
     expect(siteConfig.registration.description).toContain("2027/2028")
-    expect(JSON.stringify(siteConfig.registration)).not.toContain("2026-2027")
+    expect(JSON.stringify(siteConfig.registration)).not.toMatch(/2026[/-]2027/)
   })
 })

@@ -24,7 +24,7 @@ Berikut adalah detail teknis perombakan pada `components/hero-section.tsx`:
 
 ### B. Pembersihan Tipografi & Penonjolan SPMB
 - **Headline Satu Baris**: Mengembalikan `<h1>` ("NUSA Boarding School") kembali ke format murni **satu baris** horisontal tak terputus. Elemen `<br />` tidak diterapkan di dalam H1 untuk mempertahankan orisinalitas kesatuan identitas merek. Untuk mengakomodasi satu baris ini, pengaturan skalabilitas font akan dipastikan aman dan tidak menimpa / membungkus.
-- **Penonjolan SPMB**: Kicker *"SPMB 2026–2027 Pendaftaran Dibuka"* akan diperbesar tingkat signifikansinya (secara *visual weight*)! Tidak sekadar ditaruh di dalam badge kecil, melainkan akan diberikan latar belakang beraksen kuat (misal Glow `#F3B233`) atau font styling bertaraf *Subheadline Primary* agar pengunjung langsung sadar bahwa pendaftaran sedang berlangsung sesaat setelah melihat nama sekolah.
+- **Penonjolan SPMB**: Kicker *"SPMB 2027–2028 Pendaftaran Dibuka"* akan diperbesar tingkat signifikansinya (secara *visual weight*)! Tidak sekadar ditaruh di dalam badge kecil, melainkan akan diberikan latar belakang beraksen kuat (misal Glow `#F3B233`) atau font styling bertaraf *Subheadline Primary* agar pengunjung langsung sadar bahwa pendaftaran sedang berlangsung sesaat setelah melihat nama sekolah.
 - **Tanpa Hitam Kaku**: Hilangkan efek bawaan `[text-shadow:_0_..._rgba(0,0,0,0.45)]` pada `<h1>`. Ganti memakai soft text-shadow berbasis primary/gelap (`#134146`) jika butuh kontras.
 - **Pembersihan DOM Redundan**: Menghapus `div` berlapis (duplikasi class `space-y-2` tumpang tindih dengan `mt-4`) yang merusak sinkronisasi jarak spasial antara H1 dan paragraf deskripsi *(copywriting)* pendaftaran. Paragraf kini memiliki elevasi *opacity 90%* yang ideal.
 

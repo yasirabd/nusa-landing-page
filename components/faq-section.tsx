@@ -1,4 +1,4 @@
-import { MessageCircleQuestion } from "lucide-react"
+import { ExternalLink, MessageCircleQuestion } from "lucide-react"
 import { FAQ_ITEMS } from "@/components/faq-content"
 import {
   Accordion,
@@ -34,20 +34,38 @@ export function FAQSection() {
           type="multiple"
           className="border-t border-brand-dark/12"
         >
-          {FAQ_ITEMS.map(({ id, question, answer }) => (
-            <AccordionItem
-              key={id}
-              value={id}
-              className="border-brand-dark/12"
-            >
-              <AccordionTrigger className="py-5 text-base font-semibold leading-6 text-brand-dark transition-colors duration-150 hover:text-brand hover:no-underline focus-visible:ring-brand/40 [&>svg]:transition-transform [&>svg]:duration-150">
-                {question}
-              </AccordionTrigger>
-              <AccordionContent className="max-w-2xl pb-5 pr-8 text-[15px] leading-7 text-brand-dark/[0.72]">
-                {answer}
-              </AccordionContent>
-            </AccordionItem>
-          ))}
+          {FAQ_ITEMS.map(
+            ({ id, question, answer, sourceLabel, sourceUrl }) => (
+              <AccordionItem
+                key={id}
+                value={id}
+                className="border-brand-dark/12"
+              >
+                <AccordionTrigger className="py-5 text-base font-semibold leading-6 text-brand-dark transition-colors duration-150 hover:text-brand hover:no-underline focus-visible:ring-brand/40 [&>svg]:transition-transform [&>svg]:duration-150">
+                  {question}
+                </AccordionTrigger>
+                <AccordionContent className="max-w-2xl pb-5 pr-8 text-[15px] leading-7 text-brand-dark/[0.72]">
+                  <p>
+                    {answer}{" "}
+                    {sourceLabel && sourceUrl ? (
+                      <a
+                        href={sourceUrl}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="inline-flex items-baseline gap-1 font-semibold text-brand underline decoration-brand/35 underline-offset-4 transition-colors hover:text-brand-depth focus-visible:rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand/40"
+                      >
+                        {sourceLabel}
+                        <ExternalLink
+                          className="size-3.5 self-center"
+                          aria-hidden="true"
+                        />
+                      </a>
+                    ) : null}
+                  </p>
+                </AccordionContent>
+              </AccordionItem>
+            ),
+          )}
         </Accordion>
       </div>
     </section>

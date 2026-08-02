@@ -49,7 +49,7 @@ It contains six accordion questions:
 3. How does the boarding-school system work?
 4. What is the difference between Programmer and Designer?
 5. What fees should parents prepare?
-6. How does the 2026/2027 registration process work?
+6. How does the 2027/2028 registration process work?
 
 Answers reuse only information already present in the public site. The legal-status answer states that NUSA provides SMA-equivalency education and directs parents to the admin for official legal and education documents. It must not invent accreditation, permit numbers, institutional partners, or diploma claims.
 

@@ -17,10 +17,23 @@ describe("FAQ content", () => {
   it("does not invent legal credentials", () => {
     const legalitas = FAQ_ITEMS.find(({ id }) => id === "legalitas")
 
-    expect(legalitas?.answer).toContain("dokumen resmi")
-    expect(legalitas?.answer).toContain("admin NUSA")
+    expect(legalitas?.answer).toContain("PKBM Cahaya Hikmah")
+    expect(legalitas?.answer).toContain("Yayasan Islam Nurus Sunnah")
+    expect(legalitas?.sourceLabel).toBe(
+      "Lihat data PKBM Cahaya Hikmah di Kemendikdasmen",
+    )
+    expect(legalitas?.sourceUrl).toBe(
+      "https://referensi.data.kemendikdasmen.go.id/pendidikan/npsn/P9998836",
+    )
     expect(legalitas?.answer).not.toMatch(
       /terakreditasi|nomor izin|ijazah nasional/i,
     )
+  })
+
+  it("uses the 2027/2028 registration year", () => {
+    const registration = FAQ_ITEMS.find(({ id }) => id === "pendaftaran")
+
+    expect(registration?.question).toContain("2027/2028")
+    expect(registration?.question).not.toMatch(/2026[/-]2027/)
   })
 })

@@ -35,7 +35,7 @@ Migrasi warna legacy ke palette resmi `style.md`, dilakukan bertahap per section
 
 | File | Issue | Fix |
 |---|---|---|
-| `app/layout.tsx` | Metadata "2025-2026" | Ganti ke "2026-2027" |
+| `app/layout.tsx` | Metadata "2025-2026" | Ganti ke "2027-2028" |
 | `components/header.tsx` | Typo `fo  nt-semibold` | Fix jadi `font-semibold` |
 | `components/curriculum-section.tsx` | Dead import `de` dari date-fns | Hapus import |
 | `styles/globals.css` | File CSS duplikat tidak terpakai | Pertimbangkan hapus/arsip |
@@ -61,7 +61,7 @@ Urutan berdasarkan prioritas visual: mulai dari yang paling terlihat, turun ke d
 - [ ] `rgba(255,255,255,0.06)` social icon bg → tetap ✅
 
 #### `app/layout.tsx`
-- [ ] Metadata description "2025-2026" → "2026-2027"
+- [ ] Metadata description "2025-2026" → "2027-2028"
 
 ### Fase 2: Hero Area (Sudah Sebagian Besar Selesai)
 

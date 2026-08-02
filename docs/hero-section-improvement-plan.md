@@ -306,7 +306,7 @@ Daftar Sekarang &amp; Dapatkan Diskon!
 ### 5.3 Subheadline "Now Open" — Campur Bahasa
 
 ```tsx
-<span style={{ color: COLORS.accent }}>SPMB 2026–2027</span>
+<span style={{ color: COLORS.accent }}>SPMB 2027–2028</span>
 <span className="opacity-95">Now Open</span>
 ```
 

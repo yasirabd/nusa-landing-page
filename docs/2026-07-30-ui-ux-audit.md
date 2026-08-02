@@ -103,7 +103,7 @@ Gunakan struktur konten berikut:
 - Eyebrow: `Boarding School Islam tingkat SMA di Semarang`.
 - Headline: `Menjadi Muslim Tangguh yang Siap Berkarya di Industri Teknologi`.
 - Supporting copy: jelaskan jalur Programmer dan Designer, pendidikan kesetaraan SMA, dan sistem asrama.
-- Primary CTA: `Daftar SPMB 2026/2027`.
+- Primary CTA: `Daftar SPMB 2027/2028`.
 - Secondary CTA: `Konsultasi dengan Admin`.
 - Trust row: legalitas, jumlah santri, mitra, atau outcome yang dapat diverifikasi.
 
@@ -537,4 +537,3 @@ Jika hanya dapat melakukan lima pekerjaan terlebih dahulu, lakukan dalam urutan 
 ## 18. Catatan Audit
 
 Audit ini berfokus pada source code, struktur halaman, styling, konten, aset, dan alur pengguna. Percobaan render lokal dilakukan, tetapi server Next.js menerima koneksi tanpa menyelesaikan respons dalam batas waktu audit. Oleh karena itu, sebelum implementasi besar dimulai, tetap disarankan melakukan visual QA tambahan menggunakan screenshot desktop dan mobile dari environment yang berhasil berjalan.
-

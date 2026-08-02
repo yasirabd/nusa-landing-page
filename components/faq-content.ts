@@ -1,4 +1,12 @@
-export const FAQ_ITEMS = [
+export type FAQItem = {
+  id: string
+  question: string
+  answer: string
+  sourceLabel?: string
+  sourceUrl?: string
+}
+
+export const FAQ_ITEMS: readonly FAQItem[] = [
   {
     id: "jenjang",
     question: "Jenjang pendidikan apa yang diselenggarakan NUSA?",
@@ -9,7 +17,10 @@ export const FAQ_ITEMS = [
     id: "legalitas",
     question: "Bagaimana orang tua dapat memeriksa legalitas pendidikannya?",
     answer:
-      "Orang tua dapat meminta penjelasan dan dokumen resmi terkait penyelenggaraan pendidikan kesetaraan langsung kepada admin NUSA. Kami menyarankan keluarga memeriksa dokumen tersebut sebelum menyelesaikan pendaftaran.",
+      "NUSA Boarding School merupakan bagian dari PKBM Cahaya Hikmah yang berada di bawah Yayasan Islam Nurus Sunnah. Informasi lembaga dapat diperiksa melalui situs Referensi Data Kemendikdasmen.",
+    sourceLabel: "Lihat data PKBM Cahaya Hikmah di Kemendikdasmen",
+    sourceUrl:
+      "https://referensi.data.kemendikdasmen.go.id/pendidikan/npsn/P9998836",
   },
   {
     id: "asrama",
@@ -31,7 +42,7 @@ export const FAQ_ITEMS = [
   },
   {
     id: "pendaftaran",
-    question: "Bagaimana proses pendaftaran tahun ajaran 2026/2027?",
+    question: "Bagaimana proses pendaftaran tahun ajaran 2027/2028?",
     answer:
       "Calon santri mengisi formulir pendaftaran, memilih program, melengkapi data sekolah, dan mengikuti petunjuk pembayaran serta konfirmasi yang tersedia. Setelah data diterima, admin NUSA akan menghubungi calon santri melalui WhatsApp untuk proses berikutnya.",
   },

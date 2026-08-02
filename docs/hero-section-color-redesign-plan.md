@@ -16,7 +16,7 @@ Redesign warna pada `components/hero-section.tsx` agar selaras dengan `docs/styl
 - Samakan semua elemen highlight ke accent brand:
   - tombol utama memakai `#F3B233`
   - teks/icon tombol utama memakai dark teal atau charcoal
-  - badge kuota dan highlight `SPMB 2026–2027` memakai golden yellow yang konsisten
+  - badge kuota dan highlight `SPMB 2027–2028` memakai golden yellow yang konsisten
 - Rapikan semua hardcoded color agar hanya memakai palette dari `docs/style.md`:
   - hapus penggunaan warna lama yang tidak sesuai palette baru seperti `#B6CB6C`, `#e3b251`, `#134146`, dan warna hijau acak lain di luar sistem
   - definisikan mapping warna lokal yang eksplisit di komponen agar mudah dirawat

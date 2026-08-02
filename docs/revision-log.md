@@ -35,7 +35,7 @@
   - Mengubah generic tailwind background color dan warna section terang menjadi variasi `Surface` baru (`#F0FAF7`).
   - Mengganti icon, border, dan list styling dari warna `B6CB6C` yang dihapus menuju `Secondary` resmi (`#42CDBA`).
   - Menerapkan `Dark Base` resmi `#134146` di seluruh subheadline, body teks terang, dan panel background footer.
-  - Memperbaiki ketidakkonsistenan metadata tahun ajaran di layout utama (mengubah ke 2026-2027).
+  - Memperbaiki ketidakkonsistenan metadata tahun ajaran di layout utama (mengubah ke 2027-2028).
   - Menyelaraskan CSS tokens di `app/globals.css` dengan `style.md` dan menghapus CSS tidak terpakai `styles/globals.css`.
   - Memperbarui komponen `hero-section.tsx` untuk menggunakan palet warna Primary `#2C8970`, memperbaiki terminologi object `COLORS`, dan mengatur ukuran teks/button agar lebih seimbang dan proporsional.
   - Melakukan perombakan estetika V2 pada `hero-section.tsx` menambahkan 2 Floating Badges (ikon Code & Star), mengubah badge Kuota ke atas H1, menipiskan margin `promo-banner.tsx`, dan menerapkan efek visual *Glassmorphism* (blur semitransparan) pada elemen tombol sekunder untuk kesan *tech academy* modern.

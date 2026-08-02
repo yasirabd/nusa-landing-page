@@ -283,7 +283,7 @@ export const FAQ_ITEMS = [
   },
   {
     id: "pendaftaran",
-    question: "Bagaimana proses pendaftaran tahun ajaran 2026/2027?",
+    question: "Bagaimana proses pendaftaran tahun ajaran 2027/2028?",
     answer: "Calon santri mengisi formulir pendaftaran, memilih program, melengkapi data sekolah, dan mengikuti petunjuk pembayaran serta konfirmasi yang tersedia. Setelah data diterima, admin NUSA akan menghubungi calon santri melalui WhatsApp untuk proses berikutnya.",
   },
 ] as const
