@@ -19,7 +19,7 @@ const feeDetails = [
       "Buku/Modul Pembelajaran",
       "Kebutuhan Asrama"
     ],
-    note: "Belum termasuk SPP Bulan Juli 2026"
+    note: "Belum termasuk SPP Bulan Juli 2026 dan Semester 1"
   },
   {
     category: "UANG BULANAN",

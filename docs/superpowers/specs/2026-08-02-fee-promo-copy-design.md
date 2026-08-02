@@ -38,6 +38,10 @@ Remove `Sudah Termasuk Uang Semester 1` from the `BIAYA MASUK` detail list.
 The entrance-fee card must not imply that its payment includes the first
 semester fee.
 
+Replace the entrance-fee footer note with
+`Belum termasuk SPP Bulan Juli 2026 dan Semester 1` so both exclusions are
+stated explicitly.
+
 ## Scope
 
 Only fee data and its focused tests change. Card layout, typography, colors,
@@ -56,3 +60,4 @@ Add a focused rendering test for `FeeInfoSection` that verifies:
 - The approved semester schedule appears exactly once.
 - The old semester schedule wording is absent.
 - `Sudah Termasuk Uang Semester 1` is absent.
+- The entrance-fee note states that July 2026 SPP and semester 1 are excluded.

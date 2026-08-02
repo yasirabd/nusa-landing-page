@@ -40,6 +40,12 @@ describe("FeeInfoSection", () => {
     expect(
       screen.queryByText("Sudah Termasuk Uang Semester 1"),
     ).not.toBeInTheDocument()
+    expect(
+      screen.getByText("* Belum termasuk SPP Bulan Juli 2026 dan Semester 1"),
+    ).toBeVisible()
+    expect(
+      screen.queryByText("* Belum termasuk SPP Bulan Juli 2026"),
+    ).not.toBeInTheDocument()
   })
 
   it("shows the semester schedule once with the approved wording", () => {
@@ -91,6 +97,12 @@ details: [
 
 Also remove `"Sudah Termasuk Uang Semester 1"` from the `BIAYA MASUK`
 `details` array so the card does not claim that inclusion.
+
+Finally, replace the `BIAYA MASUK` note with:
+
+```ts
+note: "Belum termasuk SPP Bulan Juli 2026 dan Semester 1"
+```
 
 - [ ] **Step 4: Run the focused test and verify GREEN**
 
