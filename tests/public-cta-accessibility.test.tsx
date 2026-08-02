@@ -41,6 +41,14 @@ describe("public CTA accessibility", () => {
     ).not.toBeInTheDocument()
   })
 
+  it("keeps Muslim Tangguh, Jago IT on one line in the final registration heading", () => {
+    render(<RegistrationSection />)
+
+    expect(screen.getByText("Muslim Tangguh, Jago IT")).toHaveClass(
+      "whitespace-nowrap",
+    )
+  })
+
   it.each([
     ["benefits section", <WhyChooseSection />],
     ["program overview", <ProgramSection />],

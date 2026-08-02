@@ -18,11 +18,20 @@ describe("FeeInfoSection", () => {
       screen.queryByText("Sudah Termasuk Uang Semester 1"),
     ).not.toBeInTheDocument()
     expect(
-      screen.getByText("* Belum termasuk SPP Bulan Juli 2027 dan Semester 1"),
+      screen.getByText((_, element) =>
+        element?.textContent ===
+        "* Belum termasuk SPP Bulan Juli 2027 dan Semester 1",
+      ),
     ).toBeVisible()
     expect(
       screen.queryByText("* Belum termasuk SPP Bulan Juli 2026 dan Semester 1"),
     ).not.toBeInTheDocument()
+  })
+
+  it("keeps Semester 1 together in the entrance-fee note", () => {
+    render(<FeeInfoSection />)
+
+    expect(screen.getByText("Semester 1")).toHaveClass("whitespace-nowrap")
   })
 
   it("shows the semester schedule once with the approved wording", () => {
