@@ -3,6 +3,7 @@ import { fireEvent, render, screen, waitFor, within } from "@testing-library/rea
 import { readFileSync } from "node:fs"
 import { RegistrationFormPage } from "@/components/registration-form-page"
 import { REGISTRATION_DRAFT_KEY } from "@/components/registration/registration-schema"
+import { siteConfig } from "@/lib/site-config"
 
 const supabaseMocks = vi.hoisted(() => ({
   upload: vi.fn(),
@@ -395,7 +396,9 @@ describe("registration wizard", () => {
   it("uses SPMB 2027/2028 in registration metadata", () => {
     const metadataSource = readFileSync("app/daftar/page.tsx", "utf8")
 
-    expect(metadataSource).toContain("SPMB 2027/2028")
-    expect(metadataSource).not.toContain("2026-2027")
+    expect(metadataSource).toContain("siteConfig.registration.title")
+    expect(siteConfig.registration.title).toContain("2027/2028")
+    expect(siteConfig.registration.description).toContain("2027/2028")
+    expect(JSON.stringify(siteConfig.registration)).not.toContain("2026-2027")
   })
 })
