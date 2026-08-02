@@ -6,9 +6,9 @@ import { Check } from 'lucide-react'
 const feeDetails = [
   {
     category: "BIAYA MASUK",
-    amount: "12 Jt",
+    amount: "10 Jt",
     originalAmount: "20 Jt",
-    promoBadge: "DISKON 8 JUTA (10 Pendaftar Pertama)",
+    promoBadge: "DISKON 10 JUTA (10 Pendaftar Pertama)",
     period: "sekali bayar",
     highlight: "Bisa dicicil hingga lulus",
     details: [
@@ -42,9 +42,8 @@ const feeDetails = [
       "Program Muslim Tangguh",
       "Program Entrepreneur",
       "Program Ekskul & Kegiatan Santri",
-      "Dibayarkan saat Tahun ke-1 Semester 2, Tahun ke-2, dan Tahun ke-3",
+      "Dibayarkan saat tiap awal semester pada tahun ke-1, ke-2, dan ke-3",
     ],
-    note: "Dibayarkan tiap awal semester"
   }
 ]
 
