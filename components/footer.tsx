@@ -24,15 +24,15 @@ function SocialIcon({ href, title, src }) {
 export function Footer() {
   return (
     <footer className="bg-brand-dark text-white">
-      <div className="container px-4 pt-16 pb-6 md:px-8 md:pt-24 md:pb-8 max-w-7xl mx-auto">
-        <div className="grid gap-10 md:gap-8 lg:grid-cols-3">
+      <div className="container px-4 pt-12 pb-6 md:px-8 md:pt-16 md:pb-8 max-w-7xl mx-auto">
+        <div className="grid gap-8 md:gap-7 lg:grid-cols-3">
           
           {/* Kolom 1: Branding NUSA */}
           <div className="lg:pr-8">
-            <div className="text-2xl lg:text-3xl font-bold mb-5 shadow-sm">
+            <div className="text-2xl lg:text-3xl font-bold mb-4 shadow-sm">
               <span className="font-righteous tracking-wider drop-shadow-sm">NUSA</span> <span className="text-white">Boarding School</span>
             </div>
-            <p className="text-md lg:text-lg mb-6 text-white/70 leading-relaxed font-medium">
+            <p className="text-md lg:text-lg mb-5 text-white/70 leading-relaxed font-medium">
               Membentuk Generasi <span className="mt-1 block font-serif text-xl font-normal italic tracking-wide text-brand-accent lg:text-2xl">Muslim Tangguh Jago IT</span>
             </p>
             <div className="flex gap-3">
@@ -45,10 +45,10 @@ export function Footer() {
 
           {/* Kolom 2: Kontak */}
           <div className="lg:pl-4">
-            <h3 className="mb-6 text-lg font-bold uppercase tracking-wider text-brand-accent">
+            <h3 className="mb-5 text-lg font-bold uppercase tracking-wider text-brand-accent">
               Kontak
             </h3>
-            <div className="space-y-6 text-white/80">
+            <div className="space-y-5 text-white/80">
               
               {/* Email */}
               <div className="flex items-center gap-4 group">
@@ -93,7 +93,7 @@ export function Footer() {
 
           {/* Kolom 3: Interactive Glass Map */}
           <div>
-            <h3 className="mb-6 text-lg font-bold uppercase tracking-wider text-brand-accent">
+            <h3 className="mb-5 text-lg font-bold uppercase tracking-wider text-brand-accent">
               Lokasi
             </h3>
             <div className="rounded-2xl border border-white/10 bg-white/5 p-2 backdrop-blur-md transition-colors duration-200 hover:bg-white/10">
@@ -121,7 +121,7 @@ export function Footer() {
 
         </div>
 
-        <div className="mt-10 md:mt-16 pt-6 md:pt-8 text-center text-sm text-white/50 border-t border-white/10">
+        <div className="mt-8 md:mt-12 pt-5 md:pt-6 text-center text-sm text-white/50 border-t border-white/10">
           <p>&copy; {new Date().getFullYear()} NUSA Boarding School Semarang. Hak Cipta Dilindungi.</p>
         </div>
       </div>

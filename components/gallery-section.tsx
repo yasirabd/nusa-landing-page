@@ -14,7 +14,7 @@ export function GallerySection() {
       className="section-spacing-standard scroll-mt-20 bg-brand-surface"
     >
       <div className="container mx-auto max-w-7xl px-4 md:px-8">
-        <div className="mb-10 max-w-2xl md:mb-12">
+        <div className="mb-8 max-w-2xl md:mb-10">
           <h2
             className="mb-4 text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl"
             style={{ color: "var(--color-brand-dark)" }}
@@ -91,7 +91,7 @@ export function GallerySection() {
           })}
         </div>
 
-        <div className="mt-8 flex flex-col gap-5 border-t border-brand-dark/15 pt-6 md:mt-10 md:flex-row md:items-center md:justify-between md:gap-8 md:pt-8">
+        <div className="mt-6 flex flex-col gap-5 border-t border-brand-dark/15 pt-5 md:mt-8 md:flex-row md:items-center md:justify-between md:gap-8 md:pt-6">
           <div className="max-w-2xl">
             <h3 className="text-lg font-bold text-brand-dark">
               Ikuti kegiatan terbaru NUSA

@@ -88,10 +88,10 @@ describe("testimonial quality section", () => {
     const featuredFooter = featured.querySelector("footer") as HTMLElement
 
     expect(featured).toHaveAttribute("data-featured", "true")
-    expect(featured).toHaveClass("lg:p-10")
+    expect(featured).toHaveClass("lg:p-8")
     expect(featured).not.toHaveClass("h-full")
     expect(featuredQuote).not.toHaveClass("flex-1")
-    expect(featuredFooter).toHaveClass("mt-6")
+    expect(featuredFooter).toHaveClass("mt-5")
     expect(supportingGrid).toHaveClass(
       "grid-cols-1",
       "items-start",

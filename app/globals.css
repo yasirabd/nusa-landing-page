@@ -154,18 +154,32 @@
 }
 
 .section-spacing-compact {
-  padding-block: 3rem;
+  padding-block: 2.5rem;
 }
 
 .section-spacing-standard {
-  padding-block: 4rem;
+  padding-block: 3.5rem;
 }
 
 .section-spacing-feature {
-  padding-block: 6rem;
+  padding-block: 5rem;
 }
 
 @media (min-width: 48rem) {
+  .section-spacing-compact {
+    padding-block: 3.5rem;
+  }
+
+  .section-spacing-standard {
+    padding-block: 4.5rem;
+  }
+
+  .section-spacing-feature {
+    padding-block: 6.5rem;
+  }
+}
+
+@media (min-width: 64rem) {
   .section-spacing-compact {
     padding-block: 4rem;
   }
@@ -176,20 +190,6 @@
 
   .section-spacing-feature {
     padding-block: 8rem;
-  }
-}
-
-@media (min-width: 64rem) {
-  .section-spacing-compact {
-    padding-block: 5rem;
-  }
-
-  .section-spacing-standard {
-    padding-block: 6rem;
-  }
-
-  .section-spacing-feature {
-    padding-block: 10rem;
   }
 }
 

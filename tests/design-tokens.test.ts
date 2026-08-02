@@ -43,31 +43,31 @@ describe("NUSA public design tokens", () => {
     const styles = readFileSync("app/globals.css", "utf8")
 
     expect(styles).toMatch(
-      /\.section-spacing-compact\s*\{[\s\S]*?padding-block:\s*3rem/,
+      /\.section-spacing-compact\s*\{[\s\S]*?padding-block:\s*2\.5rem/,
     )
     expect(styles).toMatch(
-      /\.section-spacing-standard\s*\{[\s\S]*?padding-block:\s*4rem/,
+      /\.section-spacing-standard\s*\{[\s\S]*?padding-block:\s*3\.5rem/,
     )
     expect(styles).toMatch(
-      /\.section-spacing-feature\s*\{[\s\S]*?padding-block:\s*6rem/,
+      /\.section-spacing-feature\s*\{[\s\S]*?padding-block:\s*5rem/,
     )
     expect(styles).toMatch(
-      /@media \(min-width: 48rem\)[\s\S]*?\.section-spacing-compact\s*\{[\s\S]*?padding-block:\s*4rem/,
+      /@media \(min-width: 48rem\)[\s\S]*?\.section-spacing-compact\s*\{[\s\S]*?padding-block:\s*3\.5rem/,
     )
     expect(styles).toMatch(
-      /@media \(min-width: 48rem\)[\s\S]*?\.section-spacing-standard\s*\{[\s\S]*?padding-block:\s*5rem/,
+      /@media \(min-width: 48rem\)[\s\S]*?\.section-spacing-standard\s*\{[\s\S]*?padding-block:\s*4\.5rem/,
     )
     expect(styles).toMatch(
-      /@media \(min-width: 48rem\)[\s\S]*?\.section-spacing-feature\s*\{[\s\S]*?padding-block:\s*8rem/,
+      /@media \(min-width: 48rem\)[\s\S]*?\.section-spacing-feature\s*\{[\s\S]*?padding-block:\s*6\.5rem/,
     )
     expect(styles).toMatch(
-      /@media \(min-width: 64rem\)[\s\S]*?\.section-spacing-compact\s*\{[\s\S]*?padding-block:\s*5rem/,
+      /@media \(min-width: 64rem\)[\s\S]*?\.section-spacing-compact\s*\{[\s\S]*?padding-block:\s*4rem/,
     )
     expect(styles).toMatch(
-      /@media \(min-width: 64rem\)[\s\S]*?\.section-spacing-standard\s*\{[\s\S]*?padding-block:\s*6rem/,
+      /@media \(min-width: 64rem\)[\s\S]*?\.section-spacing-standard\s*\{[\s\S]*?padding-block:\s*5rem/,
     )
     expect(styles).toMatch(
-      /@media \(min-width: 64rem\)[\s\S]*?\.section-spacing-feature\s*\{[\s\S]*?padding-block:\s*10rem/,
+      /@media \(min-width: 64rem\)[\s\S]*?\.section-spacing-feature\s*\{[\s\S]*?padding-block:\s*8rem/,
     )
   })
 

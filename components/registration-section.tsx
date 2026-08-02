@@ -9,10 +9,10 @@ export function RegistrationSection() {
     >
       <div className="container px-4 md:px-6 max-w-7xl mx-auto">
         <div
-          className="relative mx-auto max-w-4xl overflow-hidden rounded-3xl p-8 shadow-[0_20px_40px_rgba(44,137,112,0.1)] transition-shadow duration-200 hover:shadow-[0_20px_50px_rgba(44,137,112,0.15)] md:p-12"
+          className="relative mx-auto max-w-4xl overflow-hidden rounded-3xl p-6 shadow-[0_20px_40px_rgba(44,137,112,0.1)] transition-shadow duration-200 hover:shadow-[0_20px_50px_rgba(44,137,112,0.15)] md:p-10"
           style={{ backgroundColor: "var(--color-brand-paper)", border: "1.5px solid rgba(66, 205, 186, 0.30)" }}
         >
-          <div className="grid md:grid-cols-2 gap-8 items-center relative z-10">
+          <div className="grid md:grid-cols-2 gap-6 items-center relative z-10">
 
             <div>
               <h2

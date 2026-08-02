@@ -52,7 +52,7 @@ export function FeeInfoSection() {
       <div className="max-w-6xl mx-auto">
 
         {/* Header */}
-        <div className="text-center mb-10 md:mb-16">
+        <div className="text-center mb-8 md:mb-12">
           <h2 className="mb-4 text-4xl font-bold tracking-tight text-brand-dark md:text-5xl">
             Informasi Biaya
           </h2>
@@ -62,7 +62,7 @@ export function FeeInfoSection() {
         </div>
 
         {/* Premium Horizontal Banner: Uang Pendaftaran */}
-        <div className="mb-8 md:mb-10">
+        <div className="mb-6 md:mb-8">
           <div
             className="relative flex flex-col items-center justify-between rounded-3xl p-6 shadow-sm transition-shadow duration-[180ms] hover:shadow-xl md:flex-row md:p-8"
             style={{
@@ -92,11 +92,11 @@ export function FeeInfoSection() {
         </div>
 
         {/* 3 Bento Pricing Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 mb-12 md:mb-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6 mb-10 md:mb-12">
           {feeDetails.map((fee, idx) => (
             <div
               key={idx}
-              className="group relative flex flex-col overflow-hidden rounded-3xl border bg-white p-8 shadow-sm transition-[border-color,box-shadow] duration-[180ms] hover:shadow-2xl"
+              className="group relative flex flex-col overflow-hidden rounded-3xl border bg-white p-6 shadow-sm transition-[border-color,box-shadow] duration-[180ms] hover:shadow-2xl md:p-7"
               style={{ borderColor: "rgba(66, 205, 186, 0.40)" }}
             >
               {/* Special Glow Behind Price for Promo */}
@@ -105,14 +105,14 @@ export function FeeInfoSection() {
               )}
 
               {/* Category Badge */}
-              <div className="mb-6 text-center">
+              <div className="mb-5 text-center">
                 <span className="inline-block rounded-full bg-brand px-6 py-1.5 text-sm font-bold tracking-wide text-white shadow-sm">
                   {fee.category}
                 </span>
               </div>
 
               {/* Price Block */}
-              <div className="text-center mb-8 relative">
+              <div className="text-center mb-6 relative">
                 
                 {/* FOMO Ribbon / Strikethrough Box */}
                 {fee.originalAmount && fee.promoBadge && (
@@ -138,7 +138,7 @@ export function FeeInfoSection() {
 
               {/* Highlight Box */}
               {fee.highlight && (
-                <div className="mb-8 rounded-2xl bg-brand-accent/10 px-4 py-3 shadow-sm">
+                <div className="mb-6 rounded-2xl bg-brand-accent/10 px-4 py-3 shadow-sm">
                   <p className="text-center text-sm font-semibold text-brand-dark">
                     {fee.highlight}
                   </p>
@@ -148,7 +148,7 @@ export function FeeInfoSection() {
               {/* Base List Box (Fills remaining height so notes align bottom) */}
               <div className="flex-grow flex flex-col">
                 <p className="mb-4 text-sm font-bold text-brand-dark">Rincian Termasuk:</p>
-                <ul className="space-y-3 mb-8">
+                <ul className="space-y-3 mb-6">
                   {fee.details.map((item, i) => (
                     <li key={i} className="flex items-start gap-3 text-sm font-medium leading-relaxed text-brand-dark opacity-90">
                       <Check className="mt-[1px] h-5 w-5 flex-shrink-0 text-brand-highlight drop-shadow-sm" />
@@ -171,7 +171,7 @@ export function FeeInfoSection() {
         </div>
 
         {/* Centralized "Informasi Penting" Ribbon */}
-        <div className="max-w-4xl mx-auto rounded-3xl p-6 md:p-8 shadow-sm flex flex-col md:flex-row items-center gap-6 md:gap-10 border" style={{ backgroundColor: 'white', borderColor: 'rgba(19, 65, 70, 0.08)' }}>
+        <div className="max-w-4xl mx-auto rounded-3xl p-6 md:p-8 shadow-sm flex flex-col md:flex-row items-center gap-5 md:gap-8 border" style={{ backgroundColor: 'white', borderColor: 'rgba(19, 65, 70, 0.08)' }}>
           <div className="flex-shrink-0 text-center md:text-left">
             <p className="text-lg font-bold text-brand-dark">Informasi<br className="hidden md:block" />Penting</p>
           </div>

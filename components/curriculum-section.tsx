@@ -68,12 +68,12 @@ export function CurriculumSection() {
       <div className="container relative z-10 px-4 md:px-8 max-w-6xl mx-auto">
         
         {/* Monumental Header (Penyelarasan Momentum Rushd) */}
-        <div className="mx-auto max-w-5xl text-center mb-16 md:mb-20">
+        <div className="mx-auto max-w-5xl text-center mb-12 md:mb-14">
           <h2 className="text-4xl font-bold leading-[1.15] tracking-tight text-brand-dark sm:text-5xl md:text-6xl">
             Kurikulum
           </h2>
           
-          <p className="mx-auto mt-6 max-w-3xl text-base font-medium leading-relaxed text-brand-dark opacity-80 sm:text-lg md:mt-8 md:text-xl">
+          <p className="mx-auto mt-5 max-w-3xl text-base font-medium leading-relaxed text-brand-dark opacity-80 sm:text-lg md:mt-6 md:text-xl">
             4 Pilar yang membentuk{" "}
             <span className="whitespace-nowrap font-serif font-normal italic tracking-wide text-brand-accent">"Muslim Tangguh, Jago IT"</span>
             {" "}di NUSA Boarding School.
@@ -81,7 +81,7 @@ export function CurriculumSection() {
         </div>
 
         {/* Bento-style Cards Grid */}
-        <div className="grid gap-8 md:gap-10 lg:gap-12 md:grid-cols-2 max-w-5xl mx-auto">
+        <div className="grid gap-6 md:gap-8 lg:gap-10 md:grid-cols-2 max-w-5xl mx-auto">
           {curriculumPillars.map((pillar, idx) => {
             return (
               <div 
@@ -102,7 +102,7 @@ export function CurriculumSection() {
                   </div>
                   
                   {/* Content Container */}
-                  <div className="px-8 pb-8 md:px-10 md:pb-10 flex-1 flex flex-col">
+                  <div className="px-6 pb-6 md:px-8 md:pb-8 flex-1 flex flex-col">
                     <p className="mb-2 text-sm font-bold uppercase tracking-wider text-brand">
                       {pillar.subtitle}
                     </p>
@@ -111,11 +111,11 @@ export function CurriculumSection() {
                       {pillar.title}
                     </h3>
                     
-                    <p className="mb-6 text-base font-medium leading-relaxed text-brand-dark opacity-80 md:text-lg">
+                    <p className="mb-5 text-base font-medium leading-relaxed text-brand-dark opacity-80 md:text-lg">
                       {pillar.description}
                     </p>
                     
-                    <ul className="space-y-4 mb-2 flex-1 mt-2">
+                    <ul className="space-y-3 mb-2 flex-1 mt-2">
                       {pillar.items.map((item, itemIdx) => (
                         <li key={itemIdx} className="flex items-start">
                           <div className="mr-4 mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-brand-highlight/15 md:mt-1">

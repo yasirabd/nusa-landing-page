@@ -2,7 +2,7 @@ export function NUSATaglineSection() {
   return (
     <section className="section-spacing-standard bg-white">
       <div className="container px-4 md:px-8 max-w-5xl mx-auto">
-        <div className="text-center flex flex-col items-center justify-center space-y-8 sm:space-y-10 md:space-y-12">
+        <div className="flex flex-col items-center justify-center text-center space-y-6 sm:space-y-8 md:space-y-9">
 
           {/* Statement Pertama: Bold & Gigantic */}
           <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-[72px] font-extrabold leading-[1.15] tracking-tight text-brand-dark">

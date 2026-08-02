@@ -15,12 +15,12 @@ export function ProgramSection() {
         </div>
 
         {/* Metode Pembelajaran */}
-        <div className="mt-16 md:mt-24 mx-auto max-w-5xl">
-          <div className="rounded-3xl border border-transparent bg-white p-8 shadow-sm transition-[border-color,box-shadow] duration-[180ms] hover:border-brand-highlight/30 hover:shadow-xl md:p-12">
-            <h3 className="mb-8 text-center text-2xl font-bold text-brand md:text-3xl">
+        <div className="mt-12 md:mt-16 mx-auto max-w-5xl">
+          <div className="rounded-3xl border border-transparent bg-white p-6 shadow-sm transition-[border-color,box-shadow] duration-[180ms] hover:border-brand-highlight/30 hover:shadow-xl md:p-8">
+            <h3 className="mb-6 text-center text-2xl font-bold text-brand md:text-3xl">
               Metode Pembelajaran Mutakhir
             </h3>
-            <div className="grid gap-6 md:gap-10 md:grid-cols-2">
+            <div className="grid gap-6 md:gap-8 md:grid-cols-2">
               <div className="space-y-4 md:space-y-6">
                 {[
                   "Kurikulum terstruktur dari teknologi terkini",
@@ -53,8 +53,8 @@ export function ProgramSection() {
         </div>
 
         {/* Tahapan Belajar */}
-        <div className="mt-20 md:mt-32 max-w-5xl mx-auto">
-          <h3 className="mb-12 text-center text-2xl font-bold text-brand-dark md:mb-20 md:text-3xl">
+        <div className="mt-14 md:mt-20 max-w-5xl mx-auto">
+          <h3 className="mb-8 text-center text-2xl font-bold text-brand-dark md:mb-12 md:text-3xl">
             Peta Perjalanan (Roadmap) Jurusan
           </h3>
 
@@ -97,7 +97,7 @@ export function ProgramSection() {
             ].map((stage) => {
               const Icon = stage.icon
               return (
-                <div key={stage.num} className="relative mb-12 md:mb-24 last:mb-0">
+                <div key={stage.num} className="relative mb-10 md:mb-16 last:mb-0">
                   <div className="flex flex-col md:flex-row items-start md:items-center">
                     {/* Glowing Node */}
                     <div className="flex items-center justify-center z-10 mb-6 md:mb-0 absolute left-0 md:left-1/2 md:transform md:-translate-x-1/2">
@@ -108,8 +108,8 @@ export function ProgramSection() {
 
                     {stage.side === "left" ? (
                       <>
-                        <div className="w-full md:w-1/2 md:pr-16 md:text-right">
-                          <div className="ml-16 rounded-3xl border border-transparent bg-white p-8 shadow-sm transition-[border-color,box-shadow] duration-[180ms] hover:border-brand-highlight/30 hover:shadow-xl md:ml-0">
+                        <div className="w-full md:w-1/2 md:pr-12 md:text-right">
+                          <div className="ml-16 rounded-3xl border border-transparent bg-white p-6 shadow-sm transition-[border-color,box-shadow] duration-[180ms] hover:border-brand-highlight/30 hover:shadow-xl md:ml-0 md:p-8">
                             <div className="flex items-center justify-start md:justify-end mb-5">
                               <div className="mr-4 rounded-2xl bg-brand-highlight/10 p-3.5 md:order-last md:ml-5 md:mr-0">
                                 <Icon className="h-7 w-7 text-brand" />
@@ -124,8 +124,8 @@ export function ProgramSection() {
                     ) : (
                       <>
                         <div className="hidden md:block md:w-1/2"></div>
-                        <div className="w-full md:w-1/2 md:pl-16">
-                          <div className="ml-16 rounded-3xl border border-transparent bg-white p-8 shadow-sm transition-[border-color,box-shadow] duration-[180ms] hover:border-brand-highlight/30 hover:shadow-xl md:ml-0">
+                        <div className="w-full md:w-1/2 md:pl-12">
+                          <div className="ml-16 rounded-3xl border border-transparent bg-white p-6 shadow-sm transition-[border-color,box-shadow] duration-[180ms] hover:border-brand-highlight/30 hover:shadow-xl md:ml-0 md:p-8">
                             <div className="flex items-center justify-start mb-5">
                               <div className="mr-5 rounded-2xl bg-brand-highlight/10 p-3.5">
                                 <Icon className="h-7 w-7 text-brand" />
@@ -188,7 +188,7 @@ export function ProgramSection() {
           </div>
         </div>
 
-        <div className="mx-auto mt-16 max-w-4xl border-t border-brand-highlight/20 pt-10 text-center md:mt-24">
+        <div className="mx-auto mt-12 max-w-4xl border-t border-brand-highlight/20 pt-8 text-center md:mt-16">
           <Link
             href="/daftar"
             className="group/btn inline-flex items-center gap-2 rounded-full bg-brand-depth px-8 py-3.5 text-base font-bold text-white shadow-lg shadow-primary/20 transition-[background-color,color,box-shadow,transform] duration-150 hover:bg-brand-accent hover:text-brand-dark hover:shadow-xl hover:shadow-accent/20 active:scale-[0.97] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 focus-visible:ring-offset-brand-surface motion-reduce:transition-none motion-reduce:active:scale-100 sm:px-10 sm:py-4 sm:text-lg"

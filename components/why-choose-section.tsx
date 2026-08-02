@@ -56,7 +56,7 @@ export function WhyChooseSection() {
   return (
     <section className="section-spacing-standard bg-brand-paper">
       <div className="container mx-auto max-w-6xl px-4 md:px-8">
-        <div className="grid gap-10 lg:grid-cols-[minmax(0,4fr)_minmax(0,8fr)] lg:items-start lg:gap-16 xl:gap-20">
+        <div className="grid gap-8 lg:grid-cols-[minmax(0,4fr)_minmax(0,8fr)] lg:items-start lg:gap-12 xl:gap-16">
           <div className="max-w-xl lg:pt-2">
             <p className="text-sm font-bold uppercase tracking-[0.18em] text-brand">
               Keunggulan NUSA
@@ -82,7 +82,7 @@ export function WhyChooseSection() {
               return (
                 <li
                   key={title}
-                  className={`flex gap-4 border-brand-dark/15 py-6 md:py-8 ${itemBorders}`}
+                  className={`flex gap-4 border-brand-dark/15 py-5 md:py-6 ${itemBorders}`}
                 >
                   <span className="flex size-10 shrink-0 items-center justify-center rounded-full bg-brand-surface text-brand ring-1 ring-brand-dark/10">
                     <Icon aria-hidden="true" className="size-5" />
@@ -101,8 +101,8 @@ export function WhyChooseSection() {
           </ul>
         </div>
 
-        <div className="mt-12 overflow-hidden rounded-3xl border border-white/10 bg-brand-dark text-white shadow-[0_18px_50px_rgba(19,65,70,0.14)] md:mt-16">
-          <div className="grid gap-9 p-7 sm:p-9 md:p-11 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:gap-14 lg:p-12">
+        <div className="mt-10 overflow-hidden rounded-3xl border border-white/10 bg-brand-dark text-white shadow-[0_18px_50px_rgba(19,65,70,0.14)] md:mt-14">
+          <div className="grid gap-7 p-6 sm:p-8 md:p-9 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:gap-10 lg:p-10">
             <div className="max-w-xl lg:pt-2">
               <p className="text-sm font-bold uppercase tracking-[0.18em] text-brand-highlight">
                 Dari Belajar Menjadi Karya
@@ -142,7 +142,7 @@ export function WhyChooseSection() {
 
               <Link
                 href="/daftar"
-                className="group mt-8 inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-full bg-brand-accent px-6 text-sm font-semibold text-brand-dark shadow-sm transition-[background-color,box-shadow,transform] duration-150 hover:bg-brand-accent/90 hover:shadow-md active:scale-[0.97] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-brand-dark motion-reduce:transition-none motion-reduce:active:scale-100 sm:w-fit sm:text-base"
+                className="group mt-7 inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-full bg-brand-accent px-6 text-sm font-semibold text-brand-dark shadow-sm transition-[background-color,box-shadow,transform] duration-150 hover:bg-brand-accent/90 hover:shadow-md active:scale-[0.97] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-brand-dark motion-reduce:transition-none motion-reduce:active:scale-100 sm:w-fit sm:text-base"
               >
                 Daftar Sekarang
                 <MoveRight
