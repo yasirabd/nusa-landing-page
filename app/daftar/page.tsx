@@ -1,10 +1,29 @@
-import { RegistrationFormPage } from "@/components/registration-form-page"
-import { Header } from "@/components/header"
+import type { Metadata } from "next"
 
-export const metadata = {
-  title: "SPMB 2027/2028 | NUSA Boarding School",
-  description:
-    "SPMB NUSA Boarding School 2027/2028 sudah dibuka. Isi form pendaftaran calon santri dan selesaikan proses infaq pendaftaran.",
+import { Header } from "@/components/header"
+import { RegistrationFormPage } from "@/components/registration-form-page"
+import { siteConfig } from "@/lib/site-config"
+
+export const metadata: Metadata = {
+  title: siteConfig.registration.title,
+  description: siteConfig.registration.description,
+  alternates: { canonical: "/daftar" },
+  openGraph: {
+    title: siteConfig.registration.title,
+    description: siteConfig.registration.description,
+    url: "/daftar",
+    siteName: siteConfig.name,
+    locale: "id_ID",
+    type: "website",
+    images: [
+      {
+        url: siteConfig.assets.socialImage,
+        width: 1200,
+        height: 794,
+        alt: "Kegiatan santri NUSA Boarding School",
+      },
+    ],
+  },
 }
 
 export default function DaftarPage() {

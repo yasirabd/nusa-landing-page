@@ -1,7 +1,10 @@
+import type { Metadata } from "next"
 import type React from "react"
 import "@/app/globals.css"
 
+import { EducationalOrganizationJsonLd } from "@/components/educational-organization-json-ld"
 import { ThemeProvider } from "@/components/theme-provider"
+import { siteConfig } from "@/lib/site-config"
 import { GeistSans } from "geist/font/sans"
 import { Righteous } from "next/font/google"
 
@@ -11,11 +14,41 @@ const righteous = Righteous({
   variable: "--font-righteous",
 })
 
-export const metadata = {
-  title: "NUSA Boarding School",
-  description:
-    "Pendaftaran santri baru NUSA Boarding School Semarang tahun pelajaran 2026-2027. Kurikulum terintegrasi antara pendidikan agama dan teknologi.",
-    generator: 'v0.app'
+export const metadata: Metadata = {
+  metadataBase: siteConfig.url,
+  title: siteConfig.title,
+  description: siteConfig.description,
+  applicationName: siteConfig.name,
+  alternates: { canonical: "/" },
+  openGraph: {
+    title: siteConfig.title,
+    description: siteConfig.description,
+    url: "/",
+    siteName: siteConfig.name,
+    locale: "id_ID",
+    type: "website",
+    images: [
+      {
+        url: siteConfig.assets.socialImage,
+        width: 1200,
+        height: 794,
+        alt: "Kegiatan santri NUSA Boarding School",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: siteConfig.title,
+    description: siteConfig.description,
+    images: [siteConfig.assets.socialImage],
+  },
+  icons: {
+    icon: [
+      { url: siteConfig.assets.logo, type: "image/png", sizes: "500x500" },
+    ],
+    apple: [{ url: siteConfig.assets.logo, sizes: "500x500" }],
+  },
+  robots: { index: true, follow: true },
 }
 
 export default function RootLayout({
@@ -25,7 +58,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="id" suppressHydrationWarning>
-      <head />
+      <head>
+        <EducationalOrganizationJsonLd />
+      </head>
       <body
         className={`${GeistSans.variable} ${righteous.variable} font-sans`}
         suppressHydrationWarning
