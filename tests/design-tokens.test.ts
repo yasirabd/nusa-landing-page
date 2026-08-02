@@ -46,11 +46,57 @@ describe("NUSA public design tokens", () => {
       /\.section-spacing-compact\s*\{[\s\S]*?padding-block:\s*3rem/,
     )
     expect(styles).toMatch(
-      /\.section-spacing-standard,\s*\.section-spacing-feature\s*\{[\s\S]*?padding-block:\s*4rem/,
+      /\.section-spacing-standard\s*\{[\s\S]*?padding-block:\s*4rem/,
     )
-    expect(styles).toContain("@media (min-width: 48rem)")
-    expect(styles).toContain("padding-block: 5rem;")
-    expect(styles).toContain("padding-block: 6rem;")
+    expect(styles).toMatch(
+      /\.section-spacing-feature\s*\{[\s\S]*?padding-block:\s*6rem/,
+    )
+    expect(styles).toMatch(
+      /@media \(min-width: 48rem\)[\s\S]*?\.section-spacing-compact\s*\{[\s\S]*?padding-block:\s*4rem/,
+    )
+    expect(styles).toMatch(
+      /@media \(min-width: 48rem\)[\s\S]*?\.section-spacing-standard\s*\{[\s\S]*?padding-block:\s*5rem/,
+    )
+    expect(styles).toMatch(
+      /@media \(min-width: 48rem\)[\s\S]*?\.section-spacing-feature\s*\{[\s\S]*?padding-block:\s*8rem/,
+    )
+    expect(styles).toMatch(
+      /@media \(min-width: 64rem\)[\s\S]*?\.section-spacing-compact\s*\{[\s\S]*?padding-block:\s*5rem/,
+    )
+    expect(styles).toMatch(
+      /@media \(min-width: 64rem\)[\s\S]*?\.section-spacing-standard\s*\{[\s\S]*?padding-block:\s*6rem/,
+    )
+    expect(styles).toMatch(
+      /@media \(min-width: 64rem\)[\s\S]*?\.section-spacing-feature\s*\{[\s\S]*?padding-block:\s*10rem/,
+    )
+  })
+
+  it("preserves the Tangguh section color composition", () => {
+    expect(readFileSync("components/hero-section.tsx", "utf8")).toContain(
+      "var(--color-brand-dark)_0%",
+    )
+    expect(
+      readFileSync("components/teaching-team-section.tsx", "utf8"),
+    ).toContain("bg-brand")
+    expect(
+      readFileSync("components/testimonials-section.tsx", "utf8"),
+    ).toContain("bg-brand-dark")
+
+    for (const path of [
+      "components/curriculum-section.tsx",
+      "components/program-section.tsx",
+      "components/fee-info-section.tsx",
+    ]) {
+      expect(readFileSync(path, "utf8")).toContain("bg-brand-surface")
+    }
+
+    for (const path of [
+      "components/why-choose-section.tsx",
+      "components/faq-section.tsx",
+      "components/partner-section.tsx",
+    ]) {
+      expect(readFileSync(path, "utf8")).toContain("bg-brand-paper")
+    }
   })
 
   it("removes primary palette literals and local palette maps from public components", () => {
