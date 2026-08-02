@@ -100,9 +100,7 @@ describe("NUSA public design tokens", () => {
   })
 
   it("removes primary palette literals and local palette maps from public components", () => {
-    expect(publicSource).not.toMatch(
-      /#(?:134146|2c8970|1f6f68|f3b233|42cdba|f0faf7|f7f7f2)/i,
-    )
+    expect(publicSource).not.toMatch(/#[0-9a-f]{6}/i)
     expect(publicSource).not.toMatch(/const\s+COLORS\s*=/)
   })
 
@@ -116,6 +114,13 @@ describe("NUSA public design tokens", () => {
     expect(hero).toContain("md:py-12")
     expect(hero).toContain("lg:py-14")
     expect(hero).not.toContain("section-spacing-")
+  })
+
+  it("uses standard spacing for the supporting partner section", () => {
+    const partner = readFileSync("components/partner-section.tsx", "utf8")
+
+    expect(partner).toContain("section-spacing-standard")
+    expect(partner).not.toContain("section-spacing-feature")
   })
 
   it("keeps registration, admin, and test-only surfaces outside this migration", () => {
