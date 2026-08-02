@@ -59,10 +59,10 @@ export function TeachingTeamSection() {
           {teachers.map((teacher, index) => (
             <div 
               key={index} 
-              className="group flex w-full max-w-sm flex-col items-center rounded-3xl border border-transparent bg-white p-8 text-center shadow-sm transition-all duration-300 hover:-translate-y-2 hover:border-brand-highlight/30 hover:shadow-2xl sm:w-[calc(50%-1.5rem)] md:p-10 lg:w-[calc(50%-2rem)] xl:w-[calc(25%-2rem)]"
+              className="flex w-full max-w-sm flex-col items-center rounded-3xl border border-transparent bg-white p-8 text-center shadow-sm transition-[border-color,box-shadow] duration-[180ms] hover:border-brand-highlight/30 hover:shadow-2xl sm:w-[calc(50%-1.5rem)] md:p-10 lg:w-[calc(50%-2rem)] xl:w-[calc(25%-2rem)]"
             >
               {/* Glowing Avatar */}
-              <div className="mb-6 h-28 w-28 overflow-hidden rounded-full shadow-lg ring-4 ring-brand-accent ring-offset-4 ring-offset-white transition-transform duration-500 group-hover:scale-105 md:mb-8 md:h-32 md:w-32">
+              <div className="mb-6 h-28 w-28 overflow-hidden rounded-full shadow-lg ring-4 ring-brand-accent ring-offset-4 ring-offset-white md:mb-8 md:h-32 md:w-32">
                 <Image
                   src={teacher.image || "/placeholder.svg"}
                   alt={teacher.name}

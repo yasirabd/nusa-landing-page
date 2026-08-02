@@ -86,19 +86,16 @@ export function CurriculumSection() {
             return (
               <div 
                 key={idx} 
-                className="group relative flex flex-col rounded-3xl border border-transparent bg-white shadow-sm transition-all duration-300 hover:-translate-y-2 hover:border-brand-highlight/30 hover:shadow-[0_20px_40px_rgba(0,0,0,0.08)]"
+                className="relative flex flex-col rounded-3xl border border-transparent bg-white shadow-sm transition-[border-color,box-shadow] duration-[180ms] hover:border-brand-highlight/30 hover:shadow-[0_20px_40px_rgba(0,0,0,0.08)]"
               >
-                {/* Glow Backdrop */}
-                <div className="absolute -inset-0.5 rounded-3xl bg-gradient-to-b from-brand-highlight/20 to-transparent opacity-0 blur transition duration-500 group-hover:opacity-100 pointer-events-none"></div>
-                
                 <div className="relative flex-1 flex flex-col">
                   {/* Image Container with padding (Framed Brochure Style) */}
                   <div className="p-5">
-                    <div className="rounded-2xl overflow-hidden mx-auto shadow-inner aspect-[4/3] relative group-hover:shadow-[inset_0_2px_15px_rgba(0,0,0,0.1)] transition-all duration-500 bg-gray-100">
+                    <div className="relative mx-auto aspect-[4/3] overflow-hidden rounded-2xl bg-gray-100 shadow-inner">
                       <img 
                         src={pillar.image} 
                         alt={pillar.title}
-                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                        className="h-full w-full object-cover"
                         sizes="(max-width: 768px) 100vw, 50vw"
                       />
                     </div>
@@ -120,8 +117,8 @@ export function CurriculumSection() {
                     
                     <ul className="space-y-4 mb-2 flex-1 mt-2">
                       {pillar.items.map((item, itemIdx) => (
-                        <li key={itemIdx} className="flex items-start group/item">
-                          <div className="mr-4 mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-brand-highlight/15 transition-transform duration-300 group-hover/item:scale-110 md:mt-1">
+                        <li key={itemIdx} className="flex items-start">
+                          <div className="mr-4 mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-brand-highlight/15 md:mt-1">
                             <CheckCircle2 size={16} strokeWidth={2.5} className="text-brand" />
                           </div>
                           <span className="text-base font-medium leading-relaxed text-brand-dark opacity-80">{item}</span>

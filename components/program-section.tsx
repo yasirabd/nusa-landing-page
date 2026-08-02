@@ -16,7 +16,7 @@ export function ProgramSection() {
 
         {/* Metode Pembelajaran */}
         <div className="mt-16 md:mt-24 mx-auto max-w-5xl">
-          <div className="rounded-3xl border border-transparent bg-white p-8 shadow-sm transition-all duration-300 hover:border-brand-highlight/30 hover:shadow-xl md:p-12">
+          <div className="rounded-3xl border border-transparent bg-white p-8 shadow-sm transition-[border-color,box-shadow] duration-[180ms] hover:border-brand-highlight/30 hover:shadow-xl md:p-12">
             <h3 className="mb-8 text-center text-2xl font-bold text-brand md:text-3xl">
               Metode Pembelajaran Mutakhir
             </h3>
@@ -26,8 +26,8 @@ export function ProgramSection() {
                   "Kurikulum terstruktur dari teknologi terkini",
                   "Pengajar praktisi dari perusahaan teknologi",
                 ].map((item, idx) => (
-                  <div key={idx} className="flex items-start group">
-                    <div className="mr-5 mt-1 flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-brand-highlight/15 transition-transform duration-300 group-hover:scale-110">
+                  <div key={idx} className="flex items-start">
+                    <div className="mr-5 mt-1 flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-brand-highlight/15">
                       <CheckCircle2 size={18} strokeWidth={2.5} className="text-brand" />
                     </div>
                     <span className="text-base font-medium leading-relaxed text-brand-dark opacity-80 md:text-lg">{item}</span>
@@ -40,8 +40,8 @@ export function ProgramSection() {
                   "Pembelajaran dipercepat dengan bantuan AI",
                   "Project-based learning dengan kasus nyata"
                 ].map((item, idx) => (
-                  <div key={idx} className="flex items-start group">
-                    <div className="mr-5 mt-1 flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-brand-accent/15 transition-transform duration-300 group-hover:scale-110">
+                  <div key={idx} className="flex items-start">
+                    <div className="mr-5 mt-1 flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-brand-accent/15">
                       <CheckCircle2 size={18} strokeWidth={2.5} className="text-brand-accent" />
                     </div>
                     <span className="text-base font-medium leading-relaxed text-brand-dark opacity-80 md:text-lg">{item}</span>
@@ -98,10 +98,10 @@ export function ProgramSection() {
               const Icon = stage.icon
               return (
                 <div key={stage.num} className="relative mb-12 md:mb-24 last:mb-0">
-                  <div className="flex flex-col md:flex-row items-start md:items-center group/timeline">
+                  <div className="flex flex-col md:flex-row items-start md:items-center">
                     {/* Glowing Node */}
                     <div className="flex items-center justify-center z-10 mb-6 md:mb-0 absolute left-0 md:left-1/2 md:transform md:-translate-x-1/2">
-                      <div className="flex h-12 w-12 items-center justify-center rounded-full bg-brand text-lg font-bold text-white shadow-[0_0_15px_rgba(44,137,112,0.4)] ring-4 ring-brand-surface transition-transform duration-500 group-hover/timeline:scale-110">
+                      <div className="flex h-12 w-12 items-center justify-center rounded-full bg-brand text-lg font-bold text-white shadow-[0_0_15px_rgba(44,137,112,0.4)] ring-4 ring-brand-surface">
                         {stage.num}
                       </div>
                     </div>
@@ -109,9 +109,9 @@ export function ProgramSection() {
                     {stage.side === "left" ? (
                       <>
                         <div className="w-full md:w-1/2 md:pr-16 md:text-right">
-                          <div className="ml-16 rounded-3xl border border-transparent bg-white p-8 shadow-sm transition-all duration-300 hover:-translate-y-2 hover:border-brand-highlight/30 hover:shadow-xl group-hover/timeline:shadow-lg md:ml-0">
+                          <div className="ml-16 rounded-3xl border border-transparent bg-white p-8 shadow-sm transition-[border-color,box-shadow] duration-[180ms] hover:border-brand-highlight/30 hover:shadow-xl md:ml-0">
                             <div className="flex items-center justify-start md:justify-end mb-5">
-                              <div className="mr-4 rounded-2xl bg-brand-highlight/10 p-3.5 transition-transform duration-500 group-hover/timeline:rotate-6 md:order-last md:ml-5 md:mr-0">
+                              <div className="mr-4 rounded-2xl bg-brand-highlight/10 p-3.5 md:order-last md:ml-5 md:mr-0">
                                 <Icon className="h-7 w-7 text-brand" />
                               </div>
                             </div>
@@ -125,9 +125,9 @@ export function ProgramSection() {
                       <>
                         <div className="hidden md:block md:w-1/2"></div>
                         <div className="w-full md:w-1/2 md:pl-16">
-                          <div className="ml-16 rounded-3xl border border-transparent bg-white p-8 shadow-sm transition-all duration-300 hover:-translate-y-2 hover:border-brand-highlight/30 hover:shadow-xl group-hover/timeline:shadow-lg md:ml-0">
+                          <div className="ml-16 rounded-3xl border border-transparent bg-white p-8 shadow-sm transition-[border-color,box-shadow] duration-[180ms] hover:border-brand-highlight/30 hover:shadow-xl md:ml-0">
                             <div className="flex items-center justify-start mb-5">
-                              <div className="mr-5 rounded-2xl bg-brand-highlight/10 p-3.5 transition-transform duration-500 group-hover/timeline:rotate-6">
+                              <div className="mr-5 rounded-2xl bg-brand-highlight/10 p-3.5">
                                 <Icon className="h-7 w-7 text-brand" />
                               </div>
                             </div>
