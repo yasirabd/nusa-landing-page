@@ -10,7 +10,7 @@ const partners = [
 
 export function PartnerSection() {
   return (
-    <section className="section-spacing-feature relative bg-brand-paper px-4">
+    <section className="section-spacing-standard relative bg-brand-paper px-4">
       {/* Background Tech Mesh Tipis Penambah Nuansa Hover */}
       <div 
         className="absolute inset-0 pointer-events-none opacity-[0.03]" 

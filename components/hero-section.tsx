@@ -16,7 +16,7 @@ export function HeroSection() {
         className="pointer-events-none absolute inset-0 opacity-[0.055]"
         style={{
           backgroundImage:
-            "linear-gradient(#8EF3E7 1px, transparent 1px), linear-gradient(90deg, #8EF3E7 1px, transparent 1px)",
+            "linear-gradient(var(--color-brand-highlight) 1px, transparent 1px), linear-gradient(90deg, var(--color-brand-highlight) 1px, transparent 1px)",
           backgroundSize: "48px 48px",
         }}
       />
@@ -37,7 +37,7 @@ export function HeroSection() {
             </p>
           </div>
 
-          <p className="mb-4 text-sm font-semibold uppercase tracking-[0.16em] text-[#8EF3E7] sm:text-base">
+          <p className="mb-4 text-sm font-semibold uppercase tracking-[0.16em] text-brand-highlight sm:text-base">
             Boarding School Islami di Kota Semarang
           </p>
 
@@ -83,7 +83,7 @@ export function HeroSection() {
               <li key={fact} className="flex items-center gap-2.5">
                 <CheckCircle2
                   aria-hidden="true"
-                  className="mt-0.5 size-4 shrink-0 text-[#8EF3E7]"
+                  className="mt-0.5 size-4 shrink-0 text-brand-highlight"
                 />
                 <span>{fact}</span>
               </li>

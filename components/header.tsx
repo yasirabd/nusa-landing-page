@@ -97,7 +97,7 @@ export function Header() {
 
         <Link
           href="/daftar"
-          className="ml-2 hidden min-h-11 items-center justify-center rounded-full bg-brand-accent px-5 text-sm font-semibold text-brand-dark shadow-sm transition-[background-color,box-shadow,transform] duration-150 hover:bg-[#F6BE4D] hover:shadow-md active:scale-[0.97] motion-reduce:transition-none motion-reduce:active:scale-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 lg:inline-flex"
+          className="ml-2 hidden min-h-11 items-center justify-center rounded-full bg-brand-accent px-5 text-sm font-semibold text-brand-dark shadow-sm transition-[background-color,box-shadow,transform] duration-150 hover:bg-brand-accent/90 hover:shadow-md active:scale-[0.97] motion-reduce:transition-none motion-reduce:active:scale-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 lg:inline-flex"
         >
           Daftar Sekarang
         </Link>
@@ -108,7 +108,7 @@ export function Header() {
               <button
                 type="button"
                 aria-label="Buka menu navigasi"
-                className="ml-auto inline-flex size-11 items-center justify-center rounded-full border border-brand-dark/10 bg-white/70 text-brand-dark transition-[background-color,border-color] duration-150 hover:border-brand/30 hover:bg-white active:border-brand/40 active:bg-[#EAF5F1] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 lg:hidden"
+                className="ml-auto inline-flex size-11 items-center justify-center rounded-full border border-brand-dark/10 bg-white/70 text-brand-dark transition-[background-color,border-color] duration-150 hover:border-brand/30 hover:bg-white active:border-brand/40 active:bg-brand-surface focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 lg:hidden"
               >
                 <Menu className="size-5" aria-hidden="true" />
               </button>
@@ -144,7 +144,7 @@ export function Header() {
                 <SheetClose asChild>
                   <Link
                     href="/daftar"
-                    className="flex min-h-12 w-full items-center justify-center rounded-full bg-brand-accent px-5 font-semibold text-brand-dark transition-colors duration-150 hover:bg-[#F6BE4D] active:bg-[#E9A51F] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2"
+                    className="flex min-h-12 w-full items-center justify-center rounded-full bg-brand-accent px-5 font-semibold text-brand-dark transition-colors duration-150 hover:bg-brand-accent/90 active:bg-brand-accent/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2"
                   >
                     Daftar Sekarang
                   </Link>

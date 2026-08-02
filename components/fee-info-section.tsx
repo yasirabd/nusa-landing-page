@@ -119,9 +119,7 @@ export function FeeInfoSection() {
                 {/* FOMO Ribbon / Strikethrough Box */}
                 {fee.originalAmount && fee.promoBadge && (
                   <div className="flex flex-col items-center justify-center mb-1">
-                    <span className="inline-block whitespace-nowrap px-3 py-1.5 mb-3 text-[11px] lg:text-xs font-bold rounded-full animate-pulse shadow-sm"
-                      style={{ backgroundColor: 'rgba(243,178,51,0.15)', color: '#D97706', border: '1px solid rgba(243,178,51,0.3)' }}
-                    >
+                    <span className="mb-3 inline-block whitespace-nowrap rounded-full border border-brand-accent/30 bg-brand-accent/15 px-3 py-1.5 text-[11px] font-bold text-brand-dark shadow-sm animate-pulse lg:text-xs">
                       🔥 {fee.promoBadge}
                     </span>
                     <div className="flex items-center justify-center gap-2 mb-1">
@@ -142,8 +140,8 @@ export function FeeInfoSection() {
 
               {/* Highlight Box */}
               {fee.highlight && (
-                <div className="rounded-2xl px-4 py-3 mb-8 shadow-sm" style={{ backgroundColor: "rgba(243,178,51,0.10)" }}>
-                  <p className="text-sm font-semibold text-center" style={{ color: "#D97706" }}>
+                <div className="mb-8 rounded-2xl bg-brand-accent/10 px-4 py-3 shadow-sm">
+                  <p className="text-center text-sm font-semibold text-brand-dark">
                     {fee.highlight}
                   </p>
                 </div>

@@ -64,7 +64,7 @@ export function WhyChooseSection() {
             <h2 className="mt-4 text-3xl font-bold leading-tight tracking-tight text-brand-dark sm:text-4xl md:text-5xl">
               Mengapa Memilih NUSA?
             </h2>
-            <p className="mt-5 max-w-lg text-base leading-relaxed text-[#365F61] sm:text-lg">
+            <p className="mt-5 max-w-lg text-base leading-relaxed text-brand-dark/80 sm:text-lg">
               Pendidikan yang menyatukan pembentukan iman, keterampilan teknologi,
               dan pengalaman berkarya dalam keseharian santri.
             </p>
@@ -84,14 +84,14 @@ export function WhyChooseSection() {
                   key={title}
                   className={`flex gap-4 border-brand-dark/15 py-6 md:py-8 ${itemBorders}`}
                 >
-                  <span className="flex size-10 shrink-0 items-center justify-center rounded-full bg-[#E3F3EE] text-brand ring-1 ring-brand-dark/10">
+                  <span className="flex size-10 shrink-0 items-center justify-center rounded-full bg-brand-surface text-brand ring-1 ring-brand-dark/10">
                     <Icon aria-hidden="true" className="size-5" />
                   </span>
                   <div>
                     <h3 className="text-lg font-bold leading-snug text-brand-dark">
                       {title}
                     </h3>
-                    <p className="mt-2 text-sm leading-relaxed text-[#496E70] sm:text-base">
+                    <p className="mt-2 text-sm leading-relaxed text-brand-dark/75 sm:text-base">
                       {description}
                     </p>
                   </div>
@@ -104,7 +104,7 @@ export function WhyChooseSection() {
         <div className="mt-12 overflow-hidden rounded-3xl border border-white/10 bg-brand-dark text-white shadow-[0_18px_50px_rgba(19,65,70,0.14)] md:mt-16">
           <div className="grid gap-9 p-7 sm:p-9 md:p-11 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:gap-14 lg:p-12">
             <div className="max-w-xl lg:pt-2">
-              <p className="text-sm font-bold uppercase tracking-[0.18em] text-[#8EF3E7]">
+              <p className="text-sm font-bold uppercase tracking-[0.18em] text-brand-highlight">
                 Dari Belajar Menjadi Karya
               </p>
               <h3 className="mt-4 text-3xl font-bold leading-tight tracking-tight sm:text-4xl">
@@ -142,7 +142,7 @@ export function WhyChooseSection() {
 
               <Link
                 href="/daftar"
-                className="group mt-8 inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-full bg-brand-accent px-6 text-sm font-semibold text-brand-dark shadow-sm transition-[background-color,box-shadow,transform] duration-150 hover:bg-[#F6BE4D] hover:shadow-md active:scale-[0.97] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-brand-dark motion-reduce:transition-none motion-reduce:active:scale-100 sm:w-fit sm:text-base"
+                className="group mt-8 inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-full bg-brand-accent px-6 text-sm font-semibold text-brand-dark shadow-sm transition-[background-color,box-shadow,transform] duration-150 hover:bg-brand-accent/90 hover:shadow-md active:scale-[0.97] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-brand-dark motion-reduce:transition-none motion-reduce:active:scale-100 sm:w-fit sm:text-base"
               >
                 Daftar Sekarang
                 <MoveRight

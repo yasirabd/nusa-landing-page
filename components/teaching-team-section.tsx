@@ -31,7 +31,7 @@ export function TeachingTeamSection() {
         <div
           className="absolute inset-0 opacity-[0.06]"
           style={{
-            backgroundImage: "linear-gradient(#8EF3E7 1px, transparent 1px), linear-gradient(90deg, #8EF3E7 1px, transparent 1px)",
+            backgroundImage: "linear-gradient(var(--color-brand-highlight) 1px, transparent 1px), linear-gradient(90deg, var(--color-brand-highlight) 1px, transparent 1px)",
             backgroundSize: "40px 40px",
           }}
         />

@@ -105,7 +105,7 @@ export function GallerySection() {
             href="https://instagram.com/nusaboardingschool"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex min-h-12 w-full shrink-0 items-center justify-center gap-2 rounded-full border-2 border-brand-dark bg-brand-dark px-6 py-2.5 text-sm font-bold text-white transition-[background-color,border-color,color,transform] duration-150 hover:border-[#0d3438] hover:bg-[#0d3438] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-dark focus-visible:ring-offset-2 active:scale-[0.97] motion-reduce:transition-none motion-reduce:active:scale-100 md:w-auto"
+            className="inline-flex min-h-12 w-full shrink-0 items-center justify-center gap-2 rounded-full border-2 border-brand-dark bg-brand-dark px-6 py-2.5 text-sm font-bold text-white transition-[background-color,border-color,color,transform] duration-150 hover:border-brand-depth hover:bg-brand-depth focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-dark focus-visible:ring-offset-2 active:scale-[0.97] motion-reduce:transition-none motion-reduce:active:scale-100 md:w-auto"
           >
             <Instagram aria-hidden="true" className="size-4" />
             Ikuti NUSA di Instagram

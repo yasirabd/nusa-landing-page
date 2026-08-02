@@ -89,7 +89,7 @@ export function CurriculumSection() {
                 className="group relative flex flex-col rounded-3xl border border-transparent bg-white shadow-sm transition-all duration-300 hover:-translate-y-2 hover:border-brand-highlight/30 hover:shadow-[0_20px_40px_rgba(0,0,0,0.08)]"
               >
                 {/* Glow Backdrop */}
-                <div className="absolute -inset-0.5 bg-gradient-to-b from-[#8EF3E7]/20 to-transparent rounded-3xl blur opacity-0 group-hover:opacity-100 transition duration-500 pointer-events-none"></div>
+                <div className="absolute -inset-0.5 rounded-3xl bg-gradient-to-b from-brand-highlight/20 to-transparent opacity-0 blur transition duration-500 group-hover:opacity-100 pointer-events-none"></div>
                 
                 <div className="relative flex-1 flex flex-col">
                   {/* Image Container with padding (Framed Brochure Style) */}
