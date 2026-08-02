@@ -5,6 +5,7 @@ export const siteConfig = {
   title: "NUSA Boarding School Semarang | Sekolah IT Islami",
   description:
     "Boarding school islami tingkat SMA di Kota Semarang dengan jurusan Programmer dan Designer. SPMB NUSA Boarding School 2027/2028 sudah dibuka.",
+  tagline: "Muslim Tangguh, Jago IT",
   email: "info@nusabs.sch.id",
   telephone: "+62 813-9270-6707",
   location: {

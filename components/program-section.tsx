@@ -3,7 +3,7 @@ import { Laptop, Layers, GraduationCapIcon, Building, CheckCircle2, Code, Palett
 
 export function ProgramSection() {
   return (
-    <section id="program" className="section-spacing-standard scroll-mt-20 bg-brand-surface">
+    <section id="program" className="section-spacing-standard scroll-mt-20 bg-brand-paper">
       <div className="container px-4 md:px-8 max-w-7xl mx-auto">
         <div className="mx-auto max-w-4xl text-center">
           <h2 className="mb-6 text-4xl font-bold tracking-tight text-brand-dark sm:text-5xl lg:text-6xl">
@@ -101,7 +101,7 @@ export function ProgramSection() {
                   <div className="flex flex-col md:flex-row items-start md:items-center">
                     {/* Glowing Node */}
                     <div className="flex items-center justify-center z-10 mb-6 md:mb-0 absolute left-0 md:left-1/2 md:transform md:-translate-x-1/2">
-                      <div className="flex h-12 w-12 items-center justify-center rounded-full bg-brand text-lg font-bold text-white shadow-[0_0_15px_rgba(44,137,112,0.4)] ring-4 ring-brand-surface">
+                      <div className="flex h-12 w-12 items-center justify-center rounded-full bg-brand text-lg font-bold text-white shadow-[0_0_15px_rgba(44,137,112,0.4)] ring-4 ring-brand-paper">
                         {stage.num}
                       </div>
                     </div>
@@ -135,7 +135,7 @@ export function ProgramSection() {
                             <p className="text-base font-medium leading-relaxed text-brand-dark opacity-80">{stage.desc}</p>
 
                             {stage.extended && (
-                              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-6 border-t border-gray-100 pt-6">
+                              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-6 border-t border-brand-dark/10 pt-6">
                                 {/* Programmer Inner Bento */}
                                 <div className="rounded-2xl p-5 transition-colors hover:bg-brand-surface" style={{ backgroundColor: "rgba(44,137,112,0.03)" }}>
                                   <div className="flex items-center gap-2 mb-4">
@@ -155,7 +155,7 @@ export function ProgramSection() {
                                 </div>
                                 
                                 {/* Designer Inner Bento */}
-                                <div className="p-5 rounded-2xl transition-colors hover:bg-yellow-50/50" style={{ backgroundColor: "rgba(243,178,51,0.05)" }}>
+                                <div className="p-5 rounded-2xl transition-colors hover:bg-brand-accent/5" style={{ backgroundColor: "rgba(243,178,51,0.05)" }}>
                                   <div className="flex items-center gap-2 mb-4">
                                     <Palette size={18} className="shrink-0 text-brand-accent" />
                                     <h4 className="font-bold text-brand-dark">Designer</h4>
@@ -191,7 +191,7 @@ export function ProgramSection() {
         <div className="mx-auto mt-12 max-w-4xl border-t border-brand-highlight/20 pt-8 text-center md:mt-16">
           <Link
             href="/daftar"
-            className="group/btn inline-flex items-center gap-2 rounded-full bg-brand-depth px-8 py-3.5 text-base font-bold text-white shadow-lg shadow-primary/20 transition-[background-color,color,box-shadow,transform] duration-150 hover:bg-brand-accent hover:text-brand-dark hover:shadow-xl hover:shadow-accent/20 active:scale-[0.97] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 focus-visible:ring-offset-brand-surface motion-reduce:transition-none motion-reduce:active:scale-100 sm:px-10 sm:py-4 sm:text-lg"
+            className="group/btn inline-flex items-center gap-2 rounded-full bg-brand-accent px-8 py-3.5 text-base font-bold text-brand-dark shadow-lg shadow-accent/20 transition-[background-color,box-shadow,transform] duration-150 hover:bg-brand-accent/90 hover:shadow-xl hover:shadow-accent/25 active:scale-[0.97] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 focus-visible:ring-offset-brand-paper motion-reduce:transition-none motion-reduce:active:scale-100 sm:px-10 sm:py-4 sm:text-lg"
           >
             Daftar Sekarang
             <MoveRight className="h-5 w-5 transition-transform duration-150 group-hover/btn:translate-x-1 group-focus-visible/btn:translate-x-1 motion-reduce:transform-none motion-reduce:transition-none" />

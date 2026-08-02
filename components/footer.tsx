@@ -39,7 +39,7 @@ export function Footer() {
               <span className="font-righteous tracking-wider drop-shadow-sm">NUSA</span> <span className="text-white">Boarding School</span>
             </div>
             <p className="text-md lg:text-lg mb-5 text-white/70 leading-relaxed font-medium">
-              Membentuk Generasi <span className="mt-1 block font-serif text-xl font-normal italic tracking-wide text-brand-accent lg:text-2xl">Muslim Tangguh Jago IT</span>
+              Membentuk Generasi <span className="mt-1 block font-serif text-xl font-normal italic tracking-wide text-brand-accent lg:text-2xl">Muslim Tangguh, Jago IT</span>
             </p>
             <div className="flex gap-3">
               <SocialIcon href="https://instagram.com/nusaboardingschool" title="Instagram" src="/icons/instagram.svg" />
@@ -126,7 +126,7 @@ export function Footer() {
 
         </div>
 
-        <div className="mt-8 md:mt-12 pt-5 md:pt-6 text-center text-sm text-white/50 border-t border-white/10">
+        <div className="mt-8 md:mt-12 pt-5 md:pt-6 text-center text-sm text-white/60 border-t border-white/10">
           <p>&copy; {new Date().getFullYear()} NUSA Boarding School Semarang. Hak Cipta Dilindungi.</p>
         </div>
       </div>

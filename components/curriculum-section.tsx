@@ -91,7 +91,7 @@ export function CurriculumSection() {
                 <div className="relative flex-1 flex flex-col">
                   {/* Image Container with padding (Framed Brochure Style) */}
                   <div className="p-5">
-                    <div className="relative mx-auto aspect-[4/3] overflow-hidden rounded-2xl bg-gray-100 shadow-inner">
+                    <div className="relative mx-auto aspect-[4/3] overflow-hidden rounded-2xl bg-brand-dark/5 shadow-inner">
                       <img 
                         src={pillar.image} 
                         alt={pillar.title}

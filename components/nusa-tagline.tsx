@@ -1,6 +1,6 @@
 export function NUSATaglineSection() {
   return (
-    <section className="section-spacing-standard bg-white">
+    <section className="section-spacing-standard bg-brand-paper">
       <div className="container px-4 md:px-8 max-w-5xl mx-auto">
         <div className="flex flex-col items-center justify-center text-center space-y-6 sm:space-y-8 md:space-y-9">
 

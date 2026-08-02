@@ -16,7 +16,7 @@ export function GallerySection() {
       <div className="container mx-auto max-w-7xl px-4 md:px-8">
         <div className="mb-8 max-w-2xl md:mb-10">
           <h2
-            className="mb-4 text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl"
+            className="mb-4 text-3xl font-bold tracking-tight sm:text-4xl"
             style={{ color: "var(--color-brand-dark)" }}
           >
             Kehidupan Santri di <span className="font-righteous font-normal">NUSA</span>

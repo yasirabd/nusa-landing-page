@@ -100,7 +100,7 @@ export function TestimonialsSection() {
     <section className="section-spacing-standard bg-brand-dark">
       <div className="container mx-auto max-w-6xl px-4 md:px-8">
         <div className="max-w-3xl">
-          <h2 className="text-3xl font-bold tracking-tight text-brand-paper md:text-4xl lg:text-5xl">
+          <h2 className="text-3xl font-bold tracking-tight text-brand-paper sm:text-4xl">
             Cerita dari Keluarga NUSA
           </h2>
           <p className="mt-4 text-base leading-relaxed text-brand-paper/80 md:text-lg">

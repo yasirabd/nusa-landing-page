@@ -1,14 +1,13 @@
 'use client'
 
-import { useState } from 'react'
-import { Check } from 'lucide-react'
+import { Check, Flame } from 'lucide-react'
 
 const feeDetails = [
   {
-    category: "BIAYA MASUK",
-    amount: "10 Jt",
-    originalAmount: "20 Jt",
-    promoBadge: "DISKON 10 JUTA (10 Pendaftar Pertama)",
+    category: "BIAYA MASUK (SPI)",
+    amount: "Rp10 juta",
+    originalAmount: "Rp20 juta",
+    promoBadge: "DISKON Rp10 JUTA (10 Pendaftar Pertama)",
     period: "sekali bayar",
     highlight: "Bisa dicicil hingga lulus",
     details: [
@@ -23,7 +22,7 @@ const feeDetails = [
   },
   {
     category: "UANG BULANAN",
-    amount: "2 Jt",
+    amount: "Rp2 juta",
     period: "per bulan",
     details: [
       "Makan 3x Sehari",
@@ -35,7 +34,7 @@ const feeDetails = [
   },
   {
     category: "UANG SEMESTER",
-    amount: "1.25 Jt",
+    amount: "Rp1,25 juta",
     period: "per semester",
     details: [
       "Program Muslim Tangguh",
@@ -51,9 +50,9 @@ export function FeeInfoSection() {
     <section id="biaya" className="section-spacing-standard scroll-mt-20 bg-brand-surface px-4">
       <div className="max-w-6xl mx-auto">
 
-        {/* Header */}
+        {/* Header — preset display */}
         <div className="text-center mb-8 md:mb-12">
-          <h2 className="mb-4 text-4xl font-bold tracking-tight text-brand-dark md:text-5xl">
+          <h2 className="mb-4 text-4xl font-bold tracking-tight text-brand-dark sm:text-5xl lg:text-6xl">
             Informasi Biaya
           </h2>
           <p className="mx-auto max-w-2xl text-base font-medium leading-relaxed text-brand-dark opacity-80 sm:text-lg">
@@ -71,7 +70,7 @@ export function FeeInfoSection() {
             }}
           >
             <div className="flex flex-col text-center md:text-left mb-4 md:mb-0">
-              <span 
+              <span
                 className="mb-3 inline-block self-center rounded-full bg-brand-accent px-4 py-1.5 text-xs font-bold text-brand-dark shadow-sm md:self-start"
               >
                 BIAYA PENDAFTARAN
@@ -85,7 +84,7 @@ export function FeeInfoSection() {
             </div>
             <div className="text-center md:text-right flex-shrink-0">
               <p className="text-4xl font-extrabold text-brand md:text-5xl">
-                Rp 275.000
+                Rp275.000
               </p>
             </div>
           </div>
@@ -113,22 +112,23 @@ export function FeeInfoSection() {
 
               {/* Price Block */}
               <div className="text-center mb-6 relative">
-                
+
                 {/* FOMO Ribbon / Strikethrough Box */}
                 {fee.originalAmount && fee.promoBadge && (
                   <div className="flex flex-col items-center justify-center mb-1">
-                    <span className="mb-3 inline-block whitespace-nowrap rounded-full border border-brand-accent/30 bg-brand-accent/15 px-3 py-1.5 text-[11px] font-bold text-brand-dark shadow-sm lg:text-xs">
-                      🔥 {fee.promoBadge}
+                    <span className="mb-3 inline-flex items-center gap-1.5 whitespace-nowrap rounded-full border border-brand-accent/30 bg-brand-accent/15 px-3 py-1.5 text-[11px] font-bold text-brand-dark shadow-sm lg:text-xs">
+                      <Flame aria-hidden="true" className="size-3.5 shrink-0 text-brand-accent" />
+                      {fee.promoBadge}
                     </span>
                     <div className="flex items-center justify-center gap-2 mb-1">
-                      <span className="text-red-500/80 line-through text-2xl md:text-3xl font-bold tracking-tight">
+                      <span className="text-brand-dark/50 line-through text-2xl md:text-3xl font-bold tracking-tight">
                         {fee.originalAmount}
                       </span>
                     </div>
                   </div>
                 )}
 
-                <p className="text-5xl font-extrabold tracking-tight text-brand drop-shadow-[0_2px_4px_rgba(66,205,186,0.15)] md:text-6xl">
+                <p className="text-4xl font-extrabold tracking-tight text-brand drop-shadow-[0_2px_4px_rgba(66,205,186,0.15)] md:text-5xl">
                   {fee.amount}
                 </p>
                 <p className="mt-3 text-sm font-bold uppercase tracking-wide text-brand-dark opacity-70">
@@ -151,7 +151,7 @@ export function FeeInfoSection() {
                 <ul className="space-y-3 mb-6">
                   {fee.details.map((item, i) => (
                     <li key={i} className="flex items-start gap-3 text-sm font-medium leading-relaxed text-brand-dark opacity-90">
-                      <Check className="mt-[1px] h-5 w-5 flex-shrink-0 text-brand-highlight drop-shadow-sm" />
+                      <Check className="mt-[1px] h-5 w-5 flex-shrink-0 text-brand drop-shadow-sm" />
                       <span>{item}</span>
                     </li>
                   ))}
@@ -175,7 +175,7 @@ export function FeeInfoSection() {
           <div className="flex-shrink-0 text-center md:text-left">
             <p className="text-lg font-bold text-brand-dark">Informasi<br className="hidden md:block" />Penting</p>
           </div>
-          <div className="w-full h-px md:w-px md:h-12 bg-gray-200"></div>
+          <div className="w-full h-px md:w-px md:h-12 bg-brand-dark/10"></div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-y-3 gap-x-6 w-full">
             {[
               "Program beasiswa untuk santri berprestasi & kurang mampu",
@@ -183,7 +183,7 @@ export function FeeInfoSection() {
               "Konsultasi khusus gratis dengan tim administrasi / CS"
             ].map((info, i) => (
               <div key={i} className="flex items-start gap-3">
-                <Check className="mt-0.5 h-4 w-4 flex-shrink-0 text-brand-highlight" />
+                <Check className="mt-0.5 h-4 w-4 flex-shrink-0 text-brand" />
                 <p className="text-sm font-medium leading-snug text-brand-dark opacity-90">{info}</p>
               </div>
             ))}

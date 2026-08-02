@@ -133,6 +133,8 @@
   --color-brand-highlight: #42cdba;
   --color-brand-surface: #f0faf7;
   --color-brand-paper: #f7f7f2;
+  --color-brand-accent-hover: #f6be4d;
+  --color-brand-depth-hover: #24745f;
 
   --radius-sm: calc(var(--radius) - 4px);
   --radius-base: var(--radius);
@@ -148,7 +150,7 @@
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
   --font-sans: var(--font-geist-sans);
-  --font-serif: "Romulo", serif;
+  --font-serif: var(--font-serif-accent), Georgia, serif;
   --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
     "Liberation Mono", "Courier New", monospace;
 }
@@ -205,14 +207,6 @@
   }
 }
 
-@font-face {
-  font-family: "Romulo";
-  src: url("https://framerusercontent.com/assets/V6SPt5QT5vOzThTYDvKoxVfGcQ.woff2") format("woff2");
-  font-weight: 400;
-  font-style: italic;
-  font-display: swap;
-}
-
 .font-righteous {
   font-family: var(--font-righteous);
 }
@@ -260,7 +254,7 @@
   }
 
   .hero-action-primary:hover {
-    background-color: #f6be4d;
+    background-color: var(--color-brand-accent-hover);
     box-shadow: 0 12px 32px rgba(19, 65, 70, 0.4);
   }
 
@@ -270,7 +264,7 @@
   }
 
   .registration-action-primary:hover:not(:disabled) {
-    background-color: #24745f;
+    background-color: var(--color-brand-depth-hover);
     box-shadow: 0 10px 24px rgba(19, 65, 70, 0.16);
     transform: translateY(-1px);
   }

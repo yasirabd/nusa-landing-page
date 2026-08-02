@@ -25,7 +25,7 @@ export function RegistrationSection() {
                   className="font-serif italic font-normal tracking-wide"
                   style={{ color: "var(--color-brand-accent)" }}
                 >
-                  Muslim Tangguh Jago IT
+                  Muslim Tangguh, Jago IT
                 </span>
               </h2>
             </div>
@@ -34,7 +34,7 @@ export function RegistrationSection() {
               <Button
                 asChild
                 size="lg"
-                className="h-auto w-full rounded-full bg-brand-depth px-10 py-7 text-lg font-semibold text-brand-paper shadow-[0_8px_20px_rgba(44,137,112,0.30)] transition-[background-color,color,box-shadow,transform] duration-150 hover:bg-brand-accent hover:text-brand-dark hover:shadow-[0_12px_24px_rgba(243,178,51,0.28)] active:scale-[0.97] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 motion-reduce:transition-none motion-reduce:active:scale-100 sm:w-auto md:py-8"
+                className="h-auto w-full rounded-full bg-brand-accent px-10 py-7 text-lg font-semibold text-brand-dark shadow-[0_8px_20px_rgba(243,178,51,0.30)] transition-[background-color,box-shadow,transform] duration-150 hover:bg-brand-accent/90 hover:shadow-[0_12px_24px_rgba(243,178,51,0.28)] active:scale-[0.97] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 motion-reduce:transition-none motion-reduce:active:scale-100 sm:w-auto md:py-8"
               >
                 <Link href="/daftar" className="group">
                   <span>Daftar Sekarang</span>

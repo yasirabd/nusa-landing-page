@@ -21,7 +21,7 @@ export function FAQSection() {
           <p className="text-sm font-semibold uppercase tracking-[0.16em] text-brand">
             FAQ
           </p>
-          <h2 className="mt-3 max-w-md text-3xl font-semibold leading-tight tracking-tight text-brand-dark sm:text-4xl">
+          <h2 className="mt-3 max-w-md text-3xl font-bold leading-tight tracking-tight text-brand-dark sm:text-4xl">
             Pertanyaan yang sering diajukan
           </h2>
           <p className="mt-4 max-w-md text-base leading-7 text-brand-dark/75">

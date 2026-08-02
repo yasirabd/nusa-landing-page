@@ -19,7 +19,7 @@ export function PartnerSection() {
 
       <div className="container relative z-10 max-w-6xl mx-auto">
         <div className="mx-auto max-w-3xl text-center mb-6 md:mb-8">
-          <h2 className="mb-3 text-4xl font-bold tracking-tight text-brand-dark md:text-5xl">
+          <h2 className="mb-3 text-4xl font-bold tracking-tight text-brand-dark sm:text-5xl lg:text-6xl">
             Partner Industri & Teknologi
           </h2>
           <p className="mx-auto max-w-2xl text-balance text-base font-medium leading-relaxed text-brand-dark opacity-80 sm:text-lg">
@@ -28,7 +28,7 @@ export function PartnerSection() {
         </div>
 
         {/* Glass Tech Dock Kapsul Penampung Susunan Logo Partner */}
-        <div className="mx-auto w-full max-w-5xl rounded-[2rem] md:rounded-[3rem] p-6 md:p-8 lg:p-10 bg-white/80 backdrop-blur-xl border border-gray-100 shadow-[0_8px_30px_rgba(66,205,186,0.1)] hover:shadow-[0_15px_40px_rgba(66,205,186,0.15)] transition-shadow duration-200">
+        <div className="mx-auto w-full max-w-5xl rounded-[2rem] md:rounded-[3rem] p-6 md:p-8 lg:p-10 bg-white/80 backdrop-blur-xl border border-brand-dark/10 shadow-[0_8px_30px_rgba(66,205,186,0.1)] hover:shadow-[0_15px_40px_rgba(66,205,186,0.15)] transition-shadow duration-200">
           <div className="grid grid-cols-2 md:grid-cols-5 items-center justify-items-center gap-6 md:gap-8">
             {partners.map((partner) => (
               <div key={partner.name} className="flex items-center justify-center w-full">

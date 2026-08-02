@@ -6,12 +6,19 @@ import { EducationalOrganizationJsonLd } from "@/components/educational-organiza
 import { ThemeProvider } from "@/components/theme-provider"
 import { siteConfig } from "@/lib/site-config"
 import { GeistSans } from "geist/font/sans"
-import { Righteous } from "next/font/google"
+import { DM_Serif_Display, Righteous } from "next/font/google"
 
 const righteous = Righteous({
   subsets: ["latin"],
   weight: "400",
   variable: "--font-righteous",
+})
+
+const serifAccent = DM_Serif_Display({
+  subsets: ["latin"],
+  weight: "400",
+  style: "italic",
+  variable: "--font-serif-accent",
 })
 
 export const metadata: Metadata = {
@@ -62,7 +69,7 @@ export default function RootLayout({
         <EducationalOrganizationJsonLd />
       </head>
       <body
-        className={`${GeistSans.variable} ${righteous.variable} font-sans`}
+        className={`${GeistSans.variable} ${righteous.variable} ${serifAccent.variable} font-sans`}
         suppressHydrationWarning
       >
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>

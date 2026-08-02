@@ -33,7 +33,8 @@ export function HeroSection() {
               SPMB 2027/2028 Sudah Dibuka
             </p>
             <p className="mt-2 text-sm font-medium leading-6 text-white/85">
-              Potongan SPI <span className="font-semibold text-brand-accent">Rp10 juta</span> untuk 10
+              Potongan Biaya Masuk (SPI){" "}
+              <span className="font-semibold text-brand-accent">Rp10 juta</span> untuk 10
               pendaftar pertama
             </p>
           </div>
