@@ -14,7 +14,6 @@ const feeDetails = [
     details: [
       "Biaya Pengembangan Pendidikan",
       "Biaya Organisasi Santri",
-      "Sudah Termasuk Uang Semester 1",
       "Pelayanan Kesehatan",
       "Seragam Sekolah",
       "Buku/Modul Pembelajaran",

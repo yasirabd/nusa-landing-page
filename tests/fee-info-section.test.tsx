@@ -14,6 +14,9 @@ describe("FeeInfoSection", () => {
     ).toBeVisible()
     expect(screen.queryByText("12 Jt")).not.toBeInTheDocument()
     expect(screen.queryByText(/DISKON 8 JUTA/)).not.toBeInTheDocument()
+    expect(
+      screen.queryByText("Sudah Termasuk Uang Semester 1"),
+    ).not.toBeInTheDocument()
   })
 
   it("shows the semester schedule once with the approved wording", () => {

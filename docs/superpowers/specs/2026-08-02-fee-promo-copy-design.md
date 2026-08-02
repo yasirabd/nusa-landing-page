@@ -32,11 +32,18 @@ Remove the separate footer note `Dibayarkan tiap awal semester` from the
 semester card because the approved sentence already communicates the timing.
 This prevents the same information from appearing twice in one card.
 
+## Review Addendum
+
+Remove `Sudah Termasuk Uang Semester 1` from the `BIAYA MASUK` detail list.
+The entrance-fee card must not imply that its payment includes the first
+semester fee.
+
 ## Scope
 
 Only fee data and its focused tests change. Card layout, typography, colors,
-spacing, animation, other fee items, and visible section structure remain
-unchanged. The user-owned audit file is not modified or committed.
+spacing, animation, fee items outside the explicitly approved removals, and
+visible section structure remain unchanged. The user-owned audit file is not
+modified or committed.
 
 ## Testing
 
@@ -48,3 +55,4 @@ Add a focused rendering test for `FeeInfoSection` that verifies:
 - The old `12 Jt` fee and `DISKON 8 JUTA` badge are absent.
 - The approved semester schedule appears exactly once.
 - The old semester schedule wording is absent.
+- `Sudah Termasuk Uang Semester 1` is absent.

@@ -37,6 +37,9 @@ describe("FeeInfoSection", () => {
     ).toBeVisible()
     expect(screen.queryByText("12 Jt")).not.toBeInTheDocument()
     expect(screen.queryByText(/DISKON 8 JUTA/)).not.toBeInTheDocument()
+    expect(
+      screen.queryByText("Sudah Termasuk Uang Semester 1"),
+    ).not.toBeInTheDocument()
   })
 
   it("shows the semester schedule once with the approved wording", () => {
@@ -63,7 +66,7 @@ describe("FeeInfoSection", () => {
 
 Run: `npm test -- tests/fee-info-section.test.tsx`
 
-Expected: FAIL because the component still renders `12 Jt`, `DISKON 8 JUTA`, and the old semester schedule copy.
+Expected: FAIL because the component still renders `12 Jt`, `DISKON 8 JUTA`, the old semester schedule copy, and `Sudah Termasuk Uang Semester 1`.
 
 - [ ] **Step 3: Apply the minimal fee-data correction**
 
@@ -85,6 +88,9 @@ details: [
   "Dibayarkan saat tiap awal semester pada tahun ke-1, ke-2, dan ke-3",
 ],
 ```
+
+Also remove `"Sudah Termasuk Uang Semester 1"` from the `BIAYA MASUK`
+`details` array so the card does not claim that inclusion.
 
 - [ ] **Step 4: Run the focused test and verify GREEN**
 
