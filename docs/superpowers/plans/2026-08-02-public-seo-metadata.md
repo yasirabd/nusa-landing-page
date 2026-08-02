@@ -273,7 +273,7 @@ export function EducationalOrganizationJsonLd() {
 
 Run: `npm test -- tests/public-seo-metadata.test.ts`
 
-Expected: FAIL because `app/sitemap.ts` is still absent and the existing metadata/robots files do not yet satisfy the contract; site configuration and JSON-LD assertions load successfully.
+Expected: FAIL because `app/sitemap.ts` is still absent. Vite resolves the dynamic route import during collection, so the remaining assertions run after the metadata routes are added in Task 3.
 
 - [ ] **Step 4: Commit the verified data layer**
 
