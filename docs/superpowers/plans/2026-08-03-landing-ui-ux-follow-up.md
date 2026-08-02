@@ -37,8 +37,8 @@ Use this order in `PUBLIC_NAV_ITEMS`:
 [
   { label: "Kurikulum", sectionId: "kurikulum" },
   { label: "Program", sectionId: "program" },
-  { label: "Kehidupan Santri", sectionId: "kehidupan-santri" },
   { label: "Pengajar", sectionId: "pengajar" },
+  { label: "Kehidupan Santri", sectionId: "kehidupan-santri" },
   { label: "Biaya", sectionId: "biaya" },
   { label: "FAQ", sectionId: "faq" },
 ]

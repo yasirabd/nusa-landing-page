@@ -107,7 +107,7 @@ describe("NUSA public design tokens", () => {
   it("applies semantic section spacing without changing the hero rhythm", () => {
     expect(publicSource).toContain("section-spacing-compact")
     expect(publicSource).toContain("section-spacing-standard")
-    expect(publicSource).toContain("section-spacing-feature")
+    expect(publicSource).not.toContain("section-spacing-feature")
 
     const hero = readFileSync("components/hero-section.tsx", "utf8")
     expect(hero).toContain("py-10")

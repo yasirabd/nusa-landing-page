@@ -3,7 +3,7 @@ import { Laptop, Layers, GraduationCapIcon, Building, CheckCircle2, Code, Palett
 
 export function ProgramSection() {
   return (
-    <section id="program" className="section-spacing-feature scroll-mt-20 bg-brand-surface">
+    <section id="program" className="section-spacing-standard scroll-mt-20 bg-brand-surface">
       <div className="container px-4 md:px-8 max-w-7xl mx-auto">
         <div className="mx-auto max-w-4xl text-center">
           <h2 className="mb-6 text-4xl font-bold tracking-tight text-brand-dark sm:text-5xl lg:text-6xl">

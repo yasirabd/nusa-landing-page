@@ -2,6 +2,7 @@ import { existsSync, readFileSync } from "node:fs"
 import { render, screen, within } from "@testing-library/react"
 import { describe, expect, it } from "vitest"
 import { HeroSection } from "@/components/hero-section"
+import { SPMB_WHATSAPP_URL } from "@/lib/public-contact"
 
 describe("hero hierarchy", () => {
   it("presents the approved positioning, promotion, and factual trust signals", () => {
@@ -112,7 +113,7 @@ describe("hero hierarchy", () => {
     expect(within(registration).queryByRole("button")).not.toBeInTheDocument()
 
     const consultation = screen.getByRole("link", { name: "Konsultasi via WhatsApp" })
-    expect(consultation).toHaveAttribute("href", "https://wa.me/6281392706707")
+    expect(consultation).toHaveAttribute("href", SPMB_WHATSAPP_URL)
     expect(consultation).toHaveAttribute("target", "_blank")
     expect(consultation).toHaveAttribute("rel", "noopener noreferrer")
     expect(consultation).toHaveClass("min-h-12", "focus-visible:ring-2")

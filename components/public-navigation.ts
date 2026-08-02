@@ -1,8 +1,8 @@
 export const PUBLIC_NAV_ITEMS = [
-  { label: "Program", sectionId: "program" },
   { label: "Kurikulum", sectionId: "kurikulum" },
-  { label: "Kehidupan Santri", sectionId: "kehidupan-santri" },
+  { label: "Program", sectionId: "program" },
   { label: "Pengajar", sectionId: "pengajar" },
+  { label: "Kehidupan Santri", sectionId: "kehidupan-santri" },
   { label: "Biaya", sectionId: "biaya" },
   { label: "FAQ", sectionId: "faq" },
 ] as const

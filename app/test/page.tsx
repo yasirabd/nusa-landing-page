@@ -25,7 +25,7 @@ export default async function TestDashboardPage({
   return (
     <div className="flex min-h-screen flex-col font-sans bg-[#F0FAF7]">
       <Header />
-      <main className="flex-1 max-w-4xl w-full mx-auto p-6 md:p-12 relative">
+      <main id="main-content" className="flex-1 max-w-4xl w-full mx-auto p-6 md:p-12 relative">
         <div className="relative z-10 animate-in fade-in duration-700">
           <div className="inline-block px-3 py-1 mb-3 rounded-full bg-[#E6F8F5] border border-[#2C8970]/20 text-[#2C8970] text-xs font-bold tracking-widest uppercase">
             NUSA Boarding School

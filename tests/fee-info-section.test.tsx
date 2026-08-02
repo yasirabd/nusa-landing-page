@@ -18,10 +18,10 @@ describe("FeeInfoSection", () => {
       screen.queryByText("Sudah Termasuk Uang Semester 1"),
     ).not.toBeInTheDocument()
     expect(
-      screen.getByText("* Belum termasuk SPP Bulan Juli 2026 dan Semester 1"),
+      screen.getByText("* Belum termasuk SPP Bulan Juli 2027 dan Semester 1"),
     ).toBeVisible()
     expect(
-      screen.queryByText("* Belum termasuk SPP Bulan Juli 2026"),
+      screen.queryByText("* Belum termasuk SPP Bulan Juli 2026 dan Semester 1"),
     ).not.toBeInTheDocument()
   })
 

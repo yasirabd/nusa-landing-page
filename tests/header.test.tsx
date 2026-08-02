@@ -1,3 +1,4 @@
+import { readFileSync } from "node:fs"
 import { fireEvent, render, screen } from "@testing-library/react"
 import { renderToStaticMarkup } from "react-dom/server"
 import { beforeEach, describe, expect, it, vi } from "vitest"
@@ -29,6 +30,24 @@ describe("Header", () => {
       "href",
       "/daftar",
     )
+  })
+
+  it("provides a keyboard shortcut to the landing content", () => {
+    render(<Header />)
+
+    expect(
+      screen.getByRole("link", { name: "Lewati ke konten utama" }),
+    ).toHaveAttribute("href", "#main-content")
+    for (const page of [
+      "app/page.tsx",
+      "app/daftar/page.tsx",
+      "app/test/page.tsx",
+      "app/test/kepribadian/page.tsx",
+      "app/test/penjurusan/page.tsx",
+      "app/test/selesai/page.tsx",
+    ]) {
+      expect(readFileSync(page, "utf8")).toContain('<main id="main-content"')
+    }
   })
 
   it("opens an accessible mobile navigation sheet", () => {

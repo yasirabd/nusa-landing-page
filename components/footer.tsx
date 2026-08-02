@@ -1,24 +1,30 @@
 import Link from "next/link"
-import { Mail, Phone, MapPin } from "lucide-react"
+import { ExternalLink, Mail, MapPin, Phone } from "lucide-react"
+import { SPMB_WHATSAPP_URL } from "@/lib/public-contact"
 
-// Reusable component to wrap the social media icon link
-function SocialIcon({ href, title, src }) {
+type SocialIconProps = {
+  href: string
+  title: string
+  src: string
+}
+
+function SocialIcon({ href, title, src }: SocialIconProps) {
   return (
     <Link
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      className="group relative inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/5 transition-[background-color,border-color] duration-150 hover:border-white/20 hover:bg-white/15"
+      className="group relative inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/5 transition-[background-color,border-color] duration-150 hover:border-white/20 hover:bg-white/15 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-accent focus-visible:ring-offset-2 focus-visible:ring-offset-brand-dark"
       title={title}
     >
       <img
         src={src}
-        alt={title}
+        alt=""
         className="h-5 w-5 invert transition-[filter] duration-150 group-hover:brightness-110"
       />
       <span className="sr-only">{title}</span>
     </Link>
-  );
+  )
 }
 
 export function Footer() {
@@ -56,8 +62,8 @@ export function Footer() {
                   <Mail className="h-5 w-5 text-brand-accent" />
                 </div>
                 <div className="leading-tight">
-                  <p className="text-sm font-medium opacity-60 mb-1 text-white">Email us</p>
-                  <a href="mailto:info@nusabs.sch.id" className="text-base font-semibold transition-colors duration-200 hover:text-brand-accent">
+                  <p className="text-sm font-medium opacity-60 mb-1 text-white">Email</p>
+                  <a href="mailto:info@nusabs.sch.id" className="rounded-sm text-base font-semibold transition-colors duration-200 hover:text-brand-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-accent">
                     info@nusabs.sch.id
                   </a>
                 </div>
@@ -70,7 +76,7 @@ export function Footer() {
                 </div>
                 <div className="leading-tight">
                   <p className="text-sm font-medium opacity-60 mb-1 text-white">Telepon & WhatsApp</p>
-                  <a href="https://wa.me/6281392706707" target="_blank" rel="noopener noreferrer" className="text-base font-semibold transition-colors duration-200 hover:text-brand-accent">
+                  <a href={SPMB_WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="rounded-sm text-base font-semibold transition-colors duration-200 hover:text-brand-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-accent">
                     081392706707
                   </a>
                 </div>
@@ -82,9 +88,9 @@ export function Footer() {
                   <MapPin className="h-5 w-5 text-brand-accent" />
                 </div>
                 <div className="leading-tight">
-                  <p className="text-sm font-medium opacity-60 mb-1 text-white">Visit us</p>
-                  <a href="https://maps.app.goo.gl/pR3KqRYPf84yrZB36" target="_blank" rel="noopener noreferrer" className="text-base font-semibold transition-colors duration-200 hover:text-brand-accent">
-                    Get Direction
+                  <p className="text-sm font-medium opacity-60 mb-1 text-white">Kunjungi Kami</p>
+                  <a href="https://maps.app.goo.gl/pR3KqRYPf84yrZB36" target="_blank" rel="noopener noreferrer" className="rounded-sm text-base font-semibold transition-colors duration-200 hover:text-brand-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-accent">
+                    Petunjuk Arah
                   </a>
                 </div>
               </div>
@@ -96,25 +102,24 @@ export function Footer() {
             <h3 className="mb-5 text-lg font-bold uppercase tracking-wider text-brand-accent">
               Lokasi
             </h3>
-            <div className="rounded-2xl border border-white/10 bg-white/5 p-2 backdrop-blur-md transition-colors duration-200 hover:bg-white/10">
+            <div className="rounded-2xl border border-white/10 bg-white/5 p-2 backdrop-blur-md">
+              <div className="aspect-video w-full overflow-hidden rounded-xl shadow-inner" style={{ minHeight: 180 }}>
+                <iframe
+                  title="Peta lokasi NUSA Boarding School"
+                  src="https://www.google.com/maps?q=Map+NUSA+Boarding+School&output=embed"
+                  className="block h-full w-full border-0 grayscale-[35%] contrast-125"
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                />
+              </div>
               <a
                 href="https://maps.app.goo.gl/pR3KqRYPf84yrZB36"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="block rounded-xl overflow-hidden shadow-inner group relative"
-                aria-label="Buka peta NUSA Boarding School di Google Maps"
+                className="mt-2 inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-xl px-4 text-sm font-semibold text-white transition-colors duration-150 hover:bg-white/10 hover:text-brand-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-accent"
               >
-                {/* Visual Glint on Map hover */}
-                <div className="pointer-events-none absolute inset-0 z-10 bg-white/0 transition-colors duration-200 group-hover:bg-white/5"></div>
-                <div className="w-full relative z-0 aspect-video" style={{ minHeight: 180 }}>
-                  <iframe
-                    title="Map NUSA Boarding School"
-                    src="https://www.google.com/maps?q=Map+NUSA+Boarding+School&output=embed"
-                    className="block h-full w-full border-0 grayscale-[50%] contrast-125 transition-[filter] duration-200 group-hover:grayscale-0"
-                    loading="lazy"
-                    referrerPolicy="no-referrer-when-downgrade"
-                  />
-                </div>
+                Buka di Google Maps
+                <ExternalLink aria-hidden="true" className="size-4" />
               </a>
             </div>
           </div>

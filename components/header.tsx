@@ -61,6 +61,12 @@ export function Header() {
 
   return (
     <header className="sticky top-0 z-50 border-b border-brand-dark/10 bg-brand-paper/90 font-sans text-brand-dark backdrop-blur-xl">
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-2 focus:z-10 focus:rounded-full focus:bg-brand-dark focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-white focus:outline-none focus:ring-2 focus:ring-brand-accent focus:ring-offset-2"
+      >
+        Lewati ke konten utama
+      </a>
       <div className="mx-auto flex h-16 max-w-7xl items-center gap-5 px-4 md:px-6">
         <Link
           href="/"

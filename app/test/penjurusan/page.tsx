@@ -23,7 +23,7 @@ export default async function PenjurusanPage({
   return (
     <div className="flex min-h-screen flex-col font-sans bg-[#F7F7F2]">
       <Header />
-      <main className="flex-1">
+      <main id="main-content" className="flex-1">
         <TestProgrammerDesigner registrationId={registration.id} refParam={params?.ref as string} />
       </main>
     </div>

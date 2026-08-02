@@ -29,7 +29,7 @@ Accessibility and conversion changes remain local to their components. No new ru
 
 ### Navigation and Keyboard Access
 
-- Reorder the public navigation to match the rendered landing-page sequence: Curriculum, Program, Kehidupan Santri, Pengajar, Biaya, FAQ.
+- Reorder the public navigation to match the rendered landing-page sequence: Kurikulum, Program, Pengajar, Kehidupan Santri, Biaya, FAQ.
 - Add a visually hidden skip link before page navigation that becomes visible on keyboard focus.
 - Give the landing `<main>` a stable `main-content` target and retain the sticky-header section offsets.
 

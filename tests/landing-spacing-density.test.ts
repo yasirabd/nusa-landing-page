@@ -62,4 +62,18 @@ describe("landing-page spacing density", () => {
     expect(footer).toContain("md:pt-16")
     expect(footer).not.toContain("md:pt-24")
   })
+
+  it("uses standard spacing for the remaining long-form sections", () => {
+    const sections = [
+      "components/curriculum-section.tsx",
+      "components/program-section.tsx",
+      "components/teaching-team-section.tsx",
+      "components/fee-info-section.tsx",
+    ].map(read)
+
+    sections.forEach((source) => {
+      expect(source).toContain("section-spacing-standard")
+      expect(source).not.toContain("section-spacing-feature")
+    })
+  })
 })

@@ -37,7 +37,7 @@ export function PartnerSection() {
                   alt={`${partner.name} Logo`}
                   width={180}
                   height={80}
-                  className="h-10 w-auto object-contain grayscale opacity-50 transition-[filter,opacity] duration-200 hover:grayscale-0 hover:opacity-100 md:h-12"
+                  className="partner-logo h-10 w-auto object-contain grayscale-[35%] opacity-75 transition-[filter,opacity] duration-200 md:h-12"
                 />
               </div>
             ))}

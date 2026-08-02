@@ -18,7 +18,7 @@ export default function Home() {
     <div className="flex min-h-screen flex-col font-sans">
       <Header />
 
-      <main className="flex-1">
+      <main id="main-content" className="flex-1">
         <HeroSection />
         <NUSATaglineSection />
         <WhyChooseSection />

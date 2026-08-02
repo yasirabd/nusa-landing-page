@@ -7,10 +7,10 @@ import {
 describe("public navigation", () => {
   it("defines the approved destinations in order", () => {
     expect(PUBLIC_NAV_ITEMS).toEqual([
-      { label: "Program", sectionId: "program" },
       { label: "Kurikulum", sectionId: "kurikulum" },
-      { label: "Kehidupan Santri", sectionId: "kehidupan-santri" },
+      { label: "Program", sectionId: "program" },
       { label: "Pengajar", sectionId: "pengajar" },
+      { label: "Kehidupan Santri", sectionId: "kehidupan-santri" },
       { label: "Biaya", sectionId: "biaya" },
       { label: "FAQ", sectionId: "faq" },
     ])

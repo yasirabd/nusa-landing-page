@@ -64,7 +64,7 @@ const curriculumPillars = [
 
 export function CurriculumSection() {
   return (
-    <section id="kurikulum" className="section-spacing-feature scroll-mt-20 bg-brand-surface">
+    <section id="kurikulum" className="section-spacing-standard scroll-mt-20 bg-brand-surface">
       <div className="container relative z-10 px-4 md:px-8 max-w-6xl mx-auto">
         
         {/* Monumental Header (Penyelarasan Momentum Rushd) */}

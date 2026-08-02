@@ -19,7 +19,7 @@ const feeDetails = [
       "Buku/Modul Pembelajaran",
       "Kebutuhan Asrama"
     ],
-    note: "Belum termasuk SPP Bulan Juli 2026 dan Semester 1"
+    note: "Belum termasuk SPP Bulan Juli 2027 dan Semester 1"
   },
   {
     category: "UANG BULANAN",
@@ -48,7 +48,7 @@ const feeDetails = [
 
 export function FeeInfoSection() {
   return (
-    <section id="biaya" className="section-spacing-feature scroll-mt-20 bg-brand-surface px-4">
+    <section id="biaya" className="section-spacing-standard scroll-mt-20 bg-brand-surface px-4">
       <div className="max-w-6xl mx-auto">
 
         {/* Header */}

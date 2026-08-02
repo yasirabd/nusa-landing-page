@@ -2,11 +2,34 @@ import { render, screen } from "@testing-library/react"
 import { describe, expect, it } from "vitest"
 import { CurriculumSection } from "@/components/curriculum-section"
 import { FeeInfoSection } from "@/components/fee-info-section"
+import { Footer } from "@/components/footer"
+import { HeroSection } from "@/components/hero-section"
 import { ProgramSection } from "@/components/program-section"
 import { RegistrationSection } from "@/components/registration-section"
 import { WhyChooseSection } from "@/components/why-choose-section"
 
 describe("public CTA accessibility", () => {
+  it("prefills the SPMB 2027/2028 WhatsApp consultation", () => {
+    const message =
+      "Assalamu'alaikum, saya ingin informasi tentang SPMB NUSA Boarding School 2027/2028."
+    const expectedUrl = `https://wa.me/6281392706707?text=${encodeURIComponent(message)}`
+
+    render(
+      <>
+        <HeroSection />
+        <Footer />
+      </>,
+    )
+
+    expect(
+      screen.getByRole("link", { name: "Konsultasi via WhatsApp" }),
+    ).toHaveAttribute("href", expectedUrl)
+    expect(screen.getByRole("link", { name: "081392706707" })).toHaveAttribute(
+      "href",
+      expectedUrl,
+    )
+  })
+
   it("renders the final registration CTA as one link", () => {
     render(<RegistrationSection />)
     const link = screen.getByRole("link", { name: "Daftar Sekarang" })

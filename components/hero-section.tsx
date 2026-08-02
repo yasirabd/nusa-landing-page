@@ -1,6 +1,7 @@
 import Image from "next/image"
 import Link from "next/link"
 import { ArrowRight, CheckCircle2 } from "lucide-react"
+import { SPMB_WHATSAPP_URL } from "@/lib/public-contact"
 
 const HERO_FACTS = [
   "Kesetaraan SMA",
@@ -60,7 +61,7 @@ export function HeroSection() {
             </Link>
 
             <Link
-              href="https://wa.me/6281392706707"
+              href={SPMB_WHATSAPP_URL}
               target="_blank"
               rel="noopener noreferrer"
               className="hero-action hero-action-secondary inline-flex min-h-12 items-center justify-center gap-2 rounded-full border border-white/25 bg-white/10 px-6 text-sm font-semibold text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-brand-dark sm:text-base"

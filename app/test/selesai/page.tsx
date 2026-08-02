@@ -28,7 +28,7 @@ export default async function SelesaiPage({
   return (
     <div className="min-h-screen flex flex-col font-sans bg-[#F0FAF7] relative">
       <Header />
-      <main className="flex-1 max-w-3xl w-full mx-auto p-6 md:p-12 flex flex-col justify-center relative z-10">
+      <main id="main-content" className="flex-1 max-w-3xl w-full mx-auto p-6 md:p-12 flex flex-col justify-center relative z-10">
         <div className="bg-white/95 backdrop-blur-xl rounded-3xl p-8 md:p-12 shadow-[0_8px_40px_rgb(31,111,104,0.06)] border border-[#2C8970]/10 text-center relative overflow-hidden animate-in fade-in slide-in-from-bottom-8 duration-700">
           {/* Decorative shapes */}
           <div className="absolute top-0 left-0 w-64 h-64 bg-gradient-to-br from-[#F3B233]/20 to-transparent rounded-full -translate-y-1/2 -translate-x-1/2 blur-3xl pointer-events-none"></div>

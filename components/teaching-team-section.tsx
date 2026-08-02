@@ -25,7 +25,7 @@ const teachers = [
 
 export function TeachingTeamSection() {
   return (
-    <section id="pengajar" className="section-spacing-feature relative overflow-hidden scroll-mt-20 bg-brand">
+    <section id="pengajar" className="section-spacing-standard relative overflow-hidden scroll-mt-20 bg-brand">
       {/* Digital Space Grid & Glow */}
       <div className="absolute inset-0 z-0 pointer-events-none">
         <div

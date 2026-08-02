@@ -23,7 +23,7 @@ export default async function KepribadianPage({
   return (
     <div className="min-h-screen flex flex-col bg-slate-50">
       <Header />
-      <main className="flex-1 max-w-4xl w-full mx-auto p-4 sm:p-6 lg:p-8">
+      <main id="main-content" className="flex-1 max-w-4xl w-full mx-auto p-4 sm:p-6 lg:p-8">
         <div className="mb-8">
           <h1 className="text-3xl font-bold text-slate-900 tracking-tight">Tes Kepribadian (TKPI)</h1>
           <p className="text-slate-600 mt-2">
