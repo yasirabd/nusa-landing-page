@@ -1,9 +1,8 @@
 import type { Metadata } from "next"
 
-import { AlertCircle } from "lucide-react"
-
 import { AdminDashboard, type RegistrationRow } from "@/components/admin/admin-dashboard"
 import { requireAdminUser } from "@/utils/admin"
+import { parseAcademicYear, parseAdminView } from "@/utils/admin-academic-year"
 
 export const metadata: Metadata = {
   title: "Admin Dashboard | NUSA Boarding School",
@@ -24,16 +23,21 @@ export default async function AdminPage({
     sort?: string
     test?: string
     to?: string
+    view?: string
+    year?: string
   }>
 }) {
   const params = await searchParams
   const { supabase, profile } = await requireAdminUser()
+  const academicYear = parseAcademicYear(params.year)
+  const view = parseAdminView(params.view)
 
   const { data, error } = await supabase
     .from("registrations")
     .select(`
       id,
       created_at,
+      academic_year,
       nama_lengkap,
       nomor_whatsapp,
       pilihan_program,
@@ -56,34 +60,17 @@ export default async function AdminPage({
         tendency_result
       )
     `)
+    .eq("academic_year", academicYear.value)
     .order("created_at", { ascending: false })
-
-  if (error) {
-    return (
-      <main className="flex min-h-screen items-center justify-center bg-[#F0FAF7] px-4 py-16 font-sans text-[#134146]">
-        <div className="max-w-xl rounded-[2rem] border border-red-200 bg-[#F7F7F2] p-8 shadow-[0_18px_40px_rgba(19,65,70,0.08)]">
-          <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-red-50 text-red-600">
-            <AlertCircle className="h-6 w-6" />
-          </div>
-          <h1 className="text-2xl font-bold">Dashboard admin belum bisa dimuat</h1>
-          <p className="mt-3 text-sm leading-6 text-[#134146]/70">
-            Koneksi ke Supabase aktif, tetapi query admin gagal dijalankan. Periksa kembali kecocokan project pada
-            `.env.local`, role admin pada `profiles`, dan policy RLS untuk tabel `registrations` serta
-            `student_tests`.
-          </p>
-          <p className="mt-4 rounded-2xl bg-red-50 px-4 py-3 text-sm text-red-700">
-            Detail error: {error.message}
-          </p>
-        </div>
-      </main>
-    )
-  }
 
   return (
     <AdminDashboard
       data={(data ?? []) as RegistrationRow[]}
+      errorMessage={error?.message}
       profile={{ full_name: profile.full_name, email: profile.email }}
       searchParams={params}
+      view={view}
+      academicYear={academicYear}
     />
   )
 }

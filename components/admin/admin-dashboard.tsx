@@ -3,6 +3,7 @@
 import { format } from "date-fns"
 import { id } from "date-fns/locale"
 import {
+  AlertCircle,
   CalendarDays,
   CheckCircle2,
   Clock3,
@@ -30,6 +31,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table"
+import type { AcademicYear, AdminView } from "@/utils/admin-academic-year"
 
 type DashboardSearchParams = {
   message?: string
@@ -62,6 +64,7 @@ type StudentTestResult = {
 export type RegistrationRow = {
   id: string
   created_at: string | null
+  academic_year: string
   nama_lengkap: string | null
   nomor_whatsapp: string | null
   pilihan_program: string | null
@@ -210,12 +213,18 @@ function StatusBadge({ status }: { status: string | null }) {
 }
 export function AdminDashboard({
   data,
+  errorMessage,
   profile,
   searchParams,
+  view: _view,
+  academicYear: _academicYear,
 }: {
   data: RegistrationRow[]
+  errorMessage?: string
   profile: { full_name: string | null; email: string }
   searchParams: DashboardSearchParams
+  view: AdminView
+  academicYear: AcademicYear
 }) {
   const query = searchParams.q?.trim().toLowerCase() ?? ""
   const testFilter = searchParams.test ?? "all"
@@ -279,6 +288,15 @@ export function AdminDashboard({
       </header>
 
       <main className="flex-1 p-6">
+        {errorMessage ? (
+          <div className="mb-6 rounded-xl border border-red-200 bg-red-50 p-5 text-red-700">
+            <div className="flex items-center gap-3">
+              <AlertCircle className="h-5 w-5" />
+              <p className="font-semibold">Dashboard admin belum bisa dimuat</p>
+            </div>
+            <p className="mt-2 text-sm">Detail error: {errorMessage}</p>
+          </div>
+        ) : null}
         {flashMessage && (
           <div className="mb-6 rounded-lg border border-[#2C8970]/20 bg-[#2C8970]/10 px-4 py-3 text-sm text-[#2C8970]">
             {flashMessage}
