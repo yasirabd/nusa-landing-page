@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server"
 
 import { requireAdminUser } from "@/utils/admin"
+import { parseAcademicYear } from "@/utils/admin-academic-year"
 
 type PersonalityResult = {
   aspect?: string | null
@@ -24,6 +25,7 @@ type StudentTestResult = {
 type JoinedRegistration = {
   id: string
   created_at: string | null
+  academic_year: string
   nama_lengkap: string | null
   nomor_whatsapp: string | null
   pilihan_program: string | null
@@ -92,14 +94,16 @@ function getDesignerScore(test: StudentTestResult | undefined) {
   return values.reduce((total, value) => total + value, 0) / values.length
 }
 
-export async function GET() {
+export async function GET(request: Request) {
   const { supabase, user, profile } = await requireAdminUser()
+  const academicYear = parseAcademicYear(new URL(request.url).searchParams.get("year"))
 
   const { data, error } = await supabase
     .from("registrations")
     .select(`
       id,
       created_at,
+      academic_year,
       nama_lengkap,
       nomor_whatsapp,
       pilihan_program,
@@ -120,6 +124,7 @@ export async function GET() {
         tendency_result
       )
     `)
+    .eq("academic_year", academicYear.value)
     .order("created_at", { ascending: false })
 
   if (error) {
@@ -184,6 +189,7 @@ export async function GET() {
     details: {
       row_count: rows.length,
       format: "csv",
+      academic_year: academicYear.value,
       admin_email: profile.email,
     },
   })
@@ -191,7 +197,7 @@ export async function GET() {
   return new NextResponse(csv, {
     headers: {
       "Content-Type": "text/csv; charset=utf-8",
-      "Content-Disposition": `attachment; filename="nusa-admin-registrations.csv"`,
+      "Content-Disposition": `attachment; filename="nusa-pendaftar-${academicYear.slug}.csv"`,
     },
   })
 }

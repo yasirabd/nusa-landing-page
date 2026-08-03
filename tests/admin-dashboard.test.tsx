@@ -130,4 +130,49 @@ describe("admin year-scoped data", () => {
 
     expect(screen.getAllByText("Email admin belum tersedia").length).toBeGreaterThan(0)
   })
+
+  it("keeps academic year in admin mutations and export", () => {
+    const action = readFileSync("app/admin/actions.ts", "utf8")
+    const exportRoute = readFileSync("app/admin/export/route.ts", "utf8")
+    const dashboard = readFileSync("components/admin/admin-dashboard.tsx", "utf8")
+
+    expect(action).toContain('formData.get("year")')
+    expect(action).toContain("buildAdminHref")
+    expect(exportRoute).toContain("parseAcademicYear")
+    expect(exportRoute).toContain('.eq("academic_year", academicYear.value)')
+    expect(exportRoute).toContain("academic_year: academicYear.value")
+    expect(dashboard).toContain("/admin/export?year=")
+  })
+
+  it("names the selected year when no registrations exist", () => {
+    render(
+      <AdminDashboard
+        data={[]}
+        profile={profile}
+        searchParams={{}}
+        view="registrations"
+        academicYear={academicYear}
+      />,
+    )
+
+    expect(screen.getByText("Belum ada pendaftar untuk 2027/2028")).toBeVisible()
+  })
+
+  it("keeps navigation available but hides data views after a query error", () => {
+    render(
+      <AdminDashboard
+        data={[]}
+        errorMessage="query failed"
+        profile={profile}
+        searchParams={{}}
+        view="registrations"
+        academicYear={academicYear}
+      />,
+    )
+
+    expect(screen.getAllByText("Data Pendaftar").length).toBeGreaterThan(0)
+    expect(screen.getByText("Dashboard admin belum bisa dimuat")).toBeVisible()
+    expect(screen.queryByRole("table")).not.toBeInTheDocument()
+    expect(screen.queryByPlaceholderText("Cari nama, nomor WA, atau kode tes...")).not.toBeInTheDocument()
+  })
 })

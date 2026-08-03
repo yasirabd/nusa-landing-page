@@ -28,12 +28,15 @@ import {
   TableRow,
 } from "@/components/ui/table"
 import type { AcademicYear, AdminView } from "@/utils/admin-academic-year"
+import { buildAdminHref } from "@/utils/admin-academic-year"
 
 type DashboardSearchParams = {
   message?: string
   page?: string
   q?: string
   test?: string
+  view?: string
+  year?: string
 }
 
 type PersonalityResult = {
@@ -151,12 +154,18 @@ function sortRows(rows: RegistrationRow[]) {
   return [...rows].sort((a, b) => (b.created_at ?? "").localeCompare(a.created_at ?? ""))
 }
 
-function buildPaginationHref(page: number, searchParams: DashboardSearchParams) {
-  const params = new URLSearchParams()
-  if (searchParams.q) params.set("q", searchParams.q)
-  if (searchParams.test) params.set("test", searchParams.test)
-  params.set("page", String(page))
-  return `/admin?${params.toString()}`
+function buildPaginationHref(
+  page: number,
+  searchParams: DashboardSearchParams,
+  academicYear: AcademicYear,
+) {
+  return buildAdminHref({
+    view: "registrations",
+    year: academicYear.slug,
+    q: searchParams.q,
+    test: searchParams.test,
+    page: String(page),
+  })
 }
 
 function formatStatus(status: string) {
@@ -242,11 +251,14 @@ export function AdminDashboard({
           </div>
         )}
 
-        {view === "summary" ? <AdminSummary stats={stats} /> : null}
-        {view === "academic-years" ? <AcademicYearList selectedYear={academicYear} /> : null}
-        {view === "registrations" ? (
+        {!errorMessage && view === "summary" ? <AdminSummary stats={stats} /> : null}
+        {!errorMessage && view === "academic-years" ? <AcademicYearList selectedYear={academicYear} /> : null}
+        {!errorMessage && view === "registrations" ? (
         <section className="rounded-xl border border-[#134146]/8 bg-white shadow-sm">
           <div className="border-b border-[#134146]/8 p-4">
+            <form action="/admin" method="get">
+              <input type="hidden" name="view" value="registrations" />
+              <input type="hidden" name="year" value={academicYear.slug} />
             <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
               <div className="flex flex-1 items-center gap-2">
                 <div className="relative flex-1">
@@ -264,14 +276,7 @@ export function AdminDashboard({
                   defaultValue={testFilter}
                   onChange={(e) => {
                     const form = e.target.closest("form")
-                    if (form) {
-                      const formData = new FormData(form as HTMLFormElement)
-                      const params = new URLSearchParams()
-                      const q = formData.get("q") as string
-                      if (q) params.set("q", q)
-                      params.set("test", e.target.value)
-                      window.location.href = `/admin?${params.toString()}`
-                    }
+                    form?.requestSubmit()
                   }}
                   className="h-10 rounded-lg border border-[#134146]/10 bg-white px-3 text-sm text-[#134146] outline-none focus:border-[#42CDBA] focus:ring-[3px] focus:ring-[#42CDBA]/20"
                 >
@@ -290,36 +295,38 @@ export function AdminDashboard({
                   <Filter className="h-4 w-4" />
                   Filter
                 </Button>
-                <Button
-                  type="button"
-                  variant="outline"
-                  className="h-10 border-[#134146]/20 text-[#134146] hover:bg-[#134146]/5"
-                  onClick={() => {
-                    window.location.href = "/admin"
-                  }}
+                <a
+                  href={buildAdminHref({ view: "registrations", year: academicYear.slug })}
+                  className="inline-flex h-10 items-center justify-center gap-2 rounded-md border border-[#134146]/20 px-4 text-sm font-medium text-[#134146] hover:bg-[#134146]/5"
                 >
                   <RefreshCcw className="h-4 w-4" />
                   Reset
-                </Button>
-                <Button
-                  type="button"
-                  variant="outline"
-                  className="h-10 border-[#134146]/20 text-[#134146] hover:bg-[#134146]/5"
+                </a>
+                <a
+                  href={`/admin/export?year=${academicYear.slug}`}
+                  className="inline-flex h-10 items-center justify-center gap-2 rounded-md border border-[#134146]/20 px-4 text-sm font-medium text-[#134146] hover:bg-[#134146]/5"
                 >
                   <Download className="h-4 w-4" />
                   Export
-                </Button>
+                </a>
               </div>
             </div>
+            </form>
           </div>
           {pageRows.length === 0 ? (
             <div className="flex flex-col items-center justify-center py-16 text-center">
               <div className="rounded-full bg-[#134146]/5 p-4">
                 <Search className="h-8 w-8 text-[#134146]/40" />
               </div>
-              <p className="mt-4 text-lg font-semibold text-[#134146]">Tidak ada data ditemukan</p>
+              <p className="mt-4 text-lg font-semibold text-[#134146]">
+                {data.length === 0 && query === "" && testFilter === "all"
+                  ? `Belum ada pendaftar untuk ${academicYear.value}`
+                  : "Tidak ada data ditemukan"}
+              </p>
               <p className="mt-1 text-sm text-[#134146]/60">
-                Coba ubah filter atau kata kunci pencarian Anda
+                {data.length === 0 && query === "" && testFilter === "all"
+                  ? "Pendaftar baru akan muncul otomatis pada halaman ini."
+                  : "Coba ubah filter atau kata kunci pencarian Anda"}
               </p>
             </div>
           ) : (
@@ -425,6 +432,10 @@ export function AdminDashboard({
                             className="w-[280px] rounded-lg border border-[#134146]/10 bg-[#F7F7F2] p-3"
                           >
                             <input type="hidden" name="registrationId" value={row.id} />
+                            <input type="hidden" name="year" value={academicYear.slug} />
+                            <input type="hidden" name="q" value={searchParams.q ?? ""} />
+                            <input type="hidden" name="test" value={searchParams.test ?? ""} />
+                            <input type="hidden" name="page" value={String(safePage)} />
                             <div className="space-y-2.5">
                               <select
                                 name="status"
@@ -465,7 +476,7 @@ export function AdminDashboard({
                 return (
                   <a
                     key={page}
-                    href={buildPaginationHref(page, searchParams)}
+                    href={buildPaginationHref(page, searchParams, academicYear)}
                     className={`inline-flex h-9 min-w-9 items-center justify-center rounded-lg border px-3 text-sm font-semibold transition ${
                       page === safePage
                         ? "border-[#2C8970] bg-[#2C8970] text-white"
