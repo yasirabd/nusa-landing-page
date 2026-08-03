@@ -5,6 +5,7 @@ import Link from "next/link"
 import { ArrowLeft, CheckCircle2, Send } from "lucide-react"
 import { FormProvider, useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
+import { ACTIVE_ACADEMIC_YEAR } from "@/utils/admin-academic-year"
 import { createClient } from "@/utils/supabase/client"
 import { Button } from "@/components/ui/button"
 import {
@@ -186,6 +187,7 @@ export function RegistrationFormPage() {
 
     const kodeTes = Math.random().toString(36).substring(2, 8).toUpperCase()
     const { error: insertError } = await supabase.from("registrations").insert({
+      academic_year: ACTIVE_ACADEMIC_YEAR.value,
       nama_lengkap: data.namaLengkap,
       nomor_whatsapp: data.nomorWhatsapp,
       tempat_lahir: data.tempatLahir,

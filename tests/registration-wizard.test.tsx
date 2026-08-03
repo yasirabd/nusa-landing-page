@@ -331,6 +331,7 @@ describe("registration wizard", () => {
     )
     expect(supabaseMocks.insert).toHaveBeenCalledWith(
       expect.objectContaining({
+        academic_year: "2027/2028",
         nama_lengkap: "Muhammad Abdullah",
         sekolah_asal: "SMPN 1 Semarang",
         pilihan_program: "programmer",
