@@ -6,6 +6,7 @@
     "build": "next build",
     "dev": "next dev",
     "lint": "next lint",
+    "cleanup:dummy-registrations-2027-2028": "node --env-file=.env.local scripts/cleanup-dummy-registrations-2027-2028.mjs",
     "start": "next start",
     "test": "vitest run"
   },
