@@ -5,22 +5,18 @@ import { id } from "date-fns/locale"
 import {
   AlertCircle,
   CalendarDays,
-  CheckCircle2,
-  Clock3,
   Download,
-  FileClock,
   Filter,
-  LogOut,
   RefreshCcw,
   Save,
   Search,
-  UsersRound,
-  UserRoundCheck,
 } from "lucide-react"
 
+import { AcademicYearList } from "@/components/admin/academic-year-list"
+import { AdminShell } from "@/components/admin/admin-shell"
+import { AdminSummary } from "@/components/admin/admin-summary"
 import { TestDetailDialog } from "@/components/admin/test-detail-dialog"
 import { updateRegistrationAction } from "@/app/admin/actions"
-import { logoutAdminAction } from "@/app/login/actions"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import {
@@ -169,40 +165,6 @@ function formatStatus(status: string) {
     .replace(/\b\w/g, (char) => char.toUpperCase())
 }
 
-function SummaryCard({
-  title,
-  value,
-  description,
-  icon,
-  tone = "primary",
-}: {
-  title: string
-  value: number
-  description: string
-  icon: React.ReactNode
-  tone?: "primary" | "accent" | "secondary" | "dark"
-}) {
-  const toneClass = {
-    primary: "bg-[#2C8970]/10 text-[#2C8970]",
-    accent: "bg-[#42CDBA]/10 text-[#42CDBA]",
-    secondary: "bg-[#F3B233]/10 text-[#F3B233]",
-    dark: "bg-[#134146]/10 text-[#134146]",
-  }[tone]
-
-  return (
-    <div className="rounded-xl border border-[#134146]/8 bg-white p-5 shadow-sm">
-      <div className="flex items-start justify-between">
-        <div>
-          <p className="text-sm font-medium text-[#134146]/60">{title}</p>
-          <p className="mt-2 text-3xl font-bold text-[#134146]">{value}</p>
-          <p className="mt-1 text-xs text-[#134146]/50">{description}</p>
-        </div>
-        <div className={`rounded-lg p-3 ${toneClass}`}>{icon}</div>
-      </div>
-    </div>
-  )
-}
-
 function StatusBadge({ status }: { status: string | null }) {
   const style = STATUS_BADGE_STYLES[status ?? ""] ?? "border-[#134146]/10 bg-[#134146]/5 text-[#134146]/70"
   return (
@@ -216,12 +178,12 @@ export function AdminDashboard({
   errorMessage,
   profile,
   searchParams,
-  view: _view,
-  academicYear: _academicYear,
+  view,
+  academicYear,
 }: {
   data: RegistrationRow[]
   errorMessage?: string
-  profile: { full_name: string | null; email: string }
+  profile: { full_name: string | null; email: string | null }
   searchParams: DashboardSearchParams
   view: AdminView
   academicYear: AcademicYear
@@ -258,36 +220,13 @@ export function AdminDashboard({
     total: data.length,
     completed: rows.filter((r) => getTestState(r).value === "completed").length,
     inProgress: rows.filter((r) => getTestState(r).value === "in_progress").length,
-    notStarted: rows.filter((r) => getTestState(r).value === "not_started").length,
     accepted: rows.filter((r) => r.status === "diterima").length,
   }
 
   const flashMessage = searchParams.message ? FLASH_MESSAGES[searchParams.message] : null
 
   return (
-    <div className="flex min-h-screen flex-col bg-[#F0FAF7] font-sans text-[#134146]">
-      <header className="sticky top-0 z-10 border-b border-[#134146]/8 bg-white px-6 py-4 shadow-sm">
-        <div className="flex items-center justify-between">
-          <div>
-            <h1 className="text-2xl font-bold text-[#134146]">Admin Dashboard</h1>
-            <p className="mt-0.5 text-sm text-[#134146]/60">
-              Selamat datang, {profile.full_name ?? profile.email}
-            </p>
-          </div>
-          <form action={logoutAdminAction}>
-            <Button
-              type="submit"
-              variant="outline"
-              className="border-[#134146]/20 text-[#134146] hover:bg-[#134146]/5"
-            >
-              <LogOut className="h-4 w-4" />
-              Logout
-            </Button>
-          </form>
-        </div>
-      </header>
-
-      <main className="flex-1 p-6">
+    <AdminShell academicYear={academicYear} profile={profile} view={view}>
         {errorMessage ? (
           <div className="mb-6 rounded-xl border border-red-200 bg-red-50 p-5 text-red-700">
             <div className="flex items-center gap-3">
@@ -303,43 +242,9 @@ export function AdminDashboard({
           </div>
         )}
 
-        <div className="mb-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
-          <SummaryCard
-            title="Total Pendaftar"
-            value={stats.total}
-            description="Semua registrasi"
-            icon={<UsersRound className="h-5 w-5" />}
-            tone="dark"
-          />
-          <SummaryCard
-            title="Tes Selesai"
-            value={stats.completed}
-            description="Sudah submit semua"
-            icon={<CheckCircle2 className="h-5 w-5" />}
-            tone="primary"
-          />
-          <SummaryCard
-            title="Tes Berjalan"
-            value={stats.inProgress}
-            description="Sedang mengerjakan"
-            icon={<Clock3 className="h-5 w-5" />}
-            tone="secondary"
-          />
-          <SummaryCard
-            title="Belum Mulai"
-            value={stats.notStarted}
-            description="Belum buka tes"
-            icon={<FileClock className="h-5 w-5" />}
-            tone="dark"
-          />
-          <SummaryCard
-            title="Diterima"
-            value={stats.accepted}
-            description="Status diterima"
-            icon={<UserRoundCheck className="h-5 w-5" />}
-            tone="primary"
-          />
-        </div>
+        {view === "summary" ? <AdminSummary stats={stats} /> : null}
+        {view === "academic-years" ? <AcademicYearList selectedYear={academicYear} /> : null}
+        {view === "registrations" ? (
         <section className="rounded-xl border border-[#134146]/8 bg-white shadow-sm">
           <div className="border-b border-[#134146]/8 p-4">
             <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
@@ -574,7 +479,7 @@ export function AdminDashboard({
             </div>
           ) : null}
         </section>
-      </main>
-    </div>
+        ) : null}
+    </AdminShell>
   )
 }
