@@ -175,4 +175,10 @@ describe("admin year-scoped data", () => {
     expect(screen.queryByRole("table")).not.toBeInTheDocument()
     expect(screen.queryByPlaceholderText("Cari nama, nomor WA, atau kode tes...")).not.toBeInTheDocument()
   })
+
+  it("uses the approved typography weight hierarchy", () => {
+    const shell = readFileSync("components/admin/admin-shell.tsx", "utf8")
+
+    expect(shell).not.toContain("font-black")
+  })
 })

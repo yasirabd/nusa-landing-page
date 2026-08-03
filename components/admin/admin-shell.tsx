@@ -10,7 +10,6 @@ import {
 } from "lucide-react"
 
 import { logoutAdminAction } from "@/app/login/actions"
-import { Button } from "@/components/ui/button"
 import {
   Sheet,
   SheetContent,
@@ -57,7 +56,7 @@ function SidebarContent({
     <div className="flex h-full flex-col bg-[#134146] px-4 py-5 text-white">
       <div className="border-b border-white/10 px-2 pb-5">
         <div className="flex items-center gap-3">
-          <span className="flex size-11 items-center justify-center rounded-2xl bg-[#F3B233] text-lg font-black text-[#134146]">
+          <span className="flex size-11 items-center justify-center rounded-2xl bg-[#F3B233] text-lg font-bold text-[#134146]">
             N
           </span>
           <div>
